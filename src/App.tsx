@@ -17,6 +17,11 @@ function App () {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (localStorage.getItem('isFirstLaunch') !== null) {
+      navigate(routes.menu);
+      return;
+    }
+
     navigate(routes.authorization);
   }, []);
 
