@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Playfair';
+    src: local('playfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Black.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Playfair';
+    src: local('PlayfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Bold.ttf) format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy'), url(../public/fonts/gilroy/Gilroy-SemiBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: local('Gilroy'), url(../public/fonts/gilroy/Gilroy-Bold.ttf) format('truetype');
+    font-weight: bold;
+}

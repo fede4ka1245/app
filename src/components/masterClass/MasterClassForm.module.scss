@@ -1,0 +1,48 @@
+.main {
+  background: linear-gradient(88.23deg, rgba(55, 54, 107, 0.8) 0.29%, rgba(92, 91, 159, 0.8) 42.18%, rgba(89, 171, 218, 0.8) 97.3%), #F0F0F3;
+  border-radius: 10px;
+  color: white;
+}
+
+.date {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 7px;
+  gap: 10px;
+  width: 80px;
+  height: 20px;
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  color: white;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 9px;
+  line-height: 11px;
+}
+
+.join {
+  padding: 10px 20px;
+  gap: 10px;
+  background: #FFFFFF;
+  box-shadow: -5px -5px 20px rgba(255, 255, 255, 0.6), 5px 5px 20px rgba(174, 174, 192, 0.5);
+  border-radius: 10px;
+  color: #37366B;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  font-family: 'Gilroy';
+}

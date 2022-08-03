@@ -1,0 +1,18 @@
+.profilePhoto {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: gray;
+}
+
+.transparentButton {
+  background: rgba(172,180,190,0.2);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  height: 230px;
+  width: 100%;
+}
+
+.title {
+  margin-top: 10px;
+}

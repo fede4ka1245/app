@@ -1,0 +1,29 @@
+.outline {
+  position: relative;
+  opacity: 0.3;
+  border: 1px solid #ABB0B2;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outlineImage {
+  opacity: 0.3;
+  background: gray;
+  border-radius: 50%;
+  width: 128px;
+  height: 128px;
+}
+
+.imageEdit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+  width: 32px;
+  height: 32px;
+}

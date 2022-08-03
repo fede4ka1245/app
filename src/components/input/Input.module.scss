@@ -1,0 +1,49 @@
+.input {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: Gilroy, Arial;
+  font-style: normal;
+  font-weight: 500;
+
+  input {
+    width: calc(100% - 10px);
+    margin-left: 15px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: inherit;
+    height: 90%;
+  }
+}
+
+.outlined {
+  background: transparent !important;
+  outline: 1px solid #C3C9CD;
+}
+
+.filled {
+  background: white;
+}
+
+.placeholder {
+  position: absolute;
+  font-size: 14px;
+  color: gray;
+  transition: linear 0.2s;
+  pointer-events: none;
+}
+
+.bottom {
+  top: 16px;
+  left: 15px;
+}
+
+.top {
+  top: 5px;
+  left: 15px;
+  font-size: 9px !important;
+}
