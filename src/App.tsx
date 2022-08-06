@@ -10,6 +10,7 @@ import { routes } from './helpers/routes';
 import Authorization from './pages/authorization/Authorization';
 import Personal from './pages/personal/Personal';
 import Menu from './pages/menu/Menu';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 function App () {
   const location = useLocation();
@@ -23,6 +24,9 @@ function App () {
     }
 
     navigate(routes.authorization);
+
+    StatusBar.setOverlaysWebView({ overlay: true });
+    StatusBar.setStyle({ style: Style.Dark });
   }, []);
 
   return (

@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^3.7.0",
+    "@capacitor/core": "^3.7.0",
+    "@capacitor/ios": "^3.7.0",
+    "@capacitor/status-bar": "^1.0.8",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.9.2",
@@ -46,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "eslint": "^8.20.0",
