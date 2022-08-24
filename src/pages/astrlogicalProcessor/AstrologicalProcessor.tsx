@@ -12,6 +12,7 @@ import { useSetBackground } from '../../hooks/useSetBackground';
 import start from './images/start.svg';
 import { routes } from '../../helpers/routes';
 import { useNavigate } from 'react-router-dom';
+import Video from '../../components/video/Video';
 
 const AstrologicalProcessor = () => {
   useSetBackground('img.png', true);
@@ -22,9 +23,12 @@ const AstrologicalProcessor = () => {
     navigate(routes.menu, { replace: true });
   };
 
+  const onSettingsClick = () => {
+    navigate(routes.settings, { replace: true });
+  };
+
   return (
-    <div
-    >
+    <>
       <Moon />
       <Grid container pl={4} pr={4} spacing={2}>
         <Grid item container direction={'row'} spacing={3} alignItems={'center'}>
@@ -40,7 +44,7 @@ const AstrologicalProcessor = () => {
             <img alt='wallet' src={wallet}/>
           </Grid>
           <Grid item>
-            <img alt='setting' src={setting}/>
+            <img alt='setting' src={setting} onClick={onSettingsClick}/>
           </Grid>
         </Grid>
         <Grid item container spacing={2}>
@@ -103,26 +107,10 @@ const AstrologicalProcessor = () => {
           </Typography>
         </Grid>
         <Grid item width={'100%'}>
-          <div style={{
-            width: '100%',
-            height: '250px',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            backgroundImage: 'url(video.png)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '10px'
-          }}
-          >
-            <div>
-              <img src={start}/>
-            </div>
-          </div>
+          <Video />
         </Grid>
       </Grid>
-    </div>
+    </>
   );
 };
 

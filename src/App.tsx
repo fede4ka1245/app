@@ -11,6 +11,7 @@ import Authorization from './pages/authorization/Authorization';
 import Personal from './pages/personal/Personal';
 import Menu from './pages/menu/Menu';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import Settings from './pages/settings/Settings';
 
 function App () {
   const location = useLocation();
@@ -30,17 +31,17 @@ function App () {
   }, []);
 
   return (
-    <div>
+    <>
       <Routes>
         <Route path={routes.astrologicalProcessor} element={<AstrologicalProcessor />}/>
         <Route path={routes.personal} element={<Personal />} />
         <Route path={routes.chats} element={<AstrologicalProcessor />} />
         <Route path={routes.menu} element={<Menu />} />
-        <Route path={routes.settings} element={<AstrologicalProcessor />} />
+        <Route path={routes.settings} element={<Settings />} />
         <Route path={routes.authorization} element={<Authorization />} />
       </Routes>
       {isTabBarVisible && <TabBar />}
-    </div>
+    </>
   );
 }
 

@@ -17,7 +17,7 @@ const Authorization = () => {
 
   return (
     <div>
-      <Grid container direction={'column'} height={'var(--inner-height)'} justifyContent={'center'} pl={4} pr={4}>
+      <Grid container direction={'column'} height={'100vh'} justifyContent={'center'} pl={4} pr={4}>
         <Grid item container justifyContent={'center'} alignItems={'center'} flex={1}>
           <img alt='logo' src={logo} width={200} height={250}/>
         </Grid>

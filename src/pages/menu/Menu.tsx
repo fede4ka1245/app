@@ -9,6 +9,7 @@ import Video from '../../components/video/Video';
 import telegram from './images/telegram.png';
 import youTube from './images/youTube.png';
 import astrologicalProcessor from './images/astrologicalProcessor.svg';
+import TransparentButton from '../../components/transparentButton/TransparentButton';
 
 const Menu = () => {
   useSetBackground('authorization-background.png', true);
@@ -47,27 +48,11 @@ const Menu = () => {
           </Grid>
         </Grid>
         <Grid item>
-          <section className={styles.transparentButton} onClick={onAstrologicalProcessorClick}>
-            <Grid
-              container
-              display={'flex'}
-              justifyContent={'center'}
-              direction={'column'}
-              alignItems={'center'}
-              rowSpacing={2}
-              width={'100%'}
-              height={'100%'}
-            >
-              <Grid item>
-                <img src={astrologicalProcessor} width={100} height={100}/>
-              </Grid>
-              <Grid item>
-                <Typography color={'white'} fontWeight={'bold'} fontFamily={'Gilroy'} fontSize={18}>
-                  Астропроцессор
-                </Typography>
-              </Grid>
-            </Grid>
-          </section>
+          <TransparentButton
+            onClick={onAstrologicalProcessorClick}
+            image={<img src={astrologicalProcessor} width={100} height={100}/>}
+            label={'Астропроцессор'}
+          />
         </Grid>
         <Grid item>
           <Video />
