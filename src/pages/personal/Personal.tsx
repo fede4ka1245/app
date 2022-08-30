@@ -1,15 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './Personal.module.scss';
 import { Grid, Typography } from '@mui/material';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
-import { useSetBackground } from '../../hooks/useSetBackground';
 import ProfilePhoto from '../../components/profilePhoto/ProfilePhoto';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
 
 const Personal = () => {
-  useSetBackground('#f0f0f3');
   const [name, setName] = useState('');
   const [secondName, setSecondName] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -25,6 +23,16 @@ const Personal = () => {
   const onButtonSaveClick = () => {
     navigate(routes.menu);
   };
+
+  useEffect(() => {
+    document.body.style.background = '#F0F0F3 no-repeat';
+    document.body.style.minHeight = `${window.innerHeight}px`;
+
+    return () => {
+      document.body.style.background = '';
+      document.body.style.minHeight = '';
+    };
+  }, []);
 
   return (
     <div className={styles.main}>

@@ -1,12 +1,37 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Grid, Typography } from '@mui/material';
 import styles from '../../pages/menu/Menu.module.scss';
 import { TransparentButtonProps } from './TransparentButtonProps';
 
-const TransparentButton = ({ image, label, onClick } : TransparentButtonProps) => {
+const TransparentButton = ({ image, label, onClick, isSquare, height } : TransparentButtonProps) => {
+  const transparentButtonRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (height && transparentButtonRef.current) {
+      transparentButtonRef.current.style.height = height;
+    }
+
+    if (!isSquare) {
+      return;
+    }
+
+    const resize = () => {
+      if (transparentButtonRef.current !== null) {
+        transparentButtonRef.current.style.height = `${transparentButtonRef.current.clientWidth}px`;
+      }
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
   return (
     <>
-      <section className={styles.transparentButton} onClick={() => onClick()}>
+      <section ref={transparentButtonRef} className={styles.transparentButton} onClick={() => onClick()}>
         <Grid
           container
           display={'flex'}

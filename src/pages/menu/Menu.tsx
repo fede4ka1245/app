@@ -1,8 +1,6 @@
 import React from 'react';
-import { useSetBackground } from '../../hooks/useSetBackground';
 import { Grid, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
-import cross from './images/cross.svg';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
 import Video from '../../components/video/Video';
@@ -10,10 +8,9 @@ import telegram from './images/telegram.png';
 import youTube from './images/youTube.png';
 import astrologicalProcessor from './images/astrologicalProcessor.svg';
 import TransparentButton from '../../components/transparentButton/TransparentButton';
+import GalaxyBackground from '../../components/galaxyBackground/GalaxyBackground';
 
 const Menu = () => {
-  useSetBackground('authorization-background.png', true);
-
   const navigate = useNavigate();
 
   const onChangeButtonClick = () => {
@@ -26,10 +23,8 @@ const Menu = () => {
 
   return (
     <div>
+      <GalaxyBackground />
       <Grid container p={4} rowSpacing={4} direction={'column'}>
-        <Grid item>
-          <img alt={'cross'} src={cross}/>
-        </Grid>
         <Grid item container direction={'row'} spacing={2}>
           <Grid item>
             <div className={styles.profilePhoto}/>
@@ -49,8 +44,9 @@ const Menu = () => {
         </Grid>
         <Grid item>
           <TransparentButton
+            height="220px"
             onClick={onAstrologicalProcessorClick}
-            image={<img src={astrologicalProcessor} width={100} height={100}/>}
+            image={<img alt={'processor'} src={astrologicalProcessor} width={100} height={100}/>}
             label={'Астропроцессор'}
           />
         </Grid>
@@ -59,10 +55,10 @@ const Menu = () => {
         </Grid>
         <Grid item container justifyContent={'space-between'} spacing={1}>
           <Grid item xs={6} md={6}>
-            <img src={youTube} width={'100%'}/>
+            <img alt={'youTube'} src={youTube} width={'100%'}/>
           </Grid>
           <Grid item xs={6} md={6}>
-            <img src={telegram} width={'100%'}/>
+            <img alt={'telegram'} src={telegram} width={'100%'}/>
           </Grid>
         </Grid>
       </Grid>

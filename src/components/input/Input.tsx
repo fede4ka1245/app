@@ -3,20 +3,53 @@ import styles from './Input.module.scss';
 import { InputProps } from './InputProps';
 import classNames from 'classnames';
 import { InputType } from './InputType';
+import { Option } from '../../helpers/Option';
+import { Box, Typography } from '@mui/material';
+import Options from './components/Options';
+import arrow from './assets/arrow.svg';
 
-const Input = ({ placeholder, inputType, onChange, value } : InputProps) => {
+const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect } : InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [inputValue, setInputValue] = useState(value);
+  const [inputLabel, setInputLabel] = useState(value);
+
+  const [isOptionsActive, setIsOptionsActive] = useState(false);
+  const [option, setOption] = useState(targetOption);
+
+  const toggleIsOptionActive = () => {
+    if (!isSelect) {
+      return;
+    }
+
+    if (isOptionsActive) {
+      setIsOptionsActive(false);
+    } else {
+      setIsOptionsActive(true);
+    }
+  };
+
+  const onOptionSet = (option: Option) => {
+    setOption(option);
+
+    if (!setTargetOption) {
+      return;
+    }
+
+    setTargetOption(option);
+  };
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(event);
     }
-    setInputValue(event?.target?.value);
+    setInputLabel(event?.target?.value);
   };
 
   const isBottom = () => {
-    return !(isFocused || inputValue);
+    if (isSelect) {
+      return !option;
+    }
+
+    return !(isFocused || inputLabel);
   };
 
   const onInputFocus = () => {
@@ -28,17 +61,25 @@ const Input = ({ placeholder, inputType, onChange, value } : InputProps) => {
   };
 
   return (
-    <section className={
-      classNames(
+    <section
+      onClick={toggleIsOptionActive}
+      className={classNames(
         styles.input,
         { [styles.filled]: inputType !== InputType.outlined || !isBottom() },
         { [styles.outlined]: inputType === InputType.outlined && isBottom() }
       )}
     >
-      <input onFocus={onInputFocus} onBlur={onInputBlur} value={inputValue} onChange={onInputChange}/>
+      {!isSelect && <input onFocus={onInputFocus} onBlur={onInputBlur} value={inputLabel} onChange={onInputChange}/>}
+      {isSelect && <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'16px'} pl={2}>
+        {option?.label}
+      </Typography>}
+      {isSelect && <Box ml={'auto'} mr={2}>
+        <img alt='arrow' src={arrow}/>
+      </Box>}
       <label className={classNames(styles.placeholder, { [styles.bottom]: isBottom() }, { [styles.top]: !isBottom() })}>
         {placeholder}
       </label>
+      <Options isOpen={isOptionsActive} setTargetOption={onOptionSet} close={toggleIsOptionActive} options={options}/>
     </section>
   );
 };

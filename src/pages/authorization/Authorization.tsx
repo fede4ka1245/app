@@ -1,14 +1,13 @@
 import React from 'react';
-import { useSetBackground } from '../../hooks/useSetBackground';
 import { Grid, Typography } from '@mui/material';
 import logo from './images/logo.svg';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
+import GalaxyBackground from '../../components/galaxyBackground/GalaxyBackground';
 
 const Authorization = () => {
-  useSetBackground('authorization-background.png', true);
   const navigate = useNavigate();
 
   const onEnterClick = () => {
@@ -17,6 +16,7 @@ const Authorization = () => {
 
   return (
     <div>
+      <GalaxyBackground />
       <Grid container direction={'column'} height={'100vh'} justifyContent={'center'} pl={4} pr={4}>
         <Grid item container justifyContent={'center'} alignItems={'center'} flex={1}>
           <img alt='logo' src={logo} width={200} height={250}/>

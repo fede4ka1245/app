@@ -1,5 +1,5 @@
 import React from 'react';
-import moon from './moon.png';
+import moon from './moon.webp';
 
 const Moon = () => {
   return (

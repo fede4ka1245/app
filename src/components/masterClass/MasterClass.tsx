@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MasterClassForm.module.scss';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import Video from '../video/Video';
 
 const MasterClass = () => {
@@ -21,31 +21,31 @@ const MasterClass = () => {
         </Grid>
         <Grid flex={1} item direction={'column'} paddingTop={2} paddingBottom={2} container rowSpacing={1}>
           <Grid item>
-            <div className={styles.header}>
+            <Typography fontFamily={'Gilroy'} fontWeight={700} fontSize={'18px'}>
               Прогнозы на политику
-            </div>
+            </Typography>
           </Grid>
           <Grid item>
             <section className={styles.date}>
-              12 сентября
+              19 сентября
             </section>
           </Grid>
           <Grid item>
-            <div style={{ fontFamily: 'arial' }}>
+            <Typography fontFamily={'Gilroy'} fontWeight={400} fontSize={'10px'}>
               В рамках мастер-класса вы получите новые знания по теме прогнозов на политические события.
-            </div>
+            </Typography>
           </Grid>
           <Grid item>
-            <div style={{ fontFamily: 'arial' }}>
-              Ведущий:
-            </div>
+            <Typography fontFamily={'Gilroy'} fontWeight={400} fontSize={'10px'}>
+              Ведущий
+            </Typography>
             <div className={styles.header}>
               Aнна приходько
             </div>
           </Grid>
           <Grid item>
             <section className={styles.join}>
-              участвовать
+              Участвовать
             </section>
           </Grid>
         </Grid>

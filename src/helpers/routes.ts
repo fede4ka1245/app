@@ -2,10 +2,12 @@
 
 export enum routes {
   main = '/',
-  astrologicalProcessor = '/astrological-processor',
+  astrologicalProcessor = '/processor',
   chats = '/chats',
   authorization = '/authorization',
-  settings = '/setting',
+  settings = '/settings',
   menu = '/menu',
   personal = '/personal',
+  myHoroscopes = '/my-horoscopes',
+  horoscopes = '/horoscopes'
 }
