@@ -6,6 +6,7 @@ import compas from './assets/compas.svg';
 import table from './assets/table.svg';
 import shany from './assets/shany.svg';
 import kalanala from './assets/kalanala.svg';
+import Table from '../../../components/table/Table';
 
 const options = [
   {
@@ -50,6 +51,7 @@ const Zones = () => {
         {targetOption.value === 4 && <img alt='kalanala' src={kalanala}/>}
         {targetOption.value === 3 && <img alt='compas' src={compas}/>}
         {targetOption.value === 2 && <img alt='table' src={table}/>}
+        {targetOption.value === 1 && <Table />}
       </section>
     </>
   );

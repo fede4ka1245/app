@@ -4,7 +4,8 @@ import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProc
 import {
   Routes,
   Route,
-  useNavigate
+  useNavigate,
+  Navigate
 } from 'react-router-dom';
 import { routes } from './helpers/routes';
 import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
@@ -18,7 +19,7 @@ import Main from './pages/settings/main/Main';
 import Maps from './pages/settings/maps/Maps';
 import MapDisplaying from './pages/settings/mapDisplaying/MapDisplaying';
 import Lines from './pages/settings/lines/Lines';
-import MyHoroscopes from './pages/settings/myHororscopes/MyHoroscopes';
+import MyHoroscopes from './pages/myHororscopes/MyHoroscopes';
 import { App as nativeApp } from '@capacitor/app';
 import Ashtakavarga from './pages/horoscopes/ashtakavarga/Ashtakavarga';
 import Dashi from './pages/horoscopes/dashi/Dashi';
@@ -42,13 +43,13 @@ function App () {
     StatusBar.setOverlaysWebView({ overlay: true });
     StatusBar.setStyle({ style: Style.Light });
 
-    if (localStorage.getItem('isFirstLaunch') !== null) {
-      navigate(routes.menu);
-      return;
-    }
-
-    navigate(routes.authorization);
-    localStorage.setItem('isFirstLaunch', JSON.stringify(false));
+    // if (localStorage.getItem('isFirstLaunch') !== null) {
+    //   navigate(routes.menu);
+    //   return;
+    // }
+    //
+    // navigate(routes.authorization);
+    // localStorage.setItem('isFirstLaunch', JSON.stringify(false));
   }, []);
 
   return (
@@ -77,6 +78,7 @@ function App () {
         </Route>
         <Route path={routes.authorization} element={<Authorization />} />
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
+        <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
     </>
   );

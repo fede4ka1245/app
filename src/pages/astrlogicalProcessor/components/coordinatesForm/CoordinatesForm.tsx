@@ -26,6 +26,19 @@ const CoordinatesForm = () => {
           <Input placeholder='Координаты'/>
         </Grid>
       </Grid>
+      <Grid item pb={1}>
+        <Typography fontFamily={'Gilroy'} fontWeight={700} fontSize={'14px'} color={'white'}>
+          Часовой пояс
+        </Typography>
+      </Grid>
+      <Grid item container direction={'row'} width={'calc(50% - 5px)'} justifyContent={'space-between'}>
+        <Grid item width={'calc(50% - 5px)'}>
+          <Input placeholder={'0'} isSelect={true}/>
+        </Grid>
+        <Grid item width={'calc(50% - 5px)'}>
+          <Input placeholder={'00'} isSelect={true}/>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

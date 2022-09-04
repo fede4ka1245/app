@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Moon from '../../../components/moon/Moon';
-import PlanetBackground from '../../../components/planetBackground/PlanetBackground';
+import Moon from '../../components/moon/Moon';
+import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import { Grid, Typography } from '@mui/material';
-import ButtonBack from '../../../components/buttonBack/ButtonBack';
+import ButtonBack from '../../components/buttonBack/ButtonBack';
 import { useNavigate } from 'react-router-dom';
-import MyHoroscope from '../../../components/myHororscope/MyHoroscope';
+import MyHoroscope from '../../components/myHororscope/MyHoroscope';
 import search from './assets/search.svg';
+import CourseAd from '../../components/courseAd/CourseAd';
 
 const horoscopes = [
   {
@@ -38,23 +39,31 @@ const MyHoroscopes = () => {
     <>
       <Moon/>
       <PlanetBackground/>
-      <Grid container pr={4} pl={4} pt={5} pb={5} rowSpacing={2}>
-        <Grid item container alignItems={'center'} justifyContent={'space-between'}>
+      <Grid container pt={5} pb={5} rowSpacing={2} overflow={'hidden'}>
+        <Grid item container alignItems={'center'} justifyContent={'space-between'} pr={4} pl={4}>
           <Grid item>
-            <ButtonBack label={'Настройки'} onClick={() => navigate(-1)}/>
+            <ButtonBack label={'Назад'} onClick={() => navigate(-1)}/>
           </Grid>
           <Grid item>
             <img alt='search' src={search} width={'20px'} height={'20px'}/>
           </Grid>
         </Grid>
-        <Grid item pt={2}>
+        <Grid item pt={2} pr={4} pl={4}>
           <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'} textAlign={'center'}>
-            Мои гороскопы ({myHoroscopes.length})
+            Мои гороскопы (8)
           </Typography>
         </Grid>
         <Grid item container direction={'column'}>
           {myHoroscopes.map(({ name, date, city }, index) => (
-            <Grid key={index} item pb={2}>
+            <Grid key={index} item pb={2} pr={4} pl={4}>
+              <MyHoroscope name={name} date={date} city={city} />
+            </Grid>
+          ))}
+          <Grid item pl={4}>
+            <CourseAd />
+          </Grid>
+          {myHoroscopes.map(({ name, date, city }, index) => (
+            <Grid key={index} item pb={2} pr={4} pl={4}>
               <MyHoroscope name={name} date={date} city={city} />
             </Grid>
           ))}

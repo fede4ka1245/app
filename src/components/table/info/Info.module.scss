@@ -1,0 +1,15 @@
+.main {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+}
+
+.image {
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(89, 171, 218, 0.4);
+  border-radius: 10px;
+  z-index: -1;
+  width: 100%;
+  position: absolute;
+}

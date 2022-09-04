@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import styles from './TransitionItem.module.scss';
 import Options from '../../../../../components/options/Options';
 import { Option } from '../../../../../helpers/Option';
+import Slider from '../../../../../components/slider/Slider';
 
 const ignoredOptions = [
   {
@@ -38,6 +39,11 @@ const TransitionItem = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [ignoredOption, setIgnoredOption] = useState<Option>();
   const [planetMovingOption, setPlanetMovingOption] = useState<Option>();
+  const [value, setValue] = React.useState<number[]>([20, 37]);
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
 
   const toggleIsOpen = () => {
     if (!setIsOpen) {
@@ -48,7 +54,7 @@ const TransitionItem = () => {
   };
 
   return (
-    <Grid container direction={'row'} pt={2}>
+    <Box pt={2}>
       <section onClick={toggleIsOpen} className={styles.label}>
         <Box width={'30px'} height={'30px'} pr={2}>
           {isOpen && <img alt='minus' src={minus} width={'30px'} height={'30px'}/>}
@@ -58,7 +64,7 @@ const TransitionItem = () => {
           Транзит планеты 1
         </p>
       </section>
-      {isOpen && <Grid container>
+      {isOpen && <Grid container direction={'column'}>
         <Grid pt={2} item container direction={'row'} justifyContent={'space-between'} rowSpacing={2}>
           <Grid item width={'calc(50% - 5px)'}>
             <Input placeholder={'00.00.00'}/>
@@ -85,13 +91,14 @@ const TransitionItem = () => {
           </Typography>
           <Options options={planetMovingOptions} value={planetMovingOption?.value} setValue={setPlanetMovingOption} />
         </Grid>
-        {/* <Grid item pt={2}> */}
-        {/*  <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}> */}
-        {/*    Положение планеты в градусе */}
-        {/*  </Typography> */}
-        {/* </Grid> */}
+        <Grid item pt={2}>
+          <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
+            Положение планеты в градусе
+          </Typography>
+          <Slider value={value} onChange={handleChange} disableSwap/>
+        </Grid>
       </Grid>}
-    </Grid>
+    </Box>
   );
 };
 

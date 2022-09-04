@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Box } from '@mui/material';
 import Map from './components/map/Map';
 import Buttons from './components/buttons/Buttons';
 import Input from '../../components/input/Input';
@@ -58,11 +58,15 @@ const Index = () => {
   return (
     <>
       <PlanetBackground />
-      <Grid container justifyContent={'center'} pl={4} pr={4} pt={4} direction={'column'}>
-        <Grid item>
+      <Grid container justifyContent={'center'} pt={4} direction={'column'}>
+        <Grid item pl={4} pr={4}>
           <Buttons />
         </Grid >
-        <Grid item>
+        <Grid item pt={2} pb={2} display={'flex'} justifyContent={'center'} overflow={'hidden'}>
+          <Map />
+          <Box pl={1}/>
+          <Map />
+          <Box pl={1}/>
           <Map />
         </Grid>
       </Grid>

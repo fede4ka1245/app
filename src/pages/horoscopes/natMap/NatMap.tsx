@@ -2,8 +2,10 @@ import React from 'react';
 import styles from './NatMap.module.scss';
 import img from './img.png';
 import Switch from '../../../components/switch/Switch';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import deepSky from './deepSky.svg';
+import sign from './sign.svg';
+import Table from '../../../components/table/Table';
 
 const NatMap = () => {
   return (
@@ -16,6 +18,7 @@ const NatMap = () => {
           </section>
         </Grid>
       </Grid>
+      <Table />
     </>
   );
 };
