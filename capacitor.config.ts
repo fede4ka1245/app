@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   bundledWebRuntime: false,
   plugins: {
     SplashScreen: {
-      launchShowDuration: 0
+      launchAutoHide: false,
     },
     Keyboard: {
       resizeOnFullScreen: true

@@ -30,6 +30,7 @@ import Yogas from './pages/horoscopes/yogas/Yogas';
 import Rectification from './pages/horoscopes/rectification/Rectification';
 import Varshapkhala from './pages/horoscopes/varshapkhala/Varshapkhala';
 import Horoscopes from './pages/horoscopes';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 function App () {
   // const location = useLocation();
@@ -42,6 +43,9 @@ function App () {
     });
     StatusBar.setOverlaysWebView({ overlay: true });
     StatusBar.setStyle({ style: Style.Light });
+    SplashScreen.show().then(() => {
+      SplashScreen.hide();
+    });
 
     // if (localStorage.getItem('isFirstLaunch') !== null) {
     //   navigate(routes.menu);
