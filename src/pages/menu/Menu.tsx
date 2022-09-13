@@ -23,9 +23,9 @@ const Menu = () => {
 
   return (
     <div>
-      <GalaxyBackground />
-      <Grid container p={4} rowSpacing={4} direction={'column'}>
-        <Grid item container direction={'row'} spacing={2}>
+      <Grid container pl={4} pr={4} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
+        <GalaxyBackground />
+        <Grid item container direction={'row'} spacing={2} mt={2} mb={'auto'}>
           <Grid item>
             <div className={styles.profilePhoto}/>
           </Grid>
@@ -44,7 +44,7 @@ const Menu = () => {
         </Grid>
         <Grid item>
           <TransparentButton
-            height="220px"
+            height="250px"
             onClick={onAstrologicalProcessorClick}
             image={<img alt={'processor'} src={astrologicalProcessor} width={100} height={100}/>}
             label={'Астропроцессор'}
@@ -53,7 +53,7 @@ const Menu = () => {
         <Grid item>
           <Video />
         </Grid>
-        <Grid item container justifyContent={'space-between'} spacing={1}>
+        <Grid item container justifyContent={'space-between'} spacing={1} pb={2}>
           <Grid item xs={6} md={6}>
             <img alt={'youTube'} src={youTube} width={'100%'}/>
           </Grid>

@@ -10,17 +10,8 @@ const GalaxyBackground = () => {
       return;
     }
 
-    main.current.style.background = 'linear-gradient(#261C5C 55.73%, #365191 100%) no-repeat';
+    main.current.style.background = '#354f8f';
     main.current.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      if (!main.current) {
-        return;
-      }
-
-      main.current.style.background = '';
-      main.current.style.minHeight = '';
-    };
   }, []);
 
   return (
