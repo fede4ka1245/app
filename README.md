@@ -26,8 +26,17 @@ npx cap add android
 npx cap sync
 ```
 #### 4. Set icon and splash screen
+1. update images
 ```
 npx cordova-res android --skip-config --copy
+```
+2. set sources from /androidSplashAssets to app/res/drawable
+3. change splash screen style in app/res/values/styles.xml to this:
+```
+<style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+    <item name="android:background">@drawable/launch_screen</item>
+    <item name="android:navigationBarColor">#365090</item>
+</style>
 ```
 #### 5. Open native project
 ```
@@ -40,7 +49,6 @@ in Android Studio it can be here: app/manifests/AndroidManifest.xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
-####
 #### 7. Start and build
 * To start android application create an android simulator, then tap "play" button toolbar
 * To build tap build in toolbar and select necessary build type
