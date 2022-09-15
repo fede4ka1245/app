@@ -23,9 +23,10 @@ const ProfilePhoto = () => {
 
   const onChangePhotoClick = async () => {
     const { photos } : GalleryPhotos = await Camera.pickImages({
-      quality: 100,
       limit: 1
     });
+
+    console.log(photos);
 
     setImagePath(photos[0].webPath);
     setIsProfilePhotoEditorActive(true);
