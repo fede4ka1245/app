@@ -16,6 +16,7 @@ import PlanetBackground from '../../components/planetBackground/PlanetBackground
 import CoordinatesForm from './components/coordinatesForm/CoordinatesForm';
 import Deals from '../../components/deals/Deals';
 import { options } from '../../helpers/options';
+import { InputType } from '../../components/input/InputType';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();
@@ -80,14 +81,14 @@ const AstrologicalProcessor = () => {
           </Grid>
           <Grid item container direction={'row'} spacing={2} pb={2}>
             <Grid item xs={6} md={6}>
-              <Input placeholder='Дата'/>
+              <Input placeholder='Дата' inputType={InputType.date}/>
             </Grid>
             <Grid item xs={6} md={6}>
-              <Input placeholder='Время'/>
+              <Input placeholder='Время' inputType={InputType.time}/>
             </Grid>
           </Grid>
           <Grid item xs={12} md={12}>
-            <Input placeholder='Место рождения' options={options} isSelect={true}/>
+            <Input placeholder='Место рождения' options={options} inputType={InputType.options}/>
           </Grid>
         </Grid>
         <Grid item container spacing={2} direction={'row'} color={'#ABB0B2'}>

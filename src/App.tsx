@@ -31,6 +31,10 @@ import Rectification from './pages/horoscopes/rectification/Rectification';
 import Varshapkhala from './pages/horoscopes/varshapkhala/Varshapkhala';
 import Horoscopes from './pages/horoscopes';
 import { SplashScreen } from '@capacitor/splash-screen';
+import Modal from './components/modal/Modal';
+import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { TextField, Box } from '@mui/material';
 
 function App () {
   // const location = useLocation();

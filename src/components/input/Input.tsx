@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import styles from './Input.module.scss';
 import { InputProps } from './InputProps';
 import classNames from 'classnames';
-import { InputType } from './InputType';
+import { InputStyle } from './InputStyle';
 import { Option } from '../../helpers/Option';
-import { Box, Typography } from '@mui/material';
-import Options from './components/Options';
-import arrow from './assets/arrow.svg';
+import Options from './components/options/Options';
+import { InputType } from './InputType';
+import InputDate from './components/inputDate/InputDate';
+import InputTime from './components/inputTime/InputTime';
+import InputPhone from './components/inputPhone/InputPhone';
+import { Grid, Typography } from '@mui/material';
+import arrowImage from './assets/arrow.svg';
 
-const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect } : InputProps) => {
+const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect, disablePast, shouldDisableTime, inputStyle } : InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputLabel, setInputLabel] = useState(value);
 
@@ -16,7 +20,7 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
   const [option, setOption] = useState(targetOption);
 
   const toggleIsOptionActive = () => {
-    if (!isSelect) {
+    if (inputType !== InputType.options) {
       return;
     }
 
@@ -37,27 +41,19 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
     setTargetOption(option);
   };
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (value: string) => {
     if (onChange) {
-      onChange(event);
+      onChange(value);
     }
-    setInputLabel(event?.target?.value);
+    setInputLabel(value);
   };
 
   const isBottom = () => {
-    if (isSelect) {
+    if (inputType === InputType.options) {
       return !option;
     }
 
     return !(isFocused || inputLabel);
-  };
-
-  const onInputFocus = () => {
-    setIsFocused(true);
-  };
-
-  const onInputBlur = () => {
-    setIsFocused(false);
   };
 
   return (
@@ -65,21 +61,64 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
       onClick={toggleIsOptionActive}
       className={classNames(
         styles.input,
-        { [styles.filled]: inputType !== InputType.outlined || !isBottom() },
-        { [styles.outlined]: inputType === InputType.outlined && isBottom() }
+        { [styles.filled]: inputStyle !== InputStyle.outlined || !isBottom() },
+        { [styles.outlined]: inputStyle === InputStyle.outlined && isBottom() }
       )}
     >
-      {!isSelect && <input onFocus={onInputFocus} onBlur={onInputBlur} value={inputLabel} onChange={onInputChange}/>}
-      {isSelect && <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'16px'} pl={2}>
-        {option?.label}
-      </Typography>}
-      {isSelect && <Box ml={'auto'} mr={2}>
-        <img alt='arrow' src={arrow}/>
-      </Box>}
+      {inputType === InputType.date && <InputDate
+        disablePast={disablePast}
+        value={inputLabel}
+        onChange={onInputChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        className={classNames(styles.input)}
+      />}
+      {inputType === InputType.time && <InputTime
+        shouldDisableTime={shouldDisableTime}
+        value={inputLabel}
+        onChange={onInputChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        className={classNames(styles.input)}
+      />}
+      {inputType === InputType.phone && <InputPhone
+        value={value}
+        onChange={onInputChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        className={classNames(styles.input)}
+      />}
+      {inputType === InputType.textarea && <textarea
+        value={value}
+        onChange={(event) => onInputChange(event.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        className={classNames(styles.textarea)}
+        autoComplete="new-password"
+      />}
+      {!inputType && <input
+        onChange={(event) => onInputChange(event.target.value)}
+        value={value}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        autoComplete="new-password"
+      />}
+      {inputType === InputType.options && (<>
+        <Grid container display={'flex'} alignItems={'center'}>
+          <Grid item>
+            <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'16px'} pl={2}>
+              {option?.label}
+            </Typography>
+          </Grid>
+          <Grid item ml={'auto'} pr={'18px'}>
+            <img src={arrowImage}/>
+          </Grid>
+        </Grid>
+        <Options isOpen={isOptionsActive} setTargetOption={onOptionSet} close={toggleIsOptionActive} options={options}/>
+      </>)}
       <label className={classNames(styles.placeholder, { [styles.bottom]: isBottom() }, { [styles.top]: !isBottom() })}>
         {placeholder}
       </label>
-      <Options isOpen={isOptionsActive} setTargetOption={onOptionSet} close={toggleIsOptionActive} options={options}/>
     </section>
   );
 };

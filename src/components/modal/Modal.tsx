@@ -1,6 +1,6 @@
 import React from 'react';
 import { Drawer } from '@mui/material';
-import styles from '../input/components/Options.module.scss';
+import styles from '../input/components/options/Options.module.scss';
 import { ModalProps } from './ModalProps';
 
 const Modal: React.FC<ModalProps> = ({ isOpen, close, children, height }) => {

@@ -1,4 +1,4 @@
-import { Option } from '../../../helpers/Option';
+import { Option } from '../../../../helpers/Option';
 
 export type OptionsProps = {
   isOpen: boolean,

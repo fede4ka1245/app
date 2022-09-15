@@ -1,4 +1,9 @@
 export enum InputType {
-  filled = 'filled',
-  outlined = 'outlined',
+  email = 'email',
+  phone = 'phone',
+  date = 'date',
+  time ='time',
+  textarea = 'textarea',
+  address = 'address',
+  options = 'options'
 }

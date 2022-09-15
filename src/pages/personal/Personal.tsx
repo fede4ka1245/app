@@ -6,6 +6,8 @@ import Button from '../../components/button/Button';
 import ProfilePhoto from '../../components/profilePhoto/ProfilePhoto';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
+import { InputStyle } from '../../components/input/InputStyle';
+import { InputType } from '../../components/input/InputType';
 
 const Personal = () => {
   const [name, setName] = useState('');
@@ -49,25 +51,26 @@ const Personal = () => {
           <Grid item width={'100%'}>
             <Input
               placeholder={'Имя'}
-              inputType={'outlined'}
+              inputStyle={InputStyle.outlined}
               value={name}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
+              onChange={(value) => setName(value)}
             />
           </Grid>
           <Grid item width={'100%'}>
             <Input
               placeholder={'Фамилия'}
-              inputType={'outlined'}
+              inputStyle={InputStyle.outlined}
               value={secondName}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setSecondName(event.target.value)}
+              onChange={(value) => setSecondName(value)}
             />
           </Grid>
           <Grid item width={'100%'}>
             <Input
               placeholder={'Дата Рождения'}
-              inputType={'outlined'}
+              inputStyle={InputStyle.outlined}
+              inputType={InputType.date}
               value={birthday}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBirthday(event.target.value)}
+              onChange={(value) => setBirthday(value)}
             />
           </Grid>
         </Grid>
@@ -80,17 +83,18 @@ const Personal = () => {
           <Grid item width={'100%'}>
             <Input
               placeholder={'Телефон'}
-              inputType={'outlined'}
+              inputStyle={InputStyle.outlined}
+              inputType={InputType.phone}
               value={phone}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPhone(event.target.value)}
+              onChange={(value) => setPhone(value)}
             />
           </Grid>
           <Grid item width={'100%'}>
             <Input
               placeholder={'Email'}
-              inputType={'outlined'}
+              inputStyle={InputStyle.outlined}
               value={email}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)}
+              onChange={(value) => setEmail(value)}
             />
           </Grid>
         </Grid>

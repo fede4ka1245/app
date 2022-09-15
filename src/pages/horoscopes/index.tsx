@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
-import { Grid, Typography, Box } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import Map from './components/map/Map';
 import Buttons from './components/buttons/Buttons';
 import Input from '../../components/input/Input';
 import { routes } from './routes';
 import { Option } from '../../helpers/Option';
+import { InputType } from '../../components/input/InputType';
 
 const routesOptions = [
   {
@@ -73,10 +74,10 @@ const Index = () => {
       <Grid pl={4} pr={4} container direction={'column'} justifyContent={'center'}>
         <Grid item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Дробные карты'} isSelect={true}/>
+            <Input placeholder={'Дробные карты'} inputType={InputType.options}/>
           </Grid >
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Раздел'} isSelect={true} options={routesOptions} setTargetOption={setTargetRoute} targetOption={targetRoute}/>
+            <Input placeholder={'Раздел'} inputType={InputType.options} options={routesOptions} setTargetOption={setTargetRoute} targetOption={targetRoute}/>
           </Grid>
         </Grid>
         <Grid item pt={1}>

@@ -8,15 +8,16 @@
   font-family: Gilroy, sans-serif;
   font-style: normal;
   font-weight: 500;
+  overflow: hidden;
 
   input {
-    width: calc(100% - 10px);
+    width: calc(100% - 15px);
+    height: 100%;
     margin-left: 15px;
     border-radius: 10px;
     outline: none;
     border: none;
     background: inherit;
-    height: 90%;
 
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
