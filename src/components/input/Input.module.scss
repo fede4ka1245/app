@@ -29,7 +29,8 @@
 
 .outlined {
   background: transparent !important;
-  outline: 1px solid #C3C9CD;
+  border: 1px solid #C3C9CD;
+  border-radius: 10px;
 }
 
 .filled {
