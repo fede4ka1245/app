@@ -8,5 +8,6 @@ export enum routes {
   menu = '/',
   personal = '/personal',
   myHoroscopes = '/my-horoscopes',
-  horoscopes = '/horoscopes'
+  horoscopes = '/horoscopes',
+  forum = '/forum',
 }

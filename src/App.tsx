@@ -31,10 +31,8 @@ import Rectification from './pages/horoscopes/rectification/Rectification';
 import Varshapkhala from './pages/horoscopes/varshapkhala/Varshapkhala';
 import Horoscopes from './pages/horoscopes';
 import { SplashScreen } from '@capacitor/splash-screen';
-import Modal from './components/modal/Modal';
-import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { TextField, Box } from '@mui/material';
+import Forum from './pages/forum/Forum';
+import TabBar from './components/tabBar/TabBar';
 
 function App () {
   // const location = useLocation();
@@ -86,8 +84,10 @@ function App () {
         </Route>
         <Route path={routes.authorization} element={<Authorization />} />
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
+        <Route path={routes.forum} element={<Forum />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
+      <TabBar />
     </>
   );
 }

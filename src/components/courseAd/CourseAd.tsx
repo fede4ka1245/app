@@ -8,13 +8,13 @@ const CourseAd = () => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
 
   return (
-    <>
+    <div style={{ paddingRight: '1px' }}>
       <div className={styles.main}>
         <img width={'100%'} src={background} className={styles.image}/>
         <div className={styles.timeHint}>
           Скоро
         </div>
-        <Grid container pl={2} mt={'auto'} direction={'column'}>
+        <Grid container pl={2} mt={'auto'} direction={'column'} zIndex={2}>
           <Grid item>
             <Typography fontFamily={'Playfair Display'} fontWeight={700} fontSize={'18px'} color={'white'}>
               Наименование нового курса
@@ -44,7 +44,7 @@ const CourseAd = () => {
         value={66}
         valueLabelFormat={() => '3 дня'}
       />
-    </>
+    </div>
   );
 };
 

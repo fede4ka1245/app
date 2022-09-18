@@ -1,0 +1,16 @@
+.main {
+  background: #f0f0f3;
+  height: 100%;
+}
+
+.items {
+  padding-top: 20px;
+  overflow-x: scroll;
+  max-width: 100vw;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.items::-webkit-scrollbar {
+  display: none;
+}

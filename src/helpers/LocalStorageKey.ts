@@ -1,3 +1,6 @@
+/* eslint-disable */
+
 export enum LocalStorageKey {
-  avatar = 'avatar'
+  avatar = 'avatar',
+  isForumRulesConfirmed = 'isForumRulesConfirmed',
 }
