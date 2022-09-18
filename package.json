@@ -11,7 +11,7 @@
     "@capacitor/ios": "^4.0.1",
     "@capacitor/keyboard": "^4.0.1",
     "@capacitor/splash-screen": "^4.0.1",
-    "@capacitor/status-bar": "4.0.1",
+    "@capacitor/status-bar": "^4.0.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.9.2",
@@ -69,7 +69,7 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "^4.0.1",
+    "@capacitor/cli": "^4.2.0",
     "@types/react-avatar-editor": "^13.0.0",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",

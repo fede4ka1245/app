@@ -1,0 +1,50 @@
+.container {
+  height: 68px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #F0F0F3;
+  z-index: 1;
+  position: relative;
+};
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #000;
+  margin-right: 12px;
+};
+
+.user_status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3px solid #FFF;
+  position: absolute;
+  background: #22F010;
+};
+
+.arrow {
+  margin-right: 15px;
+};
+
+.name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  background: linear-gradient(0deg, #292E30, #292E30), linear-gradient(90deg, #967440 0%, #D0AD7B 48.44%, #CFAF75 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+};
+
+.icon {
+  margin-right: 20px;
+  &:last-child {
+    margin-right: 0;
+  }
+}

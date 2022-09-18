@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import Moon from '../../components/moon/Moon';
 import { Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+// images
 import menu from './images/menu.svg';
 import wallet from './images/wallet.svg';
 import setting from './images/setting.svg';
+
+// components
 import Input from '../../components/input/Input';
+import Moon from '../../components/moon/Moon';
 import Button from '../../components/button/Button';
 import { ButtonType } from '../../components/button/ButtonProps';
 import MasterClass from '../../components/masterClass/MasterClass';
-import { routes } from '../../helpers/routes';
-import { routes as horoscopesRoutes } from '../../pages/horoscopes/routes';
-import { useNavigate } from 'react-router-dom';
 import Video from '../../components/video/Video';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import CoordinatesForm from './components/coordinatesForm/CoordinatesForm';
 import Deals from '../../components/deals/Deals';
-import { options } from '../../helpers/options';
 import { InputType } from '../../components/input/InputType';
+
+// routes
+import { routes } from '../../helpers/routes';
+import { routes as horoscopesRoutes } from '../../pages/horoscopes/routes';
+
+import { options } from '../../helpers/options';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();
