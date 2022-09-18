@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #F0F0F3;
+  position: relative;
+};
+
+.gradient {
+  height: 89px;
+  width: 100%;
+  background: linear-gradient(268.23deg, #37366B 2.7%, #5C5B9F 44.59%, #59ABDA 99.71%), #C4C4C4;
+  filter: blur(20px);
+  position: absolute;
+  z-index: 2;
+  top: -80px;
+  transform: rotate(180deg);
+};
+
+.messages {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(0deg, #EEEEF1, #EEEEF1), #1C1C1C;
+  border-radius: 40px 0px 0px 0px;
+  overflow: hidden;
+};
+
+.footer {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 64px;
+  box-sizing: border-box;
+  width: 100%;
+  background: rgba(240, 240, 243, 0.8);
+  box-shadow: 5px 5px 20px rgba(174, 174, 192, 0.5);
+  backdrop-filter: blur(2.5px);
+  border-radius: 20px 20px 0px 0px;
+  padding: 7px;
+};
+
+.input {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  border: none;
+  padding: 0 15px;
+  outline: none;
+  &::placeholder {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(41, 46, 48, 0.2);
+  };
+};
+
+.icon {
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

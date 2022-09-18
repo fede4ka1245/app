@@ -23,6 +23,8 @@ module.exports = {
     semi: [2, 'always'],
     indent: ['error', 2],
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'off'
+    '@typescript-eslint/no-unused-vars': 'off',
+    'react/react-in-jsx-scope': 'off',
+    forceConsistentCasingInFileNames: 'off'
   }
 };
