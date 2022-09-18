@@ -1,36 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Grid, Typography } from '@mui/material';
 import styles from '../../pages/menu/Menu.module.scss';
 import { TransparentButtonProps } from './TransparentButtonProps';
+import AspectRatio from '@mui/joy/AspectRatio';
 
-const TransparentButton = ({ image, label, onClick, isSquare, height } : TransparentButtonProps) => {
+const TransparentButton = ({ image, label, onClick } : TransparentButtonProps) => {
   const transparentButtonRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    if (height && transparentButtonRef.current) {
-      transparentButtonRef.current.style.height = height;
-    }
-
-    if (!isSquare) {
-      return;
-    }
-
-    const resize = () => {
-      if (transparentButtonRef.current !== null) {
-        transparentButtonRef.current.style.height = `${transparentButtonRef.current.clientWidth}px`;
-      }
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
-
   return (
-    <>
+    <AspectRatio ratio={1}>
       <section ref={transparentButtonRef} className={styles.transparentButton} onClick={() => onClick()}>
         <Grid
           container
@@ -54,7 +32,7 @@ const TransparentButton = ({ image, label, onClick, isSquare, height } : Transpa
           </Grid>
         </Grid>
       </section>
-    </>
+    </AspectRatio>
   );
 };
 

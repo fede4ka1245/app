@@ -28,7 +28,7 @@ const Index = () => {
           <Grid item pb={4}>
             <Video />
           </Grid>
-          <Grid item container rowSpacing={4} columnSpacing={2} gridTemplateColumns={'repeat(2, 50%)'} display={'grid'}>
+          <Grid item container rowSpacing={2} columnSpacing={2} gridTemplateColumns={'repeat(2, 50%)'} display={'grid'}>
             {transparentButtons.map((button) => (
               <Grid item key={button.label}>
                 <TransparentButton

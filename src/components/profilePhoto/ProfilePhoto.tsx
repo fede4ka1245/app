@@ -26,10 +26,8 @@ const ProfilePhoto = () => {
       limit: 1
     });
 
-    console.log(photos);
-
-    setImagePath(photos[0].webPath);
     setIsProfilePhotoEditorActive(true);
+    setImagePath(photos[0].webPath);
   };
 
   const onSave = (imageBase64: string) => {

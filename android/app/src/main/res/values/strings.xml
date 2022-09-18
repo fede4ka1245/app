@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">astrology app</string>
-    <string name="title_activity_main">astrology app</string>
-    <string name="package_name">com.astrology.app</string>
-    <string name="custom_url_scheme">com.astrology.app</string>
-</resources>

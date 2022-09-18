@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 // components
-import UserHeader from '../../../components/UserHeader';
+import UserHeader from '../../../components/userHeader/UserHeader';
 import Header from '../components/Header';
 import Contact from './components/Contact';
 import Group from './components/Group';
@@ -15,7 +15,6 @@ const ChatList: FC = () => {
   return (
     <div className={styles.container}>
       <UserHeader/>
-      <Header/>
       <div className={styles.list}>
         <div className={styles.list_item}>
           <Contact/>

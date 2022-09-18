@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export enum routes {
   astrologicalProcessor = '/processor',
   chats = '/chats',
@@ -8,4 +10,5 @@ export enum routes {
   myHoroscopes = '/my-horoscopes',
   horoscopes = '/horoscopes',
   Chat = '/chat',
+  forum = '/forum',
 }

@@ -40,6 +40,8 @@ import Yogas from './pages/horoscopes/yogas/Yogas';
 import Rectification from './pages/horoscopes/rectification/Rectification';
 import Varshapkhala from './pages/horoscopes/varshapkhala/Varshapkhala';
 import Horoscopes from './pages/horoscopes';
+import Forum from './pages/forum/Forum';
+import TabBar from './components/tabBar/TabBar';
 
 // components
 import Modal from './components/modal/Modal';
@@ -105,8 +107,10 @@ function App () {
         <Route path={ChatRoutes.PayChat} element={<PayChat />} />
         <Route path={routes.authorization} element={<Authorization />} />
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
+        <Route path={routes.forum} element={<Forum />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
+      <TabBar />
     </>
   );
 }
