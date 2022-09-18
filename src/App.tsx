@@ -1,18 +1,28 @@
 import React, { useEffect } from 'react';
-import './main.css';
-import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProcessor';
 import {
   Routes,
   Route,
   useNavigate,
   Navigate
 } from 'react-router-dom';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { SplashScreen } from '@capacitor/splash-screen';
+
+// helpers
 import { routes } from './helpers/routes';
+
+// pages
+import {
+  PayChat,
+  ChatUser,
+  ChatSupport,
+  ChatList
+} from './pages';
+import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProcessor';
 import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
 import Authorization from './pages/authorization/Authorization';
 import Personal from './pages/personal/Personal';
 import Menu from './pages/menu/Menu';
-import { StatusBar, Style } from '@capacitor/status-bar';
 import Index from './pages/settings/index/Index';
 import { routes as settingsRoutes } from './pages/settings/routes';
 import Main from './pages/settings/main/Main';
@@ -30,11 +40,15 @@ import Yogas from './pages/horoscopes/yogas/Yogas';
 import Rectification from './pages/horoscopes/rectification/Rectification';
 import Varshapkhala from './pages/horoscopes/varshapkhala/Varshapkhala';
 import Horoscopes from './pages/horoscopes';
-import { SplashScreen } from '@capacitor/splash-screen';
+
+// components
 import Modal from './components/modal/Modal';
-import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { TextField, Box } from '@mui/material';
+
+// models
+import { ChatRoutes } from './models/enums';
+
+// styles
+import './main.css';
 
 function App () {
   // const location = useLocation();
@@ -84,6 +98,11 @@ function App () {
           <Route path={settingsRoutes.mapDisplaying} element={<MapDisplaying />}/>
           <Route path={settingsRoutes.main} element={<Main />} />
         </Route>
+        {/* chats */}
+        <Route path={routes.Chat} element={<ChatList />}/>
+        <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
+        <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>
+        <Route path={ChatRoutes.PayChat} element={<PayChat />} />
         <Route path={routes.authorization} element={<Authorization />} />
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
