@@ -61,15 +61,9 @@ const Forum = () => {
     };
   }, []);
 
-  const navigate = useNavigate();
-
-  const onMenuClick = () => {
-    navigate(routes.menu);
-  };
-
   return (
     <div className={styles.main}>
-      <UserHeader />
+      <UserHeader page={'Форум'}/>
       <Grid item width={'100%'} pl={2} pr={2} pt={3} pb={3}>
         <Options options={options} setValue={setTargetOption} value={targetOption.value} isScrollable isOutlined/>
       </Grid>

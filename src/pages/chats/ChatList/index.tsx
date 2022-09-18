@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 const ChatList: FC = () => {
   return (
     <div className={styles.container}>
-      <UserHeader/>
+      <UserHeader page={'Чаты'}/>
       <div className={styles.list}>
         <div className={styles.list_item}>
           <Contact/>

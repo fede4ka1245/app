@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
   useNavigate,
-  Navigate
+  Navigate, useLocation
 } from 'react-router-dom';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -53,8 +53,8 @@ import { ChatRoutes } from './models/enums';
 import './main.css';
 
 function App () {
-  // const location = useLocation();
-  // const isTabBarVisible = location.pathname.includes(routes.astrologicalProcessor);
+  const location = useLocation();
+  const isTabBarVisible = !location.pathname.includes(ChatRoutes.ChatUser);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -110,7 +110,7 @@ function App () {
         <Route path={routes.forum} element={<Forum />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
-      <TabBar />
+      {isTabBarVisible && <TabBar />}
     </>
   );
 }

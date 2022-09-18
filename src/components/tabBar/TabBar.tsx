@@ -13,9 +13,34 @@ import courses from '../../pages/menu/images/courses.svg';
 import forum from '../../pages/menu/images/forum.svg';
 import calendar from '../../pages/menu/images/calendar.svg';
 import close from './images/close.svg';
+import Chats from './Chats';
+import Courses from './Courses';
+import Forum from './Forum';
+import Processor from './Processor';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { routes } from '../../helpers/routes';
+import classNames from 'classnames';
 
 const TabBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const onChatsClick = () => {
+    navigate(routes.Chat);
+  };
+
+  const onProcessorClick = () => {
+    navigate(routes.astrologicalProcessor);
+  };
+
+  const onForumClick = () => {
+    navigate(routes.forum);
+  };
+
+  const onMenuClick = () => {
+    navigate(routes.menu);
+  };
 
   const toggleModal = useCallback(() => {
     setIsModalOpen(!isModalOpen);
@@ -40,19 +65,27 @@ const TabBar = () => {
         alignItems={'center'}
       >
         <Grid item>
-          <img src={home} alt='home'/>
+          <div onClick={onMenuClick} className={classNames({ [styles.active]: location.pathname === routes.menu })}>
+            <Courses />
+          </div>
         </Grid>
         <Grid item>
-          <img src={astrologicalProcessor} alt='astrologicalProcessor'/>
+          <div onClick={onProcessorClick} className={classNames({ [styles.active]: location.pathname.includes(routes.astrologicalProcessor) })}>
+            <Processor />
+          </div>
         </Grid>
         <Grid item>
           <img src={add} alt='add' width={50} height={50} onClick={toggleModal}/>
         </Grid>
         <Grid item>
-          <img src={list} alt='list'/>
+          <div onClick={onForumClick} className={classNames({ [styles.active]: location.pathname.includes(routes.forum) })}>
+            <Forum />
+          </div>
         </Grid>
         <Grid item>
-          <img src={messenger} alt='messenger'/>
+          <div onClick={onChatsClick} className={classNames({ [styles.active]: location.pathname.includes(routes.Chat) })}>
+            <Chats />
+          </div>
         </Grid>
       </Grid>
       <Modal isOpen={isModalOpen} close={toggleModal} height={'455px'}>

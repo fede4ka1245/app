@@ -9,7 +9,11 @@ import search from '../../pages/forum/assets/search.svg';
 import { routes } from '../../helpers/routes';
 import { useNavigate } from 'react-router-dom';
 
-const UserHeader = () => {
+interface UserHeaderProps {
+  page: string,
+}
+
+const UserHeader = ({ page }: UserHeaderProps) => {
   const navigate = useNavigate();
 
   const onMenuClick = () => {
@@ -59,7 +63,7 @@ const UserHeader = () => {
         </Grid>
         <Grid item mr={'auto'}>
           <Typography fontFamily={'Gilroy'} fontWeight={700} fontSize={'18px'} color={'#37366B'}>
-            Форум
+            {page}
           </Typography>
         </Grid>
         <Grid item mr={3}>
