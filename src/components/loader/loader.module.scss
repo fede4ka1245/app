@@ -1,0 +1,43 @@
+.main {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 50%;
+}
+
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: loading;
+  box-shadow: -5px -5px 10px #78d0ea;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.circle:after {
+  content: "";
+  background: #3f3169;
+  outline: 2px solid #78d0ea;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
