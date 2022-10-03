@@ -1,7 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
@@ -54,5 +50,38 @@ in Android Studio it can be here: app/manifests/AndroidManifest.xml
 * To build tap build in toolbar and select necessary build type
 
 See more information here: [https://developer.android.com/studio/run](https://developer.android.com/studio/run)
-#### 
 
+## Setting ios application
+to init project and setting environment check capacitor ios docs. [https://capacitorjs.com/docs/ios](https://capacitorjs.com/docs/ios)
+
+### 1. Build/run/open application.
+* To add ios project use:
+```
+npx cap add ios
+```
+* To build js project use:
+```
+npm run build
+```
+* To update native project use:
+```
+npx cap sync
+```
+* To open native project use:
+```
+npx cap open ios
+```
+
+### 2. Configure info.plist
+
+add these following descriptions:
+* Privacy - Camera Usage Description
+* Privacy - Photo Library Additions Usage Description
+* Privacy - Photo Library Usage Description
+
+### 3. Set ios splash assets to the project.
+
+1. delete all folder in following folder: /ios/App/App/Assets.xcassets
+2. add AppIcon.appiconset, Splash.imageset, SplashLogoset to /ios/App/App/Assets.xcassets.
+3. open xcode app and make sure that xcode see these files, then drag and drop Splash.storyboard to App folder in xcode app
+4. then in General app settings set Splash as a Launch Screen File, appIcon as an App Icons Source.
