@@ -1,11 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import styles from './TabBar.module.scss';
 import { Grid } from '@mui/material';
-import home from './images/home.svg';
 import add from './images/add.png';
-import list from './images/list.svg';
-import messenger from './images/messenger.svg';
-import astrologicalProcessor from './images/astrologicalProcessor.svg';
 import Modal from '../modal/Modal';
 import background from './images/galaxyBackground.png';
 import TransparentButton from '../transparentButton/TransparentButton';
@@ -26,6 +22,15 @@ const TabBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const toggleModal = useCallback(() => {
+    setIsModalOpen(!isModalOpen);
+  }, [isModalOpen]);
+
+  const onNewTopicClick = useCallback(() => {
+    navigate(routes.createTopic);
+    toggleModal();
+  }, [toggleModal, navigate]);
+
   const onChatsClick = () => {
     navigate(routes.Chat);
   };
@@ -41,10 +46,6 @@ const TabBar = () => {
   const onMenuClick = () => {
     navigate(routes.menu);
   };
-
-  const toggleModal = useCallback(() => {
-    setIsModalOpen(!isModalOpen);
-  }, [isModalOpen]);
 
   useEffect(() => {
     document.body.style.paddingBottom = '90px';
@@ -91,7 +92,7 @@ const TabBar = () => {
       <Modal isOpen={isModalOpen} close={toggleModal} height={'455px'}>
         <Grid container justifyContent={'space-between'} pl={3} pr={3} pt={4} position={'relative'}>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
-            <TransparentButton image={<img src={courses}/>} label={'Новая тема'} onClick={() => {}} isSquare={true}/>
+            <TransparentButton image={<img src={courses}/>} label={'Новая тема'} onClick={onNewTopicClick} isSquare={true}/>
           </Grid>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
             <TransparentButton image={<img src={forum}/>} label={'Создать группу'} onClick={() => {}} isSquare={true}/>

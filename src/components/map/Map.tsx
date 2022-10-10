@@ -1,11 +1,12 @@
 import React from 'react';
 import map from './assets/map.svg';
+import AspectRatio from '@mui/joy/AspectRatio';
 
 const Map = () => {
   return (
-    <>
-      <img src={map} width={'100%'} height={'100%'} style={{ maxHeight: '350px', maxWidth: '350px' }} />
-    </>
+    <AspectRatio ratio={1}>
+      <img src={map}/>
+    </AspectRatio>
   );
 };
 

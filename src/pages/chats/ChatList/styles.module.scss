@@ -1,12 +1,11 @@
 .container {
   height: 100vh;
-  padding-top: 35px;
   background: #F0F0F3;
   backdrop-filter: blur(13.5914px);
 }
 
 .list {
-  padding: 15px 30px 0 30px;
+  padding: 16px 16px 0 16px;
   &_item {
     margin-bottom: 10px;
   }

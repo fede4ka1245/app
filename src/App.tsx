@@ -43,14 +43,12 @@ import Horoscopes from './pages/horoscopes';
 import Forum from './pages/forum/Forum';
 import TabBar from './components/tabBar/TabBar';
 
-// components
-import Modal from './components/modal/Modal';
-
 // models
 import { ChatRoutes } from './models/enums';
 
 // styles
 import './main.css';
+import CreateTopic from './pages/createTopic/CreateTopic';
 
 function App () {
   const location = useLocation();
@@ -108,6 +106,7 @@ function App () {
         <Route path={routes.authorization} element={<Authorization />} />
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
         <Route path={routes.forum} element={<Forum />} />
+        <Route path={routes.createTopic} element={<CreateTopic />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
       {isTabBarVisible && <TabBar />}

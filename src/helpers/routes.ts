@@ -11,4 +11,5 @@ export enum routes {
   horoscopes = '/horoscopes',
   Chat = '/chat',
   forum = '/forum',
+  createTopic = '/create-topic',
 }

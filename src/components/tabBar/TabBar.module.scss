@@ -11,14 +11,24 @@
   z-index: 10;
 }
 
-
 .active {
-  fill: #59ABDA;
-
-  path {
-    fill: #59ABDA !important;
+  circle {
+    stroke: url(#gradient) !important;
   }
+
+  .fill {
+    path {
+      fill: url(#gradient);
+    }
+  }
+
+  .stroke {
+    path {
+      stroke: url(#gradient) !important;
+    }
+  }
+
   rect {
-    fill: #59ABDA !important;
+    stroke: url(#gradient) !important;
   }
 }

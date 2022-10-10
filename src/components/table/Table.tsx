@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './Table.module.scss';
-import { Typography } from '@mui/material';
-import img from '../../pages/horoscopes/natMap/img.png';
-import sign from '../../pages/horoscopes/natMap/sign.svg';
 import Row from './Row';
+import { Typography } from '@mui/material';
 
-const Table = () => {
+export interface TableProps {
+  textColor?: string,
+  minimized?: boolean,
+}
+
+const Table = ({ textColor, minimized }: TableProps) => {
+  const [isMinimized, setIsMinimized] = useState<boolean>(!!minimized);
+
+  const toggleIsMinimized = useCallback(() => {
+    setIsMinimized(!isMinimized);
+  }, [isMinimized]);
+
   return (
-    <table className={styles.table} cellSpacing="0" cellPadding="0">
-      <tr>
+    <>
+      <table style={{ color: textColor || 'white' }} className={styles.table} cellSpacing="0" cellPadding="0">
         <th>
           Асцендент
         </th>
@@ -23,13 +32,32 @@ const Table = () => {
         <th>
           Накшатра
         </th>
-      </tr>
-      {
-        Array.from({ length: 10 }).map((_, index) => (
-          <Row key={index}/>
-        ))
-      }
-    </table>
+        <>
+          { isMinimized
+            ? (
+              <>
+                {
+                  Array.from({ length: 3 }).map((_, index) => (
+                    <Row key={index} textColor={textColor}/>
+                  ))
+                }
+              </>
+            )
+            : (
+              <>
+                {
+                  Array.from({ length: 10 }).map((_, index) => (
+                    <Row key={index} textColor={textColor}/>
+                  ))
+                }
+              </>
+            )}
+        </>
+      </table>
+      {isMinimized && <Typography pt={1} onClick={toggleIsMinimized} fontFamily={'Gilroy'} fontWeight={500} fontSize={'16px'} color={'#5c5b9f'} textAlign={'center'}>
+        Развернуть таблицу
+      </Typography>}
+    </>
   );
 };
 

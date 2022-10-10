@@ -14,4 +14,6 @@ export type InputProps = {
   disablePast?: boolean,
   shouldDisableTime?: () => any,
   inputStyle?: InputStyle,
+  width?: string,
+  height?: string,
 }

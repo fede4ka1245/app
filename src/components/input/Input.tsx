@@ -12,7 +12,7 @@ import InputPhone from './components/inputPhone/InputPhone';
 import { Grid, Typography } from '@mui/material';
 import arrowImage from './assets/arrow.svg';
 
-const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect, disablePast, shouldDisableTime, inputStyle } : InputProps) => {
+const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect, disablePast, shouldDisableTime, inputStyle, width, height } : InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [inputLabel, setInputLabel] = useState(value);
 
@@ -60,10 +60,12 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
     <section
       onClick={toggleIsOptionActive}
       className={classNames(
-        styles.input,
+        { [styles.textarea]: inputType === InputType.textarea },
+        { [styles.input]: inputType !== InputType.textarea },
         { [styles.filled]: inputStyle !== InputStyle.outlined || !isBottom() },
         { [styles.outlined]: inputStyle === InputStyle.outlined && isBottom() }
       )}
+      style={{ width, height }}
     >
       {inputType === InputType.date && <InputDate
         disablePast={disablePast}

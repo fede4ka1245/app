@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import styles from './Forum.module.scss';
-import menu from './assets/menu.svg';
-import wallet from './assets/wallet.svg';
-import search from './assets/search.svg';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
 import Options from '../../components/options/Options';
 import CourseAd from '../../components/courseAd/CourseAd';
 import Topic from './components/topic/Topic';
@@ -14,6 +9,7 @@ import UserHeader from '../../components/userHeader/UserHeader';
 import Rules from './components/rules/Rules';
 import { LocalStorageKey } from '../../helpers/LocalStorageKey';
 import Video from '../../components/video/Video';
+import PageHeader from '../../components/pageHeader/PageHeader';
 
 const options = [
   {
@@ -63,7 +59,8 @@ const Forum = () => {
 
   return (
     <div className={styles.main}>
-      <UserHeader page={'Форум'}/>
+      <UserHeader/>
+      <PageHeader page={'Форум'}/>
       <Grid item width={'100%'} pl={2} pr={2} pt={3} pb={3}>
         <Options options={options} setValue={setTargetOption} value={targetOption.value} isScrollable isOutlined/>
       </Grid>
