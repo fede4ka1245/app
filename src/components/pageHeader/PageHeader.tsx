@@ -4,6 +4,7 @@ import menu from '../../pages/forum/assets/menu.svg';
 import wallet from '../../pages/forum/assets/wallet.svg';
 import search from '../../pages/forum/assets/search.svg';
 import { useNavigate } from 'react-router-dom';
+import { routes } from '../../helpers/routes';
 
 const PageHeader = ({ page }: any) => {
   const navigate = useNavigate();
@@ -11,6 +12,10 @@ const PageHeader = ({ page }: any) => {
   const onMenuClick = useCallback(() => {
     navigate(-1);
   }, [navigate]);
+
+  const onWalletClick = () => {
+    navigate(routes.rates);
+  };
 
   return (
     <Grid container pl={2} pr={2} alignItems={'center'}>
@@ -23,7 +28,7 @@ const PageHeader = ({ page }: any) => {
         </Typography>
       </Grid>
       <Grid item mr={3}>
-        <img src={wallet} width={30} height={30}/>
+        <img src={wallet} onClick={onWalletClick} width={30} height={30}/>
       </Grid>
       <Grid item>
         <img src={search} width={30} height={30}/>

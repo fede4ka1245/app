@@ -16,7 +16,6 @@ import MasterClass from '../../components/masterClass/MasterClass';
 import Video from '../../components/video/Video';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import CoordinatesForm from './components/coordinatesForm/CoordinatesForm';
-import Deals from '../../components/deals/Deals';
 import { InputType } from '../../components/input/InputType';
 
 // routes
@@ -46,25 +45,18 @@ const AstrologicalProcessor = () => {
     setIsCustomCoordinates(true);
   };
 
-  const [isDealsOpen, setIsDealsOpen] = useState(false);
-
-  const openDeals = () => {
-    setIsDealsOpen(true);
-  };
-
-  const closeDeals = () => {
-    setIsDealsOpen(false);
-  };
-
   const onCountHoroscopesClick = () => {
     navigate(horoscopesRoutes.transitions);
+  };
+
+  const onWalletClick = () => {
+    navigate(routes.rates);
   };
 
   return (
     <>
       <PlanetBackground />
       <Moon />
-      {isDealsOpen && <Deals close={closeDeals}/>}
       <Grid container pl={4} pr={4} spacing={2}>
         <Grid item container direction={'row'} spacing={3} alignItems={'center'}>
           <Grid item>
@@ -76,7 +68,7 @@ const AstrologicalProcessor = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <img alt='wallet' src={wallet} onClick={openDeals}/>
+            <img alt='wallet' onClick={onWalletClick} src={wallet}/>
           </Grid>
           <Grid item>
             <img alt='setting' src={setting} onClick={onSettingsClick}/>

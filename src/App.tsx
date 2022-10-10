@@ -49,6 +49,7 @@ import { ChatRoutes } from './models/enums';
 // styles
 import './main.css';
 import CreateTopic from './pages/createTopic/CreateTopic';
+import Rates from './pages/rates/Rates';
 
 function App () {
   const location = useLocation();
@@ -98,7 +99,7 @@ function App () {
           <Route path={settingsRoutes.mapDisplaying} element={<MapDisplaying />}/>
           <Route path={settingsRoutes.main} element={<Main />} />
         </Route>
-        {/* chats */}
+        <Route path={routes.rates} element={<Rates />} />
         <Route path={routes.Chat} element={<ChatList />}/>
         <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
         <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>

@@ -12,4 +12,5 @@ export enum routes {
   Chat = '/chat',
   forum = '/forum',
   createTopic = '/create-topic',
+  rates = '/rates',
 }
