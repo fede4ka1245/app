@@ -28,7 +28,7 @@ const Button = ({ text, onClick, type, isDisabled }: ButtonProps) => {
       onClick={onButtonClick}
     >
       <div>
-        <Typography color={'white'} fontFamily={'Gilroy'} fontSize={18}>
+        <Typography color={'white'} fontFamily={'Gilroy'} fontSize={'16px'}>
           {text}
         </Typography>
       </div>

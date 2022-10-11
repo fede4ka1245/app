@@ -13,4 +13,5 @@ export enum routes {
   forum = '/forum',
   createTopic = '/create-topic',
   rates = '/rates',
+  forumItem = '/forum-item'
 }

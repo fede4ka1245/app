@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './Topic.module.scss';
 import { Grid, Typography } from '@mui/material';
 import arrow from './assets/arrow.svg';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../../helpers/routes';
 
 interface TopicProps {
   name: string,
@@ -10,8 +12,14 @@ interface TopicProps {
 }
 
 const Topic = ({ name, discussions, tags }: TopicProps) => {
+  const navigate = useNavigate();
+
+  const onTopicClick = useCallback(() => {
+    navigate(routes.forumItem);
+  }, [navigate]);
+
   return (
-    <div>
+    <div onClick={onTopicClick}>
       <div className={styles.main}>
         <Typography pl={2} className={styles.name} fontFamily={'Gilroy'}>
           {name}

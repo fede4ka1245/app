@@ -50,6 +50,7 @@ import { ChatRoutes } from './models/enums';
 import './main.css';
 import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
+import ForumItem from './pages/forumItem/ForumItem';
 
 function App () {
   const location = useLocation();
@@ -108,6 +109,7 @@ function App () {
         <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
         <Route path={routes.forum} element={<Forum />} />
         <Route path={routes.createTopic} element={<CreateTopic />} />
+        <Route path={routes.forumItem} element={<ForumItem />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
       {isTabBarVisible && <TabBar />}
