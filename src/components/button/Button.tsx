@@ -13,7 +13,7 @@ const Button = ({ text, onClick, type, isDisabled }: ButtonProps) => {
     if (onClick) {
       onClick();
     }
-  }, [isDisabled]);
+  }, [isDisabled, onClick]);
 
   return (
     <div

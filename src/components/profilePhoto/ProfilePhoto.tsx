@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './ProfilePhoto.module.scss';
 import edit from './images/edit.svg';
 import plus from './images/plus.svg';
 import { Camera, GalleryPhotos } from '@capacitor/camera';
 import AvatarPicker from '../avatarPicker/AvatarPicker';
-import { LocalStorageKey } from '../../helpers/LocalStorageKey';
+import { setAvatar } from '../../store/reducers/userReducer';
+import { useAppDispatch } from '../../store/store';
+import { useGetAvatar } from '../../store/selectors';
 
 const ProfilePhoto = () => {
   const [isProfilePhotoEditorActive, setIsProfilePhotoEditorActive] = useState(false);
   const [imagePath, setImagePath] = useState('');
-  const [avatarImageSource, setAvatarImageSource] = useState<string>('');
-
-  useEffect(() => {
-    const image = localStorage.getItem(LocalStorageKey.avatar);
-
-    if (!image) {
-      return;
-    }
-
-    setAvatarImageSource(image);
-  }, []);
+  const avatar = useGetAvatar();
+  const dispatch = useAppDispatch();
 
   const onChangePhotoClick = async () => {
     const { photos } : GalleryPhotos = await Camera.pickImages({
@@ -31,19 +24,18 @@ const ProfilePhoto = () => {
   };
 
   const onSave = (imageBase64: string) => {
-    localStorage.setItem(LocalStorageKey.avatar, imageBase64);
-    setAvatarImageSource(imageBase64);
     setIsProfilePhotoEditorActive(false);
+    dispatch(setAvatar(imageBase64));
   };
 
   return (
     <>
       <div className={styles.outline} onClick={onChangePhotoClick}>
         <div className={styles.outlineImage}>
-          {avatarImageSource && <img src={avatarImageSource} width={'100%'} height={'100%'} style={{ opacity: 10 }}/>}
+          {avatar && <img src={avatar} width={'100%'} height={'100%'} style={{ opacity: 10 }}/>}
         </div>
-        {avatarImageSource && <img src={edit} className={styles.imageEdit}/>}
-        {!avatarImageSource && <img src={plus} className={styles.plus}/>}
+        {avatar && <img src={edit} className={styles.imageEdit}/>}
+        {!avatar && <img src={plus} className={styles.plus}/>}
       </div>
       {isProfilePhotoEditorActive &&
         <AvatarPicker

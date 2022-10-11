@@ -3,13 +3,16 @@ import { Grid, Typography } from '@mui/material';
 import firstLevel from '../../pages/forum/assets/firstLevel.svg';
 import secondLevel from '../../pages/forum/assets/secondLevel.svg';
 import thirdLevel from '../../pages/forum/assets/thirdLevel.svg';
+import { useGetAvatar } from '../../store/selectors';
 
 const UserHeader = () => {
+  const avatar = useGetAvatar();
+
   return (
     <>
       <Grid container pl={2} pr={2} pt={4} display={'flex'} alignItems={'center'}>
         <Grid item zIndex={3}>
-          <section style={{ width: '70px', height: '70px', borderRadius: '50%', background: 'gray' }}>
+          <section style={{ width: '70px', height: '70px', borderRadius: '50%', background: avatar ? `url(${avatar}` : 'gray' }}>
           </section>
         </Grid>
         <Grid item container direction={'column'} flex={1} pl={2}>

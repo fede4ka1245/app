@@ -30,8 +30,6 @@ const Lines = () => {
   const navigate = useNavigate();
   const [targetOption, setTargetOption] = useState<Option>(options[0]);
 
-  console.log(targetOption);
-
   return (
     <>
       <PlanetBackground/>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Skeleton, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
@@ -15,6 +15,7 @@ import forum from './images/forum.svg';
 import courses from './images/courses.svg';
 import Message from '../../components/message/Message';
 import AppLoader from '../../components/appLoader/AppLoader';
+import { useGetAvatar, useGetUserName } from '../../store/selectors';
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const Menu = () => {
     navigate(routes.forum);
   };
 
+  const avatar = useGetAvatar();
+  const name = useGetUserName();
+
   return (
     <div>
       {isLoading && <AppLoader />}
@@ -53,12 +57,13 @@ const Menu = () => {
         </Grid>
         <Grid item container direction={'row'} spacing={2}>
           <Grid item>
-            <div className={styles.profilePhoto}/>
+            {avatar && <img className={styles.profilePhoto} src={avatar}/>}
+            {!avatar && <Skeleton sx={{ background: 'gray' }} variant={'circular'} width={'96px'} height={'96px'} />}
           </Grid>
           <Grid item container direction={'column'} flex={1} justifyContent={'center'}>
             <Grid item>
               <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'}>
-                Александрa
+                {name}
               </Typography>
             </Grid>
             <Grid item>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Routes,
   Route,
@@ -51,6 +51,9 @@ import './main.css';
 import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
 import ForumItem from './pages/forumItem/ForumItem';
+import { LocalStorageKey } from './helpers/LocalStorageKey';
+import { useAppDispatch, useAppSelector } from './store/store';
+import { setUserInfo } from './store/reducers/userReducer';
 
 function App () {
   const location = useLocation();
@@ -75,6 +78,23 @@ function App () {
     // navigate(routes.authorization);
     // localStorage.setItem('isFirstLaunch', JSON.stringify(false));
   }, []);
+
+  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      if (localStorage.getItem(LocalStorageKey.userInfo) !== null) {
+        dispatch(setUserInfo(JSON.parse(localStorage.getItem(LocalStorageKey.userInfo) || '{}')));
+      }
+
+      isFirstRender.current = false;
+      return;
+    }
+
+    localStorage.setItem(LocalStorageKey.userInfo, JSON.stringify(userInfo));
+  }, [userInfo]);
 
   return (
     <>

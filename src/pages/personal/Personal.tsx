@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './Personal.module.scss';
 import { Grid, Typography } from '@mui/material';
 import Input from '../../components/input/Input';
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
 import { InputStyle } from '../../components/input/InputStyle';
 import { InputType } from '../../components/input/InputType';
+import { setUserInfo } from '../../store/reducers/userReducer';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 
 const Personal = () => {
   const [name, setName] = useState('');
@@ -15,6 +17,8 @@ const Personal = () => {
   const [birthday, setBirthday] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const userInfo = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const isSaveButtonDisabled = useMemo(() => {
     return !(name && secondName && birthday && phone && email);
@@ -22,9 +26,17 @@ const Personal = () => {
 
   const navigate = useNavigate();
 
-  const onButtonSaveClick = () => {
+  const onButtonSaveClick = useCallback(() => {
+    dispatch(setUserInfo({
+      name,
+      email,
+      secondName,
+      birthday,
+      phone
+    }));
+
     navigate(routes.menu);
-  };
+  }, [name, email, secondName, birthday, phone, dispatch, navigate]);
 
   useEffect(() => {
     document.body.style.background = '#F0F0F3 no-repeat';
@@ -35,6 +47,14 @@ const Personal = () => {
       document.body.style.minHeight = '';
     };
   }, []);
+
+  useEffect(() => {
+    setName(userInfo.name);
+    setPhone(userInfo.phone);
+    setEmail(userInfo.email);
+    setBirthday(userInfo.birthday);
+    setSecondName(userInfo.secondName);
+  }, [userInfo]);
 
   return (
     <div className={styles.main}>

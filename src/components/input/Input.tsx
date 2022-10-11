@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Input.module.scss';
 import { InputProps } from './InputProps';
 import classNames from 'classnames';
@@ -41,6 +41,10 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
     setTargetOption(option);
   };
 
+  useEffect(() => {
+    setInputLabel(value);
+  }, [value]);
+
   const onInputChange = (value: string) => {
     if (onChange) {
       onChange(value);
@@ -49,6 +53,10 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
   };
 
   const isBottom = () => {
+    if (value) {
+      return false;
+    }
+
     if (inputType === InputType.options) {
       return !option;
     }
