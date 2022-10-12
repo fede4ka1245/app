@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
   useNavigate,
-  Navigate, useLocation
+  Navigate
 } from 'react-router-dom';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -54,10 +54,11 @@ import ForumItem from './pages/forumItem/ForumItem';
 import { LocalStorageKey } from './helpers/LocalStorageKey';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { setUserInfo } from './store/reducers/userReducer';
+import { useGetIsNavbarActive } from './store/selectors';
+import Notifications from './pages/notifications/Notifications';
 
 function App () {
-  const location = useLocation();
-  const isTabBarVisible = !location.pathname.includes(ChatRoutes.ChatUser);
+  const isNavbarActive = useGetIsNavbarActive();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -130,9 +131,10 @@ function App () {
         <Route path={routes.forum} element={<Forum />} />
         <Route path={routes.createTopic} element={<CreateTopic />} />
         <Route path={routes.forumItem} element={<ForumItem />} />
+        <Route path={routes.notifications} element={<Notifications />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
-      {isTabBarVisible && <TabBar />}
+      {isNavbarActive && <TabBar />}
     </>
   );
 }

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import MyHoroscope from '../../components/myHororscope/MyHoroscope';
 import search from './assets/search.svg';
 import CourseAd from '../../components/courseAd/CourseAd';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const horoscopes = [
   {
@@ -34,6 +35,8 @@ const horoscopes = [
 const MyHoroscopes = () => {
   const navigate = useNavigate();
   const [myHoroscopes, setMyHoroscopes] = useState(horoscopes);
+
+  useHideNavbar();
 
   return (
     <>

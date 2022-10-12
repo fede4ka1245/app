@@ -23,3 +23,7 @@ export const useGetSecondName = () => {
 export const useGetAvatar = () => {
   return useAppSelector((state) => state?.user.avatar);
 };
+
+export const useGetIsNavbarActive = () => {
+  return useAppSelector((state) => state?.preferences.isNavbarActive);
+};

@@ -7,9 +7,12 @@ import Moon from '../../../components/moon/Moon';
 import { useNavigate } from 'react-router-dom';
 import { transparentButtons } from './transparentButtons';
 import PlanetBackground from '../../../components/planetBackground/PlanetBackground';
+import { useHideNavbar } from '../../../hooks/useHideNavbar';
 
 const Index = () => {
   const navigate = useNavigate();
+
+  useHideNavbar();
 
   return (
     <>

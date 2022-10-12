@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // styles
 import styles from './styles.module.scss';
+import { useHideNavbar } from '../../../../../hooks/useHideNavbar';
 
 const Header: FC = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ const Header: FC = () => {
   const goBack = () => {
     navigate(-1);
   };
+
+  useHideNavbar();
 
   return (
     <div className={styles.container}>

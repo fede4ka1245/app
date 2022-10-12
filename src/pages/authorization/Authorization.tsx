@@ -6,9 +6,12 @@ import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../helpers/routes';
 import GalaxyBackground from '../../components/galaxyBackground/GalaxyBackground';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const Authorization = () => {
   const navigate = useNavigate();
+
+  useHideNavbar();
 
   const onEnterClick = () => {
     navigate(routes.personal, { replace: true });

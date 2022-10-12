@@ -13,6 +13,7 @@ import { mapsHelpers } from './helpers/mapsHelpers';
 import Options from '../../../components/options/Options';
 import Divider from '../../../components/divider/Divider';
 import Switch from '../../../components/switch/Switch';
+import { useHideNavbar } from '../../../hooks/useHideNavbar';
 
 const MapDisplaying = () => {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ const MapDisplaying = () => {
   const [targetMapStyle, setTargetMapStyle] = useState(mapStyles[0]);
   const [targetMapHelper, setTargetMapHelper] = useState(mapsHelpers[0]);
   const [targetGraxaDisplaying, setTargetGraxaDispaying] = useState(graxaDisplaying[0]);
+
+  useHideNavbar();
 
   return (
     <>

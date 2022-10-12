@@ -5,9 +5,12 @@ import ButtonBack from '../../../components/buttonBack/ButtonBack';
 import ButtonSave from '../../../components/buttonSave/ButtonSave';
 import Input from '../../../components/input/Input';
 import { useNavigate } from 'react-router-dom';
+import { useHideNavbar } from '../../../hooks/useHideNavbar';
 
 const Maps = () => {
   const navigate = useNavigate();
+
+  useHideNavbar();
 
   return (
     <>

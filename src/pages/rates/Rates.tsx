@@ -7,14 +7,16 @@ import styles from './Rates.module.scss';
 import RateCard from './RateCard/RateCard';
 import logo from './assets/logo.svg';
 import miniLogo from './assets/miniLogo.svg';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const Rates = () => {
   const navigate = useNavigate();
+  useHideNavbar();
 
   return (
     <>
       <PlanetBackground />
-      <Grid container pl={2} pr={2} direction={'column'}>
+      <Grid container pl={2} pr={2} pb={4} direction={'column'}>
         <Grid item pt={4}>
           <ButtonBack label={'Назад'} onClick={() => navigate(-1)} />
         </Grid>

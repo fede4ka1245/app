@@ -8,6 +8,7 @@ import Input from '../../components/input/Input';
 import { routes } from './routes';
 import { Option } from '../../helpers/Option';
 import { InputType } from '../../components/input/InputType';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const routesOptions = [
   {
@@ -55,6 +56,8 @@ const Index = () => {
 
     navigate(targetRoute.value);
   }, [targetRoute]);
+
+  useHideNavbar();
 
   return (
     <>

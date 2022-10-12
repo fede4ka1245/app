@@ -6,6 +6,7 @@ import ButtonSave from '../../../components/buttonSave/ButtonSave';
 import { useNavigate } from 'react-router-dom';
 import { Option } from '../../../helpers/Option';
 import Options from '../../../components/options/Options';
+import { useHideNavbar } from '../../../hooks/useHideNavbar';
 
 const options = [
   {
@@ -29,6 +30,8 @@ const options = [
 const Lines = () => {
   const navigate = useNavigate();
   const [targetOption, setTargetOption] = useState<Option>(options[0]);
+
+  useHideNavbar();
 
   return (
     <>

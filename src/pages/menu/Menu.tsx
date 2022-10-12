@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Grid, Skeleton, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,7 @@ import courses from './images/courses.svg';
 import Message from '../../components/message/Message';
 import AppLoader from '../../components/appLoader/AppLoader';
 import { useGetAvatar, useGetUserName } from '../../store/selectors';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -26,6 +27,10 @@ const Menu = () => {
       setIsLoading(false);
     }, 2500);
   }, []);
+
+  const onNotificationsClick = useCallback(() => {
+    navigate(routes.notifications);
+  }, [navigate]);
 
   const onChangeButtonClick = () => {
     navigate(routes.personal);
@@ -42,6 +47,8 @@ const Menu = () => {
   const avatar = useGetAvatar();
   const name = useGetUserName();
 
+  useHideNavbar();
+
   return (
     <div>
       {isLoading && <AppLoader />}
@@ -52,11 +59,11 @@ const Menu = () => {
             <img width={20} height={20} src={cross} />
           </Grid>
           <Grid item>
-            <img width={20} height={23} src={notification} />
+            <img width={20} height={23} src={notification} onClick={onNotificationsClick} />
           </Grid>
         </Grid>
-        <Grid item container direction={'row'} spacing={2}>
-          <Grid item>
+        <Grid item container direction={'row'}>
+          <Grid item pr={2}>
             {avatar && <img className={styles.profilePhoto} src={avatar}/>}
             {!avatar && <Skeleton sx={{ background: 'gray' }} variant={'circular'} width={'96px'} height={'96px'} />}
           </Grid>

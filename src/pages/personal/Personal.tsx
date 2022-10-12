@@ -10,6 +10,8 @@ import { InputStyle } from '../../components/input/InputStyle';
 import { InputType } from '../../components/input/InputType';
 import { setUserInfo } from '../../store/reducers/userReducer';
 import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
+import { useGetAvatar } from '../../store/selectors';
 
 const Personal = () => {
   const [name, setName] = useState('');
@@ -19,6 +21,7 @@ const Personal = () => {
   const [email, setEmail] = useState('');
   const userInfo = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const avatar = useGetAvatar();
 
   const isSaveButtonDisabled = useMemo(() => {
     return !(name && secondName && birthday && phone && email);
@@ -32,11 +35,12 @@ const Personal = () => {
       email,
       secondName,
       birthday,
-      phone
+      phone,
+      avatar
     }));
 
     navigate(routes.menu);
-  }, [name, email, secondName, birthday, phone, dispatch, navigate]);
+  }, [name, email, secondName, birthday, phone, dispatch, navigate, avatar]);
 
   useEffect(() => {
     document.body.style.background = '#F0F0F3 no-repeat';
@@ -47,6 +51,8 @@ const Personal = () => {
       document.body.style.minHeight = '';
     };
   }, []);
+
+  useHideNavbar();
 
   useEffect(() => {
     setName(userInfo.name);

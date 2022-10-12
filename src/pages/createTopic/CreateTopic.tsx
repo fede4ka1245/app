@@ -17,6 +17,7 @@ import TextGradient from '../../components/textGradient/TextGradient';
 import GradientButton from '../../components/gradientButton/GradientButton';
 import Drafts from './components/drafts/Drafts';
 import UserCheckBox from './components/userSelect/UserCheckBox';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const CreateTopic = () => {
   useEffect(() => {
@@ -51,6 +52,8 @@ const CreateTopic = () => {
   const toggleIsInviteUsersModalActive = useCallback(() => {
     setIsInviteUsersModalActive(!isInviteUserModalActive);
   }, [isInviteUserModalActive]);
+
+  useHideNavbar();
 
   return (
     <>
@@ -170,7 +173,7 @@ const CreateTopic = () => {
         <Grid item pt={3} pl={6} pr={6}>
           <Button text={'Выпустить тему'}/>
         </Grid>
-        <Grid item pt={3} pl={6} pr={6}>
+        <Grid item pt={3} pl={6} pr={6} pb={3}>
           <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'18px'} color={'black'} textAlign={'center'}>
             Сохранить в черновик
           </Typography>

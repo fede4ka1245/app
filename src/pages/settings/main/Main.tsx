@@ -10,9 +10,12 @@ import { ButtonType } from '../../../components/button/ButtonProps';
 import Divider from '../../../components/divider/Divider';
 import Radio from '../../../components/radio/Radio';
 import FormLabel from '../../../components/formLabel/FormLabel';
+import { useHideNavbar } from '../../../hooks/useHideNavbar';
 
 const Main = () => {
   const navigate = useNavigate();
+
+  useHideNavbar();
 
   return (
     <>

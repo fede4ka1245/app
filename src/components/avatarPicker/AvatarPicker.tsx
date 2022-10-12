@@ -6,6 +6,7 @@ import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 // @ts-ignore
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 interface AvatarPickerProps {
   imagePath: string,
@@ -36,6 +37,8 @@ const AvatarPicker = ({ imagePath, cancel, save }: AvatarPickerProps) => {
       enablePageScroll();
     };
   }, []);
+
+  useHideNavbar();
 
   const onSave = () => {
     if (imgRef.current) {

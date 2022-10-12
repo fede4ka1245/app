@@ -44,6 +44,7 @@ export const userSlice = createSlice({
       state.phone = action.payload?.phone;
       state.birthday = action.payload?.birthday;
       state.secondName = action.payload?.secondName;
+      state.avatar = action.payload?.avatar;
     }
   }
 });

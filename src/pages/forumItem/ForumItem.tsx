@@ -14,6 +14,7 @@ import CommentForm from './commentForm/CommentForm';
 import ProphecyForm from './prophecyForm/ProphecyForm';
 import ExpertHelp from './expertHelp/ExpertHelp';
 import ExpertMessage from './expertMessage/ExpertMessage';
+import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const ForumItem = () => {
   useEffect(() => {
@@ -23,6 +24,8 @@ const ForumItem = () => {
       document.body.style.background = '';
     };
   }, []);
+
+  useHideNavbar();
 
   const navigate = useNavigate();
 
@@ -87,7 +90,7 @@ const ForumItem = () => {
       <Grid item pl={2} pr={2} pt={2}>
         <Message isCurrentUserMessage={true}/>
       </Grid>
-      <Grid item pl={2} pr={2} pt={2}>
+      <Grid item pl={2} pr={2} pt={2} pb={4}>
         <CommentForm />
       </Grid>
     </>
