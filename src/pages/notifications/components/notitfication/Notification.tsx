@@ -6,8 +6,8 @@ import more from './assests/more.svg';
 import error from './assests/error.svg';
 import time from './assests/time.svg';
 import accept from './assests/accept.svg';
-import SwipeWrapper from '../../../components/swipeWrapper/SwipeWrapper';
-import MessageEditor from '../../../components/messageEditor/MessageEditor';
+import SwipeWrapper from '../../../../components/swipeWrapper/SwipeWrapper';
+import MessageEditor from '../../../../components/messageEditor/MessageEditor';
 
 type NotificationVariant = 'DARK' | 'WHITE' | 'GRADIENT';
 type NotificationType = 'ERROR' | 'TIME' | 'ACCEPT';

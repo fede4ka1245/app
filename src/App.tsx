@@ -56,6 +56,7 @@ import { useAppDispatch, useAppSelector } from './store/store';
 import { setUserInfo } from './store/reducers/userReducer';
 import { useGetIsNavbarActive } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
+import Calendar from './pages/calendar/Calendar';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -132,6 +133,7 @@ function App () {
         <Route path={routes.createTopic} element={<CreateTopic />} />
         <Route path={routes.forumItem} element={<ForumItem />} />
         <Route path={routes.notifications} element={<Notifications />} />
+        <Route path={routes.calendar} element={<Calendar />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
       {isNavbarActive && <TabBar />}

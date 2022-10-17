@@ -44,6 +44,10 @@ const Menu = () => {
     navigate(routes.forum);
   };
 
+  const onCalendarClick = () => {
+    navigate(routes.calendar);
+  };
+
   const avatar = useGetAvatar();
   const name = useGetUserName();
 
@@ -91,7 +95,7 @@ const Menu = () => {
             <TransparentButton image={<img src={forum}/>} label={'Форум'} onClick={onForumClick} isSquare={true}/>
           </Grid>
           <Grid item width={'calc(50% - 10px)'}>
-            <TransparentButton image={<img src={calendar}/>} label={'Календарь'} onClick={() => {}} isSquare={true}/>
+            <TransparentButton image={<img src={calendar}/>} label={'Календарь'} onClick={onCalendarClick} isSquare={true}/>
           </Grid>
           <Grid container item width={'calc(50% - 10px)'} direction={'column'} justifyContent={'space-between'}>
             <Grid item height={'calc(70% - 10px)'}>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import UserHeader from '../../components/userHeader/UserHeader';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { Grid } from '@mui/material';
-import Notification from './components/Notification';
+import Notification from './components/notitfication/Notification';
 
 const Notifications = () => {
   useEffect(() => {
