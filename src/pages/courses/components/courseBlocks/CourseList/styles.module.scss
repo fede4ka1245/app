@@ -1,0 +1,16 @@
+.item_continer {
+  padding: 24px 0;
+  border-bottom: 1px solid #6B6E75;
+  &:last-child {
+    border-bottom: none;
+  }
+};
+
+.text {
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  color: #F9F9F9;
+}

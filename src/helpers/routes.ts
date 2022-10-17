@@ -9,10 +9,14 @@ export enum routes {
   personal = '/personal',
   myHoroscopes = '/my-horoscopes',
   horoscopes = '/horoscopes',
-  Chat = '/chat',
   forum = '/forum',
   createTopic = '/create-topic',
   rates = '/rates',
   forumItem = '/forum-item',
-  notifications = '/notifications'
+  notifications = '/notifications',
+  Chat = '/chat',
+  CourseSteps = '/course-steps',
+  AdditionalCourse = '/additional-course',
+  MiniCourse = '/mini-course',
+  MasterClass = '/master-class',
 }

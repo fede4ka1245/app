@@ -16,7 +16,11 @@ import {
   PayChat,
   ChatUser,
   ChatSupport,
-  ChatList
+  ChatList,
+  CourseSteps,
+  AdditionalCourse,
+  MiniCourse,
+  MasterClass
 } from './pages';
 import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProcessor';
 import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
@@ -122,6 +126,10 @@ function App () {
           <Route path={settingsRoutes.main} element={<Main />} />
         </Route>
         <Route path={routes.rates} element={<Rates />} />
+        <Route path={routes.CourseSteps} element={<CourseSteps />} />
+        <Route path={routes.AdditionalCourse} element={<AdditionalCourse/>}/>
+        <Route path={routes.MiniCourse} element={<MiniCourse/>}/>
+        <Route path={routes.MasterClass} element={<MasterClass/>}/>
         <Route path={routes.Chat} element={<ChatList />}/>
         <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
         <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>

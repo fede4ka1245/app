@@ -3,6 +3,8 @@ html, body {
     padding: 0;
 }
 
+/* Playfair */
+
 @font-face {
     font-family: 'Playfair';
     src: local('playfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Black.ttf) format('truetype');
@@ -12,6 +14,8 @@ html, body {
     src: local('PlayfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Bold.ttf) format('truetype');
     font-weight: bold;
 }
+
+/* Gilroy */
 
 @font-face {
     font-family: 'Gilroy';
@@ -35,3 +39,44 @@ html, body {
     font-weight: 500;
 }
 
+/*Oswald*/
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-SemiBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-Bold.ttf) format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-SemiBold.ttf) format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-Medium.ttf) format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-Regular.ttf) format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-Light.ttf) format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: local('Oswald'), url(../public/fonts/oswald/Oswald-Light.ttf) format('truetype');
+    font-weight: 200;
+}

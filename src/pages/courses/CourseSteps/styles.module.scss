@@ -1,0 +1,35 @@
+.background_img {
+  display: flex;
+  flex-direction: column;
+  height: 585px;
+  background: url('../images/shutterstock.png') center center/cover no-repeat;
+};
+
+.shadow_wrapper {
+  background: linear-gradient(0deg, #0C121E 28.9%, rgba(217, 217, 217, 0) 100%);
+}
+
+.duration {
+  font-family: 'Oswald';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  color: #F9F9F9;
+};
+
+.line {
+  height: 32px;
+  width: 1px;
+  background-color: #6B6E75;
+  margin: 0 20px;
+};
+
+.course_steps {
+  background: url('../images/space.png') center center/cover no-repeat;
+  height: 460px;
+  padding: 0 28px;
+}
+
+
+
