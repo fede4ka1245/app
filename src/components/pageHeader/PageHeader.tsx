@@ -10,7 +10,7 @@ const PageHeader = ({ page }: any) => {
   const navigate = useNavigate();
 
   const onMenuClick = useCallback(() => {
-    navigate(-1);
+    navigate(routes.menu);
   }, [navigate]);
 
   const onWalletClick = () => {
