@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 
 // components
 import UserHeader from '../../../components/userHeader/UserHeader';
-import Contact from './components/Contact';
-import Group from './components/Group';
+import Contact from '../../../components/Contact';
+import SectionPreview from '../../../components/sectionPreview';
 import AstroForecast from './components/AstroForecast';
 import Answer from './components/Answer';
 
@@ -21,7 +21,7 @@ const ChatList: FC = () => {
           <Contact/>
         </div>
         <div className={styles.list_item}>
-          <Group/>
+          <SectionPreview isPinned variant={'group'} header={'Карта Д - 10, что она означает...'} body={'Мощный инструмент для профессионального астролога, лёгкий в изучении и удобный в применении для начинающего астролога.'}/>
         </div>
         <div className={styles.list_item}>
           <AstroForecast/>

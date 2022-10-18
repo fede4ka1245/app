@@ -4,7 +4,11 @@ import styles from './CourseAdd.module.scss';
 import { Grid, Typography } from '@mui/material';
 import Slider from './components/Slider';
 
-const CourseAd = () => {
+interface CourseAdProps {
+  isPriceShowed?: boolean,
+}
+
+const CourseAd = ({ isPriceShowed }: CourseAdProps) => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
 
   return (
@@ -44,6 +48,24 @@ const CourseAd = () => {
         value={66}
         valueLabelFormat={() => '3 дня'}
       />
+      {isPriceShowed &&
+        <>
+          <Grid container>
+            <Grid pr={'5px'} item color={'#000000'} fontWeight={600} fontSize={'18px'} fontFamily={'Gilroy'}>
+              19₽
+            </Grid>
+            <Grid item sx={{ textDecorationLine: 'line-through' }} color={'rgba(0, 0, 0, 0.3)'} fontWeight={600} fontSize={'18px'} fontFamily={'Gilroy'}>
+              20₽
+            </Grid>
+          </Grid>
+          <Grid pt={'5px'} item color={'#000000'} fontWeight={600} fontSize={'14px'} fontFamily={'Gilroy'}>
+            до 00.00.00
+          </Grid>
+          <Grid pt={'5px'} item color={'#59ABDA'} fontWeight={400} fontSize={'14px'} fontFamily={'Gilroy'}>
+            Подробнее
+          </Grid>
+        </>
+      }
     </div>
   );
 };

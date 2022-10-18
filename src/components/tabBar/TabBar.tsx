@@ -44,7 +44,7 @@ const TabBar = () => {
   };
 
   const onMenuClick = () => {
-    navigate(routes.menu);
+    navigate(routes.main);
   };
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const TabBar = () => {
         alignItems={'center'}
       >
         <Grid item>
-          <div onClick={onMenuClick} className={classNames({ [styles.active]: location.pathname === routes.menu })}>
+          <div onClick={onMenuClick} className={classNames({ [styles.active]: location.pathname === routes.main })}>
             <Courses />
           </div>
         </Grid>

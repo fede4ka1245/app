@@ -2,11 +2,11 @@ import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // components
-import Messages from '../buttons/Messages';
-import Pin from '../buttons/Pin';
+import Messages from '../../pages/chats/ChatList/components/buttons/Messages';
+import Pin from '../../pages/chats/ChatList/components/buttons/Pin';
 
 // models
-import { ChatRoutes } from '../../../../../models/enums/Chat';
+import { ChatRoutes } from '../../models/enums/Chat';
 
 // styles
 import styles from './styles.module.scss';

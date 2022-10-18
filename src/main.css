@@ -3,6 +3,10 @@ html, body {
     padding: 0;
 }
 
+*::-webkit-scrollbar {
+    display: none;
+}
+
 @font-face {
     font-family: 'Playfair';
     src: local('playfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Black.ttf) format('truetype');

@@ -25,7 +25,7 @@ import Personal from './pages/personal/Personal';
 import Menu from './pages/menu/Menu';
 import Index from './pages/settings/index/Index';
 import { routes as settingsRoutes } from './pages/settings/routes';
-import Main from './pages/settings/main/Main';
+import SettingsMain from './pages/settings/main/Main';
 import Maps from './pages/settings/maps/Maps';
 import MapDisplaying from './pages/settings/mapDisplaying/MapDisplaying';
 import Lines from './pages/settings/lines/Lines';
@@ -57,6 +57,7 @@ import { setUserInfo } from './store/reducers/userReducer';
 import { useGetIsNavbarActive } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
+import Main from './pages/main/Main';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -120,7 +121,7 @@ function App () {
           <Route path={settingsRoutes.maps} element={<Maps />}/>
           <Route path={settingsRoutes.lines} element={<Lines />}/>
           <Route path={settingsRoutes.mapDisplaying} element={<MapDisplaying />}/>
-          <Route path={settingsRoutes.main} element={<Main />} />
+          <Route path={settingsRoutes.main} element={<SettingsMain />} />
         </Route>
         <Route path={routes.rates} element={<Rates />} />
         <Route path={routes.Chat} element={<ChatList />}/>
@@ -134,6 +135,7 @@ function App () {
         <Route path={routes.forumItem} element={<ForumItem />} />
         <Route path={routes.notifications} element={<Notifications />} />
         <Route path={routes.calendar} element={<Calendar />} />
+        <Route path={routes.main} element={<Main />} />
         <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
       </Routes>
       {isNavbarActive && <TabBar />}

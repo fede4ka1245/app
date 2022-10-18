@@ -16,4 +16,5 @@ export enum routes {
   forumItem = '/forum-item',
   notifications = '/notifications',
   calendar = '/calendar',
+  main = '/main',
 }
