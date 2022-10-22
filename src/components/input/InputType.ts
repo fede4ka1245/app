@@ -5,5 +5,6 @@ export enum InputType {
   time ='time',
   textarea = 'textarea',
   address = 'address',
-  options = 'options'
+  options = 'options',
+  optionsInput = 'options-input'
 }

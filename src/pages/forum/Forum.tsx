@@ -7,7 +7,7 @@ import Topic from './components/topic/Topic';
 import { topics } from './helpers/topics';
 import UserHeader from '../../components/userHeader/UserHeader';
 import Rules from './components/rules/Rules';
-import { LocalStorageKey } from '../../helpers/LocalStorageKey';
+import { LocalStorageKey } from '../../models/enums/LocalStorageKey';
 import Video from '../../components/video/Video';
 import PageHeader from '../../components/pageHeader/PageHeader';
 

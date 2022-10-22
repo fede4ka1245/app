@@ -19,10 +19,10 @@ import CoordinatesForm from './components/coordinatesForm/CoordinatesForm';
 import { InputType } from '../../components/input/InputType';
 
 // routes
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 import { routes as horoscopesRoutes } from '../../pages/horoscopes/routes';
-
-import { options } from '../../helpers/options';
+import AddressInput from '../../components/addressInput/AddressInput';
+import { AddressInformation } from '../../models/types/AddressInformation';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();
@@ -53,11 +53,13 @@ const AstrologicalProcessor = () => {
     navigate(routes.rates);
   };
 
+  const [addressInformation, setAddressInformation] = useState<AddressInformation>();
+
   return (
     <>
       <PlanetBackground />
       <Moon />
-      <Grid container pl={4} pr={4} spacing={2}>
+      <Grid container pl={2} pr={2} spacing={2}>
         <Grid item container direction={'row'} spacing={3} alignItems={'center'}>
           <Grid item>
             <img alt='menu' src={menu} onClick={onMenuButtonClick}/>
@@ -87,23 +89,26 @@ const AstrologicalProcessor = () => {
             </Grid>
           </Grid>
           <Grid item xs={12} md={12}>
-            <Input placeholder='Место рождения' options={options} inputType={InputType.options}/>
+            <AddressInput
+              setAddressInfo={setAddressInformation}
+              placeholder={'Место рождения'}
+            />
           </Grid>
         </Grid>
-        <Grid item container spacing={2} direction={'row'} color={'#ABB0B2'}>
-          <Grid item xs={4} md={4}>
+        <Grid item container direction={'row'} color={'#ABB0B2'} display={'flex'}>
+          <Grid item flex={1}>
             <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
-              Широта --
+              Широта: {addressInformation?.latitude || '--'}
             </Typography>
           </Grid>
-          <Grid item xs={4} md={4}>
+          <Grid item flex={1}>
             <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
-              Долгота --
+              Долгота: {addressInformation?.longitude || '--'}
             </Typography>
           </Grid>
-          <Grid item xs={4} md={4}>
+          <Grid item flex={1}>
             <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
-              Часовой пояс --
+              Часовой пояс: {addressInformation?.timeZoneOffset || '--'}
             </Typography>
           </Grid>
         </Grid>

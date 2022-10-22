@@ -14,7 +14,7 @@ import Courses from './Courses';
 import Forum from './Forum';
 import Processor from './Processor';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 import classNames from 'classnames';
 
 const TabBar = () => {

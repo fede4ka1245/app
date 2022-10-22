@@ -4,7 +4,7 @@ import menu from '../../pages/forum/assets/menu.svg';
 import wallet from '../../pages/forum/assets/wallet.svg';
 import search from '../../pages/forum/assets/search.svg';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 
 const PageHeader = ({ page }: any) => {
   const navigate = useNavigate();

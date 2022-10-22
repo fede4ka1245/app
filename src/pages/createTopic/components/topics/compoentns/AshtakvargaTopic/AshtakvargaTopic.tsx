@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import MapOptionsCard from '../../../../../../components/mapOptions/MapOptionsCard';
-import { Option } from '../../../../../../helpers/Option';
+import { Option } from '../../../../../../models/types/Option';
 import map from './map.svg';
 
 const mapOptions = [

@@ -1,19 +1,22 @@
 .main {
-  padding-top: 20px;
   background: #F0F0F3;
   border-radius: 20px 20px 0 0;
   display: flex;
   flex-direction: column;
-  height: 320px;
+  height: 350px;
   width: 100%;
   overflow: scroll;
 }
 
 .main > * {
-  padding: 10px 10px 10px 25px;
+  padding: 10px 16px;
+  height: 20px;
+  font-size: 15px;
+  font-weight: 400;
   font-family: 'Gilroy', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  border-top: rgba(184, 178, 178, 0.34) 0.5px solid;
+
+  &:active {
+    background: rgba(184, 178, 178, 0.34);
+  }
 }

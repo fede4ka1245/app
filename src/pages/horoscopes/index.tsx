@@ -6,7 +6,7 @@ import Map from '../../components/map/Map';
 import Buttons from './components/buttons/Buttons';
 import Input from '../../components/input/Input';
 import { routes } from './routes';
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 import { InputType } from '../../components/input/InputType';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 

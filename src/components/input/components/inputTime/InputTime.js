@@ -8,7 +8,6 @@ import ruLocale from 'date-fns/locale/ru';
 import moment from 'moment';
 import { StaticTimePicker } from '@mui/x-date-pickers';
 import Modal from "../../../modal/Modal";
-import {StaticDatePicker} from "@mui/x-date-pickers/StaticDatePicker";
 import timePickerImage from "./timePicker.svg";
 
 // eslint-disable-next-line react/prop-types
@@ -44,8 +43,8 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
 
   return (
     <>
-      <Grid container display={'flex'} alignItems={'center'}>
-        <Grid item flex={1}>
+      <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
+        <Grid item flex={1} height={'100%'}>
           <InputMask
             onChange={(event) => onChange(event.target.value)}
             mask="99:99"

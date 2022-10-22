@@ -1,5 +1,5 @@
 import { InputStyle } from './InputStyle';
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 import { InputType } from './InputType';
 
 export type InputProps = {

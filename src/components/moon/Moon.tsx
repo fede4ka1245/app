@@ -8,6 +8,7 @@ const Moon = () => {
         alt="moon"
         src={moon}
         width={'100%'}
+        height={'100px'}
       />
     </div>
   );

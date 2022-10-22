@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { ForwardedRef, useCallback, useEffect, useState } from 'react';
 import styles from './Input.module.scss';
 import { InputProps } from './InputProps';
 import classNames from 'classnames';
 import { InputStyle } from './InputStyle';
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 import Options from './components/options/Options';
 import { InputType } from './InputType';
 import InputDate from './components/inputDate/InputDate';
 import InputTime from './components/inputTime/InputTime';
 import InputPhone from './components/inputPhone/InputPhone';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import arrowImage from './assets/arrow.svg';
+import InputOptions from './components/inputOptions/InputOptions';
+import Modal from '../modal/Modal';
 
-const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targetOption, options, isSelect, disablePast, shouldDisableTime, inputStyle, width, height } : InputProps) => {
+const Input = (props : InputProps, ref: ForwardedRef<any>) => {
+  const { placeholder, inputType, onChange, value, setTargetOption, targetOption, options, disablePast, shouldDisableTime, inputStyle, width, height } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [inputLabel, setInputLabel] = useState(value);
-
   const [isOptionsActive, setIsOptionsActive] = useState(false);
   const [option, setOption] = useState(targetOption);
 
+  const [isOptionsInputOpen, setIsOptionsInputOpen] = useState(false);
+
+  const toggleIsOptionsInputOpen = useCallback(() => {
+    setIsOptionsInputOpen(!isOptionsInputOpen);
+  }, [isOptionsInputOpen]);
+
   const toggleIsOptionActive = () => {
+    if (inputType === InputType.optionsInput && !isOptionsInputOpen) {
+      toggleIsOptionsInputOpen();
+      return;
+    }
+
     if (inputType !== InputType.options) {
       return;
     }
@@ -57,7 +70,7 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
       return false;
     }
 
-    if (inputType === InputType.options) {
+    if (inputType === InputType.options || inputType === InputType.optionsInput) {
       return !option;
     }
 
@@ -75,6 +88,16 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
       )}
       style={{ width, height }}
     >
+      {inputType === InputType.optionsInput && <>
+        <Modal isOpen={isOptionsInputOpen} close={toggleIsOptionsInputOpen} height={'calc(100% - 60px)'}>
+          <InputOptions
+            options={options}
+            onChange={onChange}
+            setTargetOption={onOptionSet}
+            close={toggleIsOptionsInputOpen}
+          />
+        </Modal>
+      </>}
       {inputType === InputType.date && <InputDate
         disablePast={disablePast}
         value={inputLabel}
@@ -111,16 +134,15 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
         value={value}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        ref={ref}
         autoComplete="new-password"
       />}
-      {inputType === InputType.options && (<>
-        <Grid container display={'flex'} alignItems={'center'}>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'16px'} pl={2}>
-              {option?.label}
-            </Typography>
+      {(inputType === InputType.options || inputType === InputType.optionsInput) && (<>
+        <Grid container display={'flex'} alignItems={'center'} wrap={'nowrap'}>
+          <Grid item flex={1}>
+            <input disabled value={option?.label}/>
           </Grid>
-          <Grid item ml={'auto'} pr={'18px'}>
+          <Grid item pl={'5px'} pr={'18px'}>
             <img src={arrowImage}/>
           </Grid>
         </Grid>
@@ -133,4 +155,4 @@ const Input = ({ placeholder, inputType, onChange, value, setTargetOption, targe
   );
 };
 
-export default Input;
+export default React.forwardRef(Input);

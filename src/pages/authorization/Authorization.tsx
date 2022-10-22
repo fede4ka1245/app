@@ -4,7 +4,7 @@ import logo from './images/logo.svg';
 import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 import GalaxyBackground from '../../components/galaxyBackground/GalaxyBackground';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 

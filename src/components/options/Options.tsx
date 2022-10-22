@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { OptionsProps } from './OptionsProps';
 import { Grid, GridWrap, Typography } from '@mui/material';
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 import styles from './Options.module.scss';
 import classNames from 'classnames';
 

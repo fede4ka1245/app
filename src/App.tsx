@@ -9,7 +9,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
 
 // helpers
-import { routes } from './helpers/routes';
+import { routes } from './models/enums/routes';
 
 // pages
 import {
@@ -51,7 +51,7 @@ import './main.css';
 import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
 import ForumItem from './pages/forumItem/ForumItem';
-import { LocalStorageKey } from './helpers/LocalStorageKey';
+import { LocalStorageKey } from './models/enums/LocalStorageKey';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { setUserInfo } from './store/reducers/userReducer';
 import { useGetIsNavbarActive } from './store/selectors';

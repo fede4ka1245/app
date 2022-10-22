@@ -1,5 +1,5 @@
 import React from 'react';
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 import styles from './MapOptionsCard.module.scss';
 import { Grid, Typography } from '@mui/material';
 import Switch from '../switch/Switch';

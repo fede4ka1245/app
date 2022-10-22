@@ -1,4 +1,4 @@
-import { Option } from '../../helpers/Option';
+import { Option } from '../../models/types/Option';
 
 export type OptionsProps = {
   options?: Array<Option>,

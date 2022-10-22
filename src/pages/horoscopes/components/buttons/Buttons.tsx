@@ -8,7 +8,7 @@ import plus from './assets/plus.svg';
 import share from './assets/share.svg';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../../helpers/routes';
+import { routes } from '../../../../models/enums/routes';
 
 const Buttons = () => {
   const navigate = useNavigate();

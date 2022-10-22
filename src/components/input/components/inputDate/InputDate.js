@@ -4,11 +4,9 @@ import InputMask from 'react-input-mask';
 import {Box, ClickAwayListener, TextField, Grid} from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import ruLocale from 'date-fns/locale/ru';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import moment from 'moment';
 import Modal from "../../../modal/Modal";
-import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import datePickerImage from './datePicker.svg';
 
 const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
@@ -36,8 +34,8 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
 
   return (
     <>
-      <Grid container display={'flex'} alignItems={'center'}>
-        <Grid item flex={1}>
+      <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
+        <Grid item flex={1} height={'100%'}>
           <InputMask
             onChange={(event) => onChange(event.target.value)}
             mask="99.99.9999"

@@ -4,7 +4,7 @@ import { Grid, Typography } from '@mui/material';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
 import ButtonSave from '../../../components/buttonSave/ButtonSave';
 import { useNavigate } from 'react-router-dom';
-import { Option } from '../../../helpers/Option';
+import { Option } from '../../../models/types/Option';
 import Options from '../../../components/options/Options';
 import { useHideNavbar } from '../../../hooks/useHideNavbar';
 

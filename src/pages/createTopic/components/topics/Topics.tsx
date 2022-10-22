@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Option } from '../../../../helpers/Option';
+import { Option } from '../../../../models/types/Option';
 import { Grid, Typography } from '@mui/material';
 import Options from '../../../../components/options/Options';
 import AshtakvargaTopic from './compoentns/AshtakvargaTopic/AshtakvargaTopic';

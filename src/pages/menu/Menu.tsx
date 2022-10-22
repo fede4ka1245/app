@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Grid, Skeleton, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 import telegram from './images/telegram.png';
 import youTube from './images/youTube.png';
 import astrologicalProcessor from './images/astrologicalProcessor.svg';
@@ -56,7 +56,7 @@ const Menu = () => {
   return (
     <div>
       {isLoading && <AppLoader />}
-      <Grid container pl={4} pr={4} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
+      <Grid container pl={2} pr={2} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
         <GalaxyBackground />
         <Grid item container justifyContent={'space-between'}>
           <Grid item>

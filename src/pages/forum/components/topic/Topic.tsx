@@ -3,7 +3,7 @@ import styles from './Topic.module.scss';
 import { Grid, Typography } from '@mui/material';
 import arrow from './assets/arrow.svg';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../../helpers/routes';
+import { routes } from '../../../../models/enums/routes';
 
 interface TopicProps {
   name: string,

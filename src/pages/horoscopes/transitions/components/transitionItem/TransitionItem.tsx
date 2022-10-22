@@ -6,7 +6,7 @@ import Input from '../../../../../components/input/Input';
 import classNames from 'classnames';
 import styles from './TransitionItem.module.scss';
 import Options from '../../../../../components/options/Options';
-import { Option } from '../../../../../helpers/Option';
+import { Option } from '../../../../../models/types/Option';
 import Slider from '../../../../../components/slider/Slider';
 
 const ignoredOptions = [

@@ -5,7 +5,7 @@ import Input from '../../components/input/Input';
 import Button from '../../components/button/Button';
 import ProfilePhoto from '../../components/profilePhoto/ProfilePhoto';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../helpers/routes';
+import { routes } from '../../models/enums/routes';
 import { InputStyle } from '../../components/input/InputStyle';
 import { InputType } from '../../components/input/InputType';
 import { setUserInfo } from '../../store/reducers/userReducer';

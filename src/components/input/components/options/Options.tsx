@@ -1,7 +1,7 @@
 import React from 'react';
 import { Drawer } from '@mui/material';
 import { OptionsProps } from './OptionsProps';
-import { Option } from '../../../../helpers/Option';
+import { Option } from '../../../../models/types/Option';
 import styles from './Options.module.scss';
 
 const Options = ({ isOpen, setTargetOption, close, options }: OptionsProps) => {
