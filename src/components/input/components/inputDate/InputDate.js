@@ -37,11 +37,11 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
       <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
         <Grid item flex={1} height={'100%'}>
           <InputMask
-            onChange={(event) => onChange(event.target.value)}
+            onChange={(event) => onChange(event?.target?.value)}
             mask="99.99.9999"
             value={value}
             {...props}
-            autoComplete="new-password"
+            type="tel"
           />
         </Grid>
         <Grid item pr={'15px'} pl={'5px'}>

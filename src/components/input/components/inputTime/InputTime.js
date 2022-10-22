@@ -51,6 +51,7 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
             value={value}
             {...props}
             autoComplete="new-password"
+            type="tel"
           />
         </Grid>
         <Grid item pr={'15px'} pl={'5px'}>
