@@ -25,10 +25,10 @@ const getFormattedMaps = (horoscopes: any) => {
         // eslint-disable-next-line camelcase
         if (additional_info === 'font_bold') {
           // eslint-disable-next-line camelcase
-          mainInfo = main_info + ' ';
+          mainInfo += main_info + ' ';
         } else {
           // eslint-disable-next-line camelcase
-          additionalInfo = main_info + ' ';
+          additionalInfo += main_info + ' ';
         }
       });
 
