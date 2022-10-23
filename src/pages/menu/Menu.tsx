@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Grid, Skeleton, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
@@ -14,19 +14,11 @@ import calendar from './images/calendar.svg';
 import forum from './images/forum.svg';
 import courses from './images/courses.svg';
 import Message from '../../components/message/Message';
-import AppLoader from '../../components/appLoader/AppLoader';
 import { useGetAvatar, useGetUserName } from '../../store/selectors';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 
 const Menu = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-  }, []);
 
   const onNotificationsClick = useCallback(() => {
     navigate(routes.notifications);
@@ -55,8 +47,7 @@ const Menu = () => {
 
   return (
     <div>
-      {isLoading && <AppLoader />}
-      <Grid container pl={2} pr={2} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
+      <Grid container pl={4} pr={4} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
         <GalaxyBackground />
         <Grid item container justifyContent={'space-between'}>
           <Grid item>

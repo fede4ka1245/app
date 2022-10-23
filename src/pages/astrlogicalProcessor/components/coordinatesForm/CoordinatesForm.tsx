@@ -4,40 +4,22 @@ import Input from '../../../../components/input/Input';
 
 const CoordinatesForm = () => {
   return (
-    <Grid container direction={'column'}>
-      <Grid item pb={1}>
+    <Grid container direction={'column'} width={'100%'}>
+      <Grid item pb={2}>
         <Typography fontFamily={'Gilroy'} color={'white'} fontSize={'16px'} fontWeight={600}>
           Ввести координаты вручную
         </Typography>
       </Grid>
-      <Grid item container direction={'row'} spacing={2} pb={2}>
-        <Grid item xs={6} md={6}>
+      <Grid item container display={'flex'} pb={2}>
+        <Grid item flex={1}>
           <Input placeholder='Широта'/>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Input placeholder='Координаты'/>
-        </Grid>
-      </Grid>
-      <Grid item container direction={'row'} spacing={2} pb={2}>
-        <Grid item xs={6} md={6}>
+        <Grid item flex={1} pl={2}>
           <Input placeholder='Долгота'/>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Input placeholder='Координаты'/>
-        </Grid>
       </Grid>
-      <Grid item pb={1}>
-        <Typography fontFamily={'Gilroy'} fontWeight={700} fontSize={'14px'} color={'white'}>
-          Часовой пояс
-        </Typography>
-      </Grid>
-      <Grid item container direction={'row'} width={'calc(50% - 5px)'} justifyContent={'space-between'}>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Input placeholder={'0'} isSelect={true}/>
-        </Grid>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Input placeholder={'00'} isSelect={true}/>
-        </Grid>
+      <Grid item container direction={'row'} width={'calc(50% - 8px)'} justifyContent={'space-between'}>
+        <Input placeholder={'Час. пояс'} isSelect={true}/>
       </Grid>
     </Grid>
   );

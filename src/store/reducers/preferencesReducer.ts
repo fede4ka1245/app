@@ -7,15 +7,19 @@ interface preferencesState {
 export const preferencesSlice = createSlice({
   name: 'app',
   initialState: {
-    isNavbarActive: true
+    isNavbarActive: true,
+    isAppLoading: false
   },
   reducers: {
     setIsNavbarActive: (state, action) => {
       state.isNavbarActive = action.payload;
+    },
+    setIsAppLoading: (state, action) => {
+      state.isAppLoading = action.payload;
     }
   }
 });
 
-export const { setIsNavbarActive } = preferencesSlice.actions;
+export const { setIsNavbarActive, setIsAppLoading } = preferencesSlice.actions;
 
 export default preferencesSlice.reducer;

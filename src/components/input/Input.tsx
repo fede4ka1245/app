@@ -13,9 +13,11 @@ import { Grid } from '@mui/material';
 import arrowImage from './assets/arrow.svg';
 import InputOptions from './components/inputOptions/InputOptions';
 import Modal from '../modal/Modal';
+// @ts-ignore
+import InputMask from 'react-input-mask';
 
 const Input = (props : InputProps, ref: ForwardedRef<any>) => {
-  const { placeholder, inputType, onChange, value, setTargetOption, targetOption, options, disablePast, shouldDisableTime, inputStyle, width, height } = props;
+  const { placeholder, inputType, onChange, value, setTargetOption, targetOption, options, disablePast, shouldDisableTime, inputStyle, width, height, disabled } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [inputLabel, setInputLabel] = useState(value);
   const [isOptionsActive, setIsOptionsActive] = useState(false);
@@ -84,7 +86,8 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
         { [styles.textarea]: inputType === InputType.textarea },
         { [styles.input]: inputType !== InputType.textarea },
         { [styles.filled]: inputStyle !== InputStyle.outlined || !isBottom() },
-        { [styles.outlined]: inputStyle === InputStyle.outlined && isBottom() }
+        { [styles.outlined]: inputStyle === InputStyle.outlined && isBottom() },
+        { [styles.disabled]: disabled }
       )}
       style={{ width, height }}
     >
@@ -95,6 +98,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
             onChange={onChange}
             setTargetOption={onOptionSet}
             close={toggleIsOptionsInputOpen}
+            placeholder={placeholder}
           />
         </Modal>
       </>}
@@ -129,6 +133,12 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
         className={classNames(styles.textarea)}
         autoComplete="new-password"
       />}
+      {inputType === InputType.coordinates && <InputMask
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => onInputChange(event.target.value)}
+        mask="99.999999"
+        type="tel"
+        value={value}
+      />}
       {!inputType && <input
         onChange={(event) => onInputChange(event.target.value)}
         value={value}
@@ -140,7 +150,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
       {(inputType === InputType.options || inputType === InputType.optionsInput) && (<>
         <Grid container display={'flex'} alignItems={'center'} wrap={'nowrap'}>
           <Grid item flex={1}>
-            <input disabled value={option?.label}/>
+            <input disabled value={targetOption ? targetOption.label : option?.label}/>
           </Grid>
           <Grid item pl={'5px'} pr={'18px'}>
             <img src={arrowImage}/>

@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Grid } from '@mui/material';
 import Button from '../button/Button';
 import { ButtonType } from '../button/ButtonProps';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
-// @ts-ignore
-import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
+import { useLockScroll } from '../../hooks/useLockScroll';
 
 interface AvatarPickerProps {
   imagePath: string,
@@ -30,14 +29,7 @@ const AvatarPicker = ({ imagePath, cancel, save }: AvatarPickerProps) => {
     }, 100);
   };
 
-  useEffect(() => {
-    disablePageScroll();
-
-    return () => {
-      enablePageScroll();
-    };
-  }, []);
-
+  useLockScroll();
   useHideNavbar();
 
   const onSave = () => {

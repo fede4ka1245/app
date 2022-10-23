@@ -8,9 +8,10 @@ import { getSuggestions } from './helpers/getSuggestions';
 interface AddressInputProps {
   setAddressInfo?: (addressInfo: AddressInformation) => any,
   placeholder?: string,
+  disabled?: boolean,
 }
 
-const AddressInput = ({ placeholder, setAddressInfo }: AddressInputProps) => {
+const AddressInput = ({ placeholder, setAddressInfo, disabled }: AddressInputProps) => {
   const [suggestions, setSuggestions] = useState<Array<AddressInformation>>([]);
   const [targetOption, setTargetOption] = useState();
 
@@ -45,6 +46,7 @@ const AddressInput = ({ placeholder, setAddressInfo }: AddressInputProps) => {
         setTargetOption={onTargetSuggestionSet}
         inputType={InputType.optionsInput}
         onChange={onChange}
+        disabled={disabled}
       />
     </>
   );

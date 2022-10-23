@@ -9,11 +9,12 @@ export type InputProps = {
   value?: string,
   isSelect?: boolean,
   options?: Array<Option>
-  setTargetOption?: Function,
+  setTargetOption?: (props: any) => any,
   targetOption?: Option,
   disablePast?: boolean,
   shouldDisableTime?: () => any,
   inputStyle?: InputStyle,
   width?: string,
   height?: string,
+  disabled?: boolean
 }

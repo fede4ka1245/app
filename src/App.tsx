@@ -54,10 +54,11 @@ import ForumItem from './pages/forumItem/ForumItem';
 import { LocalStorageKey } from './models/enums/LocalStorageKey';
 import { useAppDispatch, useAppSelector } from './store/store';
 import { setUserInfo } from './store/reducers/userReducer';
-import { useGetIsNavbarActive } from './store/selectors';
+import { useGetIsAppLoading, useGetIsNavbarActive } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
+import AppLoader from './components/appLoader/AppLoader';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -85,6 +86,7 @@ function App () {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user);
   const isFirstRender = useRef(true);
+  const isAppLoading = useGetIsAppLoading();
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -101,6 +103,7 @@ function App () {
 
   return (
     <>
+      <AppLoader isLoading={isAppLoading} />
       <Routes>
         <Route path={routes.astrologicalProcessor} element={<AstrologicalProcessor />} />
         <Route path={routes.horoscopes} element={<Horoscopes />}>

@@ -55,11 +55,11 @@ const Personal = () => {
   useHideNavbar();
 
   useEffect(() => {
-    setName(userInfo.name);
-    setPhone(userInfo.phone);
-    setEmail(userInfo.email);
-    setBirthday(userInfo.birthday);
-    setSecondName(userInfo.secondName);
+    setName(userInfo?.name as string);
+    setPhone(userInfo?.phone as string);
+    setEmail(userInfo?.email as string);
+    setBirthday(userInfo?.birthday as string);
+    setSecondName(userInfo?.secondName as string);
   }, [userInfo]);
 
   return (

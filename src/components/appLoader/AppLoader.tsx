@@ -1,14 +1,28 @@
-import React from 'react';
-import { Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Backdrop } from '@mui/material';
 import Loader from '../loader/Loader';
+// @ts-ignore
+import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
-const AppLoader = () => {
+interface AppLoaderProps {
+  isLoading?: boolean,
+}
+
+const AppLoader = ({ isLoading }: AppLoaderProps) => {
+  useEffect(() => {
+    if (isLoading) {
+      disablePageScroll();
+    } else {
+      enablePageScroll();
+    }
+  }, [isLoading]);
+
   return (
-    <Box position={'fixed'} top={'calc(50% - 50px)'} left={'calc(50% - 50px)'} zIndex={10}>
+    <Backdrop open={!!isLoading} sx={{ zIndex: 20 }}>
       <div style={{ height: '100px', width: '100px', background: '#261c5b', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '20px' }}>
         <Loader />
       </div>
-    </Box>
+    </Backdrop>
   );
 };
 

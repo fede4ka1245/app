@@ -1,35 +1,16 @@
 .main {
   width: 50px;
   height: 50px;
-  position: relative;
-  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.circle {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.image {
   animation-duration: 1.2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: loading;
-  box-shadow: -0px -5px 12px #78d0ea;
-  background: transparent;
-  border-radius: 50%;
-}
-
-.circle:after {
-  content: "";
-  background: #3f3169;
-  outline: 2px solid #78d0ea;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  left: calc(50% - 5px);
-  top: -5px;
 }
 
 @keyframes loading {

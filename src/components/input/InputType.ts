@@ -6,5 +6,6 @@ export enum InputType {
   textarea = 'textarea',
   address = 'address',
   options = 'options',
-  optionsInput = 'options-input'
+  optionsInput = 'options-input',
+  coordinates = 'coordinates'
 }

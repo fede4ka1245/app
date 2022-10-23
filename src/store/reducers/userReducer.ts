@@ -18,7 +18,7 @@ export const userSlice = createSlice({
     phone: '',
     email: '',
     avatar: ''
-  },
+  } as UserState,
   reducers: {
     setName: (state, action) => {
       state.name = action.payload;

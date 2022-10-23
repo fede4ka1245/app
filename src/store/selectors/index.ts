@@ -27,3 +27,19 @@ export const useGetAvatar = () => {
 export const useGetIsNavbarActive = () => {
   return useAppSelector((state) => state?.preferences.isNavbarActive);
 };
+
+export const useGetIsAppLoading = () => {
+  return useAppSelector((state) => state?.preferences.isAppLoading);
+};
+
+export const useGetMaps = () => {
+  return useAppSelector((state) => state?.horoscopes.maps);
+};
+
+export const useGetTargetMapValue = () => {
+  return useAppSelector((state) => state?.horoscopes.targetMapValue);
+};
+
+export const useGetHoroscopeUserInfo = () => {
+  return useAppSelector((state) => state?.horoscopes.horoscopeUserInfo);
+};
