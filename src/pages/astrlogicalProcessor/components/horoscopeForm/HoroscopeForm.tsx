@@ -10,14 +10,16 @@ import { useNavigate } from 'react-router-dom';
 import { setIsAppLoading } from '../../../../store/reducers/preferencesReducer';
 import { getMaps } from '../../../../api/getMaps';
 import {
+  setAshtakavarga,
   setDashiChr,
   setDashiVim,
-  setHoroscopeUserInfo,
+  setHoroscopeUserInfo, setIsAshtakavargaLoading,
   setIsDashiLoading,
   setMaps
 } from '../../../../store/reducers/horoscopesReducer';
 import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
 import { getDashi } from '../../../../api/getDashi';
+import { getAshtakavarga } from '../../../../api/getAshtakavarga';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
@@ -90,6 +92,22 @@ const HoroscopeForm = () => {
         console.log(err);
       }).finally(() => {
         dispatch(setIsDashiLoading(false));
+      });
+
+      // dispatch(setIsAshtakavargaLoading(true));
+
+      getAshtakavarga({
+        userName: name,
+        date,
+        time,
+        latitude: addressInformation?.latitude,
+        longitude: addressInformation?.longitude
+      }).then((ashtakavarga) => {
+        dispatch(setAshtakavarga(ashtakavarga));
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        dispatch(setIsAshtakavargaLoading(false));
       });
 
       dispatch(setHoroscopeUserInfo({

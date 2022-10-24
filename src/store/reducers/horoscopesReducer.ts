@@ -3,6 +3,7 @@ import { getMapsOptions } from '../../helpers/getMapsOptions';
 import { HoroscopeData } from '../../models/types/HoroscopeData';
 import { MapOption } from '../../models/types/MapOption';
 import { PlanetTableRow } from '../../models/types/PlanetTableRow';
+import { AshtakavargaTable } from '../../models/types/AshtakavargaTable';
 
 interface HoroscopeUserInfo extends HoroscopeData {
   location: string,
@@ -16,6 +17,8 @@ interface HoroscopeState {
   dashiVim: PlanetTableRow[],
   dashiChr: PlanetTableRow[],
   isDashiLoading: boolean,
+  ashtakavarga: AshtakavargaTable[],
+  isAshtakavargaLoading: boolean
 }
 
 export const horoscopesSlice = createSlice({
@@ -34,8 +37,10 @@ export const horoscopesSlice = createSlice({
     },
     dashiVim: [],
     dashiChr: [],
-    isDashiLoading: false
-  } as unknown as HoroscopeState,
+    isDashiLoading: false,
+    ashtakavarga: [],
+    isAshtakavargaLoading: false
+  } as HoroscopeState,
   reducers: {
     setMaps: (state, action) => {
       state.maps = action.payload;
@@ -54,10 +59,16 @@ export const horoscopesSlice = createSlice({
     },
     setIsDashiLoading: (state, action: PayloadAction<boolean>) => {
       state.isDashiLoading = action.payload;
+    },
+    setAshtakavarga: (state, action: PayloadAction<AshtakavargaTable[]>) => {
+      state.ashtakavarga = action.payload;
+    },
+    setIsAshtakavargaLoading: (state, action: PayloadAction<boolean>) => {
+      state.isAshtakavargaLoading = action.payload;
     }
   }
 });
 
-export const { setMaps, setTargetMapValue, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading } = horoscopesSlice.actions;
+export const { setMaps, setTargetMapValue, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
 
 export default horoscopesSlice.reducer;

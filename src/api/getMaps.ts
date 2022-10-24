@@ -56,7 +56,5 @@ export const getMaps = async ({ userName, latitude, longitude, date, time }: Hor
     dt: date.split('.').reverse().join('-') + 'T' + time
   });
 
-  console.log(data);
-
   return getFormattedMaps(data);
 };

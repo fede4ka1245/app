@@ -1,73 +1,28 @@
 import React from 'react';
-import map from './map.svg';
+import map from './components/map.svg';
 import { Grid, Typography } from '@mui/material';
+import { useGetAshtakavarga, useGetIsAshtakavargaLoading } from '../../../store/selectors';
+import AshtakavargaTable from './components/AshtakavargaTable';
+import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
 
 const Ashtakavarga = () => {
+  const ashtakavarga = useGetAshtakavarga();
+  const isAshtakavargaLoading = useGetIsAshtakavargaLoading();
+
   return (
-    <Grid container direction={'column'} pl={4} pr={4}>
-      <Grid item width={'100%'} pb={4} pt={4}>
-        <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} pb={2}>
-          БАВ Ас
-        </Typography>
-        <img src={map} width={'100%'}/>
-      </Grid>
-      <Grid item container justifyContent={'space-between'}>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
+    <>
+      {isAshtakavargaLoading && <HoroscopesLoader />}
+      {!!ashtakavarga?.length && !isAshtakavargaLoading && <Grid container flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-between'} display={'flex'} pl={4} pr={4} pt={2}>
+        <Grid item width={'100%'} pb={4}>
+          <AshtakavargaTable table={ashtakavarga[0].table} tableName={ashtakavarga[0].tableName} />
         </Grid>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-      </Grid>
-      <Grid item container justifyContent={'space-between'}>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-      </Grid>
-      <Grid item container justifyContent={'space-between'}>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-      </Grid>
-      <Grid item container justifyContent={'space-between'}>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-        <Grid item width={'calc(50% - 5px)'}>
-          <Typography fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={700} color={'white'} p={'15px 0'}>
-            БАВ Ас
-          </Typography>
-          <img src={map} width={'100%'}/>
-        </Grid>
-      </Grid>
-    </Grid>
+        {ashtakavarga?.slice(1)?.map(({ table, tableName }) => (
+          <Grid key={tableName} item width={'calc(50% - 2px)'} pb={4}>
+            <AshtakavargaTable table={table} tableName={tableName} />
+          </Grid>
+        ))}
+      </Grid>}
+    </>
   );
 };
 

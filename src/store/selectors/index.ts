@@ -55,3 +55,11 @@ export const useGetDashiVim = () => {
 export const useGetIsDashiLoading = () => {
   return useAppSelector((state) => state?.horoscopes.isDashiLoading);
 };
+
+export const useGetAshtakavarga = () => {
+  return useAppSelector((state) => state?.horoscopes.ashtakavarga);
+};
+
+export const useGetIsAshtakavargaLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isAshtakavargaLoading);
+};

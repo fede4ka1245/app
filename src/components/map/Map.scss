@@ -16,6 +16,14 @@
     width: 100%;
   }
 
+  .highlighted {
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 0, 0, 0.3);
+    position: relative;
+    transform: scale(0.72) rotate(45deg);
+  }
+
   .additional-info {
     color: #292E30;
     font-family: 'Gilroy', sans-serif;
@@ -29,13 +37,16 @@
   .sector {
     z-index: 2;
     position: absolute;
+    overflow: hidden;
   }
 
-  .sector-1 {
-    bottom: 1px;
-    left: 25%;
+  .sector-1, .sector-4, .sector-7, .sector-10 {
     width: 50%;
     height: 50%;
+
+    .highlighted {
+      transform: scale(0.72) rotate(45deg);
+    }
 
     .main-info {
       text-align: center;
@@ -48,9 +59,28 @@
     }
   }
 
-  .sector-2 {
+  .sector-1 {
+    bottom: 0;
+    left: 25%;
+  }
+
+  .sector-4 {
+    bottom: 25%;
+    right: 0;
+  }
+
+  .sector-7 {
+    top: 0;
+    left: 25%;
+  }
+
+  .sector-10 {
+    bottom: 25%;
+    left: 0;
+  }
+
+  .sector-2, .sector-12 {
     bottom: 1px;
-    left: 50%;
     width: 50%;
     height: 25%;
 
@@ -63,11 +93,81 @@
       text-align: center;
       top: 20%;
     }
+
+    .highlighted {
+      height: 200% !important;
+    }
   }
 
-  .sector-3 {
-    bottom: 1px;
-    right: 5px;
+  .sector-2 {
+    left: 50%;
+  }
+
+  .sector-12 {
+    left: 1px;
+  }
+
+  .sector-6, .sector-8 {
+    top: 1px;
+    width: 50%;
+    height: 25%;
+
+    .main-info {
+      text-align: center;
+      top: 5px;
+    }
+
+    .additional-info {
+      text-align: center;
+      bottom: 20%;
+    }
+
+    .highlighted {
+      height: 200% !important;
+      transform: translateY(-50%) scale(0.72) rotate(-45deg) !important;
+    }
+  }
+
+  .sector-6 {
+    left: 50%;
+  }
+
+  .sector-8 {
+    left: 0;
+  }
+
+  .sector-9, .sector-11 {
+    bottom: 50%;
+    left: 2px;
+    width: 25%;
+    height: 50%;
+
+    .main-info {
+      text-align: left;
+      bottom: calc(50% - 7.5px);
+    }
+
+    .additional-info {
+      top: 20%;
+      text-align: left;
+    }
+
+    .highlighted {
+      width: 200% !important;
+      transform: translate(-50%) scale(0.72) rotate(-45deg) !important;
+    }
+  }
+
+  .sector-11 {
+    bottom: 0;
+  }
+
+  .sector-9 {
+    bottom: 50%;
+  }
+
+  .sector-3, .sector-5 {
+    right: 1px;
     width: 25%;
     height: 50%;
 
@@ -80,158 +180,17 @@
       top: 20%;
       text-align: right;
     }
-  }
 
-  .sector-4 {
-    bottom: 25%;
-    right: 5px;
-    width: 50%;
-    height: 50%;
-
-    .main-info {
-      text-align: center;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      top: 20%;
-      text-align: center;
+    .highlighted {
+      width: 200% !important;
     }
   }
 
   .sector-5 {
     bottom: 50%;
-    right: 5px;
-    width: 25%;
-    height: 50%;
-
-    .main-info {
-      text-align: right;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      top: 20%;
-      text-align: right;
-    }
   }
 
-  .sector-6 {
-    top: 1px;
-    left: 50%;
-    width: 50%;
-    height: 25%;
-
-    .main-info {
-      text-align: center;
-      top: 5px;
-    }
-
-    .additional-info {
-      text-align: center;
-      bottom: 20%;
-    }
-  }
-
-  .sector-7 {
-    top: 1px;
-    left: 25%;
-    width: 50%;
-    height: 50%;
-
-    .main-info {
-      text-align: center;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      top: 20%;
-      text-align: center;
-    }
-  }
-
-  .sector-8 {
-    top: 1px;
-    left: 5px;
-    width: 50%;
-    height: 25%;
-
-    .main-info {
-      text-align: center;
-      top: 5px;
-    }
-
-    .additional-info {
-      text-align: center;
-      bottom: 20%;
-    }
-  }
-
-  .sector-9 {
-    bottom: 50%;
-    left: 5px;
-    width: 25%;
-    height: 50%;
-
-    .main-info {
-      text-align: left;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      top: 20%;
-      text-align: left;
-    }
-  }
-
-  .sector-10 {
-    bottom: 25%;
-    left: 5px;
-    width: 50%;
-    height: 50%;
-
-    .main-info {
-      text-align: center;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      text-align: center;
-      top: 20%;
-    }
-  }
-
-  .sector-11 {
-    bottom: 1px;
-    left: 5px;
-    width: 25%;
-    height: 50%;
-
-    .main-info {
-      text-align: left;
-      bottom: calc(50% - 7.5px);
-    }
-
-    .additional-info {
-      top: 20%;
-      text-align: left;
-    }
-  }
-
-  .sector-12 {
-    bottom: 1px;
-    left: 5px;
-    width: 50%;
-    height: 25%;
-
-    .main-info {
-      text-align: center;
-      bottom: 5px;
-    }
-
-    .additional-info {
-      text-align: center;
-      top: 20%;
-    }
+  .sector-3 {
+    bottom: 0;
   }
 }
