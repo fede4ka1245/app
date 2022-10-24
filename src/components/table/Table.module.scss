@@ -5,6 +5,10 @@
   grid-template-columns: 3fr 1fr 1fr 2fr 2fr;
 }
 
+.isOpened {
+  background: white !important;
+}
+
 .dashiTableHead {
   padding: 0px 15px;
   width: 375px;
@@ -60,4 +64,6 @@
 
 .table td {
   height: 36px;
+  display: flex;
+  align-items: center;
 }

@@ -5,6 +5,8 @@ import sign from '../../pages/horoscopes/natMap/sign.svg';
 import Info from './info/Info';
 import arrowUp from './arrowUp.svg';
 import arrowDown from './arrowDown.svg';
+import classNames from 'classnames';
+import styles from './Table.module.scss';
 
 const Row = ({ textColor }: any) => {
   const [isInfoOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const Row = ({ textColor }: any) => {
 
   return (
     <>
-      <td>
+      <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Typography fontFamily={'Gilroy'} fontWeight={700} color={'#B4B3FF'} fontSize={'15px'} pr={1}>
             ДК
@@ -31,19 +33,19 @@ const Row = ({ textColor }: any) => {
           </Typography>
         </div>
       </td>
-      <td onClick={() => setIsOpen(!isInfoOpen)}>
+      <td className={classNames({ [styles.isOpened]: isInfoOpen })} onClick={() => setIsOpen(!isInfoOpen)}>
         {!isInfoOpen && <img src={arrowDown} width={28} height={28}/>}
         {isInfoOpen && <img src={arrowUp} width={28} height={28}/>}
       </td>
-      <td>
+      <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <img src={sign} />
       </td>
-      <td>
+      <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <Typography fontFamily={'Gilroy'} fontWeight={700} color={fontColor} fontSize={'15px'}>
           23° 06’
         </Typography>
       </td>
-      <td>
+      <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <Typography fontFamily={'Gilroy'} fontWeight={500} color={fontColor} fontSize={'15px'}>
           ПШа (3/Be)
         </Typography>
