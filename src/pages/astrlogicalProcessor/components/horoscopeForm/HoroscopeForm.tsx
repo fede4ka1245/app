@@ -9,8 +9,15 @@ import { useAppDispatch } from '../../../../store/store';
 import { useNavigate } from 'react-router-dom';
 import { setIsAppLoading } from '../../../../store/reducers/preferencesReducer';
 import { getMaps } from '../../../../api/getMaps';
-import { setHoroscopeUserInfo, setMaps } from '../../../../store/reducers/horoscopesReducer';
+import {
+  setDashiChr,
+  setDashiVim,
+  setHoroscopeUserInfo,
+  setIsDashiLoading,
+  setMaps
+} from '../../../../store/reducers/horoscopesReducer';
 import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
+import { getDashi } from '../../../../api/getDashi';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
@@ -66,6 +73,23 @@ const HoroscopeForm = () => {
         time,
         latitude: addressInformation?.latitude,
         longitude: addressInformation?.longitude
+      });
+
+      dispatch(setIsDashiLoading(true));
+
+      getDashi({
+        userName: name,
+        date,
+        time,
+        latitude: addressInformation?.latitude,
+        longitude: addressInformation?.longitude
+      }).then(({ chr, vim }) => {
+        dispatch(setDashiVim(vim));
+        dispatch(setDashiChr(chr));
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        dispatch(setIsDashiLoading(false));
       });
 
       dispatch(setHoroscopeUserInfo({

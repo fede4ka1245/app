@@ -1,6 +1,6 @@
 export interface PlanetTableRow {
   planet: string,
-  planets: string,
+  planets: string [],
   dateStart: string,
   dateEnd: string,
   timeStart: string,

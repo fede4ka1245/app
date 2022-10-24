@@ -43,3 +43,15 @@ export const useGetTargetMapValue = () => {
 export const useGetHoroscopeUserInfo = () => {
   return useAppSelector((state) => state?.horoscopes.horoscopeUserInfo);
 };
+
+export const useGetDashiChr = () => {
+  return useAppSelector((state) => state?.horoscopes.dashiChr);
+};
+
+export const useGetDashiVim = () => {
+  return useAppSelector((state) => state?.horoscopes.dashiVim);
+};
+
+export const useGetIsDashiLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isDashiLoading);
+};

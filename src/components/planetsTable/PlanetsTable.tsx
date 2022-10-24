@@ -1,14 +1,16 @@
-import React, { useMemo } from 'react';
-import { getPlanets } from './getPlanets';
+import React from 'react';
 import styles from './PlanetsTable.module.scss';
+import { PlanetTableRow } from '../../models/types/PlanetTableRow';
 import PlanetsTableRow from './PlanetsTableRow';
 
-const PlanetsTable = () => {
-  const planetsTable = useMemo(() => getPlanets(), []);
+interface PlanetsTableProps {
+  rows?: PlanetTableRow[],
+}
 
+const PlanetsTable = ({ rows }: PlanetsTableProps) => {
   return (
     <div className={styles.main}>
-      {planetsTable.map((row, index) => (
+      {rows?.map((row, index) => (
         <PlanetsTableRow row={row} key={index} />
       ))}
     </div>

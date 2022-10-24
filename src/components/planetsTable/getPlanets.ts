@@ -6,7 +6,7 @@ export const getPlanets = () => {
   Array.from({ length: 10 }).forEach((_) => {
     array.push({
       planet: 'Марс',
-      planets: '',
+      planets: [],
       dateStart: '01.01.2001',
       dateEnd: '01.01.2002',
       timeStart: '20:20',
@@ -19,7 +19,7 @@ export const getPlanets = () => {
     for (let y = 0; y <= 10; y++) {
       array[i].subTable.push({
         planet: 'Юпитер',
-        planets: 'Марс / Юпитер',
+        planets: 'Марс / Юпитер'.split('/'),
         dateStart: '01.01.2001',
         dateEnd: '01.01.2002',
         timeStart: '20:20',
@@ -34,7 +34,7 @@ export const getPlanets = () => {
       for (let x = 0; x <= 10; x++) {
         array[i].subTable[y].subTable.push({
           planet: 'Юпитер',
-          planets: 'Марс / Юпитер / Венера',
+          planets: 'Марс / Юпитер / Венера'.split('/'),
           dateStart: '01.01.2001',
           dateEnd: '01.01.2002',
           timeStart: '20:20',
