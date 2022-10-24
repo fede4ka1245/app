@@ -78,6 +78,9 @@ const ForumItem = () => {
       <Grid item pl={2} pr={2} pt={2}>
         <ExpertMessage />
       </Grid>
+      <Grid item pl={2} pr={2} pt={2} pb={4}>
+        <CommentForm />
+      </Grid>
       <Grid item pl={2} pr={2} pt={2}>
         <Message/>
       </Grid>
