@@ -1,6 +1,7 @@
 import React from 'react';
-import DashiTable from '../../../components/table/DashiTable';
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
+import PlanetsTable from '../../../components/planetsTable/PlanetsTable';
+import Table from '../../../components/table/Table';
 
 const Dashi = () => {
   return (
@@ -11,15 +12,10 @@ const Dashi = () => {
         </Typography>
       </Grid>
       <Grid item>
-        <DashiTable />
+        <PlanetsTable />
       </Grid>
-      <Grid item pl={4}>
-        <Typography fontFamily={'Playfair Display'} color={'white'} fontSize={'24px'} fontWeight={700}>
-          Чара Даша К.Н. Рао
-        </Typography>
-      </Grid>
-      <Grid item>
-        <DashiTable />
+      <Grid item pt={2}>
+        <Table />
       </Grid>
     </Grid>
   );

@@ -1,0 +1,29 @@
+.main {
+  width: calc(100% - 2px);
+  display: inline-grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  border: 1px solid #59ABDA;
+}
+
+.row {
+  background: white;
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 33px;
+  color: #5B6062;
+}
+
+.isOpen {
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 32px;
+  color: #37366B !important;
+}
+
+.isOpened {
+  background: #F0F0F3;
+}
