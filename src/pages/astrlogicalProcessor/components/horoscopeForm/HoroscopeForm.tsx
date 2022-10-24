@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import Input from '../../../../components/input/Input';
 import { InputType } from '../../../../components/input/InputType';
@@ -87,6 +87,11 @@ const HoroscopeForm = () => {
     }
   };
 
+  const isButtonDisabled = useMemo(() => {
+    return !addressInformation.longitude || !addressInformation.latitude || !addressInformation.timeZoneOffset ||
+      !date || !name || !time;
+  }, [addressInformation, date, name, time]);
+
   return (
     <>
       <Grid item xs={12} md={12} pb={2}>
@@ -148,7 +153,7 @@ const HoroscopeForm = () => {
         </Grid>
       </>}
       <Grid item width={'100%'} pt={2}>
-        <Button text='Расчитать гороскоп' onClick={onCountHoroscopesClick}/>
+        <Button text='Расчитать гороскоп' onClick={onCountHoroscopesClick} isDisabled={isButtonDisabled}/>
       </Grid>
     </>
   );
