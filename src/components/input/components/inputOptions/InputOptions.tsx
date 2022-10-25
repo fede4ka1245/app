@@ -15,13 +15,15 @@ export type InputOptionsProps = {
 }
 
 const InputOptions = ({ options, onChange, placeholder, setTargetOption, close }: InputOptionsProps) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState('');
   const inputRef = useRef<any>();
 
   useEffect(() => {
-    if (inputRef.current?.focus) {
-      inputRef.current?.focus();
-    }
+    setTimeout(() => {
+      if (inputRef.current.focus) {
+        inputRef.current.focus();
+      }
+    }, 150);
   }, []);
 
   const onOptionClick = ({ label, value }: Option) => {
@@ -35,6 +37,8 @@ const InputOptions = ({ options, onChange, placeholder, setTargetOption, close }
   };
 
   const onInputChange = (value: string) => {
+    setValue(value);
+
     if (onChange) {
       onChange(value);
     }
