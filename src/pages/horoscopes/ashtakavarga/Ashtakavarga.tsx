@@ -12,7 +12,7 @@ const Ashtakavarga = () => {
   return (
     <>
       {isAshtakavargaLoading && <HoroscopesLoader />}
-      {!!ashtakavarga?.length && !isAshtakavargaLoading && <Grid container flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-between'} display={'flex'} pl={4} pr={4} pt={2}>
+      {!!ashtakavarga?.length && !isAshtakavargaLoading && <Grid container flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-between'} display={'flex'} pl={2} pr={2} pt={2}>
         <Grid item width={'100%'} pb={4}>
           <AshtakavargaTable table={ashtakavarga[0].table} tableName={ashtakavarga[0].tableName} />
         </Grid>

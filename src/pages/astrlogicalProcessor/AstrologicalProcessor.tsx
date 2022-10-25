@@ -22,7 +22,7 @@ const AstrologicalProcessor = () => {
     <>
       <PlanetBackground />
       <Moon />
-      <Grid container direction={'column'} pl={4} pr={4}>
+      <Grid container direction={'column'} pl={2} pr={2}>
         <Grid item pb={2}>
           <Header />
         </Grid>

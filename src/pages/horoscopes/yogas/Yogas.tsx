@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from './components/button/Button';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import classNames from 'classnames';
 import styles from './Yogas.module.scss';
 
@@ -8,7 +8,7 @@ const Yogas = () => {
   const [page, setPage] = useState(1);
 
   return (
-    <Grid container pl={4} pr={4} pt={2} pb={4} direction={'column'} rowSpacing={2}>
+    <Grid container pl={2} pr={2} pt={2} pb={4} direction={'column'} rowSpacing={2}>
       <Grid item container>
         <Grid item pl={2} className={classNames(styles.text, { [styles.activeText]: page === 1 })} onClick={() => setPage(1)}>
             Бхава Йоги

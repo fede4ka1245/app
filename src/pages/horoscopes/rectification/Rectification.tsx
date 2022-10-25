@@ -6,7 +6,7 @@ import Button from '../../../components/button/Button';
 
 const Rectification = () => {
   return (
-    <Grid container direction={'column'} rowSpacing={2} pb={2} pl={4} pr={4} pt={2}>
+    <Grid container direction={'column'} rowSpacing={2} pb={2} pl={2} pr={2} pt={2}>
       <Grid item>
         <Typography fontFamily={'Playfair Display'} fontWeight={700} fontSize={'24px'} color={'white'}>
           Ректификации

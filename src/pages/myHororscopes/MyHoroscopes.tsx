@@ -43,7 +43,7 @@ const MyHoroscopes = () => {
       <Moon/>
       <PlanetBackground/>
       <Grid container pt={5} pb={5} rowSpacing={2} overflow={'hidden'}>
-        <Grid item container alignItems={'center'} justifyContent={'space-between'} pr={4} pl={4}>
+        <Grid item container alignItems={'center'} justifyContent={'space-between'} pr={2} pl={2}>
           <Grid item>
             <ButtonBack label={'Назад'} onClick={() => navigate(-1)}/>
           </Grid>
@@ -51,22 +51,22 @@ const MyHoroscopes = () => {
             <img alt='search' src={search} width={'20px'} height={'20px'}/>
           </Grid>
         </Grid>
-        <Grid item pt={2} pr={4} pl={4}>
+        <Grid item pt={2} pr={2} pl={2}>
           <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'} textAlign={'center'}>
             Мои гороскопы (8)
           </Typography>
         </Grid>
         <Grid item container direction={'column'}>
           {myHoroscopes.map(({ name, date, city }, index) => (
-            <Grid key={index} item pb={2} pr={4} pl={4}>
+            <Grid key={index} item pb={2} pr={2} pl={2}>
               <MyHoroscope name={name} date={date} city={city} />
             </Grid>
           ))}
-          <Grid item pl={4}>
+          <Grid item pl={2}>
             <CourseAd />
           </Grid>
           {myHoroscopes.map(({ name, date, city }, index) => (
-            <Grid key={index} item pb={2} pr={4} pl={4}>
+            <Grid key={index} item pb={2} pr={2} pl={2}>
               <MyHoroscope name={name} date={date} city={city} />
             </Grid>
           ))}

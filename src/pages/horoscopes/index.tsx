@@ -88,7 +88,7 @@ const Index = () => {
   return (
     <>
       <PlanetBackground />
-      <Grid item pl={4} pr={4} pt={4}>
+      <Grid item pl={2} pr={2} pt={4}>
         <Buttons />
       </Grid>
       <Grid item pt={2}>
@@ -110,7 +110,7 @@ const Index = () => {
           ))}
         </Swiper>
       </Grid>
-      <Grid pt={2} pl={4} pr={4} container direction={'column'} justifyContent={'center'}>
+      <Grid pt={2} pl={2} pr={2} container direction={'column'} justifyContent={'center'}>
         <Grid item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
             <Input placeholder={'Дробные карты'} inputType={InputType.options} options={maps} targetOption={{ label: targetMapValue, value: targetMapValue }} setTargetOption={onMapSet}/>

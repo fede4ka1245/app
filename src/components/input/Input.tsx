@@ -57,7 +57,9 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
   };
 
   useEffect(() => {
-    setInputLabel(value);
+    if (!inputLabel) {
+      setInputLabel(value);
+    }
   }, [value]);
 
   const onInputChange = (value: string) => {

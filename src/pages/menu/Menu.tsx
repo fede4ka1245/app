@@ -47,7 +47,7 @@ const Menu = () => {
 
   return (
     <div>
-      <Grid container pl={4} pr={4} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
+      <Grid container pl={2} pr={2} pt={4} rowSpacing={4} direction={'column'} minHeight={window.innerHeight + 'px'}>
         <GalaxyBackground />
         <Grid item container justifyContent={'space-between'}>
           <Grid item>

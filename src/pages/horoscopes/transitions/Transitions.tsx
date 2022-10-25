@@ -7,7 +7,7 @@ import { ButtonType } from '../../../components/button/ButtonProps';
 
 const Transitions = () => {
   return (
-    <Grid container direction={'column'} pl={4} pr={4} pt={2}>
+    <Grid container direction={'column'} pl={2} pr={2} pt={2}>
       <Grid item>
         <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'}>
           Дата транзита

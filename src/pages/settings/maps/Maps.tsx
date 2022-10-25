@@ -15,7 +15,7 @@ const Maps = () => {
   return (
     <>
       <PlanetBackground />
-      <Grid container pr={4} pl={4} pt={5} pb={5} rowSpacing={2}>
+      <Grid container pr={2} pl={2} pt={5} pb={5} rowSpacing={2}>
         <Grid item container alignItems={'center'} justifyContent={'space-between'}>
           <Grid item>
             <ButtonBack label={'Настройки'} onClick={() => navigate(-1)}/>

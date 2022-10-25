@@ -90,7 +90,7 @@ const TabBar = () => {
         </Grid>
       </Grid>
       <Modal isOpen={isModalOpen} close={toggleModal} height={'455px'}>
-        <Grid container justifyContent={'space-between'} pl={3} pr={3} pt={4} position={'relative'}>
+        <Grid container justifyContent={'space-between'} pl={2} pr={2} pt={3} position={'relative'}>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
             <TransparentButton image={<img src={courses}/>} label={'Новая тема'} onClick={onNewTopicClick} isSquare={true}/>
           </Grid>

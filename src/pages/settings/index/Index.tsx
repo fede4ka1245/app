@@ -19,10 +19,10 @@ const Index = () => {
       <PlanetBackground />
       <Moon />
       <Grid container>
-        <Grid item pr={4} pl={4}>
+        <Grid item pr={2} pl={2}>
           <ButtonBack onClick={() => navigate(-1)} label={'Назад'}/>
         </Grid>
-        <Grid item container direction={'column'} pr={4} pl={4} pb={4}>
+        <Grid item container direction={'column'} pr={2} pl={2} pb={4}>
           <Grid item pb={3}>
             <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'} textAlign={'center'}>
               Настройки
