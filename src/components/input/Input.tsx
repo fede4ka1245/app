@@ -150,9 +150,9 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
         autoComplete="new-password"
       />}
       {(inputType === InputType.options || inputType === InputType.optionsInput) && (<>
-        <Grid container display={'flex'} alignItems={'center'} wrap={'nowrap'}>
-          <Grid item flex={1}>
-            <input disabled value={targetOption ? targetOption.label : option?.label}/>
+        <Grid container display={'flex'} alignItems={'center'} wrap={'nowrap'} height={'50px'}>
+          <Grid item flex={1} className={styles.selectLabel}>
+            {targetOption ? targetOption.label : option?.label}
           </Grid>
           <Grid item pl={'5px'} pr={'18px'}>
             <img src={arrowImage}/>

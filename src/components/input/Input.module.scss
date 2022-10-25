@@ -8,6 +8,7 @@
   overflow: hidden;
   border-radius: 10px;
 
+
   input {
     width: calc(100% - 15px);
     color: black;
@@ -28,6 +29,17 @@
 .disabled {
   background: #37366B !important;
   pointer-events: none;
+}
+
+.selectLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  color: black !important;
+  padding-left: 15px;
 }
 
 .textarea {
@@ -62,7 +74,7 @@
 
 .outlined {
   background: transparent !important;
-  outline: 1px solid #C3C9CD;
+  border: 1px solid #C3C9CD;
   border-radius: 10px;
 }
 

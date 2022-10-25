@@ -64,7 +64,7 @@ const Personal = () => {
 
   return (
     <div className={styles.main}>
-      <Grid container direction={'column'} p={4} spacing={4} height={'100%'}>
+      <Grid container direction={'column'} pl={2} pr={2} pt={4} spacing={4} height={'100%'}>
         <Grid item>
           <Typography fontFamily={'Playfair'} fontSize={24}>
             Заполните профиль
