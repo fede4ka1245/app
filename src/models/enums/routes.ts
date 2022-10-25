@@ -17,4 +17,8 @@ export enum routes {
   notifications = '/notifications',
   calendar = '/calendar',
   main = '/main',
+  CourseSteps = '/course-steps',
+  AdditionalCourse = '/additional-course',
+  MiniCourse = '/mini-course',
+  MasterClass = '/master-class',
 }
