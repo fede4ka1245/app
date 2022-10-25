@@ -23,7 +23,7 @@ const InputOptions = ({ options, onChange, placeholder, setTargetOption, close }
       if (inputRef.current.focus) {
         inputRef.current.focus();
       }
-    }, 150);
+    }, 200);
   }, []);
 
   const onOptionClick = ({ label, value }: Option) => {
