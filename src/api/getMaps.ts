@@ -1,51 +1,23 @@
 import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
+import { MapOption } from '../models/types/MapOption';
+import { MapSection } from '../models/types/MapSection';
 
-const getFormattedMaps = (horoscopes: any) => {
-  const formattedHoroscope: any = [];
-
-  Array.from(Object.entries(horoscopes)).forEach(([key, value]) => {
-    if (key === 'table') {
-      return;
-    }
-
-    const mapSections = Object.values(value as any).map((array) => {
-      if (!Array.isArray(array) || !array[0] || !array[0].length) {
-        return {
-          mainInfo: '',
-          additionalInfo: ''
-        };
-      }
-
-      let mainInfo = '';
-      let additionalInfo = '';
-
-      // eslint-disable-next-line camelcase
-      array[0].forEach(({ additional_info, main_info }: any) => {
-        // eslint-disable-next-line camelcase
-        if (additional_info === 'font_bold') {
-          // eslint-disable-next-line camelcase
-          mainInfo += main_info + ' ';
-        } else {
-          // eslint-disable-next-line camelcase
-          additionalInfo += main_info + ' ';
-        }
-      });
-
+const getFormattedMaps = (horoscopes: any): MapOption[] => {
+  return Array.from(horoscopes.map((horoscope: any) => {
+    const mapSections: MapSection [] = horoscope.table.map((tableItem: any) => {
       return {
-        mainInfo: mainInfo.trim(),
-        additionalInfo: additionalInfo.trim()
+        mainInfo: Array.from(tableItem.main_info).join(' '),
+        additionalInfo: Array.from(tableItem.additional_info).join(' ')
       };
     });
 
-    formattedHoroscope.push({
-      mapSections,
-      value: key,
-      label: key
-    });
-  });
-
-  return formattedHoroscope;
+    return {
+      mapSections: Array.from(mapSections),
+      label: horoscope.tableName,
+      value: horoscope.tableName
+    };
+  }));
 };
 
 export const getMaps = async ({ userName, latitude, longitude, date, time }: HoroscopeData) => {
@@ -56,5 +28,5 @@ export const getMaps = async ({ userName, latitude, longitude, date, time }: Hor
     dt: date.split('.').reverse().join('-') + 'T' + time
   });
 
-  return getFormattedMaps(data);
+  return getFormattedMaps(data.data);
 };
