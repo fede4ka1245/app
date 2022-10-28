@@ -30,7 +30,7 @@ const Calanala = () => {
         </svg>
         {calanala?.map((calanalaItem, index) => (
           <div className={`section-${index + 1} section`} key={index}>
-            <Zone value={calanalaItem?.value} tip={calanalaItem.tip}/>
+            <Zone value={calanalaItem?.value} tip={calanalaItem.tip} color={calanalaItem.color === 'green' ? '#49BC5B' : '#FFA8A8'}/>
           </div>
         ))}
       </div>

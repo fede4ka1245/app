@@ -5,29 +5,7 @@ import { InputType } from '../../../../components/input/InputType';
 import AddressInput from '../../../../components/addressInput/AddressInput';
 import Button from '../../../../components/button/Button';
 import { AddressInformation } from '../../../../models/types/AddressInformation';
-import { useAppDispatch } from '../../../../store/store';
-import { useNavigate } from 'react-router-dom';
-import { setIsAppLoading } from '../../../../store/reducers/preferencesReducer';
-import { getMaps } from '../../../../api/getMaps';
-import {
-  setAshtakavarga,
-  setDashiChr,
-  setDashiVim,
-  setHoroscopeUserInfo, setIsAshtakavargaLoading,
-  setIsDashiLoading,
-  setMaps
-} from '../../../../store/reducers/horoscopesReducer';
-import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
-import { getDashi } from '../../../../api/getDashi';
-import { getAshtakavarga } from '../../../../api/getAshtakavarga';
-import { getZones } from '../../../../api/getZones';
-import {
-  setCalanala,
-  setCompass,
-  setIsZonesLoading,
-  setSavatobhadra,
-  setShani
-} from '../../../../store/reducers/zonesReducer';
+import { useLoadHoroscopes } from '../../../../hooks/useLoadHororscope';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
@@ -62,99 +40,20 @@ const HoroscopeForm = () => {
     });
   }, [addressInformation]);
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
   const onInputCustomCoordinatesClick = () => {
     setIsCustomCoordinates(true);
   };
 
-  const onCountHoroscopesClick = async () => {
-    if (!addressInformation?.latitude || !addressInformation?.longitude) {
-      return;
-    }
+  const loadHoroscopes = useLoadHoroscopes();
 
-    dispatch(setIsAppLoading(true));
-
-    try {
-      const maps = await getMaps({
-        userName: name,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
-      });
-
-      dispatch(setIsZonesLoading(true));
-
-      getZones({
-        userName: name,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
-      }).then(({ savatobhadra, compass, calanala, shani }) => {
-        dispatch(setSavatobhadra(savatobhadra));
-        dispatch(setShani(shani));
-        dispatch(setCalanala(calanala));
-        dispatch(setCompass(compass));
-      }).catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        dispatch(setIsZonesLoading(false));
-      });
-
-      dispatch(setIsDashiLoading(true));
-
-      getDashi({
-        userName: name,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
-      }).then(({ chr, vim }) => {
-        dispatch(setDashiVim(vim));
-        dispatch(setDashiChr(chr));
-      }).catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        dispatch(setIsDashiLoading(false));
-      });
-
-      // dispatch(setIsAshtakavargaLoading(true));
-
-      getAshtakavarga({
-        userName: name,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
-      }).then((ashtakavarga) => {
-        dispatch(setAshtakavarga(ashtakavarga));
-      }).catch((err) => {
-        console.log(err);
-      }).finally(() => {
-        dispatch(setIsAshtakavargaLoading(false));
-      });
-
-      dispatch(setHoroscopeUserInfo({
-        userName: name,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude,
-        location: addressInformation?.value,
-        timeZoneOffset: addressInformation?.timeZoneOffset
-      }));
-      dispatch(setMaps(maps));
-
-      navigate(horoscopesRoutes.transitions);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      dispatch(setIsAppLoading(false));
-    }
-  };
+  const onCountHoroscopesClick = useCallback(() => {
+    loadHoroscopes({
+      userName: name,
+      date,
+      time,
+      addressInformation
+    });
+  }, [loadHoroscopes]);
 
   const isButtonDisabled = useMemo(() => {
     return !addressInformation.longitude || !addressInformation.latitude || !addressInformation.timeZoneOffset ||

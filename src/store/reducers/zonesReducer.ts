@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Zone } from '../../models/types/Zone';
 import { SavatobhadraTableRow } from '../../models/types/SavatobhadraTableRow';
+import { SudarshanaItem } from '../../models/types/SudarshanaItem';
 
 interface ZoneState {
   savatobhadra: SavatobhadraTableRow [],
@@ -8,6 +9,7 @@ interface ZoneState {
   calanala: Zone [],
   compass: Zone [],
   isZonesLoading: boolean,
+  sudarshana: SudarshanaItem []
 }
 
 const zonesReducer = createSlice({
@@ -17,7 +19,8 @@ const zonesReducer = createSlice({
     shani: [],
     calanala: [],
     compass: [],
-    isZonesLoading: false
+    isZonesLoading: false,
+    sudarshana: []
   } as ZoneState,
   reducers: {
     setSavatobhadra: (state, action: PayloadAction<SavatobhadraTableRow []>) => {
@@ -34,10 +37,13 @@ const zonesReducer = createSlice({
     },
     setShani: (state, action: PayloadAction<Zone []>) => {
       state.shani = action.payload;
+    },
+    setSudarshana: (state, action: PayloadAction<SudarshanaItem []>) => {
+      state.sudarshana = action.payload;
     }
   }
 });
 
-export const { setSavatobhadra, setIsZonesLoading, setCalanala, setShani, setCompass } = zonesReducer.actions;
+export const { setSavatobhadra, setIsZonesLoading, setCalanala, setShani, setCompass, setSudarshana } = zonesReducer.actions;
 
 export default zonesReducer.reducer;

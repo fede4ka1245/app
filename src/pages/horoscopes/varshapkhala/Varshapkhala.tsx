@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import YearPicker from '../../../components/yearPicker/YearPicker';
 import { Grid, IconButton, Typography } from '@mui/material';
 import Button from '../../../components/button/Button';
@@ -57,8 +57,6 @@ const Varshapkhala = () => {
   const toggleYearMasterModal = useCallback(() => {
     setIsYearMasterModalOpen(!isYearMasterModalOpen);
   }, [isYearMasterModalOpen]);
-
-  console.log(yearMasterTable);
 
   return (
     <Grid container direction={'column'} position='relative'>

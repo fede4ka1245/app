@@ -1,6 +1,6 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './TabBar.module.scss';
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import add from './images/add.png';
 import Modal from '../modal/Modal';
 import background from './images/galaxyBackground.png';
@@ -58,27 +58,35 @@ const TabBar = () => {
         alignItems={'center'}
       >
         <Grid item>
-          <div onClick={onMenuClick} className={classNames({ [styles.active]: location.pathname === routes.main })}>
-            <Courses />
-          </div>
+          <IconButton onClick={onMenuClick} size={'large'}>
+            <div className={classNames({ [styles.active]: location.pathname === routes.main })}>
+              <Courses />
+            </div>
+          </IconButton>
         </Grid>
         <Grid item>
-          <div onClick={onProcessorClick} className={classNames({ [styles.active]: location.pathname.includes(routes.astrologicalProcessor) })}>
-            <Processor />
-          </div>
+          <IconButton onClick={onProcessorClick} size={'large'}>
+            <div className={classNames({ [styles.active]: location.pathname.includes(routes.astrologicalProcessor) })}>
+              <Processor />
+            </div>
+          </IconButton>
         </Grid>
         <Grid item>
           <img src={add} alt='add' width={50} height={50} onClick={toggleModal}/>
         </Grid>
         <Grid item>
-          <div onClick={onForumClick} className={classNames({ [styles.active]: location.pathname.includes(routes.forum) })}>
-            <Forum />
-          </div>
+          <IconButton onClick={onForumClick}>
+            <div className={classNames({ [styles.active]: location.pathname.includes(routes.forum) })}>
+              <Forum />
+            </div>
+          </IconButton>
         </Grid>
         <Grid item>
-          <div onClick={onChatsClick} className={classNames({ [styles.active]: location.pathname.includes(routes.Chat) })}>
-            <Chats />
-          </div>
+          <IconButton onClick={onChatsClick}>
+            <div className={classNames({ [styles.active]: location.pathname.includes(routes.Chat) })}>
+              <Chats />
+            </div>
+          </IconButton>
         </Grid>
       </Grid>
       <Modal isOpen={isModalOpen} close={toggleModal} height={'455px'}>

@@ -103,3 +103,7 @@ export const useGetShani = () => {
 export const useGetContentRef = () => {
   return useAppSelector((state) => state?.preferences.contentRef);
 };
+
+export const useGetSudarshana = () => {
+  return useAppSelector((state) => state?.zones.sudarshana);
+};

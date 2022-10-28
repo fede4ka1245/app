@@ -1,8 +1,10 @@
 import React from 'react';
 import './Sudarshana.scss';
-import Zone from '../zone/Zone';
+import { useGetSudarshana } from '../../../../../store/selectors';
 
 const Sudarshana = () => {
+  const sudarshana = useGetSudarshana();
+
   return (
     <div className={'zones-sudarshana'}>
       <svg className={'image'} viewBox="0 0 375 412" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,12 +58,16 @@ const Sudarshana = () => {
         </defs>
       </svg>
 
-      {Array.from({ length: 36 }).map((_, index) => (
+      {sudarshana?.map((section, index) => (
         <div className={`section-${index + 1} section`} key={index}>
-
           <div className={'number'}>
-            {index + 1}
+            {section.main.value}
           </div>
+          {section.elements.map((element, index) => (
+            <div key={`element.value ${index}`}>
+              {element.value}
+            </div>
+          ))}
         </div>
       ))}
     </div>
