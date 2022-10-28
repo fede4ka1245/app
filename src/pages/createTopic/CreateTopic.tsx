@@ -18,18 +18,9 @@ import GradientButton from '../../components/gradientButton/GradientButton';
 import Drafts from './components/drafts/Drafts';
 import UserCheckBox from './components/userSelect/UserCheckBox';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
+import Background from '../../components/background/Background';
 
 const CreateTopic = () => {
-  useEffect(() => {
-    document.body.style.background = '#F0F0F3 no-repeat';
-    document.body.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.minHeight = '';
-    };
-  }, []);
-
   const [isHoroscopesModalActive, setIsHoroscopesModalActive] = useState(false);
   const [isDraftsOpen, setIsDraftsOpen] = useState(false);
 
@@ -57,6 +48,7 @@ const CreateTopic = () => {
 
   return (
     <>
+      <Background background={'#F0F0F3'} />
       <UserHeader />
       <Grid container direction={'column'} pl={2} pr={2}>
         <Grid item>

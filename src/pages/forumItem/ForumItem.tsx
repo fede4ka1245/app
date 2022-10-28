@@ -15,16 +15,9 @@ import ProphecyForm from './prophecyForm/ProphecyForm';
 import ExpertHelp from './expertHelp/ExpertHelp';
 import ExpertMessage from './expertMessage/ExpertMessage';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
+import Background from '../../components/background/Background';
 
 const ForumItem = () => {
-  useEffect(() => {
-    document.body.style.background = '#f0f0f3';
-
-    return () => {
-      document.body.style.background = '';
-    };
-  }, []);
-
   useHideNavbar();
 
   const navigate = useNavigate();
@@ -35,6 +28,7 @@ const ForumItem = () => {
 
   return (
     <>
+      <Background background={'#f0f0f3'} />
       <UserHeader />
       <Grid container pl={2} pr={2} pb={2}>
         <Grid item mr={'auto'}>

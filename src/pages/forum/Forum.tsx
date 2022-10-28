@@ -10,6 +10,7 @@ import Rules from './components/rules/Rules';
 import { LocalStorageKey } from '../../models/enums/LocalStorageKey';
 import Video from '../../components/video/Video';
 import PageHeader from '../../components/pageHeader/PageHeader';
+import Background from '../../components/background/Background';
 
 const options = [
   {
@@ -49,16 +50,9 @@ const Forum = () => {
     }
   }, []);
 
-  useEffect(() => {
-    document.body.style.background = '#f0f0f3';
-
-    return () => {
-      document.body.style.background = '';
-    };
-  }, []);
-
   return (
     <div className={styles.main}>
+      <Background background={'#f0f0f3'} />
       <UserHeader/>
       <PageHeader page={'Форум'}/>
       <Grid item width={'100%'} pl={2} pr={2} pt={3} pb={3}>

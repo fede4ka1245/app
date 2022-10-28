@@ -47,14 +47,6 @@ const TabBar = () => {
     navigate(routes.main);
   };
 
-  useEffect(() => {
-    document.body.style.paddingBottom = '90px';
-
-    return () => {
-      document.body.style.paddingBottom = '0px';
-    };
-  }, []);
-
   return (
     <div className={styles.tabBar}>
       <Grid

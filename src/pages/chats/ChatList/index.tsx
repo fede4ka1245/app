@@ -10,10 +10,12 @@ import Answer from './components/Answer';
 // styles
 import styles from './styles.module.scss';
 import PageHeader from '../../../components/pageHeader/PageHeader';
+import Background from '../../../components/background/Background';
 
 const ChatList: FC = () => {
   return (
     <div className={styles.container}>
+      <Background background={'#f0f0f3'} />
       <UserHeader/>
       <PageHeader page={'Чаты'}/>
       <div className={styles.list}>

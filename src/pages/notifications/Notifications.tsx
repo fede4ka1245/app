@@ -3,20 +3,12 @@ import UserHeader from '../../components/userHeader/UserHeader';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { Grid } from '@mui/material';
 import Notification from './components/notitfication/Notification';
+import Background from '../../components/background/Background';
 
 const Notifications = () => {
-  useEffect(() => {
-    document.body.style.background = '#F0F0F3 no-repeat';
-    document.body.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.minHeight = '';
-    };
-  }, []);
-
   return (
     <>
+      <Background background={'#F0F0F3'} />
       <UserHeader />
       <PageHeader page={'Уведомления'} />
       <Grid container direction={'column'} pt={2}>

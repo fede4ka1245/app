@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Grid, Skeleton, Typography } from '@mui/material';
+import { CardActionArea, Grid, Skeleton, Typography } from '@mui/material';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../models/enums/routes';
@@ -90,9 +90,11 @@ const Menu = () => {
           </Grid>
           <Grid container item width={'calc(50% - 10px)'} direction={'column'} justifyContent={'space-between'}>
             <Grid item height={'calc(70% - 10px)'}>
-              <section onClick={onAstrologicalProcessorClick} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#FFFFFF', boxShadow: '-5px -5px 20px #FFFFFF, 5px 5px 20px rgba(174, 174, 192, 0.5)', borderRadius: '10px', width: '100%', height: '100%' }}>
-                <img src={astrologicalProcessor} width={50} height={50}/>
-              </section>
+              <CardActionArea sx={{ height: '100%', borderRadius: '10px' }}>
+                <section onClick={onAstrologicalProcessorClick} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#FFFFFF', boxShadow: '-5px -5px 20px #FFFFFF, 5px 5px 20px rgba(174, 174, 192, 0.5)', borderRadius: '10px', width: '100%', height: '100%' }}>
+                  <img src={astrologicalProcessor} width={50} height={50}/>
+                </section>
+              </CardActionArea>
             </Grid>
             <Grid item height={'calc(30%)'}>
               <section style={{ background: '#59abd9', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px', width: '100%', height: '100%' }}>

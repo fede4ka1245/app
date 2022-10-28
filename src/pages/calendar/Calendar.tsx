@@ -5,6 +5,7 @@ import { Grid, Typography } from '@mui/material';
 import CalendarComponent from '../../components/calendar/Calendar';
 import Options from '../../components/options/Options';
 import Notification from '../notifications/components/notitfication/Notification';
+import Background from '../../components/background/Background';
 
 const options = [
   {
@@ -22,20 +23,11 @@ const options = [
 ];
 
 const Calendar = () => {
-  useEffect(() => {
-    document.body.style.background = '#F0F0F3 no-repeat';
-    document.body.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.minHeight = '';
-    };
-  }, []);
-
   const [targetOption, setTargetOption] = useState(options[0]);
 
   return (
     <Grid container direction={'column'}>
+      <Background background={'#F0F0F3'} />
       <UserHeader/>
       <PageHeader page={'Календарь'}/>
       <Grid item pt={2}>

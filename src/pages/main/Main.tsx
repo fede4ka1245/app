@@ -9,6 +9,7 @@ import Button from '../../components/button/Button';
 import UserPreview from '../../components/userPreview/UserPreview';
 import Processor from './components/processor/Processor';
 import ShowMoreButton from './components/showMoreButton/ShowMoreButton';
+import Background from '../../components/background/Background';
 
 const forumTopics = [
   {
@@ -48,18 +49,9 @@ const Main = () => {
   const [targetForumTopic, setTargetForumTopic] = useState(forumTopics[0]);
   const [targetGroups, setTargetGroups] = useState(groups[0]);
 
-  useEffect(() => {
-    document.body.style.background = '#F0F0F3 no-repeat';
-    document.body.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.minHeight = '';
-    };
-  }, []);
-
   return (
     <>
+      <Background background={'#F0F0F3'} />
       <UserHeader />
       <PageHeader page={'Меню'}/>
       <Grid container direction={'column'}>

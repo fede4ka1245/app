@@ -3,12 +3,16 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import userReducer from './reducers/userReducer';
 import preferencesReducer from './reducers/preferencesReducer';
 import horoscopesReducer from './reducers/horoscopesReducer';
+import varshpahalaReducer from './reducers/varshpahalaReducer';
+import zonesReducer from './reducers/zonesReducer';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     preferences: preferencesReducer,
-    horoscopes: horoscopesReducer
+    horoscopes: horoscopesReducer,
+    varshpahala: varshpahalaReducer,
+    zones: zonesReducer
   }
 });
 

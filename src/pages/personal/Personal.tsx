@@ -12,6 +12,7 @@ import { setUserInfo } from '../../store/reducers/userReducer';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 import { useGetAvatar } from '../../store/selectors';
+import Background from '../../components/background/Background';
 
 const Personal = () => {
   const [name, setName] = useState('');
@@ -42,16 +43,6 @@ const Personal = () => {
     navigate(routes.menu);
   }, [name, email, secondName, birthday, phone, dispatch, navigate, avatar]);
 
-  useEffect(() => {
-    document.body.style.background = '#F0F0F3 no-repeat';
-    document.body.style.minHeight = `${window.innerHeight}px`;
-
-    return () => {
-      document.body.style.background = '';
-      document.body.style.minHeight = '';
-    };
-  }, []);
-
   useHideNavbar();
 
   useEffect(() => {
@@ -64,6 +55,7 @@ const Personal = () => {
 
   return (
     <div className={styles.main}>
+      <Background background={'#F0F0F3'} />
       <Grid container direction={'column'} pl={2} pr={2} pt={4} spacing={4} height={'100%'}>
         <Grid item>
           <Typography fontFamily={'Playfair'} fontSize={24}>

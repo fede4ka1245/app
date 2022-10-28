@@ -63,3 +63,43 @@ export const useGetAshtakavarga = () => {
 export const useGetIsAshtakavargaLoading = () => {
   return useAppSelector((state) => state?.horoscopes.isAshtakavargaLoading);
 };
+
+export const useGetDashiTable = () => {
+  return useAppSelector((state) => state?.varshpahala.dashiTable);
+};
+
+export const useGetIsVarshpahalaLoading = () => {
+  return useAppSelector((state) => state?.varshpahala.isVarshpahalaLoading);
+};
+
+export const useGetYogasTable = () => {
+  return useAppSelector((state) => state?.varshpahala.yogasTable);
+};
+
+export const useGetYearMasterTable = () => {
+  return useAppSelector((state) => state?.varshpahala.yearMasterTable);
+};
+
+export const useGetSavatobhadra = () => {
+  return useAppSelector((state) => state?.zones.savatobhadra);
+};
+
+export const useGetIsZonesLoading = () => {
+  return useAppSelector((state) => state?.zones.isZonesLoading);
+};
+
+export const useGetCalanala = () => {
+  return useAppSelector((state) => state?.zones.calanala);
+};
+
+export const useGetCompass = () => {
+  return useAppSelector((state) => state?.zones.compass);
+};
+
+export const useGetShani = () => {
+  return useAppSelector((state) => state?.zones.shani);
+};
+
+export const useGetContentRef = () => {
+  return useAppSelector((state) => state?.preferences.contentRef);
+};

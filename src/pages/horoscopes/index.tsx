@@ -17,10 +17,6 @@ import { useAppDispatch } from '../../store/store';
 
 const routesOptions = [
   {
-    label: 'Транзиты',
-    value: routes.transitions
-  },
-  {
     label: 'Натальная к.',
     value: routes.natMap
   },
@@ -29,20 +25,20 @@ const routesOptions = [
     value: routes.dashi
   },
   {
-    label: 'Варшпахала',
-    value: routes.varshapkhala
+    label: 'Транзиты',
+    value: routes.transitions
   },
   {
     label: 'Аштакаварга',
     value: routes.ashtakavarga
   },
   {
-    label: 'Чакры',
-    value: routes.zones
+    label: 'Варшпахала',
+    value: routes.varshapkhala
   },
   {
-    label: 'Йоги',
-    value: routes.yogas
+    label: 'Чакры',
+    value: routes.zones
   },
   {
     label: 'Ректификация',
@@ -58,6 +54,8 @@ const Index = () => {
   const maps = useGetMaps();
   const dispatch = useAppDispatch();
   const horoscopeUserInfo = useGetHoroscopeUserInfo();
+  const mapsRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!targetRoute?.value) {
@@ -85,19 +83,44 @@ const Index = () => {
 
   useHideNavbar();
 
+  useEffect(() => {
+    if (!mapsRef.current || !contentRef.current) {
+      return;
+    }
+
+    const sticky = mapsRef.current.offsetTop;
+
+    window.onscroll = () => {
+      if (!mapsRef.current || !contentRef.current) {
+        return;
+      }
+
+      if (window.pageYOffset > sticky) {
+        contentRef.current.style.paddingTop = `${mapsRef.current.clientHeight}px`;
+        mapsRef.current.style.position = 'fixed';
+        mapsRef.current.style.width = '100%';
+        mapsRef.current.style.top = '0';
+        mapsRef.current.style.zIndex = '100';
+      } else {
+        mapsRef.current.style.position = 'static';
+        contentRef.current.style.paddingTop = '0';
+      }
+    };
+  }, []);
+
   return (
     <>
       <PlanetBackground />
       <Grid item pl={2} pr={2} pt={4}>
         <Buttons />
       </Grid>
-      <Grid item pt={2}>
+      <Grid ref={mapsRef} item pt={2} pb={2}>
         <Swiper
           slidesPerView="auto"
           slidesPerGroup={1}
           className={'maps'}
           centeredSlides
-          spaceBetween={10}
+          spaceBetween={5}
           onSwiper={(_swiper) => {
             swiper.current = _swiper;
           }}
@@ -110,7 +133,7 @@ const Index = () => {
           ))}
         </Swiper>
       </Grid>
-      <Grid pt={2} pl={2} pr={2} container direction={'column'} justifyContent={'center'}>
+      <Grid ref={contentRef} pl={2} pr={2} container direction={'column'} justifyContent={'center'}>
         <Grid item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
             <Input placeholder={'Дробные карты'} inputType={InputType.options} options={maps} targetOption={{ label: targetMapValue, value: targetMapValue }} setTargetOption={onMapSet}/>

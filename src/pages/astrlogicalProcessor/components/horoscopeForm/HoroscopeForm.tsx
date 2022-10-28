@@ -20,6 +20,14 @@ import {
 import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
 import { getDashi } from '../../../../api/getDashi';
 import { getAshtakavarga } from '../../../../api/getAshtakavarga';
+import { getZones } from '../../../../api/getZones';
+import {
+  setCalanala,
+  setCompass,
+  setIsZonesLoading,
+  setSavatobhadra,
+  setShani
+} from '../../../../store/reducers/zonesReducer';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
@@ -75,6 +83,25 @@ const HoroscopeForm = () => {
         time,
         latitude: addressInformation?.latitude,
         longitude: addressInformation?.longitude
+      });
+
+      dispatch(setIsZonesLoading(true));
+
+      getZones({
+        userName: name,
+        date,
+        time,
+        latitude: addressInformation?.latitude,
+        longitude: addressInformation?.longitude
+      }).then(({ savatobhadra, compass, calanala, shani }) => {
+        dispatch(setSavatobhadra(savatobhadra));
+        dispatch(setShani(shani));
+        dispatch(setCalanala(calanala));
+        dispatch(setCompass(compass));
+      }).catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        dispatch(setIsZonesLoading(false));
       });
 
       dispatch(setIsDashiLoading(true));
