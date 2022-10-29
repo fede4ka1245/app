@@ -6,7 +6,7 @@ import planet from './img.png';
 import { getVarshpahala } from '../../../api/getVarshpahala';
 import {
   useGetDashiTable,
-  useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading, useGetRashiTable,
+  useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading,
   useGetUserName, useGetYearMaster,
   useGetYearMasterTable,
   useGetYogasTable
@@ -29,7 +29,7 @@ import RashiTable from './rashiTable/RashiTable';
 
 const Varshapkhala = () => {
   const name = useGetUserName();
-  const { latitude, longitude, date, time } = useGetHoroscopeUserInfo();
+  const { latitude, longitude, time } = useGetHoroscopeUserInfo();
   const dashiTable = useGetDashiTable();
   const yogasTable = useGetYogasTable();
   const yearMasterTable = useGetYearMasterTable();
@@ -58,7 +58,7 @@ const Varshapkhala = () => {
     }).finally(() => {
       dispatch(setIsVarshpahalaLoading(false));
     });
-  }, [year]);
+  }, [year, time, latitude, longitude, name, dispatch]);
 
   const toggleYearMasterModal = useCallback(() => {
     setIsYearMasterModalOpen(!isYearMasterModalOpen);
