@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Options from '../../../components/options/Options';
 import styles from './Zones.module.scss';
-import Table from '../../../components/table/Table';
 import Savatobhadra from './components/savatobhadra/Savatobhadra';
 import { useGetIsZonesLoading, useGetSavatobhadra } from '../../../store/selectors';
 import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
@@ -10,6 +9,7 @@ import Compas from './components/compas/Compas';
 import Calanala from './components/calanala/Calanala';
 import Shani from './components/shani/Shani';
 import Sudarshana from './components/sudarshana/Sudarshana';
+import Bhava from './components/bhava/Bhava';
 
 const options = [
   {
@@ -69,7 +69,7 @@ const Zones = () => {
               <Savatobhadra savatobhadra={savatobhadra} />
             </Grid>
           )}
-          {targetOption.value === 1 && <Table />}
+          {targetOption.value === 1 && <Bhava />}
         </Grid>
       </>}
       {isZonesLoading && <HoroscopesLoader />}

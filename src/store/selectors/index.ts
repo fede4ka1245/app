@@ -107,3 +107,15 @@ export const useGetContentRef = () => {
 export const useGetSudarshana = () => {
   return useAppSelector((state) => state?.zones.sudarshana);
 };
+
+export const useGetYearMaster = () => {
+  return useAppSelector((state) => state?.varshpahala.yearMaster);
+};
+
+export const useGetBhava = () => {
+  return useAppSelector((state) => state?.zones.bhava);
+};
+
+export const useGetRashiTable = () => {
+  return useAppSelector((state) => state?.varshpahala.rashiTable);
+};

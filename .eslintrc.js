@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'react/react-in-jsx-scope': 'off',
     forceConsistentCasingInFileNames: 'off',
-    'no-trailing-spaces': 'off'
+    'no-trailing-spaces': 'off',
+    'quote-props': 'off'
   }
 };

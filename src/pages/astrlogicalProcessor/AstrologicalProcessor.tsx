@@ -10,6 +10,17 @@ import PlanetBackground from '../../components/planetBackground/PlanetBackground
 import { routes } from '../../models/enums/routes';
 import Header from './components/header/Header';
 import HoroscopeForm from './components/horoscopeForm/HoroscopeForm';
+import Cancer from '../../components/zodiacSign/signs/Cancer';
+import Scorpio from '../../components/zodiacSign/signs/Scorpio';
+import Aquarius from '../../components/zodiacSign/signs/Aquarius';
+import Capricorn from '../../components/zodiacSign/signs/Capricorn';
+import Gemini from '../../components/zodiacSign/signs/Gemini';
+import Pisce from '../../components/zodiacSign/signs/Pisce';
+import Sagittarius from '../../components/zodiacSign/signs/Sagittarius';
+import Taurus from '../../components/zodiacSign/signs/Taurus';
+import Virgo from '../../components/zodiacSign/signs/Virgo';
+import Leo from '../../components/zodiacSign/signs/Leo';
+import Aries from '../../components/zodiacSign/signs/Aries';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();

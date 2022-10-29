@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './YogasTable.module.scss';
 import YogasTableRow from './YogasTableRow';
+import { YogaTableRow } from '../../models/types/YogaTable';
 
-const YogasTable = ({ rows }: any) => {
+interface YogasTableProps {
+  rows: YogaTableRow []
+}
+
+const YogasTable = ({ rows }: YogasTableProps) => {
   return (
     <div className={styles.main}>
       {rows.map((row: any) => (

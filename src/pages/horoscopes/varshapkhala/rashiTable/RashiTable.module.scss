@@ -1,0 +1,51 @@
+.table {
+  width: 100%;
+
+  & > * {
+    width: 100%;
+    height: 50px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr 2fr 2fr;
+
+    &:nth-child(2n) {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.header {
+  height: 20px;
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #FFFFFF;
+}
+
+.degrees {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #FFFFFF;
+}
+
+.planet {
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 12px;
+  color: #FFFFFF;
+}
+
+.planetSign {
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.5);
+}
