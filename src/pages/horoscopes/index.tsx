@@ -89,8 +89,11 @@ const Index = () => {
     }
 
     const sticky = mapsRef.current.offsetTop;
+    console.log(mapsRef.current.offsetTop);
 
     window.onscroll = () => {
+      console.log(mapsRef.current);
+
       if (!mapsRef.current || !contentRef.current) {
         return;
       }
@@ -109,7 +112,7 @@ const Index = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <PlanetBackground />
       <Grid item pl={2} pr={2} pt={4}>
         <Buttons />
@@ -149,7 +152,7 @@ const Index = () => {
         </Grid>
       </Grid>
       <Outlet />
-    </>
+    </div>
   );
 };
 

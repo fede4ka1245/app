@@ -6,7 +6,9 @@ const varshpahalaReducer = createSlice({
     isVarshpahalaLoading: false,
     dashiTable: [],
     yogasTable: [],
-    yearMasterTable: []
+    yearMasterTable: [],
+    yearMaster: '',
+    rashiTable: []
   },
   reducers: {
     setDashiTable: (state, action) => {
@@ -20,10 +22,16 @@ const varshpahalaReducer = createSlice({
     },
     setIsVarshpahalaLoading: (state, action) => {
       state.isVarshpahalaLoading = action.payload;
+    },
+    setYearMaster: (state, action) => {
+      state.yearMaster = action.payload;
+    },
+    setRashiTable: (state, action) => {
+      state.rashiTable = action.payload;
     }
   }
 });
 
-export const { setDashiTable, setYogasTable, setYearMasterTable, setIsVarshpahalaLoading } = varshpahalaReducer.actions;
+export const { setDashiTable, setYogasTable, setYearMasterTable, setIsVarshpahalaLoading, setYearMaster, setRashiTable } = varshpahalaReducer.actions;
 
 export default varshpahalaReducer.reducer;

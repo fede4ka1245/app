@@ -8,16 +8,6 @@ html, body {
     padding: 0;
 }
 
-.fade-enter {
-    opacity: 0.5;
-    z-index: 1;
-}
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transition: opacity 300ms linear;
-}
-
 @font-face {
     font-family: 'Playfair';
     src: local('playfairDisplay'), url(../public/fonts/playfairDisplay/PlayfairDisplay-Black.ttf) format('truetype');

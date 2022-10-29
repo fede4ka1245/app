@@ -11,16 +11,38 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   });
 
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
-  const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table;
+  const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table.map(({ badge, connection, planets }: any) => ({
+    badge: {
+      ...badge,
+      resize: badge.resize === 'icon-resize-full' ? 'disconnecting' : badge.resize === 'icon-resize-full' ? 'connecting' : undefined
+    },
+    connection,
+    planets
+  }));
   const yearMasterTable = data?.data?.find((table: any) => table?.tableName === 'main').table.map((tableItem: any) => ({
     sign: tableItem?.point,
     planet: tableItem?.graxa,
     pvb: tableItem?.pvb
   }));
+  const yearMaster = data?.data?.find((table: any) => table?.ruler_year).ruler_year;
+
+  const rashiTable = data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.map((tableItem: any) => {
+    const planet = {
+      name: tableItem.planet.replace('(R)', ''),
+      isRetragraded: tableItem.planet.includes('(R)')
+    };
+
+    return {
+      ...tableItem,
+      planet
+    };
+  });
 
   return {
     dashiTable: camelcaseKeys(dashiTable, { deep: true }),
     yogasTable: camelcaseKeys(yogasTable, { deep: true }),
-    yearMasterTable
+    yearMasterTable,
+    yearMaster,
+    rashiTable
   };
 };

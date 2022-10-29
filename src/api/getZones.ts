@@ -23,9 +23,18 @@ export const getZones = async ({ userName, latitude, longitude, date, time }: Ho
 
   const [circleLg, circleCh, circleSy] = data.data.find((table: any) => table.tableName === 'sudarsana').table;
 
-  console.log([circleLg, circleCh, circleSy]);
+  const bhava = [...data.data.find((table: any) => table.tableName === 'infotable_horizontal').table.map((bhavaItem: any) => {
+    const [leftDegree, sign, rightDegree] = bhavaItem.sign.split(' ');
+
+    return {
+      ...bhavaItem,
+      sign,
+      degrees: [`${leftDegree}°`, `${rightDegree}’`]
+    };
+  })];
 
   return {
+    bhava,
     savatobhadra: camelcaseKeys(data.data.find((table: any) => table.tableName === 'savatobxadra').table, { deep: true }),
     shani: camelcaseKeys(data.data.find((table: any) => table.tableName === 'sani').table, { deep: true }),
     calanala: camelcaseKeys(data.data.find((table: any) => table.tableName === 'surya_kalanala').table, { deep: true }),

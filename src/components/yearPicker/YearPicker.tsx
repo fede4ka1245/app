@@ -1,15 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { Swiper, SwiperProps, SwiperSlide } from 'swiper/react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import './YearPicker.scss';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import arrowUp from './assets/arrow-up.svg';
 import arrowDown from './assets/arrow-down.svg';
-import { Navigation } from 'swiper';
 
-const YearPicker = () => {
-  const years = [...(Array.from({ length: 120 }).map((_, index) => new Date().getFullYear() - index))];
+const YearPicker = ({ setYear }: any) => {
+  const years = useMemo(() => {
+    return [...(Array.from({ length: 120 }).map((_, index) => new Date().getFullYear() - index))];
+  }, []);
   const swiper = useRef<any>(null);
 
   useEffect(() => {
@@ -28,6 +29,14 @@ const YearPicker = () => {
     }
   };
 
+  const onSwipe = useCallback((swiper: any) => {
+    console.log(years[swiper.activeIndex]);
+
+    if (setYear) {
+      setYear(years[swiper.activeIndex]);
+    }
+  }, [years, setYear]);
+
   return (
     <section>
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -45,9 +54,10 @@ const YearPicker = () => {
           style={{ height: '200px', width: '150px' }}
           centeredSlides={true}
           className={'my-swiper'}
+          onSlideChange={onSwipe}
         >
-          {years.map((year) => (
-            <SwiperSlide key={year} style={{ margin: 0, padding: 0, height: '30px', width: '200px' }}>
+          {years.map((year, index) => (
+            <SwiperSlide key={index} style={{ margin: 0, padding: 0, height: '30px', width: '200px' }}>
               <section style={{ height: '30px', width: '150px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div>
                   {year}

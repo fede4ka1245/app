@@ -7,11 +7,6 @@ import {
 } from 'react-router-dom';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
-import {
-  TransitionGroup,
-  CSSTransition
-} from 'react-transition-group';
-
 // helpers
 import { routes } from './models/enums/routes';
 
@@ -68,11 +63,11 @@ import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
 import AppLoader from './components/appLoader/AppLoader';
 import { setContentRef } from './store/reducers/preferencesReducer';
+import { Grid } from '@mui/material';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     nativeApp.addListener('backButton', () => {
@@ -130,55 +125,49 @@ function App () {
   return (
     <>
       <AppLoader isLoading={isAppLoading} />
-      <TransitionGroup>
-        <CSSTransition
-          key={location.pathname.split('/')[1]}
-          classNames="fade"
-          timeout={300}
-        >
-          <Routes>
-            <Route path={routes.astrologicalProcessor} element={<AstrologicalProcessor />} />
-            <Route path={routes.horoscopes} element={<Horoscopes />}>
-              <Route path={horoscopesRoutes.ashtakavarga} element={<Ashtakavarga />}/>
-              <Route path={horoscopesRoutes.dashi} element={<Dashi />}/>
-              <Route path={horoscopesRoutes.natMap} element={<NatMap />}/>
-              <Route path={horoscopesRoutes.zones} element={<Zones />}/>
-              <Route path={horoscopesRoutes.transitions} element={<Transitions />}/>
-              <Route path={horoscopesRoutes.yogas} element={<Yogas />}/>
-              <Route path={horoscopesRoutes.rectification} element={<Rectification />}/>
-              <Route path={horoscopesRoutes.varshapkhala} element={<Varshapkhala />}/>
-            </Route>
-            <Route path={routes.personal} element={<Personal />} />
-            <Route path={routes.chats} element={<AstrologicalProcessor />} />
-            <Route path={routes.menu} element={<Menu />} />
-            <Route path={routes.settings}>
-              <Route index element={<Index />} />
-              <Route path={settingsRoutes.maps} element={<Maps />}/>
-              <Route path={settingsRoutes.lines} element={<Lines />}/>
-              <Route path={settingsRoutes.mapDisplaying} element={<MapDisplaying />}/>
-              <Route path={settingsRoutes.main} element={<SettingsMain />} />
-            </Route>
-            <Route path={routes.rates} element={<Rates />} />
-            <Route path={routes.CourseSteps} element={<CourseSteps />} />
-            <Route path={routes.AdditionalCourse} element={<AdditionalCourse/>}/>
-            <Route path={routes.MiniCourse} element={<MiniCourse/>}/>
-            <Route path={routes.MasterClass} element={<MasterClass/>}/>
-            <Route path={routes.Chat} element={<ChatList />}/>
-            <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
-            <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>
-            <Route path={ChatRoutes.PayChat} element={<PayChat />} />
-            <Route path={routes.authorization} element={<Authorization />} />
-            <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
-            <Route path={routes.forum} element={<Forum />} />
-            <Route path={routes.createTopic} element={<CreateTopic />} />
-            <Route path={routes.forumItem} element={<ForumItem />} />
-            <Route path={routes.notifications} element={<Notifications />} />
-            <Route path={routes.calendar} element={<Calendar />} />
-            <Route path={routes.main} element={<Main />} />
-            <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
+      <Grid pb={isNavbarActive ? '90px' : '0'}>
+        <Routes>
+          <Route path={routes.astrologicalProcessor} element={<AstrologicalProcessor />} />
+          <Route path={routes.horoscopes} element={<Horoscopes />}>
+            <Route path={horoscopesRoutes.ashtakavarga} element={<Ashtakavarga />}/>
+            <Route path={horoscopesRoutes.dashi} element={<Dashi />}/>
+            <Route path={horoscopesRoutes.natMap} element={<NatMap />}/>
+            <Route path={horoscopesRoutes.zones} element={<Zones />}/>
+            <Route path={horoscopesRoutes.transitions} element={<Transitions />}/>
+            <Route path={horoscopesRoutes.yogas} element={<Yogas />}/>
+            <Route path={horoscopesRoutes.rectification} element={<Rectification />}/>
+            <Route path={horoscopesRoutes.varshapkhala} element={<Varshapkhala />}/>
+          </Route>
+          <Route path={routes.personal} element={<Personal />} />
+          <Route path={routes.chats} element={<AstrologicalProcessor />} />
+          <Route path={routes.menu} element={<Menu />} />
+          <Route path={routes.settings}>
+            <Route index element={<Index />} />
+            <Route path={settingsRoutes.maps} element={<Maps />}/>
+            <Route path={settingsRoutes.lines} element={<Lines />}/>
+            <Route path={settingsRoutes.mapDisplaying} element={<MapDisplaying />}/>
+            <Route path={settingsRoutes.main} element={<SettingsMain />} />
+          </Route>
+          <Route path={routes.rates} element={<Rates />} />
+          <Route path={routes.CourseSteps} element={<CourseSteps />} />
+          <Route path={routes.AdditionalCourse} element={<AdditionalCourse/>}/>
+          <Route path={routes.MiniCourse} element={<MiniCourse/>}/>
+          <Route path={routes.MasterClass} element={<MasterClass/>}/>
+          <Route path={routes.Chat} element={<ChatList />}/>
+          <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
+          <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>
+          <Route path={ChatRoutes.PayChat} element={<PayChat />} />
+          <Route path={routes.authorization} element={<Authorization />} />
+          <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
+          <Route path={routes.forum} element={<Forum />} />
+          <Route path={routes.createTopic} element={<CreateTopic />} />
+          <Route path={routes.forumItem} element={<ForumItem />} />
+          <Route path={routes.notifications} element={<Notifications />} />
+          <Route path={routes.calendar} element={<Calendar />} />
+          <Route path={routes.main} element={<Main />} />
+          <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
+        </Routes>
+      </Grid>
       {isNavbarActive && <TabBar />}
     </>
   );

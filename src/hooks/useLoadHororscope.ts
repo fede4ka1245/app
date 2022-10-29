@@ -1,6 +1,7 @@
 import { setIsAppLoading } from '../store/reducers/preferencesReducer';
 import { getMaps } from '../api/getMaps';
 import {
+  setBhava,
   setCalanala,
   setCompass,
   setIsZonesLoading,
@@ -61,13 +62,15 @@ export const useLoadHoroscopes = () => {
         compass,
         calanala,
         shani,
-        sudarshana
+        sudarshana,
+        bhava
       }) => {
         dispatch(setSavatobhadra(savatobhadra));
         dispatch(setShani(shani));
         dispatch(setCalanala(calanala));
         dispatch(setCompass(compass));
         dispatch(setSudarshana(sudarshana));
+        dispatch(setBhava(bhava));
       }).catch((err) => {
         console.log(err);
       }).finally(() => {
