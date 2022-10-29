@@ -28,8 +28,7 @@ import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
 import RashiTable from './rashiTable/RashiTable';
 
 const Varshapkhala = () => {
-  const name = useGetUserName();
-  const { latitude, longitude, time } = useGetHoroscopeUserInfo();
+  const { latitude, longitude, time, userName } = useGetHoroscopeUserInfo();
   const dashiTable = useGetDashiTable();
   const yogasTable = useGetYogasTable();
   const yearMasterTable = useGetYearMasterTable();
@@ -43,7 +42,7 @@ const Varshapkhala = () => {
     dispatch(setIsVarshpahalaLoading(true));
 
     getVarshpahala({
-      userName: name || '',
+      userName,
       latitude,
       longitude,
       date: `01.01.${year}`,
