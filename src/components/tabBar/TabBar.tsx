@@ -75,14 +75,14 @@ const TabBar = () => {
           <img src={add} alt='add' width={50} height={50} onClick={toggleModal}/>
         </Grid>
         <Grid item>
-          <IconButton onClick={onForumClick}>
+          <IconButton onClick={onForumClick} size={'large'}>
             <div className={classNames({ [styles.active]: location.pathname.includes(routes.forum) })}>
               <Forum />
             </div>
           </IconButton>
         </Grid>
         <Grid item>
-          <IconButton onClick={onChatsClick}>
+          <IconButton onClick={onChatsClick} size={'large'}>
             <div className={classNames({ [styles.active]: location.pathname.includes(routes.Chat) })}>
               <Chats />
             </div>
