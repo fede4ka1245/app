@@ -7,6 +7,7 @@ const getFormattedMaps = (horoscopes: any): MapOption[] => {
   return Array.from(horoscopes.map((horoscope: any) => {
     const mapSections: MapSection [] = horoscope.table.map((tableItem: any) => {
       return {
+        ...tableItem,
         mainInfo: Array.from(tableItem.main_info).join(' '),
         additionalInfo: Array.from(tableItem.additional_info).join(' ')
       };

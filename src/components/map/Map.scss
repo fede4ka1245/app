@@ -5,15 +5,16 @@
     z-index: -1;
   }
 
-  .main-info {
-    color: #37366B;
+  .index {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 15px;
-    position: absolute;
-    width: 100%;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    text-align: center;
+    color: #5C5B9F;
+    opacity: 0.3;
+    width: 20px;
   }
 
   .highlighted {
@@ -30,8 +31,21 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    width: 100%;
+    width: calc(100% - 16px);
     position: absolute;
+    padding: 8px;
+  }
+
+  .main-info {
+    color: #37366B;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 15px;
+    position: absolute;
+    width: calc(100% - 16px);
+    padding: 8px;
   }
 
   .sector {
@@ -58,6 +72,47 @@
       text-align: center;
     }
   }
+
+  .sector-1, .sector-2, .sector-12 {
+    .index {
+      position: absolute;
+      top: 8%;
+      left: calc(50% - 10px);
+    }
+  }
+
+  .sector-6, .sector-7, .sector-8 {
+    .index {
+      position: absolute;
+      bottom: 8%;
+      left: calc(50% - 10px);
+    }
+  }
+
+  .sector-9, .sector-10, .sector-11 {
+    .index {
+      position: absolute;
+      right: 8%;
+      bottom: calc(50% - 10px);
+    }
+  }
+
+  .sector-3, .sector-4, .sector-5 {
+    .index {
+      position: absolute;
+      left: 8%;
+      bottom: calc(50% - 10px);
+    }
+  }
+
+  .sector-6, .sector-7, .sector-8 {
+    .index {
+      position: absolute;
+      bottom: 8%;
+      left: calc(50% - 10px);
+    }
+  }
+
 
   .sector-1 {
     bottom: 0;
