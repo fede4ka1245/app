@@ -1,7 +1,7 @@
 .main {
   width: calc(100% - 2px);
   display: inline-grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr;
   border: 1px solid #59ABDA;
 }
 
@@ -10,20 +10,32 @@
   font-family: 'Gilroy', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 10px;
   line-height: 33px;
   color: #5B6062;
+  overflow-y: scroll;
+  max-height: 33px;
 }
 
 .isOpen {
   font-family: 'Gilroy', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 13px;
   line-height: 32px;
   color: #37366B !important;
 }
 
 .isOpened {
   background: #F0F0F3;
+}
+
+.isCurrent {
+  background: linear-gradient(0deg, #3C336C, #3C336C), #FFFFFF !important;
+  color: white !important;
+  svg {
+    path {
+      stroke: white !important;
+      fill: transparent !important;
+    }
+  }
 }

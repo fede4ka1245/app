@@ -1,7 +1,7 @@
-import { PlanetTableRow } from '../../models/types/PlanetTableRow';
+import { DashiTableRow } from '../../models/types/DashiTableRow';
 
 export const getPlanets = () => {
-  const array: Array<PlanetTableRow> = [];
+  const array: Array<DashiTableRow> = [];
 
   Array.from({ length: 10 }).forEach((_) => {
     array.push({

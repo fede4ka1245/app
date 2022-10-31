@@ -11,7 +11,7 @@ import {
   useGetYearMasterTable,
   useGetYogasTable
 } from '../../../store/selectors';
-import PlanetsTable from '../../../components/planetsTable/PlanetsTable';
+import DashiTable from '../../../components/dashiTable/DashiTable';
 import { useAppDispatch } from '../../../store/store';
 import {
   setDashiTable,
@@ -115,7 +115,7 @@ const Varshapkhala = () => {
             <Header header={'Периоды (Даши)'}/>
           </Grid>
           <Grid item paddingTop={3}>
-            <PlanetsTable rows={dashiTable}/>
+            <DashiTable rows={dashiTable}/>
           </Grid>
         </>
       )}

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getMapsOptions } from '../../helpers/getMapsOptions';
 import { HoroscopeData } from '../../models/types/HoroscopeData';
 import { MapOption } from '../../models/types/MapOption';
-import { PlanetTableRow } from '../../models/types/PlanetTableRow';
+import { DashiTableRow } from '../../models/types/DashiTableRow';
 import { AshtakavargaTable } from '../../models/types/AshtakavargaTable';
 
 interface HoroscopeUserInfo extends HoroscopeData {
@@ -14,8 +14,8 @@ interface HoroscopeState {
   maps: Array<MapOption>,
   targetMapValue: string,
   horoscopeUserInfo: HoroscopeUserInfo,
-  dashiVim: PlanetTableRow[],
-  dashiChr: PlanetTableRow[],
+  dashiVim: DashiTableRow[],
+  dashiChr: DashiTableRow[],
   isDashiLoading: boolean,
   ashtakavarga: AshtakavargaTable[],
   isAshtakavargaLoading: boolean
@@ -51,10 +51,10 @@ export const horoscopesSlice = createSlice({
     setHoroscopeUserInfo: (state, action: PayloadAction<HoroscopeUserInfo>) => {
       state.horoscopeUserInfo = action.payload;
     },
-    setDashiVim: (state, action: PayloadAction<PlanetTableRow[]>) => {
+    setDashiVim: (state, action: PayloadAction<DashiTableRow[]>) => {
       state.dashiVim = action.payload;
     },
-    setDashiChr: (state, action: PayloadAction<PlanetTableRow[]>) => {
+    setDashiChr: (state, action: PayloadAction<DashiTableRow[]>) => {
       state.dashiChr = action.payload;
     },
     setIsDashiLoading: (state, action: PayloadAction<boolean>) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
-import PlanetsTable from '../../../components/planetsTable/PlanetsTable';
+import DashiTable from '../../../components/dashiTable/DashiTable';
 import { useGetDashiChr, useGetDashiVim, useGetIsDashiLoading } from '../../../store/selectors';
 import Header from '../../../components/header/Header';
 import { Option } from '../../../models/types/Option';
@@ -39,10 +39,10 @@ const Dashi = () => {
               <Options options={dashiOptions} setValue={setDashi} value={dashi.value}/>
             </Grid>
             {dashi.value === 'vim' && <Grid item pt={2}>
-              <PlanetsTable rows={dashiVim} />
+              <DashiTable rows={dashiVim} />
             </Grid>}
             {dashi.value === 'chr' && <Grid item pt={2}>
-              <PlanetsTable rows={dashiChr} />
+              <DashiTable rows={dashiChr} />
             </Grid>}
           </>
         )}
