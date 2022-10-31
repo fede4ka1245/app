@@ -18,7 +18,10 @@ export const getZones = async ({ userName, latitude, longitude, date, time }: Ho
     name_user: userName,
     latitude,
     longitude,
-    dt: date.split('.').reverse().join('-') + 'T' + time
+    dt: date.split('.').reverse().join('-') + 'T' + time,
+    part_world: null,
+    tz_hour: null,
+    tz_minutes: null
   });
 
   const [circleLg, circleCh, circleSy] = data.data.find((table: any) => table.tableName === 'sudarsana').table;

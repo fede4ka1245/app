@@ -10,8 +10,8 @@ export const formatSuggestions = (suggestions: Array<any>): Array<AddressInforma
     const timeZoneOffset = time?.format ? time?.format().slice(-6) : undefined;
 
     return {
-      latitude: suggestion?.data?.geo_lat,
-      longitude: suggestion?.data?.geo_lon,
+      latitude: Number(suggestion?.data?.geo_lat).toFixed(2),
+      longitude: Number(suggestion?.data?.geo_lon).toFixed(2),
       value: suggestion?.value,
       timeZoneOffset
     };

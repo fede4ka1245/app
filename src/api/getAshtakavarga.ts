@@ -6,7 +6,10 @@ export const getAshtakavarga = async ({ userName, latitude, longitude, date, tim
     name_user: userName,
     longitude,
     latitude,
-    dt: date.split('.').reverse().join('-') + 'T' + time
+    dt: date.split('.').reverse().join('-') + 'T' + time,
+    part_world: null,
+    tz_hour: null,
+    tz_minutes: null
   });
 
   return data?.data;

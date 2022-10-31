@@ -62,6 +62,7 @@ const Index = () => {
       return;
     }
 
+    dispatch(setTargetMapValue(maps[0].value));
     navigate(targetRoute.value);
   }, [targetRoute]);
 

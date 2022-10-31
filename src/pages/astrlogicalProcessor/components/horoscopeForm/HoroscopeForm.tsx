@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useRef } from 'react';
 import { Grid, Typography } from '@mui/material';
 import Input from '../../../../components/input/Input';
 import { InputType } from '../../../../components/input/InputType';
@@ -18,6 +18,7 @@ const HoroscopeForm = () => {
     timeZoneOffset: ''
   });
   const [isCustomCoordinates, setIsCustomCoordinates] = useState(false);
+  const addressInformationRef = useRef<AddressInformation>();
 
   const setTimeZoneOffset = useCallback((timeZoneOffset: string) => {
     setAddressInformation({
@@ -40,9 +41,15 @@ const HoroscopeForm = () => {
     });
   }, [addressInformation]);
 
-  const onInputCustomCoordinatesClick = () => {
-    setIsCustomCoordinates(true);
-  };
+  const toggleCustomCoordinates = useCallback(() => {
+    if (isCustomCoordinates && addressInformationRef.current) {
+      setAddressInformation(addressInformationRef.current);
+    } else {
+      addressInformationRef.current = addressInformation;
+    }
+
+    setIsCustomCoordinates(!isCustomCoordinates);
+  }, [isCustomCoordinates, addressInformation]);
 
   const loadHoroscopes = useLoadHoroscopes();
 
@@ -98,13 +105,13 @@ const HoroscopeForm = () => {
         </Grid>
       </Grid>
       {!isCustomCoordinates && <Grid item pt={2}>
-        <Typography color={'#99DAEA'} fontFamily={'Gilroy'} fontSize={'16px'} onClick={onInputCustomCoordinatesClick}>
+        <Typography color={'#99DAEA'} fontFamily={'Gilroy'} fontSize={'16px'} onClick={toggleCustomCoordinates}>
           Ввести координаты вручную
         </Typography>
       </Grid>}
       {isCustomCoordinates && <>
         <Grid item pb={2} pt={2}>
-          <Typography fontFamily={'Gilroy'} color={'white'} fontSize={'16px'} fontWeight={600}>
+          <Typography fontFamily={'Gilroy'} color={'white'} fontSize={'16px'} fontWeight={600} onClick={toggleCustomCoordinates}>
             Ввести координаты вручную
           </Typography>
         </Grid>

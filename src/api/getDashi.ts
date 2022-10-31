@@ -8,7 +8,10 @@ export const getDashi = async ({ userName, latitude, longitude, date, time }: Ho
     longitude,
     latitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
-    name: 'vim'
+    name: 'vim',
+    part_world: null,
+    tz_hour: null,
+    tz_minutes: null
   });
 
   const { data: chr } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-dashi/', {
@@ -16,7 +19,10 @@ export const getDashi = async ({ userName, latitude, longitude, date, time }: Ho
     longitude,
     latitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
-    name: 'chr'
+    name: 'chr',
+    part_world: null,
+    tz_hour: null,
+    tz_minutes: null
   });
 
   return { vim: camelcaseKeys(vim?.data, { deep: true }), chr: camelcaseKeys(chr?.data, { deep: true }) };

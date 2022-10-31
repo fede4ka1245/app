@@ -137,7 +137,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
       />}
       {inputType === InputType.coordinates && <InputMask
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => onInputChange(event.target.value)}
-        mask="99.999999"
+        mask="99.99"
         type="tel"
         value={value}
       />}
