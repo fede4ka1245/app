@@ -7,7 +7,7 @@ import { getVarshpahala } from '../../../api/getVarshpahala';
 import {
   useGetDashiTable,
   useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading,
-  useGetUserName, useGetYearMaster,
+  useGetYearMaster,
   useGetYearMasterTable,
   useGetYogasTable
 } from '../../../store/selectors';
@@ -48,7 +48,6 @@ const Varshapkhala = () => {
       date: `01.01.${year}`,
       time
     }).then((result) => {
-      console.log(result.rashiTable);
       dispatch(setDashiTable(result.dashiTable));
       dispatch(setRashiTable(result.rashiTable));
       dispatch(setYogasTable(result.yogasTable));

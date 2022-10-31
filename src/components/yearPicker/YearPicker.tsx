@@ -30,8 +30,6 @@ const YearPicker = ({ setYear }: any) => {
   };
 
   const onSwipe = useCallback((swiper: any) => {
-    console.log(years[swiper.activeIndex]);
-
     if (setYear) {
       setYear(years[swiper.activeIndex]);
     }

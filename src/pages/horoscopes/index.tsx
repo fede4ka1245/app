@@ -90,11 +90,8 @@ const Index = () => {
     }
 
     const sticky = mapsRef.current.offsetTop;
-    console.log(mapsRef.current.offsetTop);
 
     window.onscroll = () => {
-      console.log(mapsRef.current);
-
       if (!mapsRef.current || !contentRef.current) {
         return;
       }
