@@ -119,3 +119,7 @@ export const useGetBhava = () => {
 export const useGetRashiTable = () => {
   return useAppSelector((state) => state?.varshpahala.rashiTable);
 };
+
+export const useGetIsYearPickerActive = () => {
+  return useAppSelector((state) => state?.varshpahala.isYearPickerActive);
+};
