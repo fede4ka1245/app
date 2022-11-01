@@ -125,7 +125,7 @@ function App () {
   return (
     <>
       <AppLoader isLoading={isAppLoading} />
-      <Grid pb={isNavbarActive ? '90px' : '0'}>
+      <Grid pb={isNavbarActive ? '90px' : '0'} className={'mainWrapper'}>
         <Routes>
           <Route path={routes.astrologicalProcessor} element={<AstrologicalProcessor />} />
           <Route path={routes.horoscopes} element={<Horoscopes />}>
