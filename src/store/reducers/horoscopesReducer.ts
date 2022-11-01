@@ -7,7 +7,9 @@ import { AshtakavargaTable } from '../../models/types/AshtakavargaTable';
 
 interface HoroscopeUserInfo extends HoroscopeData {
   location: string,
-  timeZoneOffset: string
+  greenwich: string,
+  hours: string,
+  minutes: string
 }
 
 interface HoroscopeState {
@@ -33,7 +35,9 @@ export const horoscopesSlice = createSlice({
       date: '',
       time: '',
       location: '',
-      timeZoneOffset: ''
+      greenwich: '',
+      hours: '',
+      minutes: ''
     },
     dashiVim: [],
     dashiChr: [],

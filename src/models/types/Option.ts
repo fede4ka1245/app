@@ -1,4 +1,4 @@
 export type Option = {
   value: any,
-  label: string,
+  label: string | number,
 }

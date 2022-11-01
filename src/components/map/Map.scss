@@ -30,10 +30,10 @@
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 11px;
     width: calc(100% - 16px);
     position: absolute;
-    padding: 8px;
+    padding: 0 8px;
   }
 
   .main-info {
@@ -135,13 +135,13 @@
   }
 
   .sector-2, .sector-12 {
-    bottom: 1px;
+    bottom: 0;
     width: 50%;
     height: 25%;
 
     .main-info {
       text-align: center;
-      bottom: 5px;
+      bottom: 0;
     }
 
     .additional-info {
@@ -159,17 +159,17 @@
   }
 
   .sector-12 {
-    left: 1px;
+    left: 0;
   }
 
   .sector-6, .sector-8 {
-    top: 1px;
+    top: 0;
     width: 50%;
     height: 25%;
 
     .main-info {
       text-align: center;
-      top: 5px;
+      top: 0;
     }
 
     .additional-info {
@@ -193,7 +193,7 @@
 
   .sector-9, .sector-11 {
     bottom: 50%;
-    left: 2px;
+    left: 0;
     width: 25%;
     height: 50%;
 
@@ -222,7 +222,7 @@
   }
 
   .sector-3, .sector-5 {
-    right: 1px;
+    right: 0;
     width: 25%;
     height: 50%;
 

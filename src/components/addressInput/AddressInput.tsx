@@ -3,25 +3,32 @@ import Input from '../input/Input';
 import { InputType } from '../input/InputType';
 import { Option } from '../../models/types/Option';
 import { AddressInformation } from '../../models/types/AddressInformation';
-import { getSuggestions } from './helpers/getSuggestions';
+import { getSuggestions } from '../../helpers/address/getSuggestions';
+import { throttle } from '../../helpers/throttle';
+import { AddressSuggestion } from '../../models/types/AddressSuggestion';
 
 interface AddressInputProps {
-  setAddressInfo?: (addressInfo: AddressInformation) => any,
+  setAddressInfo?: (addressInfo: Omit<AddressInformation, 'timeZoneOffset'>) => any,
   placeholder?: string,
   disabled?: boolean,
 }
 
 const AddressInput = ({ placeholder, setAddressInfo, disabled }: AddressInputProps) => {
-  const [suggestions, setSuggestions] = useState<Array<AddressInformation>>([]);
-  const [targetOption, setTargetOption] = useState();
+  const [suggestions, setSuggestions] = useState<Array<AddressSuggestion>>([]);
+  const throttledGetSuggestions = useMemo<(query: string) => void>(() => {
+    const updateSuggestions = (query: string) => {
+      getSuggestions(query)
+        .then((suggestions) => {
+          setSuggestions(suggestions);
+        });
+    };
+
+    return throttle(updateSuggestions, 400);
+  }, [setSuggestions]);
 
   const onChange = useCallback((value: string) => {
-    getSuggestions(value)
-      .then((suggestions) => {
-        setSuggestions(suggestions);
-      })
-      .catch(error => console.log('error', error));
-  }, [setSuggestions, setTargetOption, targetOption, suggestions]);
+    throttledGetSuggestions(value);
+  }, []);
 
   const inputSuggestions = useMemo(() => {
     return [...suggestions?.map((suggestion, index) => ({

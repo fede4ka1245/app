@@ -1,6 +1,5 @@
 export interface AddressInformation {
   latitude: number | string,
   longitude: number | string,
-  value: string,
-  timeZoneOffset: string,
+  value: string
 }

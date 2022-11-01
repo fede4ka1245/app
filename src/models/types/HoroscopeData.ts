@@ -3,5 +3,8 @@ export interface HoroscopeData {
   longitude: number | string,
   latitude: number | string,
   date: string,
-  time: string
+  time: string,
+  hours?: string,
+  minutes?: string,
+  greenwich?: string
 }

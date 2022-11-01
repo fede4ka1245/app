@@ -15,7 +15,7 @@ const Map = ({ mapSections }: MapProps) => {
         <img src={map} className={'image'}/>
       </AspectRatio>
       {mapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
-        <div key={index} className={`sector sector-${(Number(number) + 6) % 12}`}>
+        <div key={index} className={`sector sector-${(Number(number) + 5) % 12 + 1}`}>
           <h3 className={'additional-info'}>
             {additionalInfo}
           </h3>

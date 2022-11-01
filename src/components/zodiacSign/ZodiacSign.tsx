@@ -22,7 +22,7 @@ const ZodiacSign = ({ width, height, zodiacSign }: ZodiacSignProps) => {
 
   if (formattedZodiacSign === 'лев') {
     return <Leo />;
-  } else if (formattedZodiacSign === 'Рыб') {
+  } else if (formattedZodiacSign === 'рыб') {
     return <Pisce />;
   } else if (formattedZodiacSign === 'вод') {
     return <Aquarius/>;

@@ -9,7 +9,7 @@ const Bhava = () => {
 
   return (
     <div className={styles.table}>
-      <section>
+      <section className={styles.header}>
         <Grid pl={2} className={styles.header}>
           Планета
         </Grid>
@@ -23,7 +23,10 @@ const Bhava = () => {
       {bhava?.map((bhavaItem, index) => (
         <section key={index}>
           <Grid display={'flex'} alignItems={'center'}>
-            <Typography pl={2} className={styles.planet}>
+            {bhavaItem.additionalInfo && <Typography pl={1} className={styles.planetAdditionalInfo}>
+              {bhavaItem.additionalInfo}
+            </Typography>}
+            <Typography pl={1} className={styles.planet}>
               {bhavaItem.planet.name}
             </Typography>
             {bhavaItem.planet.isRetragraded && <Typography pl={1} className={styles.planetSign}>

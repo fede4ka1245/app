@@ -70,15 +70,11 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
   };
 
   const isBottom = () => {
-    if (value) {
+    if (value || targetOption?.label || option || inputLabel || isFocused) {
       return false;
     }
 
-    if (inputType === InputType.options || inputType === InputType.optionsInput) {
-      return !option;
-    }
-
-    return !(isFocused || inputLabel);
+    return true;
   };
 
   return (

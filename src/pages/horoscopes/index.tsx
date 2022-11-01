@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import { Grid, Typography } from '@mui/material';
@@ -14,6 +14,7 @@ import './Horoscopes.scss';
 import { useGetHoroscopeUserInfo, useGetMaps, useGetTargetMapValue } from '../../store/selectors';
 import { setTargetMapValue } from '../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../store/store';
+import { getTimeZoneOffsetFromGreenwichData } from '../../helpers/getTimeZoneOffsetFromGreenwichData';
 
 const routesOptions = [
   {
@@ -56,6 +57,10 @@ const Index = () => {
   const horoscopeUserInfo = useGetHoroscopeUserInfo();
   const mapsRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const timeZoneOffset = useMemo(() => {
+    return getTimeZoneOffsetFromGreenwichData(horoscopeUserInfo.greenwich, horoscopeUserInfo.hours, horoscopeUserInfo.minutes);
+  }, [horoscopeUserInfo]);
 
   useEffect(() => {
     if (!targetRoute?.value) {
@@ -145,7 +150,7 @@ const Index = () => {
         </Grid>
         <Grid item pt={1}>
           <Typography fontFamily={'Gilroy'} fontWeight={500} fontSize={'14px'} color={'#C3C9CD'} textAlign={'center'}>
-            {horoscopeUserInfo.userName}, {horoscopeUserInfo.date} {horoscopeUserInfo.time}, {horoscopeUserInfo.timeZoneOffset}, {horoscopeUserInfo.location}
+            {horoscopeUserInfo.userName}, {horoscopeUserInfo.date} {horoscopeUserInfo.time}, {timeZoneOffset}, {horoscopeUserInfo.location}
           </Typography>
         </Grid>
       </Grid>

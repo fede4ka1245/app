@@ -112,7 +112,7 @@ const Varshapkhala = () => {
             <YogasTable rows={yogasTable}/>
           </Grid>
           <Grid item paddingTop={2} pl={2}>
-            <Header header={'Периоды (Даши)'}/>
+            <Header header={'МУДДА ДАША'}/>
           </Grid>
           <Grid item paddingTop={3}>
             <DashiTable rows={dashiTable}/>

@@ -1,16 +1,17 @@
 import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
+import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 
-export const getVarshpahala = async ({ userName, latitude, longitude, date, time }: HoroscopeData) => {
+export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
   const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-varshaphala/', {
     name_user: userName,
     latitude,
     longitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
-    part_world: null,
-    tz_hour: null,
-    tz_minutes: null
+    part_world: getFormattedGreenwich(greenwich),
+    tz_hour: hours || null,
+    tz_minutes: minutes || null
   });
 
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;

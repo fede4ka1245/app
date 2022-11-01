@@ -24,19 +24,23 @@ import { AddressInformation } from '../models/types/AddressInformation';
 import { useAppDispatch } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import { HoroscopeData } from '../models/types/HoroscopeData';
+import { TimeZoneData } from '../models/types/TimeZoneData';
 
 interface LoadHoroscope extends Omit<HoroscopeData, 'latitude' | 'longitude'> {
   addressInformation: AddressInformation
+  timeZoneData: TimeZoneData
 }
 
 export const useLoadHoroscopes = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  return async ({ userName, date, time, addressInformation }: LoadHoroscope) => {
+  return async ({ userName, date, time, addressInformation, timeZoneData }: LoadHoroscope) => {
     if (!addressInformation?.latitude || !addressInformation?.longitude) {
       return;
     }
+
+    const { hours, greenwich, minutes } = timeZoneData;
 
     dispatch(setIsAppLoading(true));
 
@@ -46,7 +50,10 @@ export const useLoadHoroscopes = () => {
         date,
         time,
         latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
+        longitude: addressInformation?.longitude,
+        hours,
+        greenwich,
+        minutes
       });
 
       dispatch(setIsZonesLoading(true));
@@ -56,7 +63,10 @@ export const useLoadHoroscopes = () => {
         date,
         time,
         latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
+        longitude: addressInformation?.longitude,
+        hours,
+        greenwich,
+        minutes
       }).then(({
         savatobhadra,
         compass,
@@ -84,7 +94,10 @@ export const useLoadHoroscopes = () => {
         date,
         time,
         latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
+        longitude: addressInformation?.longitude,
+        hours,
+        greenwich,
+        minutes
       }).then(({
         chr,
         vim
@@ -104,7 +117,10 @@ export const useLoadHoroscopes = () => {
         date,
         time,
         latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude
+        longitude: addressInformation?.longitude,
+        hours,
+        greenwich,
+        minutes
       }).then((ashtakavarga) => {
         dispatch(setAshtakavarga(ashtakavarga));
       }).catch((err) => {
@@ -120,7 +136,9 @@ export const useLoadHoroscopes = () => {
         latitude: addressInformation?.latitude,
         longitude: addressInformation?.longitude,
         location: addressInformation?.value,
-        timeZoneOffset: addressInformation?.timeZoneOffset
+        greenwich: timeZoneData.greenwich,
+        minutes: timeZoneData.minutes,
+        hours: timeZoneData.hours
       }));
       dispatch(setMaps(maps));
 

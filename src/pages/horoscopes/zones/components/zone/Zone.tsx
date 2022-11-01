@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardActionArea, Tooltip, ClickAwayListener } from '@mui/material';
+import { CardActionArea, Tooltip, ClickAwayListener, Typography, Grid } from '@mui/material';
 import styles from './Zone.module.scss';
 import { Zone as ZoneProps } from '../../../../../models/types/Zone';
 
@@ -22,14 +22,14 @@ const Zone = ({ value, tip, color }: ZoneProps) => {
         disableFocusListener
         disableHoverListener
         disableTouchListener
-        title={<>
-          <h4>
+        title={<Grid p={'2px'}>
+          <Typography fontFamily={'Gilroy'} fontWeight={'bold'} fontSize={'16px'}>
             {tip?.title}
-          </h4>
-          <p>
+          </Typography>
+          <Typography fontFamily={'Gilroy'} fontSize={'16px'}>
             {tip?.text}
-          </p>
-        </>}
+          </Typography>
+        </Grid>}
         arrow>
         <CardActionArea sx={{ borderRadius: '50%' }} onClick={handleTooltipOpen}>
           <div style={{ color }} className={styles.main}>

@@ -56,8 +56,8 @@ const InputOptions = ({ options, onChange, placeholder, setTargetOption, close }
         />
       </Grid>
       <Grid container direction={'column'} overflow={'scroll'} wrap={'nowrap'}>
-        {options?.map(({ label, value }) => (
-          <Grid item key={label}>
+        {options?.map(({ label, value }, index) => (
+          <Grid item key={`${label} ${index}`}>
             <section className={styles.option} onClick={() => onOptionClick({ label, value })}>
               {label}
             </section>

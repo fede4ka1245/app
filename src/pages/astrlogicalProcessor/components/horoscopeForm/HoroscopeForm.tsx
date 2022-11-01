@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useRef } from 'react';
+import React, { useCallback, useMemo, useState, useRef, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 import Input from '../../../../components/input/Input';
 import { InputType } from '../../../../components/input/InputType';
@@ -6,26 +6,29 @@ import AddressInput from '../../../../components/addressInput/AddressInput';
 import Button from '../../../../components/button/Button';
 import { AddressInformation } from '../../../../models/types/AddressInformation';
 import { useLoadHoroscopes } from '../../../../hooks/useLoadHororscope';
+import TimeZoneForm from '../../../../components/timeZoneForm/TimeZoneForm';
+import { getTimeZoneOffset } from '../../../../helpers/address/getSuggestions';
+import { AddressSuggestion } from '../../../../models/types/AddressSuggestion';
+import { TimeZoneData } from '../../../../models/types/TimeZoneData';
+import { getTimeZoneOffsetFromGreenwichData } from '../../../../helpers/getTimeZoneOffsetFromGreenwichData';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [addressInformation, setAddressInformation] = useState<AddressInformation>({
+  const [timeZone, setTimeZone] = useState<TimeZoneData>({
+    hours: '',
+    minutes: '',
+    greenwich: ''
+  });
+  const [addressInformation, setAddressInformation] = useState<AddressSuggestion>({
     latitude: '',
     longitude: '',
     value: '',
-    timeZoneOffset: ''
+    key: ''
   });
   const [isCustomCoordinates, setIsCustomCoordinates] = useState(false);
-  const addressInformationRef = useRef<AddressInformation>();
-
-  const setTimeZoneOffset = useCallback((timeZoneOffset: string) => {
-    setAddressInformation({
-      ...addressInformation,
-      timeZoneOffset
-    });
-  }, [addressInformation]);
+  const addressInformationRef = useRef<AddressSuggestion>();
 
   const setLatitude = useCallback((latitude: string) => {
     setAddressInformation({
@@ -54,18 +57,68 @@ const HoroscopeForm = () => {
   const loadHoroscopes = useLoadHoroscopes();
 
   const onCountHoroscopesClick = useCallback(() => {
+    if (!(timeZone?.greenwich && timeZone?.hours && timeZone?.minutes)) {
+      return;
+    }
+
     loadHoroscopes({
       userName: name,
       date,
       time,
-      addressInformation
+      addressInformation,
+      timeZoneData: timeZone
     });
-  }, [loadHoroscopes]);
+  }, [loadHoroscopes, addressInformation, timeZone]);
 
   const isButtonDisabled = useMemo(() => {
-    return !addressInformation.longitude || !addressInformation.latitude || !addressInformation.timeZoneOffset ||
+    return !addressInformation.longitude || !addressInformation.latitude || !(timeZone?.greenwich && timeZone?.hours && timeZone?.minutes) ||
       !date || !name || !time;
-  }, [addressInformation, date, name, time]);
+  }, [addressInformation, date, name, time, timeZone]);
+
+  const onSetAddressInput = useCallback((_addressInformation: Omit<AddressInformation, 'timeZoneOffset'>) => {
+    setAddressInformation({
+      ...addressInformation,
+      ..._addressInformation
+    });
+  }, [addressInformation, setAddressInformation]);
+
+  useEffect(() => {
+    if (date && time && addressInformation) {
+      getTimeZoneOffset(addressInformation.key, date, time)
+        .then(({ hours, minutes, greenwich }) => {
+          setTimeZone({ hours, minutes, greenwich });
+        });
+    }
+  }, [date, time, addressInformation]);
+
+  const formattedTimeZone = useMemo(() => {
+    if (!(timeZone?.greenwich && timeZone?.hours && timeZone?.minutes)) {
+      return;
+    }
+
+    return getTimeZoneOffsetFromGreenwichData(timeZone.greenwich, timeZone.hours, timeZone.minutes);
+  }, [timeZone]);
+
+  const setGreenwich = useCallback((greenwich: string) => {
+    setTimeZone({
+      ...timeZone,
+      greenwich
+    });
+  }, [timeZone, setTimeZone]);
+
+  const setHours = useCallback((hours: string) => {
+    setTimeZone({
+      ...timeZone,
+      hours
+    });
+  }, [timeZone, setTimeZone]);
+
+  const setMinutes = useCallback((minutes: string) => {
+    setTimeZone({
+      ...timeZone,
+      minutes
+    });
+  }, [timeZone, setTimeZone]);
 
   return (
     <>
@@ -82,7 +135,7 @@ const HoroscopeForm = () => {
       </Grid>
       <Grid item xs={12} md={12}>
         <AddressInput
-          setAddressInfo={setAddressInformation}
+          setAddressInfo={onSetAddressInput}
           placeholder={'Место рождения'}
           disabled={isCustomCoordinates}
         />
@@ -100,7 +153,7 @@ const HoroscopeForm = () => {
         </Grid>
         <Grid item flex={1}>
           <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
-            Часовой пояс: {addressInformation?.timeZoneOffset || '--'}
+            Часовой пояс: {formattedTimeZone || '--'}
           </Typography>
         </Grid>
       </Grid>
@@ -123,8 +176,20 @@ const HoroscopeForm = () => {
             <Input placeholder='Долгота' inputType={InputType.coordinates} onChange={setLongitude}/>
           </Grid>
         </Grid>
-        <Grid item width={'calc(50% - 8px)'}>
-          <Input placeholder={'Час. пояс'} isSelect={true} onChange={setTimeZoneOffset}/>
+        <Grid item pb={2}>
+          <Typography fontFamily={'Gilroy'} color={'white'} fontSize={'16px'} fontWeight={600} onClick={toggleCustomCoordinates}>
+            Часовой пояс
+          </Typography>
+        </Grid>
+        <Grid item container display={'flex'} pb={2}>
+          <TimeZoneForm
+            greenwich={timeZone?.greenwich}
+            setGreenwich={setGreenwich}
+            minutes={timeZone?.minutes}
+            setMinutes={setMinutes}
+            hours={timeZone?.hours}
+            setHours={setHours}
+          />
         </Grid>
       </>}
       <Grid item width={'100%'} pt={2}>
