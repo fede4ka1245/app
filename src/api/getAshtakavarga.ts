@@ -9,7 +9,7 @@ export const getAshtakavarga = async ({ userName, latitude, longitude, date, tim
     latitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
     part_world: getFormattedGreenwich(greenwich),
-    tz_hour: hours || null,
+    tz_hour: Number(hours) || null,
     tz_minutes: minutes || null
   });
 

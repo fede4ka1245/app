@@ -29,7 +29,7 @@ export const getMaps = async ({ userName, latitude, longitude, date, time, hours
     latitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
     part_world: getFormattedGreenwich(greenwich),
-    tz_hour: hours || null,
+    tz_hour: Number(hours) || null,
     tz_minutes: minutes || null
   });
 

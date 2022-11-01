@@ -3,6 +3,15 @@ import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 
+const getFormattedRasiTable = (rasiTable: Array<any>) => {
+  return [...rasiTable.map((tableItem: any) => {
+    return {
+      ...tableItem,
+      sphuta: tableItem.cpuxuta[0].split(' ').slice(0, 2).join(' ')
+    };
+  })];
+};
+
 export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
   const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-varshaphala/', {
     name_user: userName,
@@ -10,15 +19,16 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     longitude,
     dt: date.split('.').reverse().join('-') + 'T' + time,
     part_world: getFormattedGreenwich(greenwich),
-    tz_hour: hours || null,
+    tz_hour: Number(hours) || null,
     tz_minutes: minutes || null
   });
 
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
+  console.log(data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga'));
   const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table.map(({ badge, connection, planets }: any) => ({
     badge: {
       ...badge,
-      resize: badge.resize === 'icon-resize-full' ? 'disconnecting' : badge.resize === 'icon-resize-full' ? 'connecting' : undefined
+      resize: badge.resize === 'icon-resize-full' ? 'disconnecting' : badge.resize === 'icon-resize-small' ? 'connecting' : undefined
     },
     connection,
     planets
@@ -30,17 +40,9 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   }));
   const yearMaster = data?.data?.find((table: any) => table?.ruler_year).ruler_year;
 
-  const rashiTable = data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.map((tableItem: any) => {
-    const planet = {
-      name: tableItem.planet.replace('(R)', ''),
-      isRetragraded: tableItem.planet.includes('(R)')
-    };
+  console.log(data?.data?.find((table: any) => table?.tableName === 'main_rashi'));
 
-    return {
-      ...tableItem,
-      planet
-    };
-  });
+  const rashiTable = getFormattedRasiTable(data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.primaryData);
 
   return {
     dashiTable: camelcaseKeys(dashiTable, { deep: true }),

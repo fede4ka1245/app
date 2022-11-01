@@ -11,7 +11,7 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     dt: date.split('.').reverse().join('-') + 'T' + time,
     name: 'vim',
     part_world: getFormattedGreenwich(greenwich),
-    tz_hour: hours || null,
+    tz_hour: Number(hours) || null,
     tz_minutes: minutes || null
   });
 
@@ -22,7 +22,7 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     dt: date.split('.').reverse().join('-') + 'T' + time,
     name: 'chr',
     part_world: getFormattedGreenwich(greenwich),
-    tz_hour: hours || null,
+    tz_hour: Number(hours) || null,
     tz_minutes: minutes || null
   });
 
