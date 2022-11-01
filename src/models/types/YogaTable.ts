@@ -9,5 +9,6 @@ export interface YogaTableRow {
     name: string,
     type?: string,
     resize?: string
+    fullName?: string,
   }
 }

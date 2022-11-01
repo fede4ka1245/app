@@ -1,13 +1,21 @@
-import React, { useMemo } from 'react';
-import { Grid } from '@mui/material';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Grid, Typography } from '@mui/material';
 import styles from './YogasTable.module.scss';
 import { YogaTableRow } from '../../models/types/YogaTable';
+import Modal from '../modal/Modal';
+import { getYoga } from './yogasDescrirptions';
 
 interface YogasTableRowProps {
   row: YogaTableRow
 }
 
 const YogasTableRow = ({ row }: YogasTableRowProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleIsModalOpen = useCallback(() => {
+    setIsModalOpen(!isModalOpen);
+  }, [isModalOpen]);
+
   const badgeBackground = useMemo(() => {
     return row.badge.type === 'important' ? '#ff7474' : row.badge.type === 'success' ? '#1eba37' : '#625b89';
   }, [row]);
@@ -17,7 +25,17 @@ const YogasTableRow = ({ row }: YogasTableRowProps) => {
   }, [row]);
 
   return (
-    <Grid container display={'flex'} className={styles.row} alignItems={'center'}>
+    <Grid container display={'flex'} className={styles.row} alignItems={'center'} onClick={toggleIsModalOpen}>
+      <Modal isOpen={isModalOpen} close={toggleIsModalOpen}>
+        <Grid p={2} sx={{ background: 'white' }} height={'100%'}>
+          <Typography fontWeight={'bold'} fontFamily={'Gilroy'} fontSize={'20px'}>
+            {row?.badge?.fullName}
+          </Typography>
+          {row.badge.fullName && <Typography pt={2} fontFamily={'Gilroy'} fontSize={'16px'} color={'#5B6062'}>
+            {getYoga(row.badge.fullName || '')?.description}
+          </Typography>}
+        </Grid>
+      </Modal>
       <Grid item flex={1} pl={2} fontFamily={'Gilroy'} fontSize={'18px'} fontWeight={'700'} color={'white'}>
         {row?.planets?.join(' - ')}
       </Grid>
