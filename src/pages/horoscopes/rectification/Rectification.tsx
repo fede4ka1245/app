@@ -71,7 +71,7 @@ const Rectification = () => {
     const [day, month, year] = date.split('.').map(Number);
     const [hours, minutes] = time.split(':').map(Number);
 
-    return new Date(year, month, day, hours, minutes);
+    return new Date(year, month - 1, day, hours, minutes);
   }, [date, time]);
 
   const onButtonForwardClick = useCallback((isForward: boolean) => {
@@ -90,7 +90,7 @@ const Rectification = () => {
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const hours = String(date.getHours()).padStart(2, '0');
     const year = String(date.getFullYear()).padStart(2, '0');
-    const month = String(date.getMonth()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
 
     setDate(`${day}.${month}.${year}`);
