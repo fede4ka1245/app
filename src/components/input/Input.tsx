@@ -57,9 +57,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
   };
 
   useEffect(() => {
-    if (!inputLabel) {
-      setInputLabel(value);
-    }
+    setInputLabel(value);
   }, [value]);
 
   const onInputChange = (value: string) => {
@@ -70,11 +68,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
   };
 
   const isBottom = () => {
-    if (value || targetOption?.label || option || inputLabel || isFocused) {
-      return false;
-    }
-
-    return true;
+    return !(value || targetOption?.label || option || inputLabel || isFocused);
   };
 
   return (
