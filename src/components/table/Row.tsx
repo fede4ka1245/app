@@ -7,6 +7,7 @@ import arrowUp from './arrowUp.svg';
 import arrowDown from './arrowDown.svg';
 import classNames from 'classnames';
 import styles from './Table.module.scss';
+import ZodiacSign from '../zodiacSign/ZodiacSign';
 
 const Row = ({ textColor }: any) => {
   const [isInfoOpen, setIsOpen] = useState(false);
@@ -38,7 +39,7 @@ const Row = ({ textColor }: any) => {
         {isInfoOpen && <img src={arrowUp} width={28} height={28}/>}
       </td>
       <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
-        <img src={sign} />
+        <ZodiacSign zodiacSign={'вес'} />
       </td>
       <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <Typography fontFamily={'Gilroy'} fontWeight={700} color={fontColor} fontSize={'15px'}>
