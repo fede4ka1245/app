@@ -29,7 +29,7 @@ import RashiTable from './rashiTable/RashiTable';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
 
 const Varshapkhala = () => {
-  const { latitude, longitude, time, userName } = useGetHoroscopeUserInfo();
+  const { latitude, longitude, time, userName, date, hours, greenwich, minutes } = useGetHoroscopeUserInfo();
   const dashiTable = useGetDashiTable();
   const yogasTable = useGetYogasTable();
   const yearMasterTable = useGetYearMasterTable();
@@ -51,8 +51,12 @@ const Varshapkhala = () => {
       userName,
       latitude,
       longitude,
-      date: `01.01.${year}`,
-      time
+      date,
+      time,
+      year,
+      hours,
+      greenwich,
+      minutes
     }).then((result) => {
       dispatch(setDashiTable(result.dashiTable));
       dispatch(setRashiTable(result.rashiTable));
@@ -63,7 +67,7 @@ const Varshapkhala = () => {
     }).finally(() => {
       dispatch(setIsVarshpahalaLoading(false));
     });
-  }, [year, time, latitude, longitude, toggleIsYearPickerActive, dispatch]);
+  }, [userName, year, time, latitude, longitude, toggleIsYearPickerActive, dispatch, date]);
 
   const toggleYearMasterModal = useCallback(() => {
     setIsYearMasterModalOpen(!isYearMasterModalOpen);

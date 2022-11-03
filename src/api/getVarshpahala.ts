@@ -12,7 +12,11 @@ const getFormattedRasiTable = (rasiTable: Array<any>) => {
   })];
 };
 
-export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
+interface GetVarshpahalaProps extends HoroscopeData {
+  year: number
+}
+
+export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich, year }: GetVarshpahalaProps) => {
   const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-varshaphala/', {
     name_user: userName,
     latitude,
@@ -20,7 +24,8 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     dt: date.split('.').reverse().join('-') + 'T' + time,
     part_world: getFormattedGreenwich(greenwich),
     tz_hour: Number(hours) || null,
-    tz_minutes: minutes || null
+    tz_minutes: minutes || null,
+    year
   });
 
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
