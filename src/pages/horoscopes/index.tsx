@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import { Grid, Typography } from '@mui/material';
@@ -69,6 +69,17 @@ const Index = () => {
 
     dispatch(setTargetMapValue(maps[0].value));
     navigate(targetRoute.value);
+
+    if (!swiper.current) {
+      return;
+    }
+
+    if (targetRoute.value === routes.ashtakavarga) {
+      swiper.current.allowTouchMove = false;
+      return;
+    }
+
+    swiper.current.allowTouchMove = true;
   }, [targetRoute]);
 
   useEffect(() => {
@@ -83,36 +94,15 @@ const Index = () => {
     dispatch(setTargetMapValue(maps[swiper?.activeIndex].value));
   };
 
-  const onMapSet = ({ value }: Option) => {
+  const onMapSet = useCallback(({ value }: Option) => {
     dispatch(setTargetMapValue(value));
-  };
+  }, []);
+
+  const isMapSelectDisabled = useMemo(() => {
+    return targetRoute.value === routes.ashtakavarga;
+  }, [targetRoute]);
 
   useHideNavbar();
-
-  useEffect(() => {
-    if (!mapsRef.current || !contentRef.current) {
-      return;
-    }
-
-    const sticky = mapsRef.current.offsetTop;
-
-    window.onscroll = () => {
-      if (!mapsRef.current || !contentRef.current) {
-        return;
-      }
-
-      if (window.pageYOffset > sticky) {
-        contentRef.current.style.paddingTop = `${mapsRef.current.clientHeight}px`;
-        mapsRef.current.style.position = 'fixed';
-        mapsRef.current.style.width = '100%';
-        mapsRef.current.style.top = '0';
-        mapsRef.current.style.zIndex = '100';
-      } else {
-        mapsRef.current.style.position = 'static';
-        contentRef.current.style.paddingTop = '0';
-      }
-    };
-  }, []);
 
   return (
     <div>
@@ -142,7 +132,7 @@ const Index = () => {
       <Grid ref={contentRef} pl={2} pr={2} container direction={'column'} justifyContent={'center'}>
         <Grid item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Дробные карты'} inputType={InputType.options} options={maps} targetOption={{ label: targetMapValue, value: targetMapValue }} setTargetOption={onMapSet}/>
+            <Input placeholder={'Дробные карты'} disabled={isMapSelectDisabled} inputType={InputType.options} options={maps} targetOption={{ label: targetMapValue, value: targetMapValue }} setTargetOption={onMapSet}/>
           </Grid >
           <Grid item width={'calc(50% - 5px)'}>
             <Input placeholder={'Раздел'} inputType={InputType.options} options={routesOptions} setTargetOption={setTargetRoute} targetOption={targetRoute}/>
