@@ -142,18 +142,18 @@ const HoroscopeForm = () => {
       </Grid>
       <Grid item container direction={'row'} color={'#ABB0B2'} display={'flex'} pt={2}>
         <Grid item flex={1}>
-          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
+          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'} textAlign={'left'}>
             Широта: {addressInformation?.latitude || '--'}
           </Typography>
         </Grid>
         <Grid item flex={1}>
-          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
+          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'} textAlign={'center'}>
             Долгота: {addressInformation?.longitude || '--'}
           </Typography>
         </Grid>
         <Grid item flex={1}>
-          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'}>
-            Часовой пояс: {formattedTimeZone || '--'}
+          <Typography color={'#ABB0B2'} fontFamily={'Gilroy'} fontSize={'12px'} textAlign={'right'}>
+            Час. пояс: {formattedTimeZone || '--'}
           </Typography>
         </Grid>
       </Grid>
