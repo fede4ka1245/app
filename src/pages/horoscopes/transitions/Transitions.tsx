@@ -23,7 +23,7 @@ const Transitions = () => {
         <TransitionItem />
       </Grid>
       <Grid pt={3} pb={2}>
-        <Button type={ButtonType.gradient} text={'Расчитать'}/>
+        <Button type={ButtonType.gradient} text={'Рассчитать'}/>
       </Grid>
     </Grid>
   );

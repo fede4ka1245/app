@@ -193,7 +193,7 @@ const HoroscopeForm = () => {
         </Grid>
       </>}
       <Grid item width={'100%'} pt={2}>
-        <Button text='Расчитать гороскоп' onClick={onCountHoroscopesClick} isDisabled={isButtonDisabled}/>
+        <Button text='Рассчитать гороскоп' onClick={onCountHoroscopesClick} isDisabled={isButtonDisabled}/>
       </Grid>
     </>
   );

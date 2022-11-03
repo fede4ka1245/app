@@ -122,7 +122,7 @@ const Rectification = () => {
         </Grid>
       </Grid>
       <Grid item pt={2}>
-        <Button text={'Расчитать'} isDisabled={isButtonDisabled} onClick={onCountHoroscopesClick} type={ButtonType.gradient}/>
+        <Button text={'Рассчитать'} isDisabled={isButtonDisabled} onClick={onCountHoroscopesClick} type={ButtonType.gradient}/>
       </Grid>
       <Grid item pt={2}>
         <Button text={'Сохранить'} type={ButtonType.outline}/>
