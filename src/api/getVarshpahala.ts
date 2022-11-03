@@ -2,12 +2,16 @@ import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
+import { RashiTableRow } from '../models/types/RashiTableRow';
 
-const getFormattedRasiTable = (rasiTable: Array<any>) => {
+const getFormattedRashiTable = (rasiTable: Array<any>): RashiTableRow [] => {
   return [...rasiTable.map((tableItem: any) => {
     return {
       ...tableItem,
-      sphuta: tableItem.cpuxuta[0].split(' ').slice(0, 2).join(' ')
+      planet: tableItem.planet,
+      sign: tableItem.rashi,
+      sphuta: tableItem.cpuxuta[0].split(' ').slice(0, 2).join(' '),
+      naksantra: tableItem.naksantra
     };
   })];
 };
@@ -29,7 +33,7 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   });
 
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
-  console.log(data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga'));
+
   const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table.map(({ badge, connection, planets }: any) => ({
     badge: {
       ...badge,
@@ -45,9 +49,7 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   }));
   const yearMaster = data?.data?.find((table: any) => table?.ruler_year).ruler_year;
 
-  console.log(data?.data?.find((table: any) => table?.tableName === 'main_rashi'));
-
-  const rashiTable = getFormattedRasiTable(data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.primaryData);
+  const rashiTable = getFormattedRashiTable(data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.primaryData);
 
   return {
     dashiTable: camelcaseKeys(dashiTable, { deep: true }),

@@ -1,4 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DashiTableRow } from '../../models/types/DashiTableRow';
+import { YogaTableRow } from '../../models/types/YogaTable';
+import { YearMasterTableRow } from '../../models/types/YearMasterTableRow';
+import { RashiTableRow } from '../../models/types/RashiTableRow';
+
+interface VarshpahalaState {
+  isVarshpahalaLoading: boolean,
+  dashiTable: DashiTableRow[],
+  yogasTable: YogaTableRow[],
+  yearMasterTable: YearMasterTableRow [],
+  yearMaster: string,
+  rashiTable: RashiTableRow [],
+  isYearPickerActive: boolean,
+}
 
 const varshpahalaReducer = createSlice({
   name: 'horoscope',
@@ -10,27 +24,27 @@ const varshpahalaReducer = createSlice({
     yearMaster: '',
     rashiTable: [],
     isYearPickerActive: true
-  },
+  } as VarshpahalaState,
   reducers: {
-    setDashiTable: (state, action) => {
+    setDashiTable: (state, action: PayloadAction<DashiTableRow []>) => {
       state.dashiTable = action.payload;
     },
-    setYogasTable: (state, action) => {
+    setYogasTable: (state, action: PayloadAction<YogaTableRow []>) => {
       state.yogasTable = action.payload;
     },
-    setYearMasterTable: (state, action) => {
+    setYearMasterTable: (state, action: PayloadAction<YearMasterTableRow []>) => {
       state.yearMasterTable = action.payload;
     },
-    setIsVarshpahalaLoading: (state, action) => {
+    setIsVarshpahalaLoading: (state, action: PayloadAction<boolean>) => {
       state.isVarshpahalaLoading = action.payload;
     },
-    setYearMaster: (state, action) => {
+    setYearMaster: (state, action: PayloadAction<string>) => {
       state.yearMaster = action.payload;
     },
-    setRashiTable: (state, action) => {
+    setRashiTable: (state, action: PayloadAction<RashiTableRow []>) => {
       state.rashiTable = action.payload;
     },
-    setIsYearPickerActive: (state, action) => {
+    setIsYearPickerActive: (state, action: PayloadAction<boolean>) => {
       state.isYearPickerActive = action.payload;
     }
   }

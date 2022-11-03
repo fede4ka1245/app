@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './YearMasterTable.module.scss';
 import { Grid } from '@mui/material';
+import { YearMasterTableRow } from '../../../../models/types/YearMasterTableRow';
 
-const YearMasterTable = ({ rows }: any) => {
+const YearMasterTable = ({ rows }: { rows: YearMasterTableRow [] }) => {
   return (
     <div className={styles.table}>
       <Grid>

@@ -3,6 +3,7 @@ import styles from './RashiTable.module.scss';
 import { Grid, Typography } from '@mui/material';
 import { useGetRashiTable } from '../../../../store/selectors';
 import ZodiacSign from '../../../../components/zodiacSign/ZodiacSign';
+import { RashiTableRow } from '../../../../models/types/RashiTableRow';
 
 const RashiTable = () => {
   const rashiTable = useGetRashiTable();
@@ -13,8 +14,8 @@ const RashiTable = () => {
         <Grid pl={2} className={styles.header}>
           Планета
         </Grid>
-        <Grid className={styles.header} pl={2}>
-          раши/навамша
+        <Grid className={styles.header}>
+          Знак
         </Grid>
         <Grid className={styles.header}>
           Градусы
@@ -23,23 +24,21 @@ const RashiTable = () => {
           Накшатра
         </Grid>
       </section>
-      {rashiTable?.map((rashiItem: any, index) => (
+      {rashiTable?.map((rashiItem: RashiTableRow, index) => (
         <section key={index}>
           <Grid display={'flex'} alignItems={'center'}>
-            {rashiItem.planet.additionalInfo && <Typography pl={1} className={styles.planetAdditionalInfo}>
+            {rashiItem.planet.additionalInfo && <Grid pl={1} className={styles.planetAdditionalInfo}>
               {rashiItem.planet.additionalInfo}
-            </Typography>}
-            <Typography pl={1} className={styles.planet} fontFamily={'Gilroy'} fontSize={'12px'} color={'white'}>
+            </Grid>}
+            <Grid pl={1} className={styles.planet} fontFamily={'Gilroy'} fontSize={'12px'} color={'white'}>
               {rashiItem.planet.name}
-            </Typography>
-            {rashiItem.planet.isRetragraded && <Typography pl={1} className={styles.planetSign} fontFamily={'Gilroy'} fontSize={'12px'} color={'white'}>
+            </Grid>
+            {rashiItem.planet.isRetragraded && <Grid pl={1} className={styles.planetSign} fontFamily={'Gilroy'} fontSize={'12px'} color={'white'}>
               (R)
-            </Typography>}
+            </Grid>}
           </Grid>
           <Grid display={'flex'} alignItems={'center'}>
-            <Typography fontSize={'18px'} color={'white'} fontWeight={700} fontFamily={'Gilroy'} pl={2}>
-              <ZodiacSign zodiacSign={rashiItem.rashi} /> / <ZodiacSign zodiacSign={rashiItem.namavashi} />
-            </Typography>
+            <ZodiacSign zodiacSign={rashiItem.sign} />
           </Grid>
           <Grid display={'flex'} alignItems={'center'}>
             <Typography className={styles.degrees} fontWeight={'bold'} fontFamily={'Gilroy'} fontSize={'12px'} color={'white'}>
