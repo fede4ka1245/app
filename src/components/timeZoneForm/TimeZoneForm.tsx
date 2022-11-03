@@ -31,11 +31,11 @@ const getGreenwichOptions = (): Option [] => {
   return [
     {
       value: 'Восток',
-      label: 'Восток'
+      label: 'Восток (+)'
     },
     {
       value: 'Запад',
-      label: 'Запад'
+      label: 'Запад (-)'
     }
   ];
 };
@@ -62,7 +62,7 @@ const TimeZoneForm = ({ hours, setHours, minutes, setMinutes, greenwich, setGree
   }, [minutesOptions, minutes]);
 
   const greenwichTargetOption = useMemo(() => {
-    return greenwichOptions.find(({ label }: Option) => label === greenwich);
+    return greenwichOptions.find(({ value }: Option) => value === greenwich);
   }, [greenwichOptions, greenwich]);
 
   const onHoursSet = useCallback((option: Option) => {
@@ -86,7 +86,7 @@ const TimeZoneForm = ({ hours, setHours, minutes, setMinutes, greenwich, setGree
       return;
     }
 
-    setGreenwich(option.label);
+    setGreenwich(option.value);
   }, [setGreenwich]);
 
   useEffect(() => {
@@ -96,17 +96,19 @@ const TimeZoneForm = ({ hours, setHours, minutes, setMinutes, greenwich, setGree
   }, [setGreenwich]);
 
   return (
-    <>
+    <Grid container width={'100%'} display={'flex'}>
       <Grid item width={'calc(50% - 8px)'}>
         <Input placeholder='Гринвич' inputType={InputType.options} setTargetOption={onGreenwichSet} targetOption={greenwichTargetOption} options={greenwichOptions}/>
       </Grid>
-      <Grid item flex={1} pl={2}>
-        <Input placeholder='Час' inputType={InputType.options} setTargetOption={onHoursSet} targetOption={hoursTargetOption} options={hoursOptions}/>
+      <Grid container display={'calc(50% - 8px)'} flex={1} pl={2}>
+        <Grid item width={'calc(50% - 8px)'}>
+          <Input placeholder='Час' inputType={InputType.options} setTargetOption={onHoursSet} targetOption={hoursTargetOption} options={hoursOptions}/>
+        </Grid>
+        <Grid item width={'calc(50% - 8px)'} ml={2}>
+          <Input placeholder='Мин.' inputType={InputType.options} setTargetOption={onMinutesSet} targetOption={minutesTargetOption} options={minutesOptions}/>
+        </Grid>
       </Grid>
-      <Grid item flex={1} pl={2}>
-        <Input placeholder='Мин.' inputType={InputType.options} setTargetOption={onMinutesSet} targetOption={minutesTargetOption} options={minutesOptions}/>
-      </Grid>
-    </>
+    </Grid>
   );
 };
 
