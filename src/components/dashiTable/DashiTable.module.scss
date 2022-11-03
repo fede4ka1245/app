@@ -1,8 +1,5 @@
 .main {
-  width: calc(100% - 2px);
-  display: inline-grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  border: 1px solid #59ABDA;
+  width: 100%;
 }
 
 .row {
@@ -15,6 +12,18 @@
   color: #5B6062;
   overflow-y: scroll;
   max-height: 33px;
+  display: inline-grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.outlined {
+  border: 1px solid #59ABDA;
 }
 
 .isOpen {
@@ -25,7 +34,7 @@
   color: #37366B !important;
 }
 
-.isOpened {
+.isMain {
   background: #F0F0F3;
 }
 
