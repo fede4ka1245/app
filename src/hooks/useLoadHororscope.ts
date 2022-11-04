@@ -19,10 +19,8 @@ import {
 } from '../store/reducers/horoscopesReducer';
 import { getDashi } from '../api/getDashi';
 import { getAshtakavarga } from '../api/getAshtakavarga';
-import { routes as horoscopesRoutes } from '../pages/horoscopes/routes';
 import { AddressInformation } from '../models/types/AddressInformation';
 import { useAppDispatch } from '../store/store';
-import { useNavigate } from 'react-router-dom';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import { TimeZoneData } from '../models/types/TimeZoneData';
 import { getRashiTable } from '../api/getRashiTable';
@@ -34,7 +32,6 @@ interface LoadHoroscope extends Omit<HoroscopeData, 'latitude' | 'longitude'> {
 
 export const useLoadHoroscopes = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   return async ({ userName, date, time, addressInformation, timeZoneData }: LoadHoroscope) => {
     if (!addressInformation?.latitude || !addressInformation?.longitude) {
@@ -155,8 +152,6 @@ export const useLoadHoroscopes = () => {
         hours: timeZoneData.hours
       }));
       dispatch(setMaps(maps));
-
-      navigate(horoscopesRoutes.transitions);
     } catch (error) {
       console.log(error);
     } finally {

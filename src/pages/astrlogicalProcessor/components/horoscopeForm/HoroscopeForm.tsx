@@ -11,6 +11,8 @@ import { getTimeZoneOffset } from '../../../../helpers/address/getSuggestions';
 import { AddressSuggestion } from '../../../../models/types/AddressSuggestion';
 import { TimeZoneData } from '../../../../models/types/TimeZoneData';
 import { getTimeZoneOffsetFromGreenwichData } from '../../../../helpers/getTimeZoneOffsetFromGreenwichData';
+import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
+import { useNavigate } from 'react-router-dom';
 
 const HoroscopeForm = () => {
   const [name, setName] = useState('');
@@ -29,6 +31,7 @@ const HoroscopeForm = () => {
   });
   const [isCustomCoordinates, setIsCustomCoordinates] = useState(false);
   const addressInformationRef = useRef<AddressSuggestion>();
+  const navigate = useNavigate();
 
   const setLatitude = useCallback((latitude: string) => {
     setAddressInformation({
@@ -67,6 +70,8 @@ const HoroscopeForm = () => {
       time,
       addressInformation,
       timeZoneData: timeZone
+    }).then(() => {
+      navigate(horoscopesRoutes.transitions);
     });
   }, [loadHoroscopes, addressInformation, timeZone]);
 
