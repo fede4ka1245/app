@@ -1,30 +1,36 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import Input from '../../../components/input/Input';
-import TransitionItem from './components/transitionItem/TransitionItem';
-import Button from '../../../components/button/Button';
-import { ButtonType } from '../../../components/button/ButtonProps';
+import React, { useState } from 'react';
+import { Grid } from '@mui/material';
+import Options from '../../../components/options/Options';
+import TransitionSearch from './transitionSearch/TransitionSearch';
+import TransitionDate from './transitionDate/TransitionDate';
+
+const transitionOptions = [
+  {
+    label: 'Дата транзита',
+    value: 'date'
+  },
+  {
+    label: 'Поиск транзита',
+    value: 'search'
+  }
+];
 
 const Transitions = () => {
+  const [targetTransition, setTargetTransition] = useState(transitionOptions[0]);
+
   return (
-    <Grid container direction={'column'} pl={2} pr={2} pt={2}>
-      <Grid item>
-        <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'}>
-          Дата транзита
-        </Typography>
+    <Grid container direction={'column'} pt={2} overflow={'hidden'}>
+      <Grid item pb={3} pl={2} pr={2}>
+        <Options options={transitionOptions} value={targetTransition.value} setValue={setTargetTransition}/>
       </Grid>
-      <Grid item pt={2}>
-        <Input placeholder={'00.00.00'}/>
-      </Grid>
-      <Grid item>
-        <TransitionItem />
-      </Grid>
-      <Grid item>
-        <TransitionItem />
-      </Grid>
-      <Grid pt={3} pb={2}>
-        <Button type={ButtonType.gradient} text={'Рассчитать'}/>
-      </Grid>
+      {targetTransition.value === 'date' && (
+        <Grid item pl={2} pr={2}>
+          <TransitionDate />
+        </Grid>
+      )}
+      {targetTransition.value === 'search' && (
+        <TransitionSearch />
+      )}
     </Grid>
   );
 };

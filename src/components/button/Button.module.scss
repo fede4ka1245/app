@@ -8,6 +8,10 @@
   border-radius: 10px;
   height: 60px;
   width: 100%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
 }
 
 .gradientButton {
@@ -16,9 +20,9 @@
 }
 
 .outlineButton {
-  border: 1px solid #99DAEA;
+  border: 2px solid #99DAEA;
   border-radius: 10px;
-  color: #99DAEA;
+  color: #99DAEA !important;
 }
 
 .blur {

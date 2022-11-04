@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import styles from './Button.module.scss';
 import { ButtonProps, ButtonType } from './ButtonProps';
 import classNames from 'classnames';
-import { Typography, CardActionArea } from '@mui/material';
+import { CardActionArea, Grid } from '@mui/material';
 
 const Button = ({ text, onClick, type, isDisabled }: ButtonProps) => {
   const onButtonClick = useCallback(() => {
@@ -29,9 +29,9 @@ const Button = ({ text, onClick, type, isDisabled }: ButtonProps) => {
         onClick={onButtonClick}
       >
         <div>
-          <Typography color={'white'} fontFamily={'Gilroy'} fontSize={'16px'}>
+          <Grid fontFamily={'Gilroy'}>
             {text}
-          </Typography>
+          </Grid>
         </div>
         {ButtonType.outline !== type && !isDisabled && <div className={styles.blur}/>}
       </div>

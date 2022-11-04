@@ -3,24 +3,11 @@ import { Grid, IconButton } from '@mui/material';
 import styles from './DashiTable.module.scss';
 import { DashiTableRow as IDashiTableRow } from '../../models/types/DashiTableRow';
 import classNames from 'classnames';
+import { getFormattedDate } from '../../helpers/getFormattedDate';
 
 interface PlanetsTableRowProps {
   row: IDashiTableRow,
 }
-
-const getFormattedMonth = (month: string) => {
-  const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-  const formattedMonth = String(months.findIndex((_month) => month === _month) + 1);
-
-  return formattedMonth.length === 2 ? formattedMonth : `0${formattedMonth}`;
-};
-
-const getFormattedDate = (date: string) => {
-  const [day, month, year] = date?.split(' ');
-
-  return [day, getFormattedMonth(month), year].join('/');
-};
 
 const getIsCurrentDates = (dateStart: string, dateEnd: string) => {
   const [dayStart, monthStart, yearStart] = getFormattedDate(dateStart)?.split('/').map(Number);

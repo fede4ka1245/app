@@ -8,6 +8,9 @@ import styles from './TransitionItem.module.scss';
 import Options from '../../../../../components/options/Options';
 import { Option } from '../../../../../models/types/Option';
 import Slider from '../../../../../components/slider/Slider';
+import { InputType } from '../../../../../components/input/InputType';
+import { planets } from '../../helpers/planets';
+import { constellationOptions } from '../../helpers/constellationOptions';
 
 const ignoredOptions = [
   {
@@ -35,7 +38,13 @@ const planetMovingOptions = [
   }
 ];
 
-const TransitionItem = () => {
+interface TransitionItemProps {
+  label: string,
+  setPlanet: (props?: any) => any,
+  setConstellation: (props?: any) => any,
+}
+
+const TransitionItem = ({ label, setPlanet, setConstellation }: TransitionItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [ignoredOption, setIgnoredOption] = useState<Option>();
   const [planetMovingOption, setPlanetMovingOption] = useState<Option>();
@@ -61,22 +70,16 @@ const TransitionItem = () => {
           {!isOpen && <img alt='plus' src={plus} width={'30px'} height={'30px'}/>}
         </Box>
         <p className={classNames({ [styles.textOpened]: isOpen }, { [styles.textClosed]: !isOpen })}>
-          Транзит планеты 1
+          {label}
         </p>
       </section>
       {isOpen && <Grid container direction={'column'}>
-        <Grid pt={2} item container direction={'row'} justifyContent={'space-between'} rowSpacing={2}>
+        <Grid pt={2} item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'00.00.00'}/>
+            <Input placeholder={'Планета'} options={planets} setTargetOption={setPlanet} inputType={InputType.options}/>
           </Grid>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'00.00.00'}/>
-          </Grid>
-          <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Планета'} isSelect={true}/>
-          </Grid>
-          <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Созвездие'} isSelect={true}/>
+            <Input placeholder={'Созвездие'} options={constellationOptions} setTargetOption={setConstellation} inputType={InputType.options}/>
           </Grid>
         </Grid>
         <Grid item pt={2}>
