@@ -16,7 +16,7 @@ const Ashtakavarga = () => {
         <Grid item width={'100%'} pb={4}>
           <AshtakavargaTable table={ashtakavarga[0].table} tableName={ashtakavarga[0].tableName} />
         </Grid>
-        {ashtakavarga?.slice(1)?.map(({ table, tableName }) => (
+        {ashtakavarga?.slice(1)?.reverse().map(({ table, tableName }) => (
           <Grid key={tableName} item width={'calc(50% - 2px)'} pb={4}>
             <AshtakavargaTable table={table} tableName={tableName} />
           </Grid>
