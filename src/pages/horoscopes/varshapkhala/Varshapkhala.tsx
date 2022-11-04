@@ -18,7 +18,7 @@ import {
   setIsVarshpahalaLoading,
   setYearMasterTable,
   setYogasTable,
-  setYearMaster, setRashiTable, setIsYearPickerActive
+  setYearMaster, setRashiTable, setIsYearPickerActive, setVarshpahalaMaps
 } from '../../../store/reducers/varshpahalaReducer';
 import YogasTable from '../../../components/yogasTable/YogasTable';
 import Header from '../../../components/header/Header';
@@ -63,6 +63,7 @@ const Varshapkhala = () => {
       dispatch(setYogasTable(result.yogasTable));
       dispatch(setYearMasterTable(result.yearMasterTable));
       dispatch(setYearMaster(result.yearMaster));
+      dispatch(setVarshpahalaMaps(result.varshpahalaMaps));
       toggleIsYearPickerActive();
     }).finally(() => {
       dispatch(setIsVarshpahalaLoading(false));

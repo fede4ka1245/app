@@ -3,6 +3,7 @@ import { DashiTableRow } from '../../models/types/DashiTableRow';
 import { YogaTableRow } from '../../models/types/YogaTable';
 import { YearMasterTableRow } from '../../models/types/YearMasterTableRow';
 import { RashiTableRow } from '../../models/types/RashiTableRow';
+import { MapOption } from '../../models/types/MapOption';
 
 interface VarshpahalaState {
   isVarshpahalaLoading: boolean,
@@ -12,6 +13,7 @@ interface VarshpahalaState {
   yearMaster: string,
   rashiTable: RashiTableRow [],
   isYearPickerActive: boolean,
+  varshpahalaMaps: MapOption [],
 }
 
 const varshpahalaReducer = createSlice({
@@ -23,7 +25,8 @@ const varshpahalaReducer = createSlice({
     yearMasterTable: [],
     yearMaster: '',
     rashiTable: [],
-    isYearPickerActive: true
+    isYearPickerActive: true,
+    varshpahalaMaps: []
   } as VarshpahalaState,
   reducers: {
     setDashiTable: (state, action: PayloadAction<DashiTableRow []>) => {
@@ -46,10 +49,13 @@ const varshpahalaReducer = createSlice({
     },
     setIsYearPickerActive: (state, action: PayloadAction<boolean>) => {
       state.isYearPickerActive = action.payload;
+    },
+    setVarshpahalaMaps: (state, action: PayloadAction<MapOption []>) => {
+      state.varshpahalaMaps = action.payload;
     }
   }
 });
 
-export const { setDashiTable, setYogasTable, setYearMasterTable, setIsVarshpahalaLoading, setYearMaster, setRashiTable, setIsYearPickerActive } = varshpahalaReducer.actions;
+export const { setDashiTable, setYogasTable, setYearMasterTable, setIsVarshpahalaLoading, setVarshpahalaMaps, setYearMaster, setRashiTable, setIsYearPickerActive } = varshpahalaReducer.actions;
 
 export default varshpahalaReducer.reducer;

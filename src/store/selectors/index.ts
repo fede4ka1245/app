@@ -123,3 +123,7 @@ export const useGetRashiTable = () => {
 export const useGetIsYearPickerActive = () => {
   return useAppSelector((state) => state?.varshpahala.isYearPickerActive);
 };
+
+export const useGetVarshpahalaMaps = () => {
+  return useAppSelector((state) => state?.varshpahala.varshpahalaMaps);
+};

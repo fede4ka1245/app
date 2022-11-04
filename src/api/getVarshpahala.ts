@@ -3,6 +3,7 @@ import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 import { RashiTableRow } from '../models/types/RashiTableRow';
+import { getFormattedMaps } from '../helpers/getFormattedMaps';
 
 const getFormattedRashiTable = (rasiTable: Array<any>): RashiTableRow [] => {
   return [...rasiTable.map((tableItem: any) => {
@@ -42,6 +43,7 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     connection,
     planets
   }));
+
   const yearMasterTable = data?.data?.find((table: any) => table?.tableName === 'main').table.map((tableItem: any) => ({
     sign: tableItem?.point,
     planet: tableItem?.graxa,
@@ -51,11 +53,14 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
 
   const rashiTable = getFormattedRashiTable(data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.primaryData);
 
+  const varshpahalaMaps = getFormattedMaps(data?.data);
+
   return {
     dashiTable: camelcaseKeys(dashiTable, { deep: true }),
     yogasTable: camelcaseKeys(yogasTable, { deep: true }),
     yearMasterTable,
     yearMaster,
-    rashiTable
+    rashiTable,
+    varshpahalaMaps
   };
 };

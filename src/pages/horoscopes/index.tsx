@@ -11,7 +11,12 @@ import { InputType } from '../../components/input/InputType';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Horoscopes.scss';
-import { useGetHoroscopeUserInfo, useGetMaps, useGetTargetMapValue } from '../../store/selectors';
+import {
+  useGetHoroscopeUserInfo, useGetIsYearPickerActive,
+  useGetMaps,
+  useGetTargetMapValue,
+  useGetVarshpahalaMaps
+} from '../../store/selectors';
 import { setTargetMapValue } from '../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../store/store';
 import { getTimeZoneOffsetFromGreenwichData } from '../../helpers/getTimeZoneOffsetFromGreenwichData';
@@ -57,6 +62,8 @@ const Index = () => {
   const horoscopeUserInfo = useGetHoroscopeUserInfo();
   const mapsRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const varshpahalaMaps = useGetVarshpahalaMaps();
+  const isYearPickerActive = useGetIsYearPickerActive();
 
   const timeZoneOffset = useMemo(() => {
     return getTimeZoneOffsetFromGreenwichData(horoscopeUserInfo.greenwich, horoscopeUserInfo.hours, horoscopeUserInfo.minutes);
@@ -104,6 +111,14 @@ const Index = () => {
 
   useHideNavbar();
 
+  const currentMaps = useMemo(() => {
+    if (targetRoute.value === routes.varshapkhala && !isYearPickerActive) {
+      return varshpahalaMaps;
+    }
+
+    return maps;
+  }, [targetRoute, isYearPickerActive, varshpahalaMaps, maps]);
+
   return (
     <div>
       <PlanetBackground />
@@ -122,7 +137,7 @@ const Index = () => {
           }}
           onSlideChange={onSwipe}
         >
-          {maps.map((map) => (
+          {currentMaps.map((map) => (
             <SwiperSlide key={map.value}>
               <Map mapSections={map.mapSections} />
             </SwiperSlide>
