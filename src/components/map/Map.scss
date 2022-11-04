@@ -1,5 +1,132 @@
+.transit {
+  .blur {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    border: solid 30px rgba(#000, .2);
+    z-index: 10;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .transited-sector {
+    position: absolute;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 15px;
+    color: #C963DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transited-sector-1, .transited-sector-2, .transited-sector-12 {
+    bottom: 0;
+    height: 30px;
+    width: 60px;
+  }
+
+  .transited-sector-1 {
+    left: calc(50% - 30px);
+  }
+
+  .transited-sector-2 {
+    left: calc(75% - 30px);
+  }
+
+  .transited-sector-12 {
+    left: calc(25% - 30px);
+  }
+
+  .transited-sector-3, .transited-sector-4, .transited-sector-5 {
+    right: 0;
+    height: 60px;
+    width: 30px;
+  }
+
+  .transited-sector-3 {
+    top: calc(50% - 30px);
+  }
+
+  .transited-sector-4 {
+    top: calc(75% - 30px);
+  }
+
+  .transited-sector-5 {
+    top: calc(25% - 30px);
+  }
+
+  .transited-sector-6, .transited-sector-7, .transited-sector-8 {
+    top: 0;
+    height: 30px;
+    width: 60px;
+  }
+
+  .transited-sector-6 {
+    left: calc(75% - 30px);
+  }
+
+  .transited-sector-7 {
+    left: calc(50% - 30px);
+  }
+
+  .transited-sector-8 {
+    left: calc(25% - 30px);
+  }
+
+  .transited-sector-9, .transited-sector-10, .transited-sector-11 {
+    left: 0;
+    height: 60px;
+    width: 30px;
+  }
+
+  .transited-sector-10 {
+    top: calc(50% - 30px);
+  }
+
+  .transited-sector-11 {
+    top: calc(75% - 30px);
+  }
+
+  .transited-sector-9 {
+    top: calc(25% - 30px);
+  }
+
+
+  .sector-3, .sector-5 {
+    .info {
+      right: 30px !important;
+    }
+  }
+
+  .sector-11, .sector-9 {
+    & > .info {
+      right: auto;
+      left: 30px !important;
+    }
+  }
+
+  .sector-6, .sector-8 {
+    & > .info {
+      bottom: auto;
+      top: 30px !important;
+    }
+  }
+
+  .sector-2, .sector-12 {
+    & > .info {
+      bottom: 30px !important;
+      top: auto;
+    }
+  }
+}
+
 .astro-processor-map {
   position: relative;
+  border-radius: 10px;
+  overflow: hidden;
 
   .image {
     z-index: -1;
@@ -17,6 +144,18 @@
     width: 20px;
   }
 
+  .info {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 25%;
+    top: 25%;
+    flex-direction: column;
+  }
+
   .highlighted {
     height: 100%;
     width: 100%;
@@ -31,9 +170,6 @@
     font-style: normal;
     font-weight: 400;
     font-size: 11px;
-    width: calc(100% - 16px);
-    position: absolute;
-    padding: 0 8px;
   }
 
   .main-info {
@@ -41,17 +177,42 @@
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 15px;
-    position: absolute;
-    width: calc(100% - 16px);
-    padding: 8px;
   }
 
   .sector {
     z-index: 2;
     position: absolute;
     overflow: hidden;
+  }
+
+  .sector-3, .sector-5 {
+    & > .info {
+      left: auto;
+      right: 5px;
+    }
+  }
+
+  .sector-11, .sector-9 {
+    & > .info {
+      right: auto;
+      left: 5px;
+    }
+  }
+
+  .sector-6, .sector-8 {
+    & > .info {
+      bottom: auto;
+      top: 5px;
+    }
+  }
+
+  .sector-2, .sector-12 {
+    & > .info {
+      bottom: 5px;
+      top: auto;
+    }
   }
 
   .sector-1, .sector-4, .sector-7, .sector-10 {
@@ -68,7 +229,7 @@
     }
 
     .additional-info {
-      top: 20%;
+      top: 25%;
       text-align: center;
     }
   }

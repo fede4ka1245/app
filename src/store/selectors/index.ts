@@ -131,3 +131,19 @@ export const useGetVarshpahalaMaps = () => {
 export const useGetRashiTable = () => {
   return useAppSelector((state) => state?.horoscopes.rashiTable);
 };
+
+export const useGetTransitionMaps = () => {
+  return useAppSelector((state) => state?.transition.transitionMaps);
+};
+
+export const useGetTransitionDate = () => {
+  return useAppSelector((state) => state?.transition.transitionDate);
+};
+
+export const useGetTransitionTime = () => {
+  return useAppSelector((state) => state?.transition.transitionTime);
+};
+
+export const useGetIsTransitionMapsActive = () => {
+  return useAppSelector((state) => state?.transition.isTransitionMapsActive);
+};

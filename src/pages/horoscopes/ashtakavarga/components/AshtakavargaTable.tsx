@@ -17,9 +17,11 @@ const AshtakavargaTable = ({ table, tableName }: AshtakavargaTableProps) => {
         </AspectRatio>
         {table?.map(({ mainInfo, isHighlighted }, index) => (
           <div key={index} className={`sector sector-${(index + 6) % 12 + 1}`}>
-            <h3 className={'main-info'}>
-              {mainInfo}
-            </h3>
+            <div className={'info'}>
+              <h3 className={'main-info'}>
+                {mainInfo}
+              </h3>
+            </div>
             {isHighlighted && <div className={'highlighted'}/>}
           </div>
         ))}

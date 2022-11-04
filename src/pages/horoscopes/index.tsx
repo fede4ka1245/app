@@ -12,14 +12,15 @@ import { useHideNavbar } from '../../hooks/useHideNavbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Horoscopes.scss';
 import {
-  useGetHoroscopeUserInfo, useGetIsYearPickerActive,
+  useGetHoroscopeUserInfo, useGetIsTransitionMapsActive, useGetIsYearPickerActive,
   useGetMaps,
-  useGetTargetMapValue,
+  useGetTargetMapValue, useGetTransitionMaps,
   useGetVarshpahalaMaps
 } from '../../store/selectors';
 import { setTargetMapValue } from '../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../store/store';
 import { getTimeZoneOffsetFromGreenwichData } from '../../helpers/getTimeZoneOffsetFromGreenwichData';
+import { MapSection } from '../../models/types/MapSection';
 
 const routesOptions = [
   {
@@ -64,6 +65,16 @@ const Index = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const varshpahalaMaps = useGetVarshpahalaMaps();
   const isYearPickerActive = useGetIsYearPickerActive();
+  const isTransitionMapsActive = useGetIsTransitionMapsActive();
+  const transitionMaps = useGetTransitionMaps();
+
+  const getTransitionMapSections = useCallback((index: number): undefined | MapSection [] => {
+    if (!transitionMaps.length) {
+      return;
+    }
+
+    return transitionMaps[index].mapSections;
+  }, [transitionMaps]);
 
   const timeZoneOffset = useMemo(() => {
     return getTimeZoneOffsetFromGreenwichData(horoscopeUserInfo.greenwich, horoscopeUserInfo.hours, horoscopeUserInfo.minutes);
@@ -137,9 +148,9 @@ const Index = () => {
           }}
           onSlideChange={onSwipe}
         >
-          {currentMaps.map((map) => (
+          {currentMaps.map((map, index) => (
             <SwiperSlide key={map.value}>
-              <Map mapSections={map.mapSections} />
+              <Map mapSections={map.mapSections} mapTransitSections={getTransitionMapSections(index)} isTransit={isTransitionMapsActive}/>
             </SwiperSlide>
           ))}
         </Swiper>
