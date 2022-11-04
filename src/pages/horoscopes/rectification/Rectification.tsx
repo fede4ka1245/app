@@ -5,8 +5,10 @@ import { ButtonType } from '../../../components/button/ButtonProps';
 import Button from '../../../components/button/Button';
 import { InputType } from '../../../components/input/InputType';
 import { useLoadHoroscopes } from '../../../hooks/useLoadHororscope';
-import { useGetHoroscopeUserInfo } from '../../../store/selectors';
+import { useGetHoroscopeUserInfo, useGetRashiTable, useGetTargetMapValue } from '../../../store/selectors';
 import ButtonPrevForward from './components/buttonPrevForward/ButtonPrevForward';
+import RashiTable from '../../../components/rashiTable/RashiTable';
+import Dashi from '../dashi/Dashi';
 
 const timeOptions = [
   {
@@ -97,37 +99,48 @@ const Rectification = () => {
     setTime(`${hours}:${minutes}`);
   }, [forwardTimeOption, prevTimeOption, targetUserDate]);
 
+  const rashiTable = useGetRashiTable();
+  const targetMapValue = useGetTargetMapValue();
+
+  const rows = useMemo(() => {
+    return rashiTable.find((rashiTableItem) => rashiTableItem.mapName === targetMapValue)?.table || [];
+  }, [rashiTable, targetMapValue]);
+
   return (
-    <Grid container direction={'column'} p={2}>
-      <Grid item container direction={'row'} spacing={2} pb={2}>
-        <Grid item xs={6} md={6}>
-          <Input placeholder='Дата' inputType={InputType.date} value={date} onChange={setDate}/>
+    <>
+      <Grid container direction={'column'} p={2}>
+        <Grid item container direction={'row'} spacing={2} pb={2}>
+          <Grid item xs={6} md={6}>
+            <Input placeholder='Дата' inputType={InputType.date} value={date} onChange={setDate}/>
+          </Grid>
+          <Grid item xs={6} md={6}>
+            <Input placeholder='Время' inputType={InputType.time} value={time} onChange={setTime}/>
+          </Grid>
         </Grid>
-        <Grid item xs={6} md={6}>
-          <Input placeholder='Время' inputType={InputType.time} value={time} onChange={setTime}/>
+        <Grid item container flexDirection={'row'} display={'flex'} pb={2}>
+          <Grid item width={'40px'} mr={1}>
+            <ButtonPrevForward onClick={() => onButtonForwardClick(false)} type={'prev'}/>
+          </Grid>
+          <Grid item flex={1} mr={2}>
+            <Input placeholder='Шаг назад' options={timeOptions} setTargetOption={setPrevTimeOption} targetOption={prevTimeOption} inputType={InputType.options}/>
+          </Grid>
+          <Grid item flex={1} mr={1}>
+            <Input placeholder='Шаг вперед' options={timeOptions} setTargetOption={setForwardTimeOption} targetOption={forwardTimeOption} inputType={InputType.options}/>
+          </Grid>
+          <Grid item width={'40px'}>
+            <ButtonPrevForward onClick={() => onButtonForwardClick(true)} type={'forward'}/>
+          </Grid>
+        </Grid>
+        <Grid item pt={2}>
+          <Button text={'Рассчитать'} isDisabled={isButtonDisabled} onClick={onCountHoroscopesClick} type={ButtonType.gradient}/>
+        </Grid>
+        <Grid item pt={2}>
+          <Button text={'Сохранить'} type={ButtonType.outline}/>
         </Grid>
       </Grid>
-      <Grid item container flexDirection={'row'} display={'flex'} pb={2}>
-        <Grid item width={'40px'} mr={1}>
-          <ButtonPrevForward onClick={() => onButtonForwardClick(false)} type={'prev'}/>
-        </Grid>
-        <Grid item flex={1} mr={2}>
-          <Input placeholder='Шаг назад' options={timeOptions} setTargetOption={setPrevTimeOption} targetOption={prevTimeOption} inputType={InputType.options}/>
-        </Grid>
-        <Grid item flex={1} mr={1}>
-          <Input placeholder='Шаг вперед' options={timeOptions} setTargetOption={setForwardTimeOption} targetOption={forwardTimeOption} inputType={InputType.options}/>
-        </Grid>
-        <Grid item width={'40px'}>
-          <ButtonPrevForward onClick={() => onButtonForwardClick(true)} type={'forward'}/>
-        </Grid>
-      </Grid>
-      <Grid item pt={2}>
-        <Button text={'Рассчитать'} isDisabled={isButtonDisabled} onClick={onCountHoroscopesClick} type={ButtonType.gradient}/>
-      </Grid>
-      <Grid item pt={2}>
-        <Button text={'Сохранить'} type={ButtonType.outline}/>
-      </Grid>
-    </Grid>
+      <RashiTable rows={rows} />
+      <Dashi />
+    </>
   );
 };
 

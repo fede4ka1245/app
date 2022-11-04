@@ -6,7 +6,7 @@ import planet from './img.png';
 import { getVarshpahala } from '../../../api/getVarshpahala';
 import {
   useGetDashiTable,
-  useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading, useGetIsYearPickerActive,
+  useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading, useGetIsYearPickerActive, useGetVarshpahalaRashiTable,
   useGetYearMaster,
   useGetYearMasterTable,
   useGetYogasTable
@@ -18,14 +18,14 @@ import {
   setIsVarshpahalaLoading,
   setYearMasterTable,
   setYogasTable,
-  setYearMaster, setRashiTable, setIsYearPickerActive, setVarshpahalaMaps
+  setYearMaster, setVarshpahalaRashiTable, setIsYearPickerActive, setVarshpahalaMaps
 } from '../../../store/reducers/varshpahalaReducer';
 import YogasTable from '../../../components/yogasTable/YogasTable';
 import Header from '../../../components/header/Header';
 import Modal from '../../../components/modal/Modal';
 import YearMasterTable from './yearMasterTable/YearMasterTable';
 import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
-import RashiTable from './rashiTable/RashiTable';
+import RashiTable from '../../../components/rashiTable/RashiTable';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
 
 const Varshapkhala = () => {
@@ -39,6 +39,7 @@ const Varshapkhala = () => {
   const [year, setYear] = useState(2022);
   const yearMaster = useGetYearMaster();
   const isYearPickerActive = useGetIsYearPickerActive();
+  const rashiTable = useGetVarshpahalaRashiTable();
 
   const toggleIsYearPickerActive = useCallback(() => {
     dispatch(setIsYearPickerActive(!isYearPickerActive));
@@ -59,7 +60,7 @@ const Varshapkhala = () => {
       minutes
     }).then((result) => {
       dispatch(setDashiTable(result.dashiTable));
-      dispatch(setRashiTable(result.rashiTable));
+      dispatch(setVarshpahalaRashiTable(result.rashiTable));
       dispatch(setYogasTable(result.yogasTable));
       dispatch(setYearMasterTable(result.yearMasterTable));
       dispatch(setYearMaster(result.yearMaster));
@@ -99,7 +100,7 @@ const Varshapkhala = () => {
             <ButtonBack label={'Вернуться к выбору года'} onClick={toggleIsYearPickerActive} />
           </Grid>
           <Grid item>
-            <RashiTable />
+            <RashiTable rows={rashiTable} />
           </Grid>
           <Grid item paddingTop={4} pl={2} pr={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
             <Button text={'Определить хозяина года'} onClick={toggleYearMasterModal} />

@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './RashiTable.module.scss';
 import { Grid, Typography } from '@mui/material';
-import { useGetRashiTable } from '../../../../store/selectors';
-import ZodiacSign from '../../../../components/zodiacSign/ZodiacSign';
-import { RashiTableRow } from '../../../../models/types/RashiTableRow';
+import ZodiacSign from '../zodiacSign/ZodiacSign';
+import { RashiTableRow } from '../../models/types/RashiTableRow';
 
-const RashiTable = () => {
-  const rashiTable = useGetRashiTable();
+interface RashiTableProps {
+  rows: RashiTableRow []
+}
 
+const RashiTable = ({ rows }: RashiTableProps) => {
   return (
     <div className={styles.table}>
       <section style={{ height: '20px' }}>
@@ -24,7 +25,7 @@ const RashiTable = () => {
           Накшатра
         </Grid>
       </section>
-      {rashiTable?.map((rashiItem: RashiTableRow, index) => (
+      {rows?.map((rashiItem: RashiTableRow, index) => (
         <section key={index}>
           <Grid display={'flex'} alignItems={'center'}>
             {rashiItem.planet.additionalInfo && <Grid pl={1} className={styles.planetAdditionalInfo}>

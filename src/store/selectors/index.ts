@@ -116,8 +116,8 @@ export const useGetBhava = () => {
   return useAppSelector((state) => state?.zones.bhava);
 };
 
-export const useGetRashiTable = () => {
-  return useAppSelector((state) => state?.varshpahala.rashiTable);
+export const useGetVarshpahalaRashiTable = () => {
+  return useAppSelector((state) => state?.varshpahala.varshpahalaRashiTable);
 };
 
 export const useGetIsYearPickerActive = () => {
@@ -126,4 +126,8 @@ export const useGetIsYearPickerActive = () => {
 
 export const useGetVarshpahalaMaps = () => {
   return useAppSelector((state) => state?.varshpahala.varshpahalaMaps);
+};
+
+export const useGetRashiTable = () => {
+  return useAppSelector((state) => state?.horoscopes.rashiTable);
 };

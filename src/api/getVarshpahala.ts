@@ -2,20 +2,8 @@ import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
-import { RashiTableRow } from '../models/types/RashiTableRow';
 import { getFormattedMaps } from '../helpers/getFormattedMaps';
-
-const getFormattedRashiTable = (rasiTable: Array<any>): RashiTableRow [] => {
-  return [...rasiTable.map((tableItem: any) => {
-    return {
-      ...tableItem,
-      planet: tableItem.planet,
-      sign: tableItem.rashi,
-      sphuta: tableItem.cpuxuta[0].slice(0, -4),
-      naksantra: tableItem.naksantra
-    };
-  })];
-};
+import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
 
 interface GetVarshpahalaProps extends HoroscopeData {
   year: number

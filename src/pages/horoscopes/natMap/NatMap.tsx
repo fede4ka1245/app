@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './NatMap.module.scss';
 import img from './img.png';
 import Switch from '../../../components/switch/Switch';
 import { Grid } from '@mui/material';
 import deepSky from './deepSky.svg';
-import Table from '../../../components/table/Table';
+import { useGetRashiTable, useGetTargetMapValue } from '../../../store/selectors';
+import RashiTable from '../../../components/rashiTable/RashiTable';
+import Dashi from '../dashi/Dashi';
 
 const NatMap = () => {
+  const rashiTable = useGetRashiTable();
+  const targetMapValue = useGetTargetMapValue();
+
+  const rows = useMemo(() => {
+    return rashiTable.find((rashiTableItem) => rashiTableItem.mapName === targetMapValue)?.table || [];
+  }, [rashiTable, targetMapValue]);
+
   return (
     <>
       <Grid container pl={2} pr={2} direction={'column'}>
@@ -17,7 +26,8 @@ const NatMap = () => {
           </section>
         </Grid>
       </Grid>
-      <Table />
+      <RashiTable rows={rows} />
+      <Dashi />
     </>
   );
 };

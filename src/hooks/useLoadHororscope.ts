@@ -15,7 +15,7 @@ import {
   setDashiChr,
   setDashiVim, setHoroscopeUserInfo,
   setIsAshtakavargaLoading,
-  setIsDashiLoading, setMaps
+  setIsDashiLoading, setMaps, setRashiTable
 } from '../store/reducers/horoscopesReducer';
 import { getDashi } from '../api/getDashi';
 import { getAshtakavarga } from '../api/getAshtakavarga';
@@ -25,6 +25,7 @@ import { useAppDispatch } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import { TimeZoneData } from '../models/types/TimeZoneData';
+import { getRashiTable } from '../api/getRashiTable';
 
 interface LoadHoroscope extends Omit<HoroscopeData, 'latitude' | 'longitude'> {
   addressInformation: AddressInformation
@@ -54,6 +55,19 @@ export const useLoadHoroscopes = () => {
         hours,
         greenwich,
         minutes
+      });
+
+      getRashiTable({
+        userName,
+        date,
+        time,
+        latitude: addressInformation?.latitude,
+        longitude: addressInformation?.longitude,
+        hours,
+        greenwich,
+        minutes
+      }).then((result) => {
+        dispatch(setRashiTable(result));
       });
 
       dispatch(setIsZonesLoading(true));
