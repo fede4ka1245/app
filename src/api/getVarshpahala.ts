@@ -10,7 +10,7 @@ const getFormattedRashiTable = (rasiTable: Array<any>): RashiTableRow [] => {
       ...tableItem,
       planet: tableItem.planet,
       sign: tableItem.rashi,
-      sphuta: tableItem.cpuxuta[0].split(' ').slice(0, 2).join(' '),
+      sphuta: tableItem.cpuxuta[0].slice(0, -4),
       naksantra: tableItem.naksantra
     };
   })];
