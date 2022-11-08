@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import map from './assets/map.svg';
 import AspectRatio from '@mui/joy/AspectRatio';
 import './Map.scss';
 import { MapSection } from '../../models/types/MapSection';
 import classNames from 'classnames';
+import MapSector from './mapSector/MapSector';
 
 interface MapProps {
   mapSections?: Array<MapSection>,
@@ -11,7 +12,36 @@ interface MapProps {
   mapTransitSections?: Array<MapSection>
 }
 
+const getAspects = (targetAspectIndex: number) => {
+  const aspects = [
+    [5, 8, 11],
+    [4, 7, 10],
+    [6, 9, 12],
+    [2, 8, 11],
+    [1, 7, 10],
+    [3, 9, 12],
+    [2, 5, 11],
+    [1, 4, 10],
+    [3, 6, 12],
+    [2, 5, 8],
+    [1, 4, 7],
+    [3, 6, 9]
+  ];
+
+  return aspects[targetAspectIndex - 1];
+};
+
 const Map = ({ mapSections, isTransit, mapTransitSections }: MapProps) => {
+  const [targetAspectIndex, setTargetAspectIndex] = useState<number>();
+  const [selectedSector, setSelectedSector] = useState<number | undefined>(undefined);
+  const aspects = useMemo<number [] | undefined>(() => {
+    if (!targetAspectIndex) {
+      return;
+    }
+
+    return getAspects(targetAspectIndex);
+  }, [targetAspectIndex]);
+
   return (
     <section className={classNames('astro-processor-map', { transit: isTransit })}>
       <div className={'blur'}/>
@@ -19,19 +49,18 @@ const Map = ({ mapSections, isTransit, mapTransitSections }: MapProps) => {
         <img src={map} className={'image'}/>
       </AspectRatio>
       {mapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
-        <div key={index} className={`sector sector-${(Number(number) + 5) % 12 + 1}`}>
-          <div className={'info'}>
-            <h3 className={'additional-info'}>
-              {additionalInfo}
-            </h3>
-            <h3 className={'main-info'}>
-              {mainInfo}
-            </h3>
-          </div>
-          <h3 className={'index'}>
-            {index}
-          </h3>
-        </div>
+        <MapSector
+          key={index}
+          number={number}
+          mainInfo={mainInfo}
+          additionalInfo={additionalInfo}
+          index={index}
+          aspects={aspects}
+          targetAspectIndex={targetAspectIndex}
+          setTargetAspectIndex={setTargetAspectIndex}
+          selectedSector={selectedSector}
+          setSelectedSector={setSelectedSector}
+        />
       ))}
       {isTransit && mapTransitSections?.map(({ mainInfo, index, number }) => (
         <div key={index} className={`transited-sector transited-sector-${(Number(number) + 5) % 12 + 1}`}>

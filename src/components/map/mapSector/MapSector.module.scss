@@ -1,0 +1,23 @@
+.selected {
+  background: #5C5B9F;
+  z-index: 17 !important;
+}
+
+.aspectHint {
+  font-family: 'Gilroy', 'sans-serif' !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  color: white !important;
+  z-index: 18 !important;
+  width: 120% !important;
+}
+
+.targetAspect {
+  background: rgba(255, 197, 197, 0.6);
+}
+
+.aspect {
+  background: rgba(87, 201, 69, 0.2);
+}
