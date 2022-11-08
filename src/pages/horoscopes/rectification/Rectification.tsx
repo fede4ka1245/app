@@ -12,11 +12,11 @@ import Dashi from '../dashi/Dashi';
 
 const timeOptions = [
   {
-    label: '1 минута',
+    label: '1 мин.',
     value: 'ONE_MINUTE'
   },
   {
-    label: '5 минут',
+    label: '5 мин.',
     value: 'FIVE_MINUTES'
   }
 ];
