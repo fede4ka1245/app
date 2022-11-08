@@ -22,7 +22,7 @@ const AshtakavargaTable = ({ table, tableName }: AshtakavargaTableProps) => {
                 {mainInfo}
               </h3>
             </div>
-            {isHighlighted && <div className={'highlighted'}/>}
+            {isHighlighted && <div className={'highlighted'} style={{ background: 'rgba(255, 197, 197, 0.6)' }}/>}
           </div>
         ))}
       </section>
