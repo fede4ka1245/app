@@ -28,6 +28,11 @@ export const getMapsOptions = (): Array<MapOption> => {
       mapSections: []
     },
     {
+      value: 'D-6',
+      label: 'D-6',
+      mapSections: []
+    },
+    {
       value: 'D-7',
       label: 'D-7',
       mapSections: []
