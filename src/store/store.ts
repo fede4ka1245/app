@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import userReducer from './reducers/userReducer';
 import preferencesReducer from './reducers/preferencesReducer';
@@ -7,18 +7,32 @@ import varshpahalaReducer from './reducers/varshpahalaReducer';
 import zonesReducer from './reducers/zonesReducer';
 import transitionReduser from './reducers/transitionReduser';
 import settingsReducer from './reducers/settingsReducer';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  preferences: preferencesReducer,
+  horoscopes: horoscopesReducer,
+  varshpahala: varshpahalaReducer,
+  zones: zonesReducer,
+  transition: transitionReduser,
+  settings: settingsReducer
+});
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['settings', 'user', 'preferences']
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    preferences: preferencesReducer,
-    horoscopes: horoscopesReducer,
-    varshpahala: varshpahalaReducer,
-    zones: zonesReducer,
-    transition: transitionReduser,
-    settings: settingsReducer
-  }
+  reducer: persistedReducer
 });
+
+export const persister = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

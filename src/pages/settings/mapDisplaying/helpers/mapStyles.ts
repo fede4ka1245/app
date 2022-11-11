@@ -1,10 +1,12 @@
+import { MapTypeEnum } from '../../../../models/types/MapType';
+
 export const mapStyles = [
   {
     label: 'Северный',
-    value: 'north'
+    value: MapTypeEnum.North
   },
   {
     label: 'Южный',
-    value: 'west'
+    value: MapTypeEnum.South
   }
 ];

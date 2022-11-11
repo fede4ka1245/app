@@ -46,6 +46,7 @@
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
     "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
     "scroll-lock": "^2.1.5",
     "scroll-select": "^0.0.3",
     "swiper": "^8.3.2",

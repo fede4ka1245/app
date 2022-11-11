@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import PlanetBackground from '../../../components/planetBackground/PlanetBackground';
 import { Grid, Typography } from '@mui/material';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
@@ -14,13 +14,27 @@ import Options from '../../../components/options/Options';
 import Divider from '../../../components/divider/Divider';
 import Switch from '../../../components/switch/Switch';
 import { useHideNavbar } from '../../../hooks/useHideNavbar';
+import { useGetMapType } from '../../../store/selectors';
+import { useAppDispatch } from '../../../store/store';
+import { setMapType } from '../../../store/reducers/settingsReducer';
+import { Option } from '../../../models/types/Option';
+import { MapType } from '../../../models/types/MapType';
 
 const MapDisplaying = () => {
   const navigate = useNavigate();
   const [targetLanguage, setTargetLanguage] = useState(languages[0]);
-  const [targetMapStyle, setTargetMapStyle] = useState(mapStyles[0]);
   const [targetMapHelper, setTargetMapHelper] = useState(mapsHelpers[0]);
   const [targetGraxaDisplaying, setTargetGraxaDispaying] = useState(graxaDisplaying[0]);
+  const mapType = useGetMapType();
+  const dispatch = useAppDispatch();
+
+  const targetMapStyle = useMemo<Option>(() => {
+    return mapStyles.find((mapStyleOption) => mapStyleOption.value === mapType) as Option;
+  }, [mapType]);
+
+  const setTargetMapStyle = useCallback((mapStyleOption: Option) => {
+    dispatch(setMapType(mapStyleOption.value as MapType));
+  }, []);
 
   useHideNavbar();
 

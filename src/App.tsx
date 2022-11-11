@@ -54,9 +54,7 @@ import './main.css';
 import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
 import ForumItem from './pages/forumItem/ForumItem';
-import { LocalStorageKey } from './models/enums/LocalStorageKey';
-import { useAppDispatch, useAppSelector } from './store/store';
-import { setUserInfo } from './store/reducers/userReducer';
+import { useAppDispatch } from './store/store';
 import { useGetIsAppLoading, useGetIsNavbarActive } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
@@ -78,33 +76,10 @@ function App () {
     SplashScreen.show().then(() => {
       SplashScreen.hide();
     });
-
-    // if (localStorage.getItem('isFirstLaunch') !== null) {
-    //   navigate(routes.menu);
-    //   return;
-    // }
-    //
-    // navigate(routes.authorization);
-    // localStorage.setItem('isFirstLaunch', JSON.stringify(false));
   }, []);
 
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user);
-  const isFirstRender = useRef(true);
   const isAppLoading = useGetIsAppLoading();
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      if (localStorage.getItem(LocalStorageKey.userInfo) !== null) {
-        dispatch(setUserInfo(JSON.parse(localStorage.getItem(LocalStorageKey.userInfo) || '{}')));
-      }
-
-      isFirstRender.current = false;
-      return;
-    }
-
-    localStorage.setItem(LocalStorageKey.userInfo, JSON.stringify(userInfo));
-  }, [userInfo]);
 
   const contentRef = useRef<any>();
 

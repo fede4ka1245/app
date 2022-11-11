@@ -3,5 +3,6 @@
 export enum LocalStorageKey {
   avatar = 'avatar',
   isForumRulesConfirmed = 'isForumRulesConfirmed',
-  userInfo = 'userInfo'
+  userInfo = 'userInfo',
+  mapType = 'mapType'
 }
