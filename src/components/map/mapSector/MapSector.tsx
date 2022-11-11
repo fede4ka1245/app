@@ -68,9 +68,6 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
             </h3>
           </>
         )}
-        {isSelected && <h3 className={classNames(styles.aspectHint, 'main-info')}>
-          Показать знаковые аспекты
-        </h3>}
       </div>
       <h3 className={'index'}>
         {index}
@@ -84,6 +81,11 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
           [styles.selected]: isSelected
         })}
       />
+      {isSelected && <h3 className={classNames(styles.aspectHint)}>
+        <div className={'aspectsHint'}>
+          Показать знаковые аспекты
+        </div>
+      </h3>}
     </div>
   );
 };

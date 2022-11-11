@@ -43,6 +43,10 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
     return !row.planets.length;
   }, [row]);
 
+  const isSubTableAvailable = useMemo(() => {
+    return row.planets.length < 3 && !!row.subTable?.length;
+  }, [row]);
+
   useEffect(() => {
     if (isMainRow && isCurrentDates) {
       setIsOpen(true);
@@ -54,7 +58,7 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
       <Grid className={styles.row}>
         <Grid container className={classNames({ [styles.isOpen]: isOpen, [styles.isMain]: isMainRow, [styles.isCurrent]: isCurrentDates })}>
           <Grid item display={'flex'} alignItems={'center'} justifyContent={'center'}>
-            {!!row.subTable?.length && <IconButton onClick={toggleIsOpen}>
+            {isSubTableAvailable && <IconButton onClick={toggleIsOpen}>
               {!isOpen && <svg width="14" height="14" viewBox="0 0 7 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1.5L5.24095 6.68338C5.39164 6.86756 5.39164 7.13244 5.24095 7.31662L1 12.5" stroke="#C3C9CD" strokeWidth="2" strokeLinecap="round"/>
               </svg>}

@@ -3,7 +3,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import map from './map.svg';
 import { AshtakavargaTable as AshtakavargaTableProps } from '../../../../models/types/AshtakavargaTable';
 import { Typography } from '@mui/material';
-import '../../../../components/map/Map.scss';
+import '../../../../components/map/NorthMap.scss';
 
 const AshtakavargaTable = ({ table, tableName }: AshtakavargaTableProps) => {
   return (

@@ -147,3 +147,7 @@ export const useGetTransitionTime = () => {
 export const useGetIsTransitionMapsActive = () => {
   return useAppSelector((state) => state?.transition.isTransitionMapsActive);
 };
+
+export const useGetMapType = () => {
+  return useAppSelector((state) => state?.settings.mapType);
+};

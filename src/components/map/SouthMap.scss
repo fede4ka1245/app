@@ -1,0 +1,295 @@
+.transit-south {
+  .blur {
+    position: absolute;
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    border: solid 30px rgba(#000, .2);
+    z-index: 10;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .transited-sector {
+    position: absolute;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 15px;
+    color: #C963DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .transited-sector-1, .transited-sector-2, .transited-sector-12, .transited-sector-11, .transited-sector-5, .transited-sector-6, .transited-sector-7, .transited-sector-8 {
+    height: 30px;
+    width: 25%;
+  }
+
+  .transited-sector-1 {
+    left: 25%;
+    top: 0;
+  }
+
+  .transited-sector-2 {
+    left: 0;
+    top: 0;
+  }
+
+  .transited-sector-12 {
+    left: 50%;
+    top: 0;
+  }
+
+  .transited-sector-11 {
+    left: 75%;
+    top: 0;
+  }
+
+  .transited-sector-5 {
+    left: 0;
+    bottom: 0;
+  }
+
+  .transited-sector-6 {
+    left: 25%;
+    bottom: 0;
+  }
+
+  .transited-sector-7 {
+    left: 50%;
+    bottom: 0;
+  }
+
+  .transited-sector-8 {
+    left: 75%;
+    bottom: 0;
+  }
+
+  .transited-sector-3, .transited-sector-4, .transited-sector-9, .transited-sector-10 {
+    height: 25%;
+    width: 30px;
+  }
+
+  .transited-sector-3 {
+    left: 0;
+    top: 25%;
+  }
+
+  .transited-sector-4 {
+    left: 0;
+    top: 50%;
+  }
+
+  .transited-sector-9 {
+    right: 0;
+    top: 50%;
+  }
+
+  .transited-sector-10 {
+    right: 0;
+    top: 25%;
+  }
+
+
+  .sector-1, .sector-12 {
+    .info {
+      width: 100%;
+      height: calc(100% - 30px);
+      bottom: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-2 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      bottom: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-11 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      bottom: 0;
+      left: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-3, .sector-4 {
+    .info {
+      width: calc(100% - 30px);
+      height: 100%;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-5 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-8 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      top: 0;
+      left: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-6, .sector-7 {
+    .info {
+      width: 100%;
+      height: calc(100% - 30px);
+      top: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-9, .sector-10 {
+    .info {
+      width: calc(100% - 30px);
+      height: 100%;
+      left: 0;
+      position: absolute;
+    }
+  }
+}
+
+.astro-processor-south-map {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .image {
+    z-index: -1;
+  }
+
+  .sector {
+    width: 25%;
+    height: 25%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .index {
+      display: none;
+    }
+  }
+
+  .info {
+    z-index: 19;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .highlighted {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 18;
+    border-radius: 0;
+  }
+
+  .additional-info {
+    color: #292E30;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    z-index: 19;
+    text-align: center;
+  }
+
+  .main-info {
+    color: #37366B;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    z-index: 19;
+    width: 100% !important;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .sector-1 {
+    left: 25%;
+    top: 0;
+  }
+
+  .sector-2 {
+    left: 0;
+    top: 0;
+  }
+
+  .sector-3 {
+    left: 0;
+    top: 25%;
+  }
+
+  .sector-4 {
+    left: 0;
+    top: 50%;
+  }
+
+  .sector-5 {
+    left: 0;
+    top: 75%;
+  }
+
+  .sector-6 {
+    left: 25%;
+    bottom: 0;
+  }
+
+  .sector-7 {
+    left: 50%;
+    bottom: 0;
+  }
+
+  .sector-8 {
+    bottom: 0;
+    left: 75%;
+  }
+
+  .sector-9 {
+    bottom: 25%;
+    right: 0;
+  }
+
+  .sector-10 {
+    bottom: 50%;
+    right: 0;
+  }
+
+  .sector-11 {
+    bottom: 75%;
+    right: 0;
+  }
+
+  .sector-12 {
+    bottom: 75%;
+    right: 25%;
+  }
+}

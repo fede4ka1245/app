@@ -6,6 +6,7 @@ import horoscopesReducer from './reducers/horoscopesReducer';
 import varshpahalaReducer from './reducers/varshpahalaReducer';
 import zonesReducer from './reducers/zonesReducer';
 import transitionReduser from './reducers/transitionReduser';
+import settingsReducer from './reducers/settingsReducer';
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ export const store = configureStore({
     horoscopes: horoscopesReducer,
     varshpahala: varshpahalaReducer,
     zones: zonesReducer,
-    transition: transitionReduser
+    transition: transitionReduser,
+    settings: settingsReducer
   }
 });
 

@@ -1,10 +1,14 @@
 import React, { useMemo, useState } from 'react';
-import map from './assets/map.svg';
+import northMap from './assets/northMap.svg';
+import southMap from './assets/southMap.svg';
 import AspectRatio from '@mui/joy/AspectRatio';
-import './Map.scss';
 import { MapSection } from '../../models/types/MapSection';
 import classNames from 'classnames';
 import MapSector from './mapSector/MapSector';
+import './SouthMap.scss';
+import './NorthMap.scss';
+import { useGetMapType } from '../../store/selectors';
+import { MapTypeEnum } from '../../models/types/MapType';
 
 interface MapProps {
   mapSections?: Array<MapSection>,
@@ -41,12 +45,25 @@ const Map = ({ mapSections, isTransit, mapTransitSections }: MapProps) => {
 
     return getAspects(targetAspectIndex);
   }, [targetAspectIndex]);
+  const MapType = useGetMapType();
+
+  const isNorthType = useMemo(() => {
+    return MapType === MapTypeEnum.North;
+  }, [MapType]);
 
   return (
-    <section className={classNames('astro-processor-map', { transit: isTransit })}>
+    <section
+      className={classNames({
+        'transit-north': isTransit && isNorthType,
+        'transit-south': isTransit && !isNorthType,
+        'astro-processor-north-map': isNorthType,
+        'astro-processor-south-map': !isNorthType
+      })}
+    >
       <div className={'blur'}/>
       <AspectRatio ratio={1}>
-        <img src={map} className={'image'}/>
+        { !isNorthType && <img src={southMap} className={'image'}/> }
+        { isNorthType && <img src={northMap} className={'image'}/> }
       </AspectRatio>
       {mapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
         <MapSector

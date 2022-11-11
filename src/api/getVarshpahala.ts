@@ -21,6 +21,8 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     year
   });
 
+  console.log(data);
+
   const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
 
   const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table.map(({ badge, connection, planets }: any) => ({
