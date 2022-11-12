@@ -4,7 +4,6 @@ import PlanetBackground from '../../../components/planetBackground/PlanetBackgro
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
 import { useNavigate } from 'react-router-dom';
 import ButtonSave from '../../../components/buttonSave/ButtonSave';
-import Input from '../../../components/input/Input';
 import Button from '../../../components/button/Button';
 import { ButtonType } from '../../../components/button/ButtonProps';
 import Divider from '../../../components/divider/Divider';
@@ -38,16 +37,6 @@ const Main = () => {
         <Grid item container direction={'column'}>
           <Grid item>
             <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-              Система Даша по умолчанию
-            </Typography>
-          </Grid>
-          <Grid item pt={1}>
-            <Input placeholder={'Выберите систему'}/>
-          </Grid>
-        </Grid>
-        <Grid item container direction={'column'}>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
               Длина года
             </Typography>
           </Grid>
@@ -56,25 +45,13 @@ const Main = () => {
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="1"
               name="radio-buttons-group"
+              value="1"
             >
               <FormControlLabel value="1" control={<Radio/>} label={<FormLabel label={'Средний сидерический год'}/>}/>
-              <FormControlLabel value="2" control={<Radio/>} label={<FormLabel label={'Средний тропический год'}/>}/>
-              <FormControlLabel value="3" control={<Radio/>} label={<FormLabel label={'Савана (360 дней)'}/>}/>
-              <FormControlLabel value="4" control={<Radio/>} label={<FormLabel label={'360 титхи'}/>}/>
+              <FormControlLabel disabled value="2" control={<Radio/>} label={<FormLabel label={'Средний тропический год'}/>}/>
+              <FormControlLabel disabled value="3" control={<Radio/>} label={<FormLabel label={'Савана (360 дней)'}/>}/>
+              <FormControlLabel disabled value="4" control={<Radio/>} label={<FormLabel label={'360 титхи'}/>}/>
             </RadioGroup>
-          </Grid>
-          <Grid item pt={2}>
-            <Divider color={'#37366B'}/>
-          </Grid>
-        </Grid>
-        <Grid item container direction={'column'}>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-              Избранные Даша-системы (3)
-            </Typography>
-          </Grid>
-          <Grid item pt={1}>
-            <Input placeholder={'Добавить систему'}/>
           </Grid>
           <Grid item pt={2}>
             <Divider color={'#37366B'}/>
@@ -93,7 +70,7 @@ const Main = () => {
               name="radio-buttons-group"
             >
               <FormControlLabel value="1" control={<Radio/>} label={<FormLabel label={'7 карак (АК, АмК, БК, МК, ПК, ГК, ДК)'}/>}/>
-              <FormControlLabel value="2" control={<Radio/>} label={<FormLabel label={'8 карак (АК, АмК, БК, ПиК, ПК, ГК, ДК)'}/>}/>
+              <FormControlLabel disabled value="2" control={<Radio/>} label={<FormLabel label={'8 карак (АК, АмК, БК, ПиК, ПК, ГК, ДК)'}/>}/>
             </RadioGroup>
           </Grid>
           <Grid item pt={2}>
@@ -129,55 +106,19 @@ const Main = () => {
             </Typography>
           </Grid>
           <Grid item container direction={'row'}>
-            <Grid item container direction={'row'} width={'50%'} alignItems={'center'}>
-              <Grid item>
-                <Radio/>
-              </Grid>
-              <Grid item>
-                <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={14} color={'white'} textAlign={'left'}>
-                  Истинные
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item container direction={'row'} width={'50%'} alignItems={'center'}>
-              <Grid item>
-                <Radio/>
-              </Grid>
-              <Grid item>
-                <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={14} color={'white'} textAlign={'left'}>
-                  Ложные
-                </Typography>
-              </Grid>
-            </Grid>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="1"
+              name="radio-buttons-group"
+              row
+              sx={{ display: 'flex', width: '100%' }}
+            >
+              <FormControlLabel sx={{ flex: 1 }} value="1" control={<Radio/>} label={<FormLabel label={'Истинные'}/>}/>
+              <FormControlLabel sx={{ flex: 1 }} disabled value="2" control={<Radio/>} label={<FormLabel label={'Ложные'}/>}/>
+            </RadioGroup>
           </Grid>
           <Grid item pt={2}>
             <Divider color={'#37366B'}/>
-          </Grid>
-        </Grid>
-        <Grid item container direction={'column'}>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-              Координаты по умолчанию
-            </Typography>
-          </Grid>
-          <Grid item pt={2}>
-            <Input placeholder={'Начните вводить название'} />
-          </Grid>
-          <Grid item container pt={2} justifyContent={'space-between'}>
-            <Grid item width={'calc(50% - 5px)'}>
-              <Input placeholder={'Ширина'}/>
-            </Grid>
-            <Grid item width={'calc(50% - 5px)'}>
-              <Input placeholder={'Длина'}/>
-            </Grid>
-          </Grid>
-          <Grid item pt={2}>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-              Часовой пояс по умолчанию
-            </Typography>
-          </Grid>
-          <Grid item pt={2}>
-            <Input placeholder={'UTC +3'} />
           </Grid>
         </Grid>
         <Grid item width={'100%'}>

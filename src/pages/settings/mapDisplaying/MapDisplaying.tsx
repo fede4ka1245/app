@@ -6,7 +6,6 @@ import ButtonSave from '../../../components/buttonSave/ButtonSave';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/button/Button';
 import { ButtonType } from '../../../components/button/ButtonProps';
-import { graxaDisplaying } from './helpers/graxaDisplaying';
 import { languages } from './helpers/languages';
 import { mapStyles } from './helpers/mapStyles';
 import { mapsHelpers } from './helpers/mapsHelpers';
@@ -24,7 +23,6 @@ const MapDisplaying = () => {
   const navigate = useNavigate();
   const [targetLanguage, setTargetLanguage] = useState(languages[0]);
   const [targetMapHelper, setTargetMapHelper] = useState(mapsHelpers[0]);
-  const [targetGraxaDisplaying, setTargetGraxaDispaying] = useState(graxaDisplaying[0]);
   const mapType = useGetMapType();
   const dispatch = useAppDispatch();
 
@@ -96,19 +94,6 @@ const MapDisplaying = () => {
           </Grid>
         </Grid>
         <Grid item container direction={'column'}>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-              Отображение ретроградности грахи
-            </Typography>
-          </Grid>
-          <Grid item pt={1}>
-            <Options options={graxaDisplaying} value={targetGraxaDisplaying.value} setValue={setTargetGraxaDispaying}/>
-          </Grid>
-          <Grid item pt={2}>
-            <Divider color={'#37366B'}/>
-          </Grid>
-        </Grid>
-        <Grid item container direction={'column'}>
           <Grid item container direction={'row'} justifyContent={'space-between'}>
             <Grid item>
               <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
@@ -121,18 +106,6 @@ const MapDisplaying = () => {
           </Grid>
           <Grid item pt={2}>
             <Divider color={'#37366B'}/>
-          </Grid>
-        </Grid>
-        <Grid item container direction={'column'}>
-          <Grid item container direction={'row'} justifyContent={'space-between'}>
-            <Grid item>
-              <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={16} color={'white'} textAlign={'left'}>
-                Показ звезд
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Switch defaultChecked />
-            </Grid>
           </Grid>
         </Grid>
         <Grid item width={'100%'}>
