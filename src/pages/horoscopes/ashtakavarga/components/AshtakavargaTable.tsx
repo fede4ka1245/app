@@ -11,7 +11,7 @@ const AshtakavargaTable = ({ table, tableName }: AshtakavargaTableProps) => {
       <Typography fontFamily={'Playfair Display'} fontSize={'18px'} fontWeight={700} color={'white'} pb={2}>
         {tableName}
       </Typography>
-      <section className={'astro-processor-map'}>
+      <section className={'astro-processor-north-map'}>
         <AspectRatio ratio={1}>
           <img src={map} className={'image'}/>
         </AspectRatio>
