@@ -9,8 +9,15 @@ interface getGocharaProps extends HoroscopeData {
   dateEnd: string,
   planet1: string,
   constellation1: string,
+  direction1: string,
   planet2?: string,
   constellation2?: string,
+  direction2?: string,
+  isRasiMerge: boolean,
+  isMovementMerge: boolean,
+  condition: string,
+  firstRange: number [],
+  secondRange: any []
 }
 
 const getFormattedGochara = (gochara: any): TransitionsTableRow [] => {
@@ -50,7 +57,34 @@ const getFormattedGochara = (gochara: any): TransitionsTableRow [] => {
   return Array.from(newGochara);
 };
 
-export const getGochara = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich, dateStart, dateEnd, planet1, constellation1, planet2, constellation2 }: getGocharaProps) => {
+export const getGochara = async ({
+  userName,
+  latitude,
+  longitude,
+  date,
+  time,
+  hours,
+  minutes,
+  greenwich,
+  dateStart,
+  dateEnd,
+  planet1,
+  constellation1,
+  direction1,
+  planet2,
+  constellation2,
+  direction2,
+  isRasiMerge,
+  isMovementMerge,
+  condition,
+  firstRange,
+  secondRange
+}: getGocharaProps) => {
+  // eslint-disable-next-line camelcase
+  const [min_1, max_1] = firstRange;
+  // eslint-disable-next-line camelcase
+  const [min_2, max_2] = secondRange;
+
   const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-gochara/', {
     name_user: userName,
     longitude,
@@ -66,7 +100,20 @@ export const getGochara = async ({ userName, latitude, longitude, date, time, ho
     'title_1': 'D-1',
     'planet_2': planet2 || null,
     'constellation_2': constellation2 || null,
-    'title_2': constellation2 ? 'D-1' : null
+    'title_2': constellation2 ? 'D-1' : null,
+    'direction_1': direction1,
+    'direction_2': direction2 || null,
+    // eslint-disable-next-line camelcase
+    min_1,
+    // eslint-disable-next-line camelcase
+    max_1,
+    // eslint-disable-next-line camelcase
+    min_2,
+    // eslint-disable-next-line camelcase
+    max_2,
+    condition,
+    isMovementMerge,
+    isRasiMerge
   });
 
   return getFormattedGochara(data.data);

@@ -4,7 +4,22 @@ import Slider from '@mui/material/Slider';
 export default styled(Slider)(({ theme }) => ({
   height: 3,
   color: 'transparent',
-  padding: '13px 0',
+  margin: '20px 0 10px 0',
+  '& .MuiSlider-valueLabel': {
+    fontSize: 12,
+    fontWeight: 'normal',
+    top: -6,
+    backgroundColor: 'unset',
+    color: 'white',
+    '&:before': {
+      display: 'none'
+    },
+    '& *': {
+      background: 'transparent',
+      color: 'white',
+      fontFamily: 'Gilroy'
+    }
+  },
   '& .MuiSlider-thumb': {
     height: 20,
     width: 20,
@@ -39,6 +54,22 @@ export default styled(Slider)(({ theme }) => ({
       position: 'absolute',
       top: 'calc(50% - 10px)',
       borderRadius: '50%'
+    },
+    '& .MuiSlider-track': {
+      border: 'none'
+    },
+    '& .MuiSlider-rail': {
+      opacity: 0.5,
+      backgroundColor: '#bfbfbf'
+    },
+    '& .MuiSlider-mark': {
+      backgroundColor: '#bfbfbf',
+      height: 8,
+      width: 1,
+      '&.MuiSlider-markActive': {
+        opacity: 1,
+        backgroundColor: 'currentColor'
+      }
     }
   }
 }));

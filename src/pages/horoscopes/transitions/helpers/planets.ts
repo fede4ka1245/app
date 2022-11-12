@@ -4,8 +4,8 @@ export const planets = [
     'label': 'Солнце'
   },
   {
-    'value': 'Луна',
-    'label': 'Чара'
+    'value': 'Чара',
+    'label': 'Луна'
   },
   {
     'value': 'Марс',

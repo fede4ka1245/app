@@ -19,7 +19,7 @@ const Transitions = () => {
   const [targetTransition, setTargetTransition] = useState(transitionOptions[0]);
 
   return (
-    <Grid container direction={'column'} pt={2} overflow={'hidden'}>
+    <Grid container direction={'column'} pt={2}>
       <Grid item pb={3} pl={2} pr={2}>
         <Options options={transitionOptions} value={targetTransition.value} setValue={setTargetTransition}/>
       </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import plus from './assets/plus.svg';
 import minus from './assets/minus.svg';
@@ -6,35 +6,28 @@ import Input from '../../../../../components/input/Input';
 import classNames from 'classnames';
 import styles from './TransitionItem.module.scss';
 import Options from '../../../../../components/options/Options';
-import { Option } from '../../../../../models/types/Option';
 import Slider from '../../../../../components/slider/Slider';
 import { InputType } from '../../../../../components/input/InputType';
 import { planets } from '../../helpers/planets';
 import { constellationOptions } from '../../helpers/constellationOptions';
-
-const ignoredOptions = [
-  {
-    label: 'Переход планеты в новый знак',
-    value: 'newSign'
-  },
-  {
-    label: 'Характер движения планеты',
-    value: 'planet'
-  }
-];
+import { Option } from '../../../../../models/types/Option';
 
 const planetMovingOptions = [
   {
+    label: 'Все варианты',
+    value: 'D/R/S'
+  },
+  {
     label: 'Директное',
-    value: 'direct'
+    value: 'D'
   },
   {
     label: 'Ретроградное',
-    value: 'retro'
+    value: 'R'
   },
   {
     label: 'Стационарность',
-    value: 'stationary'
+    value: 'S'
   }
 ];
 
@@ -42,18 +35,15 @@ interface TransitionItemProps {
   label: string,
   setPlanet: (props?: any) => any,
   setConstellation: (props?: any) => any,
+  setRangeValue: (props: number []) => any,
+  rangeValue: number [],
+  setDirection: (props: Option) => any,
+  direction: string,
+  isOpen: boolean,
+  setIsOpen: (isOpen: boolean) => any
 }
 
-const TransitionItem = ({ label, setPlanet, setConstellation }: TransitionItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [ignoredOption, setIgnoredOption] = useState<Option>();
-  const [planetMovingOption, setPlanetMovingOption] = useState<Option>();
-  const [value, setValue] = React.useState<number[]>([20, 37]);
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
-
+const TransitionItem = ({ label, setPlanet, setConstellation, setRangeValue, rangeValue, setDirection, direction, isOpen, setIsOpen }: TransitionItemProps) => {
   const toggleIsOpen = () => {
     if (!setIsOpen) {
       return;
@@ -61,6 +51,14 @@ const TransitionItem = ({ label, setPlanet, setConstellation }: TransitionItemPr
 
     setIsOpen(!isOpen);
   };
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setRangeValue(newValue as number[]);
+  };
+
+  useEffect(() => {
+    setDirection(planetMovingOptions[0]);
+  }, []);
 
   return (
     <Box pt={2}>
@@ -84,21 +82,15 @@ const TransitionItem = ({ label, setPlanet, setConstellation }: TransitionItemPr
         </Grid>
         <Grid item pt={2}>
           <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
-            Игнорировать
-          </Typography>
-          <Options options={ignoredOptions} value={ignoredOption?.value} setValue={setIgnoredOption} />
-        </Grid>
-        <Grid item pt={2}>
-          <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
             Движение планеты
           </Typography>
-          <Options options={planetMovingOptions} value={planetMovingOption?.value} setValue={setPlanetMovingOption} />
+          <Options options={planetMovingOptions} value={direction} setValue={setDirection} />
         </Grid>
         <Grid item pt={2}>
           <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
             Положение планеты в градусе
           </Typography>
-          <Slider value={value} onChange={handleChange} disableSwap/>
+          <Slider max={30} value={rangeValue} onChange={handleChange} disableSwap valueLabelDisplay="on"/>
         </Grid>
       </Grid>}
     </Box>
