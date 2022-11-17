@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
-import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
 import { RashiTable } from '../models/types/RashiTable';
+import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
 
 export const getRashiTable = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData): Promise<RashiTable> => {
   const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-general-table/', {
@@ -15,14 +15,5 @@ export const getRashiTable = async ({ userName, latitude, longitude, date, time,
     tz_minutes: minutes || null
   });
 
-  const formatted = data.data.map((el: any) => {
-    const [key, value] = Object.entries(el)[0];
-
-    return {
-      mapName: key.replace('D', 'D-'),
-      table: getFormattedRashiTable((value as any).primaryData)
-    };
-  });
-
-  return Array.from(formatted);
+  return getFormattedRashiTable(data.data) as RashiTable;
 };

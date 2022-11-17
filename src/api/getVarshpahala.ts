@@ -2,8 +2,8 @@ import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
-import { getFormattedMaps } from '../helpers/getFormattedMaps';
 import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
+import { RashiTable } from '../models/types/RashiTable';
 
 interface GetVarshpahalaProps extends HoroscopeData {
   year: number
@@ -21,36 +21,27 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     year
   });
 
-  console.log(data);
-
-  const dashiTable = data?.data?.find((table: any) => table?.tableName === 'mudda_dasha').table;
-
-  const yogasTable = data?.data?.find((table: any) => table?.tableName === 'tajaka_yoga').table.map(({ badge, connection, planets }: any) => ({
-    badge: {
-      ...badge,
-      resize: badge.resize === 'icon-resize-full' ? 'disconnecting' : badge.resize === 'icon-resize-small' ? 'connecting' : undefined
-    },
-    connection,
-    planets
-  }));
-
-  const yearMasterTable = data?.data?.find((table: any) => table?.tableName === 'main').table.map((tableItem: any) => ({
+  const dashiTable = camelcaseKeys(data?.data?.dashiMap, { deep: true });
+  const horoscopeDate = data.data?.dt;
+  const muntha = data.data?.varshesha;
+  const yogasTable = camelcaseKeys(data?.data?.yogaTable, { deep: true });
+  const yearMasterTable = data?.data?.main.map((tableItem: any) => ({
     sign: tableItem?.point,
     planet: tableItem?.graxa,
     pvb: tableItem?.pvb
   }));
-  const yearMaster = data?.data?.find((table: any) => table?.ruler_year).ruler_year;
-
-  const rashiTable = getFormattedRashiTable(data?.data?.find((table: any) => table?.tableName === 'main_rashi').table.primaryData);
-
-  const varshpahalaMaps = getFormattedMaps(data?.data);
+  const yearMaster = data?.data?.ruler_year;
+  const rashiTable = getFormattedRashiTable(data?.data?.rashiMap) as RashiTable;
+  const varshpahalaMaps = camelcaseKeys(data?.data?.hororscopeMaps, { deep: true });
 
   return {
-    dashiTable: camelcaseKeys(dashiTable, { deep: true }),
-    yogasTable: camelcaseKeys(yogasTable, { deep: true }),
+    dashiTable,
+    yogasTable,
     yearMasterTable,
     yearMaster,
     rashiTable,
-    varshpahalaMaps
+    varshpahalaMaps,
+    horoscopeDate,
+    muntha
   };
 };

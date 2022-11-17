@@ -1,8 +1,22 @@
 import { RashiTableRow } from './RashiTableRow';
 
+export interface RashiTableParts {
+  primaryData: RashiTableRow [],
+  primaryUpagraha: RashiTableRow [],
+  secondaryUpagraha: RashiTableRow [],
+  transsaturnData: RashiTableRow [],
+  specialLagna: RashiTableRow [],
+}
+
 export interface RashiTableItem {
-  mapName: string,
-  table: RashiTableRow[]
+  tableName: string,
+  table: {
+    primaryData: RashiTableRow [],
+    primaryUpagraha: RashiTableRow [],
+    secondaryUpagraha: RashiTableRow [],
+    transsaturnData: RashiTableRow [],
+    specialLagna: RashiTableRow [],
+  }
 }
 
 export type RashiTable = Array<RashiTableItem>;

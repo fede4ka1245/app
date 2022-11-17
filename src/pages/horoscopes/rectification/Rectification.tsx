@@ -103,7 +103,7 @@ const Rectification = () => {
   const targetMapValue = useGetTargetMapValue();
 
   const rows = useMemo(() => {
-    return rashiTable.find((rashiTableItem) => rashiTableItem.mapName === targetMapValue)?.table || [];
+    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table.primaryData || [];
   }, [rashiTable, targetMapValue]);
 
   return (

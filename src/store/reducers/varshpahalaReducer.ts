@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DashiTableRow } from '../../models/types/DashiTableRow';
 import { YogaTableRow } from '../../models/types/YogaTable';
 import { YearMasterTableRow } from '../../models/types/YearMasterTableRow';
-import { RashiTableRow } from '../../models/types/RashiTableRow';
 import { MapOption } from '../../models/types/MapOption';
+import { RashiTable } from '../../models/types/RashiTable';
 
 interface VarshpahalaState {
   isVarshpahalaLoading: boolean,
@@ -11,7 +11,7 @@ interface VarshpahalaState {
   yogasTable: YogaTableRow[],
   yearMasterTable: YearMasterTableRow [],
   yearMaster: string,
-  varshpahalaRashiTable: RashiTableRow [],
+  varshpahalaRashiTable: RashiTable,
   isYearPickerActive: boolean,
   varshpahalaMaps: MapOption [],
 }
@@ -44,7 +44,7 @@ const varshpahalaReducer = createSlice({
     setYearMaster: (state, action: PayloadAction<string>) => {
       state.yearMaster = action.payload;
     },
-    setVarshpahalaRashiTable: (state, action: PayloadAction<RashiTableRow []>) => {
+    setVarshpahalaRashiTable: (state, action: PayloadAction<RashiTable>) => {
       state.varshpahalaRashiTable = action.payload;
     },
     setIsYearPickerActive: (state, action: PayloadAction<boolean>) => {

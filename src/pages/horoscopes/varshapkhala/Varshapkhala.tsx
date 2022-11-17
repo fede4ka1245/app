@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import YearPicker from '../../../components/yearPicker/YearPicker';
 import { Grid, IconButton, Typography } from '@mui/material';
 import Button from '../../../components/button/Button';
@@ -6,7 +6,11 @@ import planet from './img.png';
 import { getVarshpahala } from '../../../api/getVarshpahala';
 import {
   useGetDashiTable,
-  useGetHoroscopeUserInfo, useGetIsVarshpahalaLoading, useGetIsYearPickerActive, useGetVarshpahalaRashiTable,
+  useGetHoroscopeUserInfo,
+  useGetIsVarshpahalaLoading,
+  useGetIsYearPickerActive,
+  useGetTargetMapValue,
+  useGetVarshpahalaRashiTable,
   useGetYearMaster,
   useGetYearMasterTable,
   useGetYogasTable
@@ -40,10 +44,15 @@ const Varshapkhala = () => {
   const yearMaster = useGetYearMaster();
   const isYearPickerActive = useGetIsYearPickerActive();
   const rashiTable = useGetVarshpahalaRashiTable();
+  const targetMapValue = useGetTargetMapValue();
 
   const toggleIsYearPickerActive = useCallback(() => {
     dispatch(setIsYearPickerActive(!isYearPickerActive));
   }, [isYearPickerActive]);
+
+  const rashiTableRows = useMemo(() => {
+    return (rashiTable.find((rows) => rows.tableName === targetMapValue))?.table?.primaryData || [];
+  }, [rashiTable, targetMapValue]);
 
   const onCreateHoroscopeClick = useCallback(() => {
     dispatch(setIsVarshpahalaLoading(true));
@@ -100,7 +109,7 @@ const Varshapkhala = () => {
             <ButtonBack label={'Вернуться к выбору года'} onClick={toggleIsYearPickerActive} />
           </Grid>
           <Grid item>
-            <RashiTable rows={rashiTable} />
+            <RashiTable rows={rashiTableRows} />
           </Grid>
           <Grid item paddingTop={4} pl={2} pr={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
             <Button text={'Определить хозяина года'} onClick={toggleYearMasterModal} />
