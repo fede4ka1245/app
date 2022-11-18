@@ -1,36 +1,39 @@
+import { ZodiacSign } from '../../models/enums/ZodiacSign';
+
 export interface SignValueToMinutesProps {
-  sign: string,
+  sign: ZodiacSign,
   minutes?: number,
   degrees?: number
 }
 
 export const signDegreesToMinutes = ({ sign, degrees, minutes }: SignValueToMinutesProps) => {
-  const formattedSign = sign.substring(0, 2).toLowerCase();
   let signDegrees = 0;
 
-  if (formattedSign === 'ar') {
+  console.log(sign === ZodiacSign.Taurus, sign, ZodiacSign.Taurus);
+
+  if (sign === ZodiacSign.Aries) {
     signDegrees = 0;
-  } else if (formattedSign === 'ta') {
+  } else if (sign === ZodiacSign.Taurus) {
     signDegrees = 30;
-  } else if (formattedSign === 'ge') {
+  } else if (sign === ZodiacSign.Gemini) {
     signDegrees = 60;
-  } else if (formattedSign === 'ca') {
+  } else if (sign === ZodiacSign.Cancer) {
     signDegrees = 90;
-  } else if (formattedSign === 'le') {
+  } else if (sign === ZodiacSign.Leo) {
     signDegrees = 120;
-  } else if (formattedSign === 'vi') {
+  } else if (sign === ZodiacSign.Virgo) {
     signDegrees = 150;
-  } else if (formattedSign === 'li') {
+  } else if (sign === ZodiacSign.Libra) {
     signDegrees = 180;
-  } else if (formattedSign === 'sc') {
+  } else if (sign === ZodiacSign.Scorpio) {
     signDegrees = 210;
-  } else if (formattedSign === 'sa') {
+  } else if (sign === ZodiacSign.Sagittarius) {
     signDegrees = 240;
-  } else if (formattedSign === 'ca') {
+  } else if (sign === ZodiacSign.Capricorn) {
     signDegrees = 270;
-  } else if (formattedSign === 'aq') {
+  } else if (sign === ZodiacSign.Aquarius) {
     signDegrees = 300;
-  } else if (formattedSign === 'pi') {
+  } else if (sign === ZodiacSign.Pisces) {
     signDegrees = 330;
   }
 

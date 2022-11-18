@@ -1,4 +1,5 @@
 import { CurrentDeepSkyObject } from './CurrentDeepSkyObject';
+import { ZodiacSign } from '../enums/ZodiacSign';
 
 interface RashiPlanet {
   name: string,
@@ -8,7 +9,7 @@ interface RashiPlanet {
 
 export interface RashiTableRow {
   planet: RashiPlanet,
-  sign: string,
+  sign: ZodiacSign,
   degrees: number,
   minutes: number,
   naksantra: {

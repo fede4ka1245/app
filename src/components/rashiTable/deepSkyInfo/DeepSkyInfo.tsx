@@ -39,9 +39,9 @@ const DeepSkyInfo = ({ deepSkyObject, planet }: DeepSkyInfoProps) => {
                   </Typography>
                 </Grid>
                 <Grid item display={'flex'} pt={1}>
-                  <ZodiacSign zodiacSign={deepSkyObject.year.siderealSign} />
+                  {deepSkyObject?.year?.siderealSign && <ZodiacSign zodiacSign={deepSkyObject.year.siderealSign} />}
                   <Typography fontFamily={'Gilroy'} fontWeight={700} color={'white'} fontSize={'18px'} pl={1}>
-                    {deepSkyObject.year.siderealSigndegree}° {deepSkyObject.year.siderealMinutes}’
+                    {deepSkyObject?.year?.siderealSigndegree}° {deepSkyObject?.year?.siderealMinutes}’
                   </Typography>
                 </Grid>
               </Grid>
@@ -52,9 +52,9 @@ const DeepSkyInfo = ({ deepSkyObject, planet }: DeepSkyInfoProps) => {
                   </Typography>
                 </Grid>
                 <Grid item display={'flex'} pt={1}>
-                  <ZodiacSign zodiacSign={deepSkyObject.year.tropicalSign} />
+                  {deepSkyObject?.year?.tropicalSign && <ZodiacSign zodiacSign={deepSkyObject?.year?.tropicalSign} />}
                   <Typography fontFamily={'Gilroy'} fontWeight={700} color={'white'} fontSize={'18px'} pl={1}>
-                    {deepSkyObject.year.tropicalSigndegree}° {deepSkyObject.year.tropicalMinutes}’
+                    {deepSkyObject?.year?.tropicalSigndegree}° {deepSkyObject?.year?.tropicalMinutes}’
                   </Typography>
                 </Grid>
               </Grid>

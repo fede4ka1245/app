@@ -13,7 +13,7 @@ import {
 import RashiTable from '../../../components/rashiTable/RashiTable';
 import Dashi from '../dashi/Dashi';
 import { useAppDispatch } from '../../../store/store';
-import { setIsDeepSkyActive } from '../../../store/reducers/deepSkyReducer';
+import { setDeepSkyObjects, setIsDeepSkyActive } from '../../../store/reducers/deepSkyReducer';
 import { getDeepSky } from '../../../api/getDeepSky';
 import { RashiTableRow } from '../../../models/types/RashiTableRow';
 import { setRashiTable, setTargetMapValue } from '../../../store/reducers/horoscopesReducer';
@@ -24,6 +24,7 @@ import { signDegreesToMinutes } from '../../../helpers/deepSky/signDegreesToMinu
 import { isOrbis } from '../../../helpers/deepSky/isOrbis';
 import { getOrbis } from '../../../helpers/deepSky/getOrbis';
 import AppLoader from '../../../components/appLoader/AppLoader';
+import { getFormattedZodiacSign } from '../../../helpers/getFormattedZodiacSign';
 
 const NatMap = () => {
   const [isLoading, setIsLoading] = useState<boolean>();
@@ -62,11 +63,21 @@ const NatMap = () => {
             return Number(deepSkyYear.value) === Number(Math.round(year / 10) * 10);
           }) as DeepSkyYear;
 
+          if (!_year) {
+            return deepSkyObject;
+          }
+
           return {
             ...deepSkyObject,
-            year: _year
+            year: {
+              ..._year,
+              siderealSign: getFormattedZodiacSign(_year?.siderealSign),
+              tropicalSign: getFormattedZodiacSign(_year?.tropicalSign)
+            }
           };
         });
+
+        const targetDeepSkyObjects: CurrentDeepSkyObject [] = [];
 
         const _primaryData = primaryData.map((rashiTableRow: RashiTableRow) => {
           const deepSkyObject = currentDeepSkyObjects.find((deepSkyObject) => {
@@ -83,6 +94,10 @@ const NatMap = () => {
 
             const orbis = getOrbis(deepSkyObject.stellarObjectType, rashiTableRow.planet.name);
 
+            if (isOrbis(planetMinutes, deepSkyObjectMinutes, orbis)) {
+              targetDeepSkyObjects.push(deepSkyObject);
+            }
+
             return isOrbis(planetMinutes, deepSkyObjectMinutes, orbis);
           });
 
@@ -91,6 +106,8 @@ const NatMap = () => {
             deepSkyObject
           };
         });
+
+        dispatch(setDeepSkyObjects(targetDeepSkyObjects));
 
         const _rashiTable = Array.from(rashiTable);
 

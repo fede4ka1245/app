@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Typography } from '@mui/material';
 import img from '../../pages/horoscopes/natMap/img.png';
-import sign from '../../pages/horoscopes/natMap/sign.svg';
 import Info from './info/Info';
 import arrowUp from './arrowUp.svg';
 import arrowDown from './arrowDown.svg';
 import classNames from 'classnames';
 import styles from './Table.module.scss';
 import ZodiacSign from '../zodiacSign/ZodiacSign';
+import { ZodiacSign as Sign } from '../../models/enums/ZodiacSign';
 
 const Row = ({ textColor }: any) => {
   const [isInfoOpen, setIsOpen] = useState(false);
@@ -39,7 +39,7 @@ const Row = ({ textColor }: any) => {
         {isInfoOpen && <img src={arrowUp} width={28} height={28}/>}
       </td>
       <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
-        <ZodiacSign zodiacSign={'вес'} />
+        <ZodiacSign zodiacSign={Sign.Scorpio} />
       </td>
       <td className={classNames({ [styles.isOpened]: isInfoOpen })}>
         <Typography fontFamily={'Gilroy'} fontWeight={700} color={fontColor} fontSize={'15px'}>

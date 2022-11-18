@@ -12,37 +12,36 @@ import Aries from './signs/Aries';
 import Capricorn from './signs/Capricorn';
 import Libra from './signs/Libra';
 import Taurus from './signs/Taurus';
+import { ZodiacSign as Sign, ZodiacSignType } from '../../models/enums/ZodiacSign';
 
 interface ZodiacSignProps extends SignProps {
-  zodiacSign: string
+  zodiacSign: ZodiacSignType
 }
 
 const ZodiacSign = ({ width, height, zodiacSign }: ZodiacSignProps) => {
-  const formattedZodiacSign = zodiacSign.toLowerCase().substring(0, 2);
-
-  if (formattedZodiacSign === 'le') {
+  if (zodiacSign === Sign.Leo) {
     return <Leo />;
-  } else if (formattedZodiacSign === 'pi' || formattedZodiacSign === 'fi') {
+  } else if (zodiacSign === Sign.Pisces) {
     return <Pisce />;
-  } else if (formattedZodiacSign === 'aq') {
+  } else if (zodiacSign === Sign.Aquarius) {
     return <Aquarius/>;
-  } else if (formattedZodiacSign === 'ca') {
+  } else if (zodiacSign === Sign.Cancer) {
     return <Cancer />;
-  } else if (formattedZodiacSign === 'sc') {
+  } else if (zodiacSign === Sign.Scorpio) {
     return <Scorpio />;
-  } else if (formattedZodiacSign === 'vi') {
+  } else if (zodiacSign === Sign.Virgo) {
     return <Virgo />;
-  } else if (formattedZodiacSign === 'sa') {
+  } else if (zodiacSign === Sign.Sagittarius) {
     return <Sagittarius />;
-  } else if (formattedZodiacSign === 'ge') {
+  } else if (zodiacSign === Sign.Gemini) {
     return <Gemini />;
-  } else if (formattedZodiacSign === 'ar') {
+  } else if (zodiacSign === Sign.Aries) {
     return <Aries />;
-  } else if (formattedZodiacSign === 'ca') {
+  } else if (zodiacSign === Sign.Capricorn) {
     return <Capricorn />;
-  } else if (formattedZodiacSign === 'li') {
+  } else if (zodiacSign === Sign.Libra) {
     return <Libra />;
-  } else if (formattedZodiacSign === 'ta') {
+  } else if (zodiacSign === Sign.Taurus) {
     return <Taurus />;
   } else {
     return <></>;

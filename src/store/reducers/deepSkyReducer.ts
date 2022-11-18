@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DeepSkyObject } from '../../models/types/DeepSkyObject';
+import { CurrentDeepSkyObject } from '../../models/types/CurrentDeepSkyObject';
 
 interface deepSkyState {
   isDeepSkyActive: boolean,
-  deepSkyObjects: DeepSkyObject [],
+  deepSkyObjects: CurrentDeepSkyObject [],
 }
 
 const deepSkyReducer = createSlice({
@@ -16,7 +17,7 @@ const deepSkyReducer = createSlice({
     setIsDeepSkyActive: (state, action: PayloadAction<boolean>) => {
       state.isDeepSkyActive = action.payload;
     },
-    setDeepSkyObjects: (state, action: PayloadAction<DeepSkyObject []>) => {
+    setDeepSkyObjects: (state, action: PayloadAction<CurrentDeepSkyObject []>) => {
       state.deepSkyObjects = action.payload;
     }
   }
