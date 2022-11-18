@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import northMap from './assets/northMap.svg';
 import southMap from './assets/southMap.svg';
+import deepSkyNorthMap from './assets/deepSkyNorthMap.png';
+import deepSkySouthMap from './assets/deepSkySouthMap.png';
 import AspectRatio from '@mui/joy/AspectRatio';
 import { MapSection } from '../../models/types/MapSection';
 import classNames from 'classnames';
@@ -13,7 +15,8 @@ import { MapTypeEnum } from '../../models/types/MapType';
 interface MapProps {
   mapSections?: Array<MapSection>,
   isTransit?: boolean,
-  mapTransitSections?: Array<MapSection>
+  mapTransitSections?: Array<MapSection>,
+  isDeepSky?: boolean
 }
 
 const getAspects = (targetAspectIndex: number) => {
@@ -35,7 +38,7 @@ const getAspects = (targetAspectIndex: number) => {
   return aspects[targetAspectIndex - 1];
 };
 
-const Map = ({ mapSections, isTransit, mapTransitSections }: MapProps) => {
+const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps) => {
   const [targetAspectIndex, setTargetAspectIndex] = useState<number>();
   const [selectedSector, setSelectedSector] = useState<number | undefined>(undefined);
   const aspects = useMemo<number [] | undefined>(() => {
@@ -57,13 +60,16 @@ const Map = ({ mapSections, isTransit, mapTransitSections }: MapProps) => {
         'transit-north': isTransit && isNorthType,
         'transit-south': isTransit && !isNorthType,
         'astro-processor-north-map': isNorthType,
-        'astro-processor-south-map': !isNorthType
+        'astro-processor-south-map': !isNorthType,
+        'deep-sky': isDeepSky
       })}
     >
       <div className={'blur'}/>
       <AspectRatio ratio={1}>
-        { !isNorthType && <img src={southMap} className={'image'}/> }
-        { isNorthType && <img src={northMap} className={'image'}/> }
+        { !isNorthType && !isDeepSky && <img src={southMap} className={'image'}/> }
+        { isNorthType && !isDeepSky && <img src={northMap} className={'image'}/> }
+        { !isNorthType && isDeepSky && <img src={deepSkySouthMap} className={'image'}/> }
+        { isNorthType && isDeepSky && <img src={deepSkyNorthMap} className={'image'}/> }
       </AspectRatio>
       {mapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
         <MapSector

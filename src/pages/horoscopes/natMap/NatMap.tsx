@@ -115,6 +115,12 @@ const NatMap = () => {
     }
   }, [targetMapValue]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(setIsDeepSkyActive(false));
+    };
+  }, []);
+
   return (
     <>
       <AppLoader isLoading={isLoading}/>

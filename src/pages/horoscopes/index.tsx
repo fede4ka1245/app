@@ -12,7 +12,7 @@ import { useHideNavbar } from '../../hooks/useHideNavbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Horoscopes.scss';
 import {
-  useGetHoroscopeUserInfo, useGetIsTransitionMapsActive, useGetIsYearPickerActive,
+  useGetHoroscopeUserInfo, useGetIsDeepSkyActive, useGetIsTransitionMapsActive, useGetIsYearPickerActive,
   useGetMaps,
   useGetTargetMapValue, useGetTransitionMaps,
   useGetVarshpahalaMaps
@@ -67,6 +67,7 @@ const Index = () => {
   const isYearPickerActive = useGetIsYearPickerActive();
   const isTransitionMapsActive = useGetIsTransitionMapsActive();
   const transitionMaps = useGetTransitionMaps();
+  const isDeepSkyActive = useGetIsDeepSkyActive();
 
   const getTransitionMapSections = useCallback((index: number): undefined | MapSection [] => {
     if (!transitionMaps.length) {
@@ -150,7 +151,7 @@ const Index = () => {
         >
           {currentMaps.map((map, index) => (
             <SwiperSlide key={map.value}>
-              <Map mapSections={map.mapSections} mapTransitSections={getTransitionMapSections(index)} isTransit={isTransitionMapsActive}/>
+              <Map isDeepSky={isDeepSkyActive} mapSections={map.mapSections} mapTransitSections={getTransitionMapSections(index)} isTransit={isTransitionMapsActive}/>
             </SwiperSlide>
           ))}
         </Swiper>
