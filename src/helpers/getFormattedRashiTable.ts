@@ -1,14 +1,18 @@
 import { RashiTableRow } from '../models/types/RashiTableRow';
 import camelcaseKeys from 'camelcase-keys';
 import { RashiTable } from '../models/types/RashiTable';
+import { getFormattedZodiacSign } from './getFormattedZodiacSign';
 
 export const getFormtattedRashiRow = (rasiTable: Array<any>): RashiTableRow [] => {
   return [...rasiTable.map((tableItem: any) => {
+    const [degrees, minutes] = tableItem.cpuxuta[0].slice(0, -4).replace('°', '').replace("'", '').split(' ').map(Number);
+
     return {
       ...tableItem,
       planet: tableItem.planet,
-      sign: tableItem.rashi,
-      sphuta: tableItem.cpuxuta[0].slice(0, -4),
+      sign: getFormattedZodiacSign(tableItem.rashi),
+      degrees,
+      minutes,
       naksantra: tableItem.naksantra
     };
   })];

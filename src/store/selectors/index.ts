@@ -151,3 +151,11 @@ export const useGetIsTransitionMapsActive = () => {
 export const useGetMapType = () => {
   return useAppSelector((state) => state?.settings.mapType);
 };
+
+export const useGetIsDeepSkyActive = () => {
+  return useAppSelector((state) => state?.deepSky.isDeepSkyActive);
+};
+
+export const useGetDeepSkyObjects = () => {
+  return useAppSelector((state) => state?.deepSky.deepSkyObjects);
+};

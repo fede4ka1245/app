@@ -1,17 +1,17 @@
 .table {
   width: 100%;
+}
 
-  & > * {
-    width: 100%;
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    display: inline-grid;
-    grid-template-columns: 2fr 1fr 1fr 1.3fr;
-    height: 32px;
+.row {
+  width: 100%;
+  font-family: 'Gilroy', sans-serif;
+  font-style: normal;
+  display: inline-grid;
+  grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr 1.3fr;
+  height: 32px;
 
-    &:nth-child(2n) {
-      background: rgba(255, 255, 255, 0.1);
-    }
+  &:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -58,3 +58,12 @@
   line-height: 32px;
   color: rgba(255, 255, 255, 0.5);
 }
+
+.isDeepSky {
+  * {
+    background: white !important;
+    color: black !important;
+  }
+
+  background: white !important;
+  color: black !important;}

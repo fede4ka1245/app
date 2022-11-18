@@ -8,6 +8,7 @@ import zonesReducer from './reducers/zonesReducer';
 import transitionReduser from './reducers/transitionReduser';
 import settingsReducer from './reducers/settingsReducer';
 import { persistStore, persistReducer } from 'redux-persist';
+import deepSkyReducer from './reducers/deepSkyReducer';
 import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   varshpahala: varshpahalaReducer,
   zones: zonesReducer,
   transition: transitionReduser,
-  settings: settingsReducer
+  settings: settingsReducer,
+  deepSky: deepSkyReducer
 });
 
 const persistConfig = {

@@ -1,3 +1,5 @@
+import { CurrentDeepSkyObject } from './CurrentDeepSkyObject';
+
 interface RashiPlanet {
   name: string,
   additionalInfo: string,
@@ -7,9 +9,11 @@ interface RashiPlanet {
 export interface RashiTableRow {
   planet: RashiPlanet,
   sign: string,
-  sphuta: string,
+  degrees: number,
+  minutes: number,
   naksantra: {
     mainInfo: string,
     additionalInfo: string
-  }
+  },
+  deepSkyObject?: CurrentDeepSkyObject
 }

@@ -12,7 +12,8 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     name: 'vim',
     part_world: getFormattedGreenwich(greenwich),
     tz_hour: Number(hours) || null,
-    tz_minutes: minutes || null
+    tz_minutes: minutes || null,
+    next_period: 1
   });
 
   const { data: chr } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-dashi/', {
@@ -23,8 +24,11 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     name: 'chr',
     part_world: getFormattedGreenwich(greenwich),
     tz_hour: Number(hours) || null,
-    tz_minutes: minutes || null
+    tz_minutes: minutes || null,
+    next_period: 1
   });
+
+  console.log(chr);
 
   return { vim: camelcaseKeys(vim?.data, { deep: true }), chr: camelcaseKeys(chr?.data, { deep: true }) };
 };

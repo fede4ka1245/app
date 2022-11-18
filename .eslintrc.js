@@ -27,6 +27,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     forceConsistentCasingInFileNames: 'off',
     'no-trailing-spaces': 'off',
-    'quote-props': 'off'
+    'quote-props': 'off',
+    'no-mixed-operators': 'off'
   }
 };

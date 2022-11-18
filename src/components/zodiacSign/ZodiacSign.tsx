@@ -18,31 +18,31 @@ interface ZodiacSignProps extends SignProps {
 }
 
 const ZodiacSign = ({ width, height, zodiacSign }: ZodiacSignProps) => {
-  const formattedZodiacSign = zodiacSign.toLowerCase();
+  const formattedZodiacSign = zodiacSign.toLowerCase().substring(0, 2);
 
-  if (formattedZodiacSign === 'лев') {
+  if (formattedZodiacSign === 'le') {
     return <Leo />;
-  } else if (formattedZodiacSign === 'рыб') {
+  } else if (formattedZodiacSign === 'pi' || formattedZodiacSign === 'fi') {
     return <Pisce />;
-  } else if (formattedZodiacSign === 'вод') {
+  } else if (formattedZodiacSign === 'aq') {
     return <Aquarius/>;
-  } else if (formattedZodiacSign === 'рак') {
+  } else if (formattedZodiacSign === 'ca') {
     return <Cancer />;
-  } else if (formattedZodiacSign === 'ско') {
+  } else if (formattedZodiacSign === 'sc') {
     return <Scorpio />;
-  } else if (formattedZodiacSign === 'дев') {
+  } else if (formattedZodiacSign === 'vi') {
     return <Virgo />;
-  } else if (formattedZodiacSign === 'стр') {
+  } else if (formattedZodiacSign === 'sa') {
     return <Sagittarius />;
-  } else if (formattedZodiacSign === 'бли') {
+  } else if (formattedZodiacSign === 'ge') {
     return <Gemini />;
-  } else if (formattedZodiacSign === 'ове') {
+  } else if (formattedZodiacSign === 'ar') {
     return <Aries />;
-  } else if (formattedZodiacSign === 'коз') {
+  } else if (formattedZodiacSign === 'ca') {
     return <Capricorn />;
-  } else if (formattedZodiacSign === 'вес') {
+  } else if (formattedZodiacSign === 'li') {
     return <Libra />;
-  } else if (formattedZodiacSign === 'тел') {
+  } else if (formattedZodiacSign === 'ta') {
     return <Taurus />;
   } else {
     return <></>;
