@@ -1,0 +1,19 @@
+.toolTip {
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #CDCDDD;
+  box-shadow: 5px 5px 20px rgba(174, 174, 192, 0.5);
+  padding: 5px 10px;
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.text {
+  font-family: 'Gilroy', sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+.objectType {
+  font-weight: bold;
+  max-width: 100px;
+  margin-right: 8px;
+}
