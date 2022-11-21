@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import northMap from './assets/northMap.svg';
 import southMap from './assets/southMap.svg';
 import deepSkyNorthMap from './assets/deepSkyNorthMap.png';
@@ -54,6 +54,22 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
     return MapType === MapTypeEnum.North;
   }, [MapType]);
 
+  const formattedMapSections = useMemo(() => {
+    if (!mapSections) {
+      return;
+    }
+
+    return Array.from(mapSections)?.sort((a, b) => Number(a?.index) - Number(b?.index));
+  }, [mapSections]);
+
+  const getOrder = useCallback((index: number, number: number) => {
+    if (isNorthType) {
+      return (Number(number) + 5) % 12 + 1;
+    }
+
+    return index;
+  }, [isNorthType]);
+
   return (
     <section
       className={classNames({
@@ -71,7 +87,7 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
         { !isNorthType && isDeepSky && <img src={deepSkySouthMap} className={'image'}/> }
         { isNorthType && isDeepSky && <img src={deepSkyNorthMap} className={'image'}/> }
       </AspectRatio>
-      {mapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
+      {formattedMapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
         <MapSector
           key={index}
           number={number}
@@ -83,10 +99,11 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
           setTargetAspectIndex={setTargetAspectIndex}
           selectedSector={selectedSector}
           setSelectedSector={setSelectedSector}
+          isNorthMap={isNorthType}
         />
       ))}
       {isTransit && mapTransitSections?.map(({ mainInfo, index, number }) => (
-        <div key={index} className={`transited-sector transited-sector-${(Number(number) + 5) % 12 + 1}`}>
+        <div key={index} className={`transited-sector transited-sector-${getOrder(index, number)}`}>
           <h3>
             {mainInfo}
           </h3>

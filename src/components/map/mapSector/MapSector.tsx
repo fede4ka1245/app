@@ -15,10 +15,11 @@ interface MapSectorProps {
   targetAspectIndex?: number,
   setTargetAspectIndex: (targetAspectIndex: number | undefined) => any,
   selectedSector: number | undefined,
-  setSelectedSector: (selectedSector: number | undefined) => any
+  setSelectedSector: (selectedSector: number | undefined) => any,
+  isNorthMap: boolean
 }
 
-const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAspectIndex, setTargetAspectIndex, selectedSector, setSelectedSector }: MapSectorProps) => {
+const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAspectIndex, setTargetAspectIndex, selectedSector, setSelectedSector, isNorthMap }: MapSectorProps) => {
   const isSelected = useMemo(() => {
     return index === selectedSector;
   }, [index, selectedSector]);
@@ -66,8 +67,16 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
     return deepSkyObjects.filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(index));
   }, [deepSkyObjects, index]);
 
+  const order = useMemo(() => {
+    if (isNorthMap) {
+      return (Number(number) + 5) % 12 + 1;
+    }
+
+    return index;
+  }, [index, number, isNorthMap]);
+
   return (
-    <div className={`sector sector-${(Number(number) + 5) % 12 + 1}`}>
+    <div className={`sector sector-${order}`}>
       <div className={'info'}>
         {!isSelected && (
           <>
