@@ -68,13 +68,13 @@ const Index = () => {
   const isTransitionMapsActive = useGetIsTransitionMapsActive();
   const transitionMaps = useGetTransitionMaps();
   const isDeepSkyActive = useGetIsDeepSkyActive();
-
-  const getTransitionMapSections = useCallback((index: number): undefined | MapSection [] => {
+  
+  const mapTransitSections = useMemo<MapSection [] | undefined>(() => {
     if (!transitionMaps.length) {
       return;
     }
 
-    return transitionMaps[index].mapSections;
+    return transitionMaps[0].mapSections;
   }, [transitionMaps]);
 
   const timeZoneOffset = useMemo(() => {
@@ -151,7 +151,12 @@ const Index = () => {
         >
           {currentMaps.map((map, index) => (
             <SwiperSlide key={map.value}>
-              <Map isDeepSky={isDeepSkyActive} mapSections={map.mapSections} mapTransitSections={getTransitionMapSections(index)} isTransit={isTransitionMapsActive}/>
+              <Map
+                isDeepSky={isDeepSkyActive}
+                mapSections={map.mapSections}
+                mapTransitSections={mapTransitSections}
+                isTransit={isTransitionMapsActive}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

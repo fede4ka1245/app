@@ -1,7 +1,7 @@
 import React, { useMemo, useRef } from 'react';
 import styles from './MapSector.module.scss';
 import classNames from 'classnames';
-import { useGetDeepSkyObjects } from '../../../store/selectors';
+import { useGetDeepSkyObjects, useGetIsDeepSkyActive } from '../../../store/selectors';
 import { CurrentDeepSkyObject } from '../../../models/types/CurrentDeepSkyObject';
 import DeepSkyObject from '../../deepSkyObject/DeepSkyObject';
 import { Grid } from '@mui/material';
@@ -60,6 +60,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
   };
 
   const deepSkyObjects = useGetDeepSkyObjects();
+  const isDeepSkyActive = useGetIsDeepSkyActive();
 
   const sectorDeepSkyObjects = useMemo(() => {
     return deepSkyObjects.filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(index));
@@ -76,11 +77,11 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
             <h3 className={'main-info'}>
               {mainInfo}
             </h3>
-            <Grid display={'flex'}>
+            {isDeepSkyActive && !!deepSkyObjects.length && <Grid display={'flex'}>
               {sectorDeepSkyObjects.map((deepSkyObject, index) => (
                 <DeepSkyObject key={index} deepSkyObject={deepSkyObject} />
               ))}
-            </Grid>
+            </Grid>}
           </>
         )}
       </div>
