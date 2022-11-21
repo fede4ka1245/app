@@ -5,11 +5,11 @@ export const constellationOptions = [
   },
   {
     'value': 'Ⓢ в Овен',
-    'label': 'в Овене'
+    'label': 'в Овне'
   },
   {
     'value': 'Ⓢ в Телец',
-    'label': 'в Телеце'
+    'label': 'в Тельце'
   },
   {
     'value': 'Ⓢ в Близнецы',
