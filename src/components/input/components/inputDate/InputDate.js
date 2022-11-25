@@ -32,6 +32,26 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
     return new Date(year, Number(month) - 1, day);
   }, [value]);
 
+  const beforeMaskedValueChange = (newState, oldState, userInput) => {
+    let { value: _value } = newState;
+    let selection = newState.selection;
+    let cursorPosition = selection ? selection.start : null;
+
+    // keep minus if entered by user
+    if (_value.endsWith('.') && userInput !== '.' && value.endsWith('.')) {
+      if (cursorPosition === _value.length) {
+        cursorPosition--;
+        selection = { start: cursorPosition, end: cursorPosition };
+      }
+      _value = _value.slice(0, -1);
+    }
+
+    return {
+      value: _value,
+      selection
+    };
+  }
+
   return (
     <>
       <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
@@ -42,6 +62,8 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
             value={value}
             {...props}
             type="tel"
+            beforeMaskedValueChange={beforeMaskedValueChange}
+            maskChar={null}
           />
         </Grid>
         <Grid item pr={'15px'} pl={'5px'}>

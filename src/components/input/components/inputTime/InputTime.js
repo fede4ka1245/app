@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import InputMask from 'react-input-mask';
 import {Box, ClickAwayListener, Grid, TextField} from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -15,17 +15,9 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
   const [isOpen, setIsOpen] = useState(false);
 
   const onDateChange = (date) => {
-    const formattedDate = moment(date).format('HH:mm');
+    const formattedDate = moment(date).format('HH:mm:ss');
 
     onChange(formattedDate);
-  };
-
-  const onInputFocus = () => {
-    setIsOpen(true);
-
-    if (onFocus) {
-      onFocus();
-    }
   };
 
   const onClickAway = () => {
@@ -37,21 +29,58 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
       return null;
     }
 
-    const [hour, minutes] = value.split(':');
-    return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), hour, minutes);
+    const [hour, minutes, seconds] = value.split(':');
+    return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), hour, minutes, seconds);
   }, [value]);
+
+  const beforeMaskedValueChange = (newState, oldState, userInput) => {
+    let { value: _value } = newState;
+    let selection = newState.selection;
+    let cursorPosition = selection ? selection.start : null;
+
+    // keep minus if entered by user
+    if (_value.endsWith(':') && userInput !== ':' && value.endsWith(':')) {
+      if (cursorPosition === _value.length) {
+        cursorPosition--;
+        selection = { start: cursorPosition, end: cursorPosition };
+      }
+      _value = _value.slice(0, -1);
+    }
+
+    return {
+      value: _value,
+      selection
+    };
+  }
+
+  const onBlur = useCallback(() => {
+    if (!value.includes(':')) {
+      return;
+    }
+
+    const hours = value.split(':')[0] || '00';
+    const minutes = value.split(':')[1] || '00';
+    const seconds = value.split(':')[2] || '00';
+
+    if (value.endsWith(':')) {
+      onChange(`${hours}:${minutes}:${seconds}`);
+    }
+  }, [value])
 
   return (
     <>
       <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
         <Grid item flex={1} height={'100%'}>
           <InputMask
+            maskChar={null}
             onChange={(event) => onChange(event.target.value)}
-            mask="99:99"
+            mask="99:99:99"
             value={value}
             {...props}
             autoComplete="new-password"
             type="tel"
+            beforeMaskedValueChange={beforeMaskedValueChange}
+            onBlur={onBlur}
           />
         </Grid>
         <Grid item pr={'15px'} pl={'5px'}>

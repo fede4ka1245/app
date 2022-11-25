@@ -10,16 +10,52 @@ import ButtonPrevForward from './components/buttonPrevForward/ButtonPrevForward'
 import RashiTable from '../../../components/rashiTable/RashiTable';
 import Dashi from '../dashi/Dashi';
 
+enum TimeOptionValue {
+  ONE_MINUTE,
+  FIVE_MINUTES,
+  THIRTY_SEC,
+  TEN_SEC,
+  ONE_SEC
+}
+
+type ITimeOptionValue = TimeOptionValue.ONE_MINUTE | TimeOptionValue.FIVE_MINUTES | TimeOptionValue.THIRTY_SEC | TimeOptionValue.TEN_SEC | TimeOptionValue.ONE_SEC;
+
 const timeOptions = [
   {
-    label: '1 мин.',
-    value: 'ONE_MINUTE'
+    label: '5 мин.',
+    value: TimeOptionValue.FIVE_MINUTES
   },
   {
-    label: '5 мин.',
-    value: 'FIVE_MINUTES'
+    label: '1 мин.',
+    value: TimeOptionValue.ONE_MINUTE
+  },
+  {
+    label: '30 сек.',
+    value: TimeOptionValue.THIRTY_SEC
+  },
+  {
+    label: '10 сек.',
+    value: TimeOptionValue.TEN_SEC
+  },
+  {
+    label: '1 сек.',
+    value: TimeOptionValue.ONE_SEC
   }
 ];
+
+const getMsTime = (value: ITimeOptionValue) => {
+  if (value === TimeOptionValue.FIVE_MINUTES) {
+    return 5 * 60 * 1000;
+  } else if (value === TimeOptionValue.ONE_MINUTE) {
+    return 60 * 1000;
+  } else if (value === TimeOptionValue.THIRTY_SEC) {
+    return 30 * 1000;
+  } else if (value === TimeOptionValue.TEN_SEC) {
+    return 10 * 1000;
+  } else {
+    return 1000;
+  }
+};
 
 const Rectification = () => {
   const [date, setDate] = useState('');
@@ -71,24 +107,23 @@ const Rectification = () => {
 
   const targetUserDate = useMemo(() => {
     const [day, month, year] = date.split('.').map(Number);
-    const [hours, minutes] = time.split(':').map(Number);
+    const [hours, minutes, seconds] = time.split(':').map(Number);
 
-    return new Date(year, month - 1, day, hours, minutes);
+    return new Date(year, month - 1, day, hours, minutes, seconds);
   }, [date, time]);
 
-  const onButtonForwardClick = useCallback((isForward: boolean) => {
+  const onChangeTimeButtonClick = useCallback((isForward: boolean) => {
     let date;
 
-    if (isForward) {
-      date = new Date(forwardTimeOption.value === 'FIVE_MINUTES'
-        ? targetUserDate.getTime() + 5 * 60 * 1000
-        : targetUserDate.getTime() + 60 * 1000);
+    if (isForward && forwardTimeOption.value) {
+      date = new Date(targetUserDate.getTime() + getMsTime(forwardTimeOption.value as ITimeOptionValue));
+    } else if (prevTimeOption.value) {
+      date = new Date(targetUserDate.getTime() - getMsTime(prevTimeOption.value as ITimeOptionValue));
     } else {
-      date = new Date(prevTimeOption.value === 'FIVE_MINUTES'
-        ? targetUserDate.getTime() - 5 * 60 * 1000
-        : targetUserDate.getTime() - 60 * 1000);
+      return;
     }
 
+    const seconds = String(date.getSeconds()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const hours = String(date.getHours()).padStart(2, '0');
     const year = String(date.getFullYear()).padStart(2, '0');
@@ -96,7 +131,7 @@ const Rectification = () => {
     const day = String(date.getDate()).padStart(2, '0');
 
     setDate(`${day}.${month}.${year}`);
-    setTime(`${hours}:${minutes}`);
+    setTime(`${hours}:${minutes}:${seconds}`);
   }, [forwardTimeOption, prevTimeOption, targetUserDate]);
 
   const rashiTable = useGetRashiTable();
@@ -119,7 +154,7 @@ const Rectification = () => {
         </Grid>
         <Grid item container flexDirection={'row'} display={'flex'} pb={2}>
           <Grid item width={'40px'} mr={1}>
-            <ButtonPrevForward onClick={() => onButtonForwardClick(false)} type={'prev'}/>
+            <ButtonPrevForward onClick={() => onChangeTimeButtonClick(false)} type={'prev'}/>
           </Grid>
           <Grid item flex={1} mr={2}>
             <Input placeholder='Шаг назад' options={timeOptions} setTargetOption={setPrevTimeOption} targetOption={prevTimeOption} inputType={InputType.options}/>
@@ -128,7 +163,7 @@ const Rectification = () => {
             <Input placeholder='Шаг вперед' options={timeOptions} setTargetOption={setForwardTimeOption} targetOption={forwardTimeOption} inputType={InputType.options}/>
           </Grid>
           <Grid item width={'40px'}>
-            <ButtonPrevForward onClick={() => onButtonForwardClick(true)} type={'forward'}/>
+            <ButtonPrevForward onClick={() => onChangeTimeButtonClick(true)} type={'forward'}/>
           </Grid>
         </Grid>
         <Grid item pt={2}>

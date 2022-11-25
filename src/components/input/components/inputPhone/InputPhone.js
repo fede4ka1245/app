@@ -18,6 +18,7 @@ const InputTime = ({ value, onChange, ...props }) => {
         name="phone_number"
         value={value}
         {...props}
+        maskChar={null}
       />
     </>
   );
