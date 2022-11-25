@@ -28,7 +28,5 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     next_period: 1
   });
 
-  console.log(chr);
-
   return { vim: camelcaseKeys(vim?.data, { deep: true }), chr: camelcaseKeys(chr?.data, { deep: true }) };
 };

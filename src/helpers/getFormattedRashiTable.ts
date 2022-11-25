@@ -7,8 +7,6 @@ export const getFormtattedRashiRow = (rasiTable: Array<any>): RashiTableRow [] =
   return [...rasiTable.map((tableItem: any) => {
     const [degrees, minutes] = tableItem.cpuxuta[0].slice(0, -4).replace('°', '').replace("'", '').split(' ').map(Number);
 
-    console.log(getFormattedZodiacSign(tableItem.rashi));
-
     return {
       ...tableItem,
       planet: tableItem.planet,

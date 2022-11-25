@@ -9,8 +9,6 @@ export interface SignValueToMinutesProps {
 export const signDegreesToMinutes = ({ sign, degrees, minutes }: SignValueToMinutesProps) => {
   let signDegrees = 0;
 
-  console.log(sign === ZodiacSign.Taurus, sign, ZodiacSign.Taurus);
-
   if (sign === ZodiacSign.Aries) {
     signDegrees = 0;
   } else if (sign === ZodiacSign.Taurus) {
