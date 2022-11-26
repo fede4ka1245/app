@@ -1,6 +1,8 @@
 import { AshtakavargaTableRow } from './AshtakavargaTableRow';
+import { MapType } from './MapType';
 
 export interface AshtakavargaTable {
   tableName: string,
-  table: AshtakavargaTableRow []
+  table: AshtakavargaTableRow [],
+  mapType: MapType
 }
