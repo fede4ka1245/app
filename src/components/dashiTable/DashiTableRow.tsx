@@ -67,7 +67,7 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
               </svg>}
             </IconButton>}
           </Grid>
-          <Grid item>
+          <Grid item pl={'5px'}>
             { planetsRowItem }
           </Grid>
         </Grid>
