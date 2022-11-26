@@ -9,7 +9,7 @@ import moment from 'moment';
 import Modal from "../../../modal/Modal";
 import datePickerImage from './datePicker.svg';
 
-const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
+const InputDate = ({ value, onChange, onFocus, disablePast, onBlur, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onDateChange = (date) => {
@@ -52,6 +52,7 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
     };
   }
 
+
   return (
     <>
       <Grid container display={'flex'} alignItems={'center'} height={'100%'}>
@@ -64,6 +65,8 @@ const InputDate = ({ value, onChange, onFocus, disablePast, ...props }) => {
             type="tel"
             beforeMaskedValueChange={beforeMaskedValueChange}
             maskChar={null}
+            onFocus={onFocus}
+            onBlur={onBlur}
           />
         </Grid>
         <Grid item pr={'15px'} pl={'5px'}>

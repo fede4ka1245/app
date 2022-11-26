@@ -54,6 +54,10 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
   }
 
   const onBlur = useCallback(() => {
+    if (props.onBlur) {
+      props.onBlur()
+    }
+
     if (!value.includes(':')) {
       return;
     }
@@ -65,7 +69,7 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
     if (value.endsWith(':')) {
       onChange(`${hours}:${minutes}:${seconds}`);
     }
-  }, [value])
+  }, [value, props, onChange])
 
   return (
     <>
@@ -80,6 +84,7 @@ const InputTime = ({ value, onChange, onFocus, shouldDisableTime, ...props }) =>
             autoComplete="new-password"
             type="tel"
             beforeMaskedValueChange={beforeMaskedValueChange}
+            onFocus={onFocus}
             onBlur={onBlur}
           />
         </Grid>
