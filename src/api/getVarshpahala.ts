@@ -10,7 +10,7 @@ interface GetVarshpahalaProps extends HoroscopeData {
 }
 
 export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich, year }: GetVarshpahalaProps) => {
-  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-varshaphala/', {
+  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-varshaphala/`, {
     name_user: userName,
     latitude,
     longitude,

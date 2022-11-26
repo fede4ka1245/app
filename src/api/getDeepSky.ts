@@ -3,7 +3,7 @@ import camelcaseKeys from 'camelcase-keys';
 import { DeepSkyObject } from '../models/types/DeepSkyObject';
 
 export const getDeepSky = async (): Promise<DeepSkyObject []> => {
-  const { data } = await axios.get('https://backm.alpha-astro.ru/deep_sky/stars/', {
+  const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/deep_sky/stars/`, {
     params: {
       limit: 1000
     }

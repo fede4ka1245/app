@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 
 export const getAshtakavarga = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
-  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-ashtakavarga/', {
+  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-ashtakavarga/`, {
     name_user: userName,
     longitude,
     latitude,

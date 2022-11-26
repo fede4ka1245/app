@@ -85,7 +85,7 @@ export const getGochara = async ({
   // eslint-disable-next-line camelcase
   const [min_2, max_2] = secondRange;
 
-  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-gochara/', {
+  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-gochara/`, {
     name_user: userName,
     longitude,
     latitude,

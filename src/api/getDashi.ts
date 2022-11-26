@@ -4,7 +4,7 @@ import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 
 export const getDashi = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
-  const { data: vim } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-dashi/', {
+  const { data: vim } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-dashi/`, {
     name_user: userName,
     longitude,
     latitude,
@@ -16,7 +16,7 @@ export const getDashi = async ({ userName, latitude, longitude, date, time, hour
     next_period: 1
   });
 
-  const { data: chr } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-dashi/', {
+  const { data: chr } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-dashi/`, {
     name_user: userName,
     longitude,
     latitude,

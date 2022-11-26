@@ -4,7 +4,7 @@ import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 import { getFormattedMaps } from '../helpers/getFormattedMaps';
 
 export const getMaps = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
-  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-horoscope/', {
+  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-horoscope/`, {
     name_user: userName,
     longitude,
     latitude,
