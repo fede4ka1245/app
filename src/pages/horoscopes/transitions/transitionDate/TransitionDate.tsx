@@ -19,7 +19,16 @@ import {
 import AppLoader from '../../../../components/appLoader/AppLoader';
 
 const TransitionDate = () => {
-  const { latitude, longitude, time, userName, date, hours, greenwich, minutes } = useGetHoroscopeUserInfo();
+  const {
+    latitude,
+    longitude,
+    time,
+    userName,
+    date,
+    hours,
+    greenwich,
+    minutes
+  } = useGetHoroscopeUserInfo();
   const dispatch = useAppDispatch();
   const transitionMaps = useGetTransitionMaps();
   const isTransitionMapsActive = useGetIsTransitionMapsActive();
@@ -39,13 +48,34 @@ const TransitionDate = () => {
     setIsLoading(true);
 
     getMaps({
-      latitude, longitude, time: transitionTime, userName, date: transitionDate, hours, greenwich, minutes
+      latitude,
+      longitude,
+      time: transitionTime,
+      userName,
+      date: transitionDate,
+      hours,
+      greenwich,
+      minutes
     }).then((maps) => {
       dispatch(setTransitionMaps(maps));
     }).finally(() => {
       setIsLoading(false);
     });
   }, [latitude, longitude, time, userName, date, hours, greenwich, minutes, transitionDate, transitionTime]);
+
+  useEffect(() => {
+    const date = new Date();
+
+    const seconds = '00';
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const year = String(date.getFullYear()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    dispatch(setTransitionDate(`${day}.${month}.${year}`));
+    dispatch(setTransitionTime(`${hours}:${minutes}:${seconds}`));
+  }, []);
 
   const toggleIsTransitionMapsActive = useCallback(() => {
     dispatch(setIsTransitionMapsActive(!isTransitionMapsActive));
