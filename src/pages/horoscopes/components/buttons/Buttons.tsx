@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Buttons.module.scss';
-import chat from './assets/chat.svg';
 import folder from './assets/folder.svg';
 import home from './assets/home.svg';
 import pen from './assets/pen.svg';
-import plus from './assets/plus.svg';
+import send from './assets/send.svg';
 import share from './assets/share.svg';
+import settings from './assets/settings.svg';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../../models/enums/routes';
@@ -26,7 +26,7 @@ const Buttons = () => {
       </Grid>
       <Grid item>
         <div className={styles.button}>
-          <img alt='plus' src={plus}/>
+          <img alt='plus' src={settings}/>
         </div>
       </Grid>
       <Grid item>
@@ -46,7 +46,7 @@ const Buttons = () => {
       </Grid>
       <Grid item>
         <div className={styles.button}>
-          <img alt='chat' src={chat}/>
+          <img alt='chat' src={send}/>
         </div>
       </Grid>
     </Grid>

@@ -6,7 +6,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  height: 60px;
+  height: 54px;
   width: 100%;
   font-style: normal;
   font-weight: 500;
@@ -15,12 +15,12 @@
 }
 
 .gradientButton {
-  background: linear-gradient(88.23deg, #37366B 0.29%, #5C5B9F 42.18%, #59ABDA 97.3%);
+  background: linear-gradient(90deg, #37366B 0.29%, #5C5B9F 42.18%, #59ABDA 97.3%);
   color: white;
 }
 
 .outlineButton {
-  border: 2px solid #99DAEA;
+  box-shadow: 0 0 0 2px #99DAEA inset;
   border-radius: 10px;
   color: #99DAEA !important;
 }
