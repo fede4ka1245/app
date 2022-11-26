@@ -69,7 +69,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
 
   const order = useMemo(() => {
     if (isNorthMap) {
-      return (Number(number) + 5) % 12 + 1;
+      return number;
     }
 
     return index;

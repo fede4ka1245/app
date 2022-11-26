@@ -59,8 +59,12 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
       return;
     }
 
+    if (MapType === MapTypeEnum.North) {
+      return Array.from(mapSections)?.sort((a, b) => Number(a?.number) - Number(b?.number));
+    }
+
     return Array.from(mapSections)?.sort((a, b) => Number(a?.index) - Number(b?.index));
-  }, [mapSections]);
+  }, [mapSections, MapType]);
 
   const getOrder = useCallback((index: number, number: number) => {
     if (isNorthType) {
