@@ -4,6 +4,7 @@ import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
 import { RashiTable } from '../models/types/RashiTable';
+import { getFormattedMaps } from '../helpers/getFormattedMaps';
 
 interface GetVarshpahalaProps extends HoroscopeData {
   year: number
@@ -32,7 +33,7 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   }));
   const yearMaster = data?.data?.ruler_year;
   const rashiTable = getFormattedRashiTable(data?.data?.rashiMap) as RashiTable;
-  const varshpahalaMaps = camelcaseKeys(data?.data?.hororscopeMaps, { deep: true });
+  const varshpahalaMaps = getFormattedMaps(data?.data?.hororscopeMaps);
 
   return {
     dashiTable,

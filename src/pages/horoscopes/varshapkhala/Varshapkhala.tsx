@@ -98,7 +98,7 @@ const Varshapkhala = () => {
           <Grid item pt={'30px'} pb={'30px'}>
             <YearPicker setYear={setYear} />
           </Grid>
-          <Grid pr={'30px'} pl={'30px'}>
+          <Grid pr={'30px'} pl={'30px'} pb={3}>
             <Button text={'Построить гороскоп'} onClick={onCreateHoroscopeClick}/>
           </Grid>
         </>

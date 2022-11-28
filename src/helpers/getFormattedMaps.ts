@@ -9,6 +9,8 @@ export const getFormattedMaps = (horoscopes: any): MapOption[] => {
     return !!mapOptions.find((option) => option.value === horoscope.tableName);
   });
 
+  console.log(filteredMaps);
+
   return Array.from(filteredMaps.map((horoscope: any) => {
     const mapSections: MapSection [] = horoscope.table.map((tableItem: any) => {
       return {
