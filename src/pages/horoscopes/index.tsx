@@ -68,7 +68,7 @@ const Index = () => {
   const isTransitionMapsActive = useGetIsTransitionMapsActive();
   const transitionMaps = useGetTransitionMaps();
   const isDeepSkyActive = useGetIsDeepSkyActive();
-  
+
   const mapTransitSections = useMemo<MapSection [] | undefined>(() => {
     if (!transitionMaps.length) {
       return;
@@ -132,7 +132,7 @@ const Index = () => {
   }, [targetRoute, isYearPickerActive, varshpahalaMaps, maps]);
 
   return (
-    <div>
+    <Grid position={'relative'}>
       <PlanetBackground />
       <Grid item pl={2} pr={2} pt={4}>
         <Buttons />
@@ -177,7 +177,7 @@ const Index = () => {
         </Grid>
       </Grid>
       <Outlet />
-    </div>
+    </Grid>
   );
 };
 

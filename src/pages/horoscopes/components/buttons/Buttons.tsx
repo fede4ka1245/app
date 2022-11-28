@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './Buttons.module.scss';
 import folder from './assets/folder.svg';
 import home from './assets/home.svg';
@@ -9,13 +9,21 @@ import settings from './assets/settings.svg';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../../models/enums/routes';
+import Modal from '../../../../components/modal/Modal';
+import Main from '../../../settings/main/Main';
+import SettingsModal from '../../../../components/settingsModal/SettingsModal';
 
 const Buttons = () => {
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const onHomeClick = () => {
     navigate(routes.astrologicalProcessor);
   };
+
+  const toggleSettingsModal = useCallback(() => {
+    setIsSettingsModalOpen(!isSettingsModalOpen);
+  }, [isSettingsModalOpen]);
 
   return (
     <Grid container direction={'row'} justifyContent={'space-between'} width={'100%'}>
@@ -25,9 +33,10 @@ const Buttons = () => {
         </div>
       </Grid>
       <Grid item>
-        <div className={styles.button}>
+        <div className={styles.button} onClick={toggleSettingsModal}>
           <img alt='plus' src={settings}/>
         </div>
+        <SettingsModal isOpen={isSettingsModalOpen} close={toggleSettingsModal} />
       </Grid>
       <Grid item>
         <div className={styles.button}>
