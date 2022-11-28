@@ -19,7 +19,7 @@ const AstrologicalProcessor = () => {
   };
 
   return (
-    <>
+    <Grid position={'relative'}>
       <PlanetBackground />
       <Moon />
       <Grid container direction={'column'} pl={2} pr={2}>
@@ -51,7 +51,7 @@ const AstrologicalProcessor = () => {
           <Video />
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 

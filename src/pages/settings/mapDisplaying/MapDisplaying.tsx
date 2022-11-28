@@ -37,9 +37,9 @@ const MapDisplaying = () => {
   useHideNavbar();
 
   return (
-    <>
+    <Grid position={'relative'}>
       <PlanetBackground />
-      <Grid container pr={2} pl={2} pt={5} pb={5} rowSpacing={2}>
+      <Grid container pr={2} pl={2} pt={5} rowSpacing={2}>
         <Grid item container alignItems={'center'} justifyContent={'space-between'}>
           <Grid item>
             <ButtonBack label={'Настройки'} onClick={() => navigate(-1)}/>
@@ -112,7 +112,7 @@ const MapDisplaying = () => {
           <Button type={ButtonType.gradient} text={'Сохранить изменеия'}/>
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 

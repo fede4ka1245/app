@@ -39,7 +39,7 @@ const MyHoroscopes = () => {
   useHideNavbar();
 
   return (
-    <>
+    <Grid position={'relative'}>
       <Moon/>
       <PlanetBackground/>
       <Grid container pt={5} pb={5} rowSpacing={2} overflow={'hidden'}>
@@ -72,7 +72,7 @@ const MyHoroscopes = () => {
           ))}
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
