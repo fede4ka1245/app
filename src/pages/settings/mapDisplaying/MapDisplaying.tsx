@@ -37,7 +37,7 @@ const MapDisplaying = () => {
   useHideNavbar();
 
   return (
-    <Grid position={'relative'}>
+    <Grid position={'relative'} height={'100%'}>
       <PlanetBackground />
       <Grid container pr={2} pl={2} pt={5} rowSpacing={2}>
         <Grid item container alignItems={'center'} justifyContent={'space-between'}>

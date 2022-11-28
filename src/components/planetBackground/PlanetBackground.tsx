@@ -14,7 +14,6 @@ const PlanetBackground = () => {
     }
 
     main.current.style.background = 'linear-gradient(#261C5C 55.73%, #365191 100%) no-repeat';
-    main.current.style.minHeight = isNavbarActive ? `calc(${window.innerHeight}px + 90px)` : `${window.innerHeight}px`;
   }, [isNavbarActive]);
 
   return (

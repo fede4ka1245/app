@@ -132,7 +132,7 @@ const Index = () => {
   }, [targetRoute, isYearPickerActive, varshpahalaMaps, maps]);
 
   return (
-    <Grid position={'relative'}>
+    <Grid position={'relative'} height={'100%'} minHeight={'100vh'}>
       <PlanetBackground />
       <Grid item pl={2} pr={2} pt={4}>
         <Buttons />
