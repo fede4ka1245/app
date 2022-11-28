@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DeepSkyObject } from '../../models/types/DeepSkyObject';
 import { CurrentDeepSkyObject } from '../../models/types/CurrentDeepSkyObject';
 
 interface deepSkyState {

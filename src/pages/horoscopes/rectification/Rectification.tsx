@@ -9,6 +9,7 @@ import { useGetHoroscopeUserInfo, useGetRashiTable, useGetTargetMapValue } from 
 import ButtonPrevForward from './components/buttonPrevForward/ButtonPrevForward';
 import RashiTable from '../../../components/rashiTable/RashiTable';
 import Dashi from '../dashi/Dashi';
+import { useSaveHoroscope } from '../../../hooks/useSaveHoroscope';
 
 enum TimeOptionValue {
   ONE_MINUTE,
@@ -62,6 +63,7 @@ const Rectification = () => {
   const [time, setTime] = useState('');
   const [forwardTimeOption, setForwardTimeOption] = useState(timeOptions[0]);
   const [prevTimeOption, setPrevTimeOption] = useState(timeOptions[0]);
+  const saveHoroscope = useSaveHoroscope();
 
   const horoscopeUserInfo = useGetHoroscopeUserInfo();
   const name = useMemo(() => {
@@ -170,7 +172,7 @@ const Rectification = () => {
           <Button text={'Рассчитать'} isDisabled={isButtonDisabled} onClick={onCountHoroscopesClick} type={ButtonType.gradient}/>
         </Grid>
         <Grid item pt={2}>
-          <Button text={'Сохранить'} type={ButtonType.outline}/>
+          <Button text={'Сохранить'} type={ButtonType.outline} onClick={saveHoroscope} />
         </Grid>
       </Grid>
       <RashiTable rows={rows} />

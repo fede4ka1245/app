@@ -12,6 +12,7 @@ import Header from './components/header/Header';
 import HoroscopeForm from '../../components/horoscopeForm/HoroscopeForm';
 import { TimeZoneData } from '../../models/types/TimeZoneData';
 import { AddressSuggestion } from '../../models/types/AddressSuggestion';
+import { useGetSavedHoroscopes } from '../../store/selectors';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const AstrologicalProcessor = () => {
     value: '',
     key: ''
   });
+  const savedHoroscopes = useGetSavedHoroscopes();
 
   return (
     <Grid position={'relative'}>
@@ -58,7 +60,7 @@ const AstrologicalProcessor = () => {
           />
         </Grid>
         <Grid item width={'100%'}>
-          <Button text='Мои гороскопы (5)' type={ButtonType.outline} onClick={onMyHoroscopesClick}/>
+          <Button text={`Мои гороскопы (${savedHoroscopes.length})`} type={ButtonType.outline} onClick={onMyHoroscopesClick}/>
         </Grid>
       </Grid>
       <Grid container p={2} rowSpacing={2}>

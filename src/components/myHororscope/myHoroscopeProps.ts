@@ -1,5 +1,5 @@
+import { SavedHoroscope } from '../../models/types/SavedHoroscopes';
+
 export type myHoroscopeProps = {
-  name: string,
-  date: string,
-  city: string
+  horoscope: SavedHoroscope,
 }

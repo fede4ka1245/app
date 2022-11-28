@@ -11,11 +11,13 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../../models/enums/routes';
 import SettingsModal from '../../../../components/settingsModal/SettingsModal';
 import EditHoroscopeModal from '../editHoroscopeModal/EditHoroscopeModal';
+import { useSaveHoroscope } from '../../../../hooks/useSaveHoroscope';
 
 const Buttons = () => {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const navigate = useNavigate();
+  const saveHoroscope = useSaveHoroscope();
 
   const onHomeClick = () => {
     navigate(routes.astrologicalProcessor);
@@ -50,7 +52,7 @@ const Buttons = () => {
       </Grid>
       <Grid item>
         <div className={styles.button}>
-          <img alt='folder' src={folder}/>
+          <img alt='folder' src={folder} onClick={saveHoroscope}/>
         </div>
       </Grid>
       <Grid item pl={5}>

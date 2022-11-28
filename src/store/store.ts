@@ -7,6 +7,7 @@ import varshpahalaReducer from './reducers/varshpahalaReducer';
 import zonesReducer from './reducers/zonesReducer';
 import transitionReduser from './reducers/transitionReduser';
 import settingsReducer from './reducers/settingsReducer';
+import savedHoroscopesReducer from './reducers/savedHoroscopesReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import deepSkyReducer from './reducers/deepSkyReducer';
 import storage from 'redux-persist/lib/storage';
@@ -19,13 +20,14 @@ const rootReducer = combineReducers({
   zones: zonesReducer,
   transition: transitionReduser,
   settings: settingsReducer,
-  deepSky: deepSkyReducer
+  deepSky: deepSkyReducer,
+  savedHoroscopes: savedHoroscopesReducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['settings', 'user', 'preferences']
+  whitelist: ['settings', 'user', 'savedHoroscopes']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

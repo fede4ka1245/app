@@ -179,3 +179,7 @@ export const useGetVarshpahalaDate = () => {
 export const useGetVarshpahalaMuntkha = () => {
   return useAppSelector((state) => state?.varshpahala.muntkha);
 };
+
+export const useGetSavedHoroscopes = () => {
+  return useAppSelector((state) => state?.savedHoroscopes.savedHoroscopes);
+};

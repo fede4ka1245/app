@@ -45,7 +45,7 @@ const SwipeWrapper = ({ children, backgroundComponent }: SwipeWrapperProps) => {
       }, 300);
 
       if (main.current) {
-        main.current.addEventListener('touchmove', onTouchMove);
+        main.current.addEventListener('touchmove', onTouchMove, { passive: true });
       }
     };
 
@@ -80,8 +80,8 @@ const SwipeWrapper = ({ children, backgroundComponent }: SwipeWrapperProps) => {
     };
 
     if (main.current) {
-      main.current.addEventListener('touchstart', onTouchStart);
-      main.current.addEventListener('touchend', onTouchEnd);
+      main.current.addEventListener('touchstart', onTouchStart, { passive: true });
+      main.current.addEventListener('touchend', onTouchEnd, { passive: true });
     }
 
     return () => {
@@ -94,11 +94,11 @@ const SwipeWrapper = ({ children, backgroundComponent }: SwipeWrapperProps) => {
 
   return (
     <div style={{ position: 'relative' }}>
-      <section style={{ width: '100%', height: '60px', zIndex: -1, position: 'absolute', borderRadius: '10px' }}>
-        {backgroundComponent}
-      </section>
-      <section style={{ zIndex: 10, opacity: 1 }} ref={main}>
+      <section style={{ zIndex: 10, opacity: 1, position: 'relative' }} ref={main}>
         {children}
+      </section>
+      <section style={{ width: '100%', height: '60px', top: 0, left: 0, zIndex: 1, position: 'absolute', borderRadius: '10px' }}>
+        {backgroundComponent}
       </section>
     </div>
   );

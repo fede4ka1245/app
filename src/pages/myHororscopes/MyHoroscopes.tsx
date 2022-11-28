@@ -6,8 +6,9 @@ import ButtonBack from '../../components/buttonBack/ButtonBack';
 import { useNavigate } from 'react-router-dom';
 import MyHoroscope from '../../components/myHororscope/MyHoroscope';
 import search from './assets/search.svg';
-import CourseAd from '../../components/courseAd/CourseAd';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
+import { useGetSavedHoroscopes } from '../../store/selectors';
+import { SavedHoroscope } from '../../models/types/SavedHoroscopes';
 
 const horoscopes = [
   {
@@ -34,14 +35,14 @@ const horoscopes = [
 
 const MyHoroscopes = () => {
   const navigate = useNavigate();
-  const [myHoroscopes, setMyHoroscopes] = useState(horoscopes);
+  const savedHoroscopes = useGetSavedHoroscopes();
 
   useHideNavbar();
 
   return (
-    <Grid position={'relative'}>
-      <Moon/>
+    <Grid position={'relative'} height={'100%'} width={'100%'} minHeight={'100vh'}>
       <PlanetBackground/>
+      <Moon/>
       <Grid container pt={5} pb={5} rowSpacing={2} overflow={'hidden'}>
         <Grid item container alignItems={'center'} justifyContent={'space-between'} pr={2} pl={2}>
           <Grid item>
@@ -53,21 +54,13 @@ const MyHoroscopes = () => {
         </Grid>
         <Grid item pt={2} pr={2} pl={2}>
           <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'} textAlign={'center'}>
-            Мои гороскопы (8)
+            Мои гороскопы ({ savedHoroscopes.length })
           </Typography>
         </Grid>
         <Grid item container direction={'column'}>
-          {myHoroscopes.map(({ name, date, city }, index) => (
+          {savedHoroscopes.map((savedHoroscope: SavedHoroscope, index) => (
             <Grid key={index} item pb={2} pr={2} pl={2}>
-              <MyHoroscope name={name} date={date} city={city} />
-            </Grid>
-          ))}
-          <Grid item pl={2}>
-            <CourseAd />
-          </Grid>
-          {myHoroscopes.map(({ name, date, city }, index) => (
-            <Grid key={index} item pb={2} pr={2} pl={2}>
-              <MyHoroscope name={name} date={date} city={city} />
+              <MyHoroscope horoscope={savedHoroscope} />
             </Grid>
           ))}
         </Grid>

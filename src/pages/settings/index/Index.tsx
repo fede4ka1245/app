@@ -15,7 +15,7 @@ const Index = () => {
   useHideNavbar();
 
   return (
-    <Grid position={'relative'}>
+    <Grid height={'100%'}>
       <PlanetBackground />
       <Moon />
       <Grid container>
