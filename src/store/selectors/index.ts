@@ -171,3 +171,11 @@ export const useGetIsDashiChrPeriodLoading = () => {
 export const useGetHoroscopeAddressInformation = () => {
   return useAppSelector((state) => state?.horoscopes.addressInformation);
 };
+
+export const useGetVarshpahalaDate = () => {
+  return useAppSelector((state) => state?.varshpahala.varshpahalaDate);
+};
+
+export const useGetVarshpahalaMuntkha = () => {
+  return useAppSelector((state) => state?.varshpahala.muntkha);
+};

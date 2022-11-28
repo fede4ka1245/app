@@ -24,7 +24,8 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
 
   const dashiTable = camelcaseKeys(data?.data?.dashiMap, { deep: true });
   const horoscopeDate = data.data?.dt;
-  const muntha = data.data?.varshesha;
+  const r = /\d+/;
+  const muntkha = data.data?.varshesha.match(r);
   const yogasTable = camelcaseKeys(data?.data?.yogaTable, { deep: true });
   const yearMasterTable = data?.data?.main.map((tableItem: any) => ({
     sign: tableItem?.point,
@@ -43,6 +44,6 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
     rashiTable,
     varshpahalaMaps,
     horoscopeDate,
-    muntha
+    muntkha
   };
 };

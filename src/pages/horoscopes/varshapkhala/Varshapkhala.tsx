@@ -9,7 +9,7 @@ import {
   useGetHoroscopeUserInfo,
   useGetIsVarshpahalaLoading,
   useGetIsYearPickerActive,
-  useGetTargetMapValue,
+  useGetTargetMapValue, useGetVarshpahalaDate, useGetVarshpahalaMuntkha,
   useGetVarshpahalaRashiTable,
   useGetYearMaster,
   useGetYearMasterTable,
@@ -22,7 +22,7 @@ import {
   setIsVarshpahalaLoading,
   setYearMasterTable,
   setYogasTable,
-  setYearMaster, setVarshpahalaRashiTable, setIsYearPickerActive, setVarshpahalaMaps
+  setYearMaster, setVarshpahalaRashiTable, setIsYearPickerActive, setVarshpahalaMaps, setMuntkha, setVarshpahalaDate
 } from '../../../store/reducers/varshpahalaReducer';
 import YogasTable from '../../../components/yogasTable/YogasTable';
 import Header from '../../../components/header/Header';
@@ -45,6 +45,14 @@ const Varshapkhala = () => {
   const isYearPickerActive = useGetIsYearPickerActive();
   const rashiTable = useGetVarshpahalaRashiTable();
   const targetMapValue = useGetTargetMapValue();
+  const horoscopeDate = useGetVarshpahalaDate();
+  const muntkha = useGetVarshpahalaMuntkha();
+
+  const [isYogasModalOpen, setIsYogasModalOpen] = useState(false);
+
+  const toggleIsYogasModalOpen = useCallback(() => {
+    setIsYogasModalOpen(!isYogasModalOpen);
+  }, [isYogasModalOpen]);
 
   const toggleIsYearPickerActive = useCallback(() => {
     dispatch(setIsYearPickerActive(!isYearPickerActive));
@@ -74,6 +82,8 @@ const Varshapkhala = () => {
       dispatch(setYearMasterTable(result.yearMasterTable));
       dispatch(setYearMaster(result.yearMaster));
       dispatch(setVarshpahalaMaps(result.varshpahalaMaps));
+      dispatch(setMuntkha(result.muntkha));
+      dispatch(setVarshpahalaDate(result.horoscopeDate));
       toggleIsYearPickerActive();
     }).finally(() => {
       dispatch(setIsVarshpahalaLoading(false));
@@ -108,10 +118,16 @@ const Varshapkhala = () => {
           <Grid item padding={1}>
             <ButtonBack label={'Вернуться к выбору года'} onClick={toggleIsYearPickerActive} />
           </Grid>
+          <Typography color={'white'} width={'100%'} fontWeight={700} fontFamily={'Gilroy'} fontSize={'20px'} mr={'auto'} pb={2} textAlign={'center'}>
+            {horoscopeDate}
+          </Typography>
           <Grid item>
             <RashiTable rows={rashiTableRows} />
           </Grid>
-          <Grid item paddingTop={4} pl={2} pr={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
+          <Grid item paddingTop={2} pl={2} pr={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
+            <Typography color={'white'} width={'100%'} fontWeight={700} fontFamily={'Gilroy'} fontSize={'20px'} mr={'auto'} pb={2} textAlign={'center'}>
+              Мунтха - в {muntkha} доме
+            </Typography>
             <Button text={'Определить хозяина года'} onClick={toggleYearMasterModal} />
             <Modal isOpen={isYearMasterModalOpen} close={toggleYearMasterModal} height={'360px'}>
               <Grid pl={2} pt={1} pr={1} ml={'auto'} display={'flex'} width={'100%'}>
@@ -130,17 +146,20 @@ const Varshapkhala = () => {
               </Grid>
             </Modal>
           </Grid>
-          <Grid item paddingTop={2} pl={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
-            Йоги варшапхала
+          <Grid item paddingTop={2} pl={2} onClick={toggleIsYogasModalOpen}>
+            <Header header={'Йоги варшапхала'} />
+            <Modal isOpen={isYogasModalOpen} close={toggleIsYogasModalOpen}>
+
+            </Modal>
           </Grid>
-          <Grid item paddingTop={3}>
+          <Grid item paddingTop={2}>
             <YogasTable rows={yogasTable}/>
           </Grid>
           <Grid item paddingTop={2} pl={2}>
             <Header header={'МУДДА ДАША'}/>
           </Grid>
           <Grid item paddingTop={3}>
-            <DashiTable rows={dashiTable}/>
+            <DashiTable rows={dashiTable.slice(0, 9)}/>
           </Grid>
         </>
       )}
