@@ -103,7 +103,7 @@ const HoroscopeForm = ({ name, setName, date, setDate, time, setTime, timeZone, 
   }, [addressInformation, setAddressInformation]);
 
   useEffect(() => {
-    if (date && time && addressInformation) {
+    if (date && time && addressInformation?.key) {
       setTimeZone({ hours: '', minutes: '', greenwich: '' });
       getTimeZoneOffset(addressInformation.key, date, time)
         .then(({ hours, minutes, greenwich }) => {

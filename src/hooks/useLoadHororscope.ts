@@ -11,6 +11,7 @@ import {
 } from '../store/reducers/zonesReducer';
 import { getZones } from '../api/getZones';
 import {
+  setAddressInformation,
   setAshtakavarga,
   setDashiChr,
   setDashiVim, setHoroscopeUserInfo,
@@ -144,6 +145,7 @@ export const useLoadHoroscopes = () => {
         minutes: timeZoneData.minutes,
         hours: timeZoneData.hours
       }));
+      dispatch(setAddressInformation(addressInformation));
       dispatch(setMaps(maps));
     } catch (error) {
       console.log(error);

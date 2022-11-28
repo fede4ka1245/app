@@ -5,6 +5,7 @@ import { MapOption } from '../../models/types/MapOption';
 import { DashiTableRow } from '../../models/types/DashiTableRow';
 import { AshtakavargaTable } from '../../models/types/AshtakavargaTable';
 import { RashiTable } from '../../models/types/RashiTable';
+import { AddressSuggestion } from '../../models/types/AddressSuggestion';
 
 interface HoroscopeUserInfo extends HoroscopeData {
   location: string,
@@ -24,7 +25,8 @@ interface HoroscopeState {
   isDashiLoading: boolean,
   ashtakavarga: AshtakavargaTable[],
   isAshtakavargaLoading: boolean,
-  rashiTable: RashiTable
+  rashiTable: RashiTable,
+  addressInformation?: AddressSuggestion
 }
 
 export const horoscopesSlice = createSlice({
@@ -50,7 +52,8 @@ export const horoscopesSlice = createSlice({
     isAshtakavargaLoading: false,
     rashiTable: [],
     dashiChrPeriod: 1,
-    isDashiChrPeriodLoading: false
+    isDashiChrPeriodLoading: false,
+    addressInformation: undefined
   } as HoroscopeState,
   reducers: {
     setMaps: (state, action) => {
@@ -85,10 +88,13 @@ export const horoscopesSlice = createSlice({
     },
     setIsDashiChrPeriodLoading: (state, action: PayloadAction<boolean>) => {
       state.isDashiChrPeriodLoading = action.payload;
+    },
+    setAddressInformation: (state, action: PayloadAction<AddressSuggestion>) => {
+      state.addressInformation = action.payload;
     }
   }
 });
 
-export const { setMaps, setTargetMapValue, setDashiChrPeriod, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
+export const { setMaps, setTargetMapValue, setDashiChrPeriod, setAddressInformation, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
 
 export default horoscopesSlice.reducer;

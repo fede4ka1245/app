@@ -1,8 +1,8 @@
 import { HoroscopeData } from './HoroscopeData';
-import { AddressInformation } from './AddressInformation';
 import { TimeZoneData } from './TimeZoneData';
+import { AddressSuggestion } from './AddressSuggestion';
 
 export interface LoadHoroscope extends Omit<HoroscopeData, 'latitude' | 'longitude'> {
-  addressInformation: AddressInformation
+  addressInformation: AddressSuggestion
   timeZoneData: TimeZoneData
 }

@@ -33,7 +33,7 @@ export const getVarshpahala = async ({ userName, latitude, longitude, date, time
   }));
   const yearMaster = data?.data?.ruler_year;
   const rashiTable = getFormattedRashiTable(data?.data?.rashiMap) as RashiTable;
-  const varshpahalaMaps = getFormattedMaps(data?.data?.hororscopeMaps);
+  const varshpahalaMaps = getFormattedMaps(data?.data?.horoscopeMaps);
 
   return {
     dashiTable,

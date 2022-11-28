@@ -167,3 +167,7 @@ export const useGetDashiChrPeriod = () => {
 export const useGetIsDashiChrPeriodLoading = () => {
   return useAppSelector((state) => state?.horoscopes.isDashiChrPeriodLoading);
 };
+
+export const useGetHoroscopeAddressInformation = () => {
+  return useAppSelector((state) => state?.horoscopes.addressInformation);
+};

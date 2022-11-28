@@ -5,7 +5,7 @@ import PlanetBackground from '../../../../components/planetBackground/PlanetBack
 import HoroscopeForm from '../../../../components/horoscopeForm/HoroscopeForm';
 import { TimeZoneData } from '../../../../models/types/TimeZoneData';
 import { AddressSuggestion } from '../../../../models/types/AddressSuggestion';
-import { useGetHoroscopeUserInfo } from '../../../../store/selectors';
+import { useGetHoroscopeAddressInformation, useGetHoroscopeUserInfo } from '../../../../store/selectors';
 import { setHoroscopeUserInfo } from '../../../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../../../store/store';
 import { useLoadHoroscopes } from '../../../../hooks/useLoadHororscope';
@@ -34,6 +34,7 @@ const EditHoroscopeModal = ({ isEditModalOpen, toggleEditModal }: EditHoroscopeM
   const loadHoroscopes = useLoadHoroscopes();
 
   const horoscopeUserInfo = useGetHoroscopeUserInfo();
+  const horoscopeAddressInformation = useGetHoroscopeAddressInformation();
 
   useEffect(() => {
     setName(horoscopeUserInfo.userName);
@@ -44,7 +45,7 @@ const EditHoroscopeModal = ({ isEditModalOpen, toggleEditModal }: EditHoroscopeM
       minutes: horoscopeUserInfo.minutes,
       greenwich: horoscopeUserInfo.greenwich
     });
-    setAddressInformation({
+    setAddressInformation(horoscopeAddressInformation || {
       latitude: horoscopeUserInfo.latitude,
       longitude: horoscopeUserInfo.longitude,
       value: horoscopeUserInfo.location,
