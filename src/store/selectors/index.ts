@@ -159,3 +159,11 @@ export const useGetIsDeepSkyActive = () => {
 export const useGetDeepSkyObjects = () => {
   return useAppSelector((state) => state?.deepSky.deepSkyObjects);
 };
+
+export const useGetDashiChrPeriod = () => {
+  return useAppSelector((state) => state?.horoscopes.dashiChrPeriod);
+};
+
+export const useGetIsDashiChrPeriodLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isDashiChrPeriodLoading);
+};

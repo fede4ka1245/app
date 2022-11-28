@@ -19,6 +19,8 @@ interface HoroscopeState {
   horoscopeUserInfo: HoroscopeUserInfo,
   dashiVim: DashiTableRow[],
   dashiChr: DashiTableRow[],
+  dashiChrPeriod: number,
+  isDashiChrPeriodLoading: boolean,
   isDashiLoading: boolean,
   ashtakavarga: AshtakavargaTable[],
   isAshtakavargaLoading: boolean,
@@ -46,7 +48,9 @@ export const horoscopesSlice = createSlice({
     isDashiLoading: false,
     ashtakavarga: [],
     isAshtakavargaLoading: false,
-    rashiTable: []
+    rashiTable: [],
+    dashiChrPeriod: 1,
+    isDashiChrPeriodLoading: false
   } as HoroscopeState,
   reducers: {
     setMaps: (state, action) => {
@@ -75,10 +79,16 @@ export const horoscopesSlice = createSlice({
     },
     setRashiTable: (state, action: PayloadAction<RashiTable>) => {
       state.rashiTable = action.payload;
+    },
+    setDashiChrPeriod: (state, action: PayloadAction<number>) => {
+      state.dashiChrPeriod = action.payload;
+    },
+    setIsDashiChrPeriodLoading: (state, action: PayloadAction<boolean>) => {
+      state.isDashiChrPeriodLoading = action.payload;
     }
   }
 });
 
-export const { setMaps, setTargetMapValue, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
+export const { setMaps, setTargetMapValue, setDashiChrPeriod, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
 
 export default horoscopesSlice.reducer;
