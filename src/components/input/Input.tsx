@@ -68,7 +68,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
   };
 
   const isBottom = () => {
-    return !(!!value || !!targetOption?.label || !!option || !!inputLabel || isFocused);
+    return !(!!value || !!targetOption?.label || !!option?.label || !!inputLabel || isFocused);
   };
 
   return (

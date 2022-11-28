@@ -9,31 +9,12 @@ import settings from './assets/settings.svg';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../../models/enums/routes';
-
 import SettingsModal from '../../../../components/settingsModal/SettingsModal';
-import Modal from '../../../../components/modal/Modal';
-import HoroscopeForm from '../../../../components/horoscopeForm/HoroscopeForm';
-import PlanetBackground from '../../../../components/planetBackground/PlanetBackground';
-import { TimeZoneData } from '../../../../models/types/TimeZoneData';
-import { AddressSuggestion } from '../../../../models/types/AddressSuggestion';
+import EditHoroscopeModal from '../editHoroscopeModal/EditHoroscopeModal';
 
 const Buttons = () => {
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [timeZone, setTimeZone] = useState<TimeZoneData>({
-    hours: '',
-    minutes: '',
-    greenwich: ''
-  });
-  const [addressInformation, setAddressInformation] = useState<AddressSuggestion>({
-    latitude: '',
-    longitude: '',
-    value: '',
-    key: ''
-  });
   const navigate = useNavigate();
 
   const onHomeClick = () => {
@@ -65,25 +46,7 @@ const Buttons = () => {
         <div className={styles.button} onClick={toggleEditModal}>
           <img alt='pen' src={pen}/>
         </div>
-        <Modal isOpen={isEditModalOpen} close={toggleEditModal} height={'calc(100vh - 80px)'}>
-          <Grid container position={'relative'} height={'100%'}>
-            <PlanetBackground />
-            <Grid item p={2}>
-              <HoroscopeForm
-                name={name}
-                setName={setName}
-                date={date}
-                setDate={setDate}
-                time={time}
-                setTime={setTime}
-                timeZone={timeZone}
-                setTimeZone={setTimeZone}
-                addressInformation={addressInformation}
-                setAddressInformation={setAddressInformation}
-              />
-            </Grid>
-          </Grid>
-        </Modal>
+        <EditHoroscopeModal isEditModalOpen={isEditModalOpen} toggleEditModal={toggleEditModal} />
       </Grid>
       <Grid item>
         <div className={styles.button}>

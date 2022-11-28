@@ -19,16 +19,9 @@ import {
 } from '../store/reducers/horoscopesReducer';
 import { getDashi } from '../api/getDashi';
 import { getAshtakavarga } from '../api/getAshtakavarga';
-import { AddressInformation } from '../models/types/AddressInformation';
 import { useAppDispatch } from '../store/store';
-import { HoroscopeData } from '../models/types/HoroscopeData';
-import { TimeZoneData } from '../models/types/TimeZoneData';
 import { getRashiTable } from '../api/getRashiTable';
-
-interface LoadHoroscope extends Omit<HoroscopeData, 'latitude' | 'longitude'> {
-  addressInformation: AddressInformation
-  timeZoneData: TimeZoneData
-}
+import { LoadHoroscope } from '../models/types/LoadHororscope';
 
 export const useLoadHoroscopes = () => {
   const dispatch = useAppDispatch();

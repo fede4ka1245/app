@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Moon from '../../components/moon/Moon';
@@ -9,7 +9,9 @@ import Video from '../../components/video/Video';
 import PlanetBackground from '../../components/planetBackground/PlanetBackground';
 import { routes } from '../../models/enums/routes';
 import Header from './components/header/Header';
-import HoroscopeForm from './components/horoscopeForm/HoroscopeForm';
+import HoroscopeForm from '../../components/horoscopeForm/HoroscopeForm';
+import { TimeZoneData } from '../../models/types/TimeZoneData';
+import { AddressSuggestion } from '../../models/types/AddressSuggestion';
 
 const AstrologicalProcessor = () => {
   const navigate = useNavigate();
@@ -17,6 +19,21 @@ const AstrologicalProcessor = () => {
   const onMyHoroscopesClick = () => {
     navigate(routes.myHoroscopes);
   };
+
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [timeZone, setTimeZone] = useState<TimeZoneData>({
+    hours: '',
+    minutes: '',
+    greenwich: ''
+  });
+  const [addressInformation, setAddressInformation] = useState<AddressSuggestion>({
+    latitude: '',
+    longitude: '',
+    value: '',
+    key: ''
+  });
 
   return (
     <Grid position={'relative'}>
@@ -27,7 +44,18 @@ const AstrologicalProcessor = () => {
           <Header />
         </Grid>
         <Grid pb={2}>
-          <HoroscopeForm />
+          <HoroscopeForm
+            name={name}
+            setName={setName}
+            date={date}
+            setDate={setDate}
+            time={time}
+            setTime={setTime}
+            timeZone={timeZone}
+            setTimeZone={setTimeZone}
+            addressInformation={addressInformation}
+            setAddressInformation={setAddressInformation}
+          />
         </Grid>
         <Grid item width={'100%'}>
           <Button text='Мои гороскопы (5)' type={ButtonType.outline} onClick={onMyHoroscopesClick}/>

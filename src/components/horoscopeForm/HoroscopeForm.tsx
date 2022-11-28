@@ -1,34 +1,37 @@
 import React, { useCallback, useMemo, useState, useRef, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
-import Input from '../../../../components/input/Input';
-import { InputType } from '../../../../components/input/InputType';
-import AddressInput from '../../../../components/addressInput/AddressInput';
-import Button from '../../../../components/button/Button';
-import { AddressInformation } from '../../../../models/types/AddressInformation';
-import { useLoadHoroscopes } from '../../../../hooks/useLoadHororscope';
-import TimeZoneForm from '../../../../components/timeZoneForm/TimeZoneForm';
-import { getTimeZoneOffset } from '../../../../helpers/address/getSuggestions';
-import { AddressSuggestion } from '../../../../models/types/AddressSuggestion';
-import { TimeZoneData } from '../../../../models/types/TimeZoneData';
-import { getTimeZoneOffsetFromGreenwichData } from '../../../../helpers/getTimeZoneOffsetFromGreenwichData';
-import { routes as horoscopesRoutes } from '../../../horoscopes/routes';
+import Input from '../input/Input';
+import { InputType } from '../input/InputType';
+import AddressInput from '../addressInput/AddressInput';
+import Button from '../button/Button';
+import { AddressInformation } from '../../models/types/AddressInformation';
+import { useLoadHoroscopes } from '../../hooks/useLoadHororscope';
+import TimeZoneForm from '../timeZoneForm/TimeZoneForm';
+import { getTimeZoneOffset } from '../../helpers/address/getSuggestions';
+import { AddressSuggestion } from '../../models/types/AddressSuggestion';
+import { TimeZoneData } from '../../models/types/TimeZoneData';
+import { getTimeZoneOffsetFromGreenwichData } from '../../helpers/getTimeZoneOffsetFromGreenwichData';
+import { routes as horoscopesRoutes } from '../../pages/horoscopes/routes';
 import { useNavigate } from 'react-router-dom';
+import { LoadHoroscope } from '../../models/types/LoadHororscope';
 
-const HoroscopeForm = () => {
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [timeZone, setTimeZone] = useState<TimeZoneData>({
-    hours: '',
-    minutes: '',
-    greenwich: ''
-  });
-  const [addressInformation, setAddressInformation] = useState<AddressSuggestion>({
-    latitude: '',
-    longitude: '',
-    value: '',
-    key: ''
-  });
+interface HoroscopeFormProps {
+  name: string,
+  setName: (name: string) => any,
+  date: string,
+  setDate: (date: string) => any,
+  time: string,
+  setTime: (time: string) => any,
+  timeZone: TimeZoneData,
+  setTimeZone: (timeZone: TimeZoneData) => any,
+  addressInformation: AddressSuggestion,
+  setAddressInformation: (addressInformation: AddressSuggestion) => any,
+  onCountHoroscopeClick?: (horoscopeProps: LoadHoroscope) => any,
+  isCountHoroscopeButtonDisabled?: boolean,
+  horoscopeCountButtonText?: string
+}
+
+const HoroscopeForm = ({ name, setName, date, setDate, time, setTime, timeZone, setTimeZone, addressInformation, setAddressInformation, onCountHoroscopeClick, isCountHoroscopeButtonDisabled, horoscopeCountButtonText } : HoroscopeFormProps) => {
   const [isCustomCoordinates, setIsCustomCoordinates] = useState(false);
   const addressInformationRef = useRef<AddressSuggestion>();
   const navigate = useNavigate();
@@ -64,6 +67,18 @@ const HoroscopeForm = () => {
       return;
     }
 
+    if (onCountHoroscopeClick) {
+      onCountHoroscopeClick({
+        userName: name,
+        date,
+        time,
+        addressInformation,
+        timeZoneData: timeZone
+      });
+
+      return;
+    }
+
     loadHoroscopes({
       userName: name,
       date,
@@ -73,12 +88,12 @@ const HoroscopeForm = () => {
     }).then(() => {
       navigate(horoscopesRoutes.transitions);
     });
-  }, [loadHoroscopes, addressInformation, timeZone]);
+  }, [loadHoroscopes, addressInformation, timeZone, onCountHoroscopeClick]);
 
   const isButtonDisabled = useMemo(() => {
     return !addressInformation.longitude || !addressInformation.latitude || !(timeZone?.greenwich && timeZone?.hours && timeZone?.minutes) ||
-      !date || !name || !time;
-  }, [addressInformation, date, name, time, timeZone]);
+      !date || !name || !time || isCountHoroscopeButtonDisabled;
+  }, [addressInformation, date, name, time, timeZone, isCountHoroscopeButtonDisabled]);
 
   const onSetAddressInput = useCallback((_addressInformation: Omit<AddressInformation, 'timeZoneOffset'>) => {
     setAddressInformation({
@@ -89,6 +104,7 @@ const HoroscopeForm = () => {
 
   useEffect(() => {
     if (date && time && addressInformation) {
+      setTimeZone({ hours: '', minutes: '', greenwich: '' });
       getTimeZoneOffset(addressInformation.key, date, time)
         .then(({ hours, minutes, greenwich }) => {
           setTimeZone({ hours, minutes, greenwich });
@@ -143,6 +159,7 @@ const HoroscopeForm = () => {
           setAddressInfo={onSetAddressInput}
           placeholder={'Место рождения'}
           disabled={isCustomCoordinates}
+          addressInfo={addressInformation}
         />
       </Grid>
       <Grid item container direction={'row'} color={'#ABB0B2'} display={'flex'} pt={2}>
@@ -198,7 +215,7 @@ const HoroscopeForm = () => {
         </Grid>
       </>}
       <Grid item width={'100%'} pt={2}>
-        <Button text='Рассчитать гороскоп' onClick={onCountHoroscopesClick} isDisabled={isButtonDisabled}/>
+        <Button text={horoscopeCountButtonText || 'Рассчитать гороскоп'} onClick={onCountHoroscopesClick} isDisabled={isButtonDisabled}/>
       </Grid>
     </>
   );

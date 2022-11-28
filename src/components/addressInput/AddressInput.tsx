@@ -8,12 +8,13 @@ import { throttle } from '../../helpers/throttle';
 import { AddressSuggestion } from '../../models/types/AddressSuggestion';
 
 interface AddressInputProps {
+  addressInfo?: Omit<AddressInformation, 'timeZoneOffset'>,
   setAddressInfo?: (addressInfo: Omit<AddressInformation, 'timeZoneOffset'>) => any,
   placeholder?: string,
   disabled?: boolean,
 }
 
-const AddressInput = ({ placeholder, setAddressInfo, disabled }: AddressInputProps) => {
+const AddressInput = ({ placeholder, setAddressInfo, disabled, addressInfo }: AddressInputProps) => {
   const [suggestions, setSuggestions] = useState<Array<AddressSuggestion>>([]);
   const throttledGetSuggestions = useMemo<(query: string) => void>(() => {
     const updateSuggestions = (query: string) => {
@@ -50,6 +51,7 @@ const AddressInput = ({ placeholder, setAddressInfo, disabled }: AddressInputPro
       <Input
         placeholder={placeholder || 'Место рождения'}
         options={inputSuggestions}
+        targetOption={{ label: addressInfo?.value as string, value: addressInfo?.value }}
         setTargetOption={onTargetSuggestionSet}
         inputType={InputType.optionsInput}
         onChange={onChange}
