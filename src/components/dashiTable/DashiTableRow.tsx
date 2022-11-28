@@ -44,7 +44,7 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
   }, [row]);
 
   const isSubTableAvailable = useMemo(() => {
-    return row.planets.length < 3 && !!row.subTable?.length;
+    return row.planets.length < 2 && !!row.subTable?.length;
   }, [row]);
 
   useEffect(() => {
