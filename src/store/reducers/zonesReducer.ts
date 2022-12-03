@@ -14,17 +14,19 @@ interface ZoneState {
   bhava: BhavaTableRow [],
 }
 
+const initialState = {
+  savatobhadra: [],
+  shani: [],
+  calanala: [],
+  compass: [],
+  isZonesLoading: false,
+  sudarshana: [],
+  bhava: []
+} as ZoneState;
+
 const zonesReducer = createSlice({
   name: 'zones',
-  initialState: {
-    savatobhadra: [],
-    shani: [],
-    calanala: [],
-    compass: [],
-    isZonesLoading: false,
-    sudarshana: [],
-    bhava: []
-  } as ZoneState,
+  initialState,
   reducers: {
     setSavatobhadra: (state, action: PayloadAction<SavatobhadraTableRow []>) => {
       state.savatobhadra = action.payload;
@@ -46,10 +48,11 @@ const zonesReducer = createSlice({
     },
     setBhava: (state, action: PayloadAction<BhavaTableRow []>) => {
       state.bhava = action.payload;
-    }
+    },
+    resetZones: () => initialState
   }
 });
 
-export const { setSavatobhadra, setIsZonesLoading, setCalanala, setShani, setCompass, setSudarshana, setBhava } = zonesReducer.actions;
+export const { setSavatobhadra, resetZones, setIsZonesLoading, setCalanala, setShani, setCompass, setSudarshana, setBhava } = zonesReducer.actions;
 
 export default zonesReducer.reducer;

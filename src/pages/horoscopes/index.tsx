@@ -21,6 +21,7 @@ import { setTargetMapValue } from '../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../store/store';
 import { getTimeZoneOffsetFromGreenwichData } from '../../helpers/getTimeZoneOffsetFromGreenwichData';
 import { MapSection } from '../../models/types/MapSection';
+import { useResetHoroscopeOnUnmount } from '../../hooks/useResetHoroscopeOnUnmount';
 
 const routesOptions = [
   {
@@ -122,6 +123,7 @@ const Index = () => {
   }, [targetRoute]);
 
   useHideNavbar();
+  useResetHoroscopeOnUnmount();
 
   const currentMaps = useMemo(() => {
     if (targetRoute.value === routes.varshapkhala && !isYearPickerActive) {
@@ -149,7 +151,7 @@ const Index = () => {
           }}
           onSlideChange={onSwipe}
         >
-          {currentMaps.map((map, index) => (
+          {currentMaps.map((map) => (
             <SwiperSlide key={map.value}>
               <Map
                 isDeepSky={isDeepSkyActive}

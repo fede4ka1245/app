@@ -8,14 +8,16 @@ interface TransitionState {
   isTransitionMapsActive: boolean
 }
 
+const initialState = {
+  transitionMaps: [],
+  transitionDate: '',
+  transitionTime: '',
+  isTransitionMapsActive: false
+} as TransitionState;
+
 export const transitionSlice = createSlice({
   name: 'transition',
-  initialState: {
-    transitionMaps: [],
-    transitionDate: '',
-    transitionTime: '',
-    isTransitionMapsActive: false
-  } as TransitionState,
+  initialState,
   reducers: {
     setTransitionMaps: (state, action: PayloadAction<Array<MapOption>>) => {
       state.transitionMaps = action.payload;
@@ -28,10 +30,11 @@ export const transitionSlice = createSlice({
     },
     setIsTransitionMapsActive: (state, action: PayloadAction<boolean>) => {
       state.isTransitionMapsActive = action.payload;
-    }
+    },
+    resetTransitions: () => initialState
   }
 });
 
-export const { setTransitionMaps, setTransitionDate, setTransitionTime, setIsTransitionMapsActive } = transitionSlice.actions;
+export const { setTransitionMaps, resetTransitions, setTransitionDate, setTransitionTime, setIsTransitionMapsActive } = transitionSlice.actions;
 
 export default transitionSlice.reducer;

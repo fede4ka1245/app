@@ -18,20 +18,22 @@ interface VarshpahalaState {
   muntkha: string
 }
 
+const initialState = {
+  isVarshpahalaLoading: false,
+  dashiTable: [],
+  yogasTable: [],
+  yearMasterTable: [],
+  yearMaster: '',
+  varshpahalaRashiTable: [],
+  isYearPickerActive: true,
+  varshpahalaMaps: [],
+  varshpahalaDate: '',
+  muntkha: ''
+} as VarshpahalaState;
+
 const varshpahalaReducer = createSlice({
   name: 'horoscope',
-  initialState: {
-    isVarshpahalaLoading: false,
-    dashiTable: [],
-    yogasTable: [],
-    yearMasterTable: [],
-    yearMaster: '',
-    varshpahalaRashiTable: [],
-    isYearPickerActive: true,
-    varshpahalaMaps: [],
-    varshpahalaDate: '',
-    muntkha: ''
-  } as VarshpahalaState,
+  initialState,
   reducers: {
     setDashiTable: (state, action: PayloadAction<DashiTableRow []>) => {
       state.dashiTable = action.payload;
@@ -62,10 +64,11 @@ const varshpahalaReducer = createSlice({
     },
     setMuntkha: (state, action: PayloadAction<string>) => {
       state.muntkha = action.payload;
-    }
+    },
+    resetVarshpahala: () => initialState
   }
 });
 
-export const { setDashiTable, setYogasTable, setYearMasterTable, setMuntkha, setVarshpahalaDate, setIsVarshpahalaLoading, setVarshpahalaMaps, setYearMaster, setVarshpahalaRashiTable, setIsYearPickerActive } = varshpahalaReducer.actions;
+export const { setDashiTable, resetVarshpahala, setYogasTable, setYearMasterTable, setMuntkha, setVarshpahalaDate, setIsVarshpahalaLoading, setVarshpahalaMaps, setYearMaster, setVarshpahalaRashiTable, setIsYearPickerActive } = varshpahalaReducer.actions;
 
 export default varshpahalaReducer.reducer;

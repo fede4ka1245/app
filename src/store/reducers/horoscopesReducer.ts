@@ -29,32 +29,34 @@ interface HoroscopeState {
   addressInformation?: AddressSuggestion
 }
 
+const initialState: HoroscopeState = {
+  maps: getMapsOptions(),
+  targetMapValue: getMapsOptions()[0].value,
+  horoscopeUserInfo: {
+    userName: '',
+    longitude: '',
+    latitude: '',
+    date: '',
+    time: '',
+    location: '',
+    greenwich: '',
+    hours: '',
+    minutes: ''
+  },
+  dashiVim: [],
+  dashiChr: [],
+  isDashiLoading: false,
+  ashtakavarga: [],
+  isAshtakavargaLoading: false,
+  rashiTable: [],
+  dashiChrPeriod: 1,
+  isDashiChrPeriodLoading: false,
+  addressInformation: undefined
+} as HoroscopeState;
+
 export const horoscopesSlice = createSlice({
   name: 'horoscope',
-  initialState: {
-    maps: getMapsOptions(),
-    targetMapValue: getMapsOptions()[0].value,
-    horoscopeUserInfo: {
-      userName: '',
-      longitude: '',
-      latitude: '',
-      date: '',
-      time: '',
-      location: '',
-      greenwich: '',
-      hours: '',
-      minutes: ''
-    },
-    dashiVim: [],
-    dashiChr: [],
-    isDashiLoading: false,
-    ashtakavarga: [],
-    isAshtakavargaLoading: false,
-    rashiTable: [],
-    dashiChrPeriod: 1,
-    isDashiChrPeriodLoading: false,
-    addressInformation: undefined
-  } as HoroscopeState,
+  initialState,
   reducers: {
     setMaps: (state, action) => {
       state.maps = action.payload;
@@ -91,10 +93,11 @@ export const horoscopesSlice = createSlice({
     },
     setAddressInformation: (state, action: PayloadAction<AddressSuggestion>) => {
       state.addressInformation = action.payload;
-    }
+    },
+    resetHoroscopes: () => initialState
   }
 });
 
-export const { setMaps, setTargetMapValue, setDashiChrPeriod, setAddressInformation, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
+export const { setMaps, resetHoroscopes, setTargetMapValue, setDashiChrPeriod, setAddressInformation, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
 
 export default horoscopesSlice.reducer;
