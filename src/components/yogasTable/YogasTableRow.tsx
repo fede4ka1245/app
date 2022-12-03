@@ -27,11 +27,11 @@ const YogasTableRow = ({ row }: YogasTableRowProps) => {
   return (
     <Grid container display={'flex'} className={styles.row} alignItems={'center'} onClick={toggleIsModalOpen}>
       <Modal isOpen={isModalOpen} close={toggleIsModalOpen}>
-        <Grid p={2} sx={{ background: 'white' }} height={'100%'}>
+        <Grid p={2} sx={{ background: 'white', overflow: 'scroll' }} minHeight={'100%'}>
           <Typography fontWeight={'bold'} fontFamily={'Gilroy'} fontSize={'20px'}>
             {row?.badge?.fullName}
           </Typography>
-          {row.badge.fullName && <Typography pt={2} fontFamily={'Gilroy'} fontSize={'16px'} color={'#5B6062'}>
+          {row.badge.fullName && <Typography whiteSpace={'pre-wrap'} pt={2} fontFamily={'Gilroy'} fontSize={'16px'} color={'#5B6062'}>
             {getYoga(row.badge.fullName || '')?.description}
           </Typography>}
         </Grid>
