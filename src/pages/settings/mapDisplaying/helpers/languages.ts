@@ -1,18 +1,20 @@
+import { Language } from '../../../../models/enums/Language';
+
 export const languages = [
   {
     label: 'Английский',
-    value: 'eng'
+    value: Language.Eng
   },
   {
     label: 'Русский',
-    value: 'ru'
+    value: Language.Ru
   },
   {
     label: 'Санскрит (En)',
-    value: 'sunscript-en'
+    value: Language.SunScriptEng
   },
   {
     label: 'Санскрит (Ru)',
-    value: 'sunscript-ru'
+    value: Language.SunScriptRu
   }
 ];

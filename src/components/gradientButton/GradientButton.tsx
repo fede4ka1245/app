@@ -15,7 +15,7 @@ const GradientButton = ({ children, onClick }: GradientButtonProps) => {
   }, [onClick]);
 
   return (
-    <MuiButton onClick={onGradientButtonClick} disableRipple fullWidth sx={{ height: '60px', background: '#F0F0F3', boxShadow: '-5px -5px 20px #FFFFFF, 5px 5px 20px rgba(174, 174, 192, 0.5)', borderRadius: '10px' }}>
+    <MuiButton onClick={onGradientButtonClick} fullWidth sx={{ height: '60px', background: '#F0F0F3', boxShadow: '-5px -5px 20px #FFFFFF, 5px 5px 20px rgba(174, 174, 192, 0.5)', borderRadius: '10px' }}>
       <Typography
         sx={{
           background: 'linear-gradient(268.23deg, #37366B 2.7%, #5C5B9F 44.59%, #59ABDA 99.71%), #C4C4C4',

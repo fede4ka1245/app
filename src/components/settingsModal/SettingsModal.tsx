@@ -37,10 +37,10 @@ const SettingsModal = ({ isOpen, close }: SettingsModalProps) => {
         </Grid>
       </Modal>
       <Modal isOpen={isMainSettingsModalOpen} close={toggleMainSettingsModal} height={'calc(100vh - 100px)'}>
-        <Main />
+        <Main closeSettings={toggleMainSettingsModal}/>
       </Modal>
       <Modal isOpen={isMapDisplayingOpen} close={toggleMapDisplaying} height={'calc(100vh - 100px)'}>
-        <MapDisplaying />
+        <MapDisplaying closeSettings={toggleMapDisplaying}/>
       </Modal>
     </div>
   );

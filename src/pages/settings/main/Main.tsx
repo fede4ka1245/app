@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FormControlLabel, Grid, RadioGroup, Typography } from '@mui/material';
 import PlanetBackground from '../../../components/planetBackground/PlanetBackground';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
@@ -10,18 +10,30 @@ import Divider from '../../../components/divider/Divider';
 import Radio from '../../../components/radio/Radio';
 import FormLabel from '../../../components/formLabel/FormLabel';
 import { useHideNavbar } from '../../../hooks/useHideNavbar';
+import { SettingsPageProps } from '../SettingsPageProps';
 
-const Main = () => {
+interface MainProps extends SettingsPageProps {}
+
+const Main = ({ closeSettings }: MainProps) => {
   const navigate = useNavigate();
 
   useHideNavbar();
 
+  const close = useCallback(() => {
+    if (closeSettings) {
+      closeSettings();
+      return;
+    }
+
+    navigate(-1);
+  }, [closeSettings, navigate]);
+
   return (
     <Grid position={'relative'}>
       <PlanetBackground/>
-      <Grid item container alignItems={'center'} justifyContent={'space-between'} p={2}>
+      <Grid item container alignItems={'center'} justifyContent={'space-between'} pl={2} pr={2} pt={4}>
         <Grid item>
-          <ButtonBack label={'Настройки'} onClick={() => navigate(-1)}/>
+          <ButtonBack label={'Настройки'} onClick={close}/>
         </Grid>
         <Grid item>
           <ButtonSave onClick={() => console.log(123)}/>

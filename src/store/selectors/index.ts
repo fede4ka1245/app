@@ -152,6 +152,18 @@ export const useGetMapType = () => {
   return useAppSelector((state) => state?.settings.mapType);
 };
 
+export const useGetIsEarthActive = () => {
+  return useAppSelector((state) => state?.settings.isEarthActive);
+};
+
+export const useGetHelpersElements = () => {
+  return useAppSelector((state) => state?.settings.helpersElements);
+};
+
+export const useGetLanguage = () => {
+  return useAppSelector((state) => state?.settings.language);
+};
+
 export const useGetIsDeepSkyActive = () => {
   return useAppSelector((state) => state?.deepSky.isDeepSkyActive);
 };
@@ -172,14 +184,17 @@ export const useGetHoroscopeAddressInformation = () => {
   return useAppSelector((state) => state?.horoscopes.addressInformation);
 };
 
+// @ts-ignore
 export const useGetVarshpahalaDate = () => {
   return useAppSelector((state) => state?.varshpahala.varshpahalaDate);
 };
 
+// @ts-ignore
 export const useGetVarshpahalaMuntkha = () => {
   return useAppSelector((state) => state?.varshpahala.muntkha);
 };
 
+// @ts-ignore
 export const useGetSavedHoroscopes = () => {
   return useAppSelector((state) => state?.savedHoroscopes.savedHoroscopes);
 };
