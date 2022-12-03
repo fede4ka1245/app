@@ -4,7 +4,7 @@ import { TimeZoneData } from '../../models/types/TimeZoneData';
 import axios from 'axios';
 
 const url = 'https://j108.ru/atlas';
-const token = 'e2225e00a5ab3e3fd2e2855b86e2a1bb%241';
+const token = '1a9adefca886649991208e4108447aa8$1';
 
 export const getSuggestions = (query: string, count = 15) => {
   const options = {
