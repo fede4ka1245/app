@@ -17,9 +17,9 @@ const PlanetBackground = () => {
   }, [isNavbarActive]);
 
   return (
-    <div style={{ position: 'absolute', top: 0, left: 0, zIndex: -1, height: isNavbarActive ? 'calc(100% + 90px)' : '100%', width: '100%' }} className={styles.main}>
+    <div style={{ position: 'absolute', top: 0, minHeight: '100vh', left: 0, zIndex: -1, height: isNavbarActive ? 'calc(100% + 90px)' : '100%', width: '100%', display: 'flex', flexDirection: 'column' }} className={styles.main}>
       <img alt='background' ref={imageRef} src={background} width={'100%'} style={{ margin: 0, padding: 0 }}/>
-      <div ref={main} style={{ zIndex: -2, top: 0, left: 0, width: '100%', height: '100%', position: 'absolute' }}/>
+      <div ref={main} style={{ zIndex: -2, top: 0, left: 0, width: '100%', height: '100%', position: 'relative' }}/>
     </div>
   );
 };
