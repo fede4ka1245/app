@@ -4,6 +4,7 @@ import Main from '../../pages/settings/main/Main';
 import MapDisplaying from '../../pages/settings/mapDisplaying/MapDisplaying';
 import { Grid } from '@mui/material';
 import Button from '../button/Button';
+import ButtonClose from '../buttonClose/ButtonClose';
 
 interface SettingsModalProps {
   isOpen: boolean,
@@ -37,9 +38,15 @@ const SettingsModal = ({ isOpen, close }: SettingsModalProps) => {
         </Grid>
       </Modal>
       <Modal isOpen={isMainSettingsModalOpen} close={toggleMainSettingsModal} height={'calc(100vh - 100px)'}>
+        <Grid position={'absolute'} right={'10px'} top={'10px'} zIndex={4}>
+          <ButtonClose onClick={toggleMainSettingsModal} />
+        </Grid>
         <Main closeSettings={toggleMainSettingsModal}/>
       </Modal>
       <Modal isOpen={isMapDisplayingOpen} close={toggleMapDisplaying} height={'calc(100vh - 100px)'}>
+        <Grid position={'absolute'} right={'10px'} top={'10px'} zIndex={4}>
+          <ButtonClose onClick={toggleMapDisplaying} />
+        </Grid>
         <MapDisplaying closeSettings={toggleMapDisplaying}/>
       </Modal>
     </div>

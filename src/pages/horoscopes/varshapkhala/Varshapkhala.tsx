@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import YearPicker from '../../../components/yearPicker/YearPicker';
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import Button from '../../../components/button/Button';
 import planet from './img.png';
 import { getVarshpahala } from '../../../api/getVarshpahala';
@@ -31,6 +31,7 @@ import YearMasterTable from './yearMasterTable/YearMasterTable';
 import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
 import RashiTable from '../../../components/rashiTable/RashiTable';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
+import ButtonClose from '../../../components/buttonClose/ButtonClose';
 
 const Varshapkhala = () => {
   const { latitude, longitude, time, userName, date, hours, greenwich, minutes } = useGetHoroscopeUserInfo();
@@ -134,12 +135,7 @@ const Varshapkhala = () => {
                 <Typography color={'#292E30'} fontWeight={700} fontFamily={'Gilroy'} fontSize={'20px'} mr={'auto'}>
                   Хозяин года - {yearMaster}
                 </Typography>
-                <IconButton onClick={toggleYearMasterModal}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.58398 1.58334L14.4173 14.4167" stroke="#C3C9CD" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M14.416 1.58334L1.58268 14.4167" stroke="#C3C9CD" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                </IconButton>
+                <ButtonClose onClick={toggleYearMasterModal} />
               </Grid>
               <Grid item>
                 <YearMasterTable rows={yearMasterTable} />

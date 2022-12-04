@@ -9,6 +9,7 @@ import { useGetHoroscopeAddressInformation, useGetHoroscopeUserInfo } from '../.
 import { setHoroscopeUserInfo } from '../../../../store/reducers/horoscopesReducer';
 import { useAppDispatch } from '../../../../store/store';
 import { useLoadHoroscopes } from '../../../../hooks/useLoadHororscope';
+import ButtonClose from '../../../../components/buttonClose/ButtonClose';
 
 interface EditHoroscopeModalProps {
   isEditModalOpen: boolean,
@@ -98,7 +99,10 @@ const EditHoroscopeModal = ({ isEditModalOpen, toggleEditModal }: EditHoroscopeM
     <Modal isOpen={isEditModalOpen} close={toggleEditModal} height={'calc(100vh - 80px)'}>
       <Grid container position={'relative'} height={'100%'}>
         <PlanetBackground />
-        <Grid item p={2}>
+        <Grid position={'absolute'} right={'10px'} top={'10px'} zIndex={4}>
+          <ButtonClose onClick={toggleEditModal} />
+        </Grid>
+        <Grid item pl={2} pr={2} pt={6}>
           <HoroscopeForm
             name={name}
             setName={setName}

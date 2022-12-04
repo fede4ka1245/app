@@ -4,6 +4,7 @@ import { Option } from '../../../../models/types/Option';
 import Input from '../../Input';
 import styles from './InputOptions.module.scss';
 import { InputStyle } from '../../InputStyle';
+import ButtonClose from '../../../buttonClose/ButtonClose';
 
 export type InputOptionsProps = {
   placeholder?: string,
@@ -46,14 +47,19 @@ const InputOptions = ({ options, onChange, placeholder, setTargetOption, close }
 
   return (
     <>
-      <Grid item p={2}>
-        <Input
-          value={value}
-          onChange={onInputChange}
-          ref={inputRef}
-          placeholder={placeholder}
-          inputStyle={InputStyle.outlined}
-        />
+      <Grid item p={2} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Grid flex={1}>
+          <Input
+            value={value}
+            onChange={onInputChange}
+            ref={inputRef}
+            placeholder={placeholder}
+            inputStyle={InputStyle.outlined}
+          />
+        </Grid>
+        <Grid zIndex={4} pl={2}>
+          <ButtonClose onClick={close} />
+        </Grid>
       </Grid>
       <Grid container direction={'column'} overflow={'scroll'} wrap={'nowrap'}>
         {options?.map(({ label, value }, index) => (
