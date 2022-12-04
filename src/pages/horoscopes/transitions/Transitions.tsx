@@ -24,9 +24,7 @@ const Transitions = () => {
         <Options options={transitionOptions} value={targetTransition.value} setValue={setTargetTransition}/>
       </Grid>
       {targetTransition.value === 'date' && (
-        <Grid item pl={2} pr={2}>
-          <TransitionDate />
-        </Grid>
+        <TransitionDate />
       )}
       {targetTransition.value === 'search' && (
         <TransitionSearch />

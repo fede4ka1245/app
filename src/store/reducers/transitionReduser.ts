@@ -1,18 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { MapOption } from '../../models/types/MapOption';
+import { RashiTable } from '../../models/types/RashiTable';
 
 interface TransitionState {
   transitionMaps: Array<MapOption>,
   transitionDate: string,
   transitionTime: string,
-  isTransitionMapsActive: boolean
+  isTransitionMapsActive: boolean,
+  rashiTable: RashiTable,
+  isRashiTableLoading: boolean
 }
 
 const initialState = {
   transitionMaps: [],
   transitionDate: '',
   transitionTime: '',
-  isTransitionMapsActive: false
+  isTransitionMapsActive: false,
+  rashiTable: [],
+  isRashiTableLoading: false
 } as TransitionState;
 
 export const transitionSlice = createSlice({
@@ -31,10 +36,16 @@ export const transitionSlice = createSlice({
     setIsTransitionMapsActive: (state, action: PayloadAction<boolean>) => {
       state.isTransitionMapsActive = action.payload;
     },
+    setIsTransitionRashiTableLoading: (state, action: PayloadAction<boolean>) => {
+      state.isRashiTableLoading = action.payload;
+    },
+    setTransitionRashiTable: (state, action: PayloadAction<RashiTable>) => {
+      state.rashiTable = action.payload;
+    },
     resetTransitions: () => initialState
   }
 });
 
-export const { setTransitionMaps, resetTransitions, setTransitionDate, setTransitionTime, setIsTransitionMapsActive } = transitionSlice.actions;
+export const { setTransitionMaps, setTransitionRashiTable, setIsTransitionRashiTableLoading, resetTransitions, setTransitionDate, setTransitionTime, setIsTransitionMapsActive } = transitionSlice.actions;
 
 export default transitionSlice.reducer;

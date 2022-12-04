@@ -136,6 +136,14 @@ export const useGetTransitionMaps = () => {
   return useAppSelector((state) => state?.transition.transitionMaps);
 };
 
+export const useGetTransitionRashiTable = () => {
+  return useAppSelector((state) => state?.transition.rashiTable);
+};
+
+export const useGetTransitionIsRashiTableLoading = () => {
+  return useAppSelector((state) => state?.transition.isRashiTableLoading);
+};
+
 export const useGetTransitionDate = () => {
   return useAppSelector((state) => state?.transition.transitionDate);
 };
