@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './NatMap.module.scss';
 import img from './img.png';
 import Switch from '../../../components/switch/Switch';
@@ -10,8 +10,6 @@ import {
   useGetRashiTable,
   useGetTargetMapValue
 } from '../../../store/selectors';
-import RashiTable from '../../../components/rashiTable/RashiTable';
-import Dashi from '../dashi/Dashi';
 import { useAppDispatch } from '../../../store/store';
 import { setDeepSkyObjects, setIsDeepSkyActive } from '../../../store/reducers/deepSkyReducer';
 import { getDeepSky } from '../../../api/getDeepSky';
@@ -25,6 +23,8 @@ import { isOrbis } from '../../../helpers/deepSky/isOrbis';
 import { getOrbis } from '../../../helpers/deepSky/getOrbis';
 import AppLoader from '../../../components/appLoader/AppLoader';
 import { getFormattedZodiacSign } from '../../../helpers/getFormattedZodiacSign';
+import MainRashiTable from '../components/mainRashiTable/MainRashiTable';
+import MainDashiTable from '../components/mainDashiTable/MainDashiTable';
 
 const NatMap = () => {
   const [isLoading, setIsLoading] = useState<boolean>();
@@ -32,10 +32,6 @@ const NatMap = () => {
   const targetMapValue = useGetTargetMapValue();
   const dispatch = useAppDispatch();
   const { date } = useGetHoroscopeUserInfo();
-
-  const rows = useMemo(() => {
-    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table.primaryData || [];
-  }, [rashiTable, targetMapValue]);
 
   const isDeepSkyActive = useGetIsDeepSkyActive();
 
@@ -144,14 +140,14 @@ const NatMap = () => {
       <Grid container pl={2} pr={2} direction={'column'}>
         <Grid item>
           <section className={styles.main}>
-            <img src={img} className={styles.background}/>
+            <img alt='background' src={img} className={styles.background}/>
             <img alt='deepSky' src={deepSky} style={{ margin: '0 auto 0 10px' }} />
             <Switch onChange={toggleDeepSky} checked={isDeepSkyActive} />
           </section>
         </Grid>
       </Grid>
-      <RashiTable rows={rows} isDeepSkyActive={isDeepSkyActive}/>
-      <Dashi />
+      <MainRashiTable />
+      <MainDashiTable />
     </>
   );
 };

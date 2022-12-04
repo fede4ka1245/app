@@ -26,7 +26,8 @@ interface HoroscopeState {
   ashtakavarga: AshtakavargaTable[],
   isAshtakavargaLoading: boolean,
   rashiTable: RashiTable,
-  addressInformation?: AddressSuggestion
+  addressInformation?: AddressSuggestion,
+  isRashiTableLoading: boolean
 }
 
 const initialState: HoroscopeState = {
@@ -45,6 +46,7 @@ const initialState: HoroscopeState = {
   },
   dashiVim: [],
   dashiChr: [],
+  isRashiTableLoading: false,
   isDashiLoading: false,
   ashtakavarga: [],
   isAshtakavargaLoading: false,
@@ -94,10 +96,13 @@ export const horoscopesSlice = createSlice({
     setAddressInformation: (state, action: PayloadAction<AddressSuggestion>) => {
       state.addressInformation = action.payload;
     },
+    setIsRashiTableLoading: (state, action: PayloadAction<boolean>) => {
+      state.isRashiTableLoading = action.payload;
+    },
     resetHoroscopes: () => initialState
   }
 });
 
-export const { setMaps, resetHoroscopes, setTargetMapValue, setDashiChrPeriod, setAddressInformation, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
+export const { setMaps, resetHoroscopes, setIsRashiTableLoading, setTargetMapValue, setDashiChrPeriod, setAddressInformation, setIsDashiChrPeriodLoading, setRashiTable, setHoroscopeUserInfo, setDashiVim, setDashiChr, setIsDashiLoading, setAshtakavarga, setIsAshtakavargaLoading } = horoscopesSlice.actions;
 
 export default horoscopesSlice.reducer;

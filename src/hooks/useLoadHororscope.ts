@@ -16,7 +16,7 @@ import {
   setDashiChr,
   setDashiVim, setHoroscopeUserInfo,
   setIsAshtakavargaLoading,
-  setIsDashiLoading, setMaps, setRashiTable
+  setIsDashiLoading, setIsRashiTableLoading, setMaps, setRashiTable
 } from '../store/reducers/horoscopesReducer';
 import { getDashi } from '../api/getDashi';
 import { getAshtakavarga } from '../api/getAshtakavarga';
@@ -48,6 +48,8 @@ export const useLoadHoroscopes = () => {
         minutes
       });
 
+      dispatch(setIsRashiTableLoading(true));
+
       getRashiTable({
         userName,
         date,
@@ -59,6 +61,8 @@ export const useLoadHoroscopes = () => {
         minutes
       }).then((result) => {
         dispatch(setRashiTable(result));
+      }).finally(() => {
+        dispatch(setIsRashiTableLoading(false));
       });
 
       dispatch(setIsZonesLoading(true));

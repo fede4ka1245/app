@@ -156,6 +156,10 @@ export const useGetIsEarthActive = () => {
   return useAppSelector((state) => state?.settings.isEarthActive);
 };
 
+export const useGetIsRashiTableLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isRashiTableLoading);
+};
+
 export const useGetHelpersElements = () => {
   return useAppSelector((state) => state?.settings.helpersElements);
 };

@@ -5,11 +5,11 @@ import { ButtonType } from '../../../components/button/ButtonProps';
 import Button from '../../../components/button/Button';
 import { InputType } from '../../../components/input/InputType';
 import { useLoadHoroscopes } from '../../../hooks/useLoadHororscope';
-import { useGetHoroscopeUserInfo, useGetRashiTable, useGetTargetMapValue } from '../../../store/selectors';
+import { useGetHoroscopeUserInfo } from '../../../store/selectors';
 import ButtonPrevForward from './components/buttonPrevForward/ButtonPrevForward';
-import RashiTable from '../../../components/rashiTable/RashiTable';
-import Dashi from '../dashi/Dashi';
 import { useSaveHoroscope } from '../../../hooks/useSaveHoroscope';
+import MainRashiTable from '../components/mainRashiTable/MainRashiTable';
+import MainDashiTable from '../components/mainDashiTable/MainDashiTable';
 
 enum TimeOptionValue {
   ONE_MINUTE,
@@ -136,13 +136,6 @@ const Rectification = () => {
     setTime(`${hours}:${minutes}:${seconds}`);
   }, [forwardTimeOption, prevTimeOption, targetUserDate]);
 
-  const rashiTable = useGetRashiTable();
-  const targetMapValue = useGetTargetMapValue();
-
-  const rows = useMemo(() => {
-    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table.primaryData || [];
-  }, [rashiTable, targetMapValue]);
-
   return (
     <>
       <Grid container direction={'column'} p={2}>
@@ -175,8 +168,8 @@ const Rectification = () => {
           <Button text={'Сохранить'} type={ButtonType.outline} onClick={saveHoroscope} />
         </Grid>
       </Grid>
-      <RashiTable rows={rows} />
-      <Dashi />
+      <MainRashiTable />
+      <MainDashiTable />
     </>
   );
 };
