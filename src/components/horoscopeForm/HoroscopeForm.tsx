@@ -148,10 +148,10 @@ const HoroscopeForm = ({ name, setName, date, setDate, time, setTime, timeZone, 
       </Grid>
       <Grid item container direction={'row'} spacing={2} pb={2}>
         <Grid item xs={6} md={6}>
-          <Input placeholder='Дата (ДД.ММ.ГГГГ)' inputType={InputType.date} value={date} onChange={setDate}/>
+          <Input placeholder='ДД.ММ.ГГГГ' inputType={InputType.date} value={date} onChange={setDate}/>
         </Grid>
         <Grid item xs={6} md={6}>
-          <Input placeholder='Время (00.00.00)' inputType={InputType.time} value={time} onChange={setTime}/>
+          <Input placeholder='00.00.00' inputType={InputType.time} value={time} onChange={setTime}/>
         </Grid>
       </Grid>
       <Grid item xs={12} md={12}>

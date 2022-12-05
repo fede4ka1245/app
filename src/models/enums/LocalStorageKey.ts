@@ -4,5 +4,6 @@ export enum LocalStorageKey {
   avatar = 'avatar',
   isForumRulesConfirmed = 'isForumRulesConfirmed',
   userInfo = 'userInfo',
-  mapType = 'mapType'
+  mapType = 'mapType',
+  restoredPathname = 'restoredPathname'
 }

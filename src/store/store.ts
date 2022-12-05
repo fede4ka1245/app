@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['settings', 'user', 'savedHoroscopes']
+  whitelist: ['settings', 'user', 'savedHoroscopes', 'transition', 'deepSky', 'zones', 'varshpahala', 'horoscopes']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

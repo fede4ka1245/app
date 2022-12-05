@@ -62,6 +62,7 @@ import Main from './pages/main/Main';
 import AppLoader from './components/appLoader/AppLoader';
 import { setContentRef } from './store/reducers/preferencesReducer';
 import { Grid } from '@mui/material';
+import { usePauseResumeEffect } from './hooks/usePauseResumeEffect';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -96,6 +97,8 @@ function App () {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  usePauseResumeEffect();
 
   return (
     <>
