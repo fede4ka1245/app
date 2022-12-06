@@ -1,7 +1,8 @@
 export enum StellarObjectType {
-  Star,
+  Star = 1,
   CloseStar,
   Galaxy,
   Nebula,
-  Stars
+  Stars,
+  Earth
 }

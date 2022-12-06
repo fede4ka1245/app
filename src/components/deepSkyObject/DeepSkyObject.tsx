@@ -1,15 +1,17 @@
 import React, { useMemo, useRef } from 'react';
-import { CurrentDeepSkyObject } from '../../models/types/CurrentDeepSkyObject';
 import star from './assets/star.png';
 import galaxy from './assets/galaxy.png';
 import stars from './assets/stars.png';
 import nebula from './assets/nebula.png';
+import earth from './assets/earth.png';
 import { ClickAwayListener, Popper } from '@mui/material';
 import styles from './DeepSkyObject.module.scss';
 import classNames from 'classnames';
+import { StellarObjectType } from '../../models/enums/StellarObjectType';
+import { MapDeepSkyObject } from '../../models/types/MapDeepSkyObject';
 
 interface DeepSkyObjectProps {
-  deepSkyObject?: CurrentDeepSkyObject
+  deepSkyObject?: MapDeepSkyObject
 }
 
 const DeepSkyObject = ({ deepSkyObject }: DeepSkyObjectProps) => {
@@ -24,16 +26,18 @@ const DeepSkyObject = ({ deepSkyObject }: DeepSkyObjectProps) => {
   };
 
   const objectType = useMemo(() => {
-    if (deepSkyObject?.stellarObjectType === 1) {
+    if (deepSkyObject?.stellarObjectType === StellarObjectType.Star) {
       return 'Звезда';
-    } else if (deepSkyObject?.stellarObjectType === 2) {
+    } else if (deepSkyObject?.stellarObjectType === StellarObjectType.CloseStar) {
       return 'Звезда близкая к эклиптике';
-    } else if (deepSkyObject?.stellarObjectType === 3) {
+    } else if (deepSkyObject?.stellarObjectType === StellarObjectType.Galaxy) {
       return 'Галактика';
-    } else if (deepSkyObject?.stellarObjectType === 4) {
+    } else if (deepSkyObject?.stellarObjectType === StellarObjectType.Nebula) {
       return 'Туманность';
-    } else if (deepSkyObject?.stellarObjectType === 5) {
+    } else if (deepSkyObject?.stellarObjectType === StellarObjectType.Stars) {
       return 'Звёздное скопление';
+    } else if (deepSkyObject?.stellarObjectType === StellarObjectType.Earth) {
+      return 'Земля';
     }
   }, [deepSkyObject]);
 
@@ -54,7 +58,7 @@ const DeepSkyObject = ({ deepSkyObject }: DeepSkyObjectProps) => {
               {objectType}
             </label>
             <label className={styles.text}>
-              {`/ ${deepSkyObject?.year?.siderealSigndegree}° ${deepSkyObject?.year?.siderealMinutes}' /`}
+              {`/ ${deepSkyObject?.signDegrees?.degrees}° ${deepSkyObject?.signDegrees?.minutes}' /`}
             </label>
           </p>
         </ClickAwayListener>
@@ -66,6 +70,7 @@ const DeepSkyObject = ({ deepSkyObject }: DeepSkyObjectProps) => {
         {deepSkyObject?.stellarObjectType === 3 && <img src={galaxy} className={styles.image} width={26} height={26} />}
         {deepSkyObject?.stellarObjectType === 4 && <img src={nebula} className={styles.image} width={26} height={26} />}
         {deepSkyObject?.stellarObjectType === 5 && <img src={stars} className={styles.image} width={26} height={26} />}
+        {deepSkyObject?.stellarObjectType === 6 && <img src={earth} className={styles.image} width={26} height={26} />}
       </div>
     </>
   );

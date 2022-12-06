@@ -8,6 +8,6 @@ export const getDeepSky = async (): Promise<DeepSkyObject []> => {
       limit: 1000
     }
   });
-
+  
   return camelcaseKeys(data.results, { deep: true });
 };

@@ -1,11 +1,15 @@
 import React, { useMemo, useRef } from 'react';
 import styles from './MapSector.module.scss';
 import classNames from 'classnames';
-import { useGetDeepSkyObjects, useGetIsDeepSkyActive } from '../../../store/selectors';
+import { useGetDeepSkyObjects, useGetIsDeepSkyActive, useGetIsEarthActive } from '../../../store/selectors';
 import { CurrentDeepSkyObject } from '../../../models/types/CurrentDeepSkyObject';
 import DeepSkyObject from '../../deepSkyObject/DeepSkyObject';
 import { Grid } from '@mui/material';
 import southMapMark from './southMapMark.svg';
+import {
+  currentDeepSkyObjectToMapDeepSkyObject
+} from '../../../helpers/deepSky/currentDeepSkyObjectToMapDeepSkyObject';
+import { useGetEarth } from '../../../hooks/useGetEarth';
 
 interface MapSectorProps {
   number: number,
@@ -21,6 +25,9 @@ interface MapSectorProps {
 }
 
 const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAspectIndex, setTargetAspectIndex, selectedSector, setSelectedSector, isNorthMap }: MapSectorProps) => {
+  const earth = useGetEarth();
+  const isEarthActive = useGetIsEarthActive();
+
   const isSelected = useMemo(() => {
     return index === selectedSector;
   }, [index, selectedSector]);
@@ -65,8 +72,17 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
   const isDeepSkyActive = useGetIsDeepSkyActive();
 
   const sectorDeepSkyObjects = useMemo(() => {
-    return deepSkyObjects.filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(index));
-  }, [deepSkyObjects, index]);
+    const mapDeepSkyObjects = Array.from(deepSkyObjects
+      .filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(index))
+      .map((object: CurrentDeepSkyObject) => currentDeepSkyObjectToMapDeepSkyObject(object))
+    );
+
+    if (earth?.signDegrees.sign === Number(index) && isEarthActive) {
+      mapDeepSkyObjects.push(earth);
+    }
+
+    return mapDeepSkyObjects;
+  }, [deepSkyObjects, index, earth, isEarthActive]);
 
   const order = useMemo(() => {
     if (isNorthMap) {

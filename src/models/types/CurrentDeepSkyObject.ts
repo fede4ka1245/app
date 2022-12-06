@@ -1,6 +1,6 @@
 import { DeepSkyObject } from './DeepSkyObject';
 import { DeepSkyYear } from './DeepSkyYear';
-import { ZodiacSign, ZodiacSignType } from '../enums/ZodiacSign';
+import { ZodiacSignType } from '../enums/ZodiacSign';
 
 export interface CurrentDeepSkyYear extends Omit<Omit<DeepSkyYear, 'tropicalSign'>, 'siderealSign'> {
   tropicalSign?: ZodiacSignType,

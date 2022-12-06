@@ -1,4 +1,5 @@
 import { DeepSkyYear } from './DeepSkyYear';
+import { StellarObjectType } from '../enums/StellarObjectType';
 
 export interface DeepSkyObject {
   id: number,
@@ -6,7 +7,7 @@ export interface DeepSkyObject {
   title: string,
   constellation: string,
   comment: string,
-  stellarObjectType: number,
+  stellarObjectType: StellarObjectType,
   imageUrl?: string,
   area: string
 }

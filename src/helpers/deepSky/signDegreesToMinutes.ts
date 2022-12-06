@@ -1,10 +1,7 @@
 import { ZodiacSign } from '../../models/enums/ZodiacSign';
+import { SignDegreesValue } from '../../models/types/SignDegreesValue';
 
-export interface SignValueToMinutesProps {
-  sign: ZodiacSign,
-  minutes?: number,
-  degrees?: number
-}
+export interface SignValueToMinutesProps extends SignDegreesValue {}
 
 export const signDegreesToMinutes = ({ sign, degrees, minutes }: SignValueToMinutesProps) => {
   let signDegrees = 0;
@@ -47,5 +44,5 @@ export const signDegreesToMinutes = ({ sign, degrees, minutes }: SignValueToMinu
     return (degrees + signDegrees) * 60;
   }
 
-  return signDegrees;
+  return signDegrees * 60;
 };
