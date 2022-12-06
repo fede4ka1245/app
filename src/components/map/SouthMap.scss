@@ -63,7 +63,7 @@
   }
 
   .transited-sector-9 {
-    right: 50%;
+    left: 0;
     bottom: 0;
   }
 
@@ -73,12 +73,12 @@
   }
 
   .transited-sector-4 {
-    left: 75%;
+    right: 0;
     top: 25%;
   }
 
   .transited-sector-5 {
-    left: 75%;
+    right: 0;
     top: 50%;
   }
 
@@ -92,56 +92,47 @@
     top: 25%;
   }
 
-  .sector-1, .sector-12 {
+  .sector-12 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      bottom: 0;
+      left: 30px;
+      position: absolute;
+    }
+  }
+
+  .sector-2, .sector-1 {
     .info {
       width: 100%;
       height: calc(100% - 30px);
       bottom: 0;
-      position: absolute;
-    }
-  }
-
-  .sector-2 {
-    .info {
-      width: calc(100% - 30px);
-      height: calc(100% - 30px);
-      bottom: 0;
       right: 0;
       position: absolute;
     }
   }
 
-  .sector-11 {
+  .sector-3 {
     .info {
       width: calc(100% - 30px);
       height: calc(100% - 30px);
       bottom: 0;
-      left: 0;
+      right: 30px;
       position: absolute;
     }
   }
 
-  .sector-3, .sector-4 {
+  .sector-4, .sector-5 {
     .info {
       width: calc(100% - 30px);
       height: 100%;
       bottom: 0;
-      right: 0;
+      left: 0;
       position: absolute;
     }
   }
 
-  .sector-5 {
-    .info {
-      width: calc(100% - 30px);
-      height: calc(100% - 30px);
-      top: 0;
-      right: 0;
-      position: absolute;
-    }
-  }
-
-  .sector-8 {
+  .sector-6 {
     .info {
       width: calc(100% - 30px);
       height: calc(100% - 30px);
@@ -151,7 +142,7 @@
     }
   }
 
-  .sector-6, .sector-7 {
+  .sector-7, .sector-8 {
     .info {
       width: 100%;
       height: calc(100% - 30px);
@@ -160,11 +151,22 @@
     }
   }
 
-  .sector-9, .sector-10 {
+  .sector-9 {
+    .info {
+      width: calc(100% - 30px);
+      height: calc(100% - 30px);
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+  }
+
+  .sector-10, .sector-11 {
     .info {
       width: calc(100% - 30px);
       height: 100%;
-      left: 0;
+      top: 0;
+      right: 0;
       position: absolute;
     }
   }
