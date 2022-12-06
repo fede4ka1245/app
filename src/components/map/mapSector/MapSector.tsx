@@ -5,6 +5,7 @@ import { useGetDeepSkyObjects, useGetIsDeepSkyActive } from '../../../store/sele
 import { CurrentDeepSkyObject } from '../../../models/types/CurrentDeepSkyObject';
 import DeepSkyObject from '../../deepSkyObject/DeepSkyObject';
 import { Grid } from '@mui/material';
+import southMapMark from './southMapMark.svg';
 
 interface MapSectorProps {
   number: number,
@@ -111,6 +112,9 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
           Показать знаковые аспекты
         </div>
       </h3>}
+      {!isNorthMap && Number(number) === 1 && (
+        <img alt={'southMapMark'} src={southMapMark} className={styles.mark}/>
+      )}
     </div>
   );
 };
