@@ -4,5 +4,6 @@ import { MapType } from './MapType';
 export interface AshtakavargaTable {
   tableName: string,
   table: AshtakavargaTableRow [],
-  mapType: MapType
+  mapType: MapType,
+  firstHouse?: number
 }
