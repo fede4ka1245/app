@@ -60,7 +60,7 @@ const Varshapkhala = () => {
   }, [isYearPickerActive]);
 
   const rashiTableRows = useMemo(() => {
-    return (rashiTable.find((rows) => rows.tableName === targetMapValue))?.table?.primaryData || [];
+    return (rashiTable.find((rows) => rows.tableName === 'D-1'))?.table?.primaryData || [];
   }, [rashiTable, targetMapValue]);
 
   const onCreateHoroscopeClick = useCallback(() => {
