@@ -126,12 +126,17 @@ const Index = () => {
   useResetHoroscopeOnUnmount();
 
   const currentMaps = useMemo(() => {
+    if (targetRoute.value === routes.transitions && !isTransitionMapsActive && !!transitionMaps.length) {
+      console.log(transitionMaps);
+      return transitionMaps;
+    }
+
     if (targetRoute.value === routes.varshapkhala && !isYearPickerActive) {
       return varshpahalaMaps;
     }
 
     return maps;
-  }, [targetRoute, isYearPickerActive, varshpahalaMaps, maps]);
+  }, [targetRoute, isYearPickerActive, varshpahalaMaps, maps, transitionMaps, isTransitionMapsActive]);
 
   return (
     <Grid position={'relative'} height={'100%'} minHeight={'100vh'}>
