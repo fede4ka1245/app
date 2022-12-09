@@ -11,6 +11,7 @@ import './SouthMap.scss';
 import './NorthMap.scss';
 import { useGetMapType } from '../../store/selectors';
 import { MapTypeEnum } from '../../models/types/MapType';
+import './Map.scss';
 
 interface MapProps {
   mapSections?: Array<MapSection>,
@@ -76,7 +77,7 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
 
   return (
     <section
-      className={classNames({
+      className={classNames('map', {
         'transit-north': isTransit && isNorthType,
         'transit-south': isTransit && !isNorthType,
         'astro-processor-north-map': isNorthType,

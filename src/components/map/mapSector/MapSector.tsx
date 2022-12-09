@@ -96,23 +96,23 @@ const MapSector = ({ aspects, targetAspectIndex, mapSection, setTargetAspectInde
     <div className={`sector sector-${order}`}>
       <div className={'info'}>
         {!isSelected && (
-          <>
-            <h3 className={'additional-info'}>
+          <Grid display={'flex'} flexWrap={'wrap'} justifyContent={'center'} alignItems={'center'} direction={'column'}>
+            <h3 className={'arudhs'}>
               {arudhs.join(' ')}
             </h3>
             <h3 className={'additional-info'}>
               {specialLagna.join(' ')}
             </h3>
-            <h3 className={'additional-info'}>
+            <h3 className={'gulika'}>
               {mandyGulika.join(' ')}
             </h3>
             <h3 className={'additional-info'}>
               {upagraha.join(' ')}
             </h3>
-            <h3 className={'additional-info'}>
+            <h3 className={'transsaturns'}>
               {transsaturns.join(' ')}
             </h3>
-            <h3 className={'additional-info'}>
+            <h3 className={'graha'}>
               {grahaDrishti.join(' ')}
             </h3>
             <h3 className={'main-info'}>
@@ -123,7 +123,7 @@ const MapSector = ({ aspects, targetAspectIndex, mapSection, setTargetAspectInde
                 <DeepSkyObject key={index} deepSkyObject={deepSkyObject} />
               ))}
             </Grid>}
-          </>
+          </Grid>
         )}
       </div>
       <h3 className={'index'}>

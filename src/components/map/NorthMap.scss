@@ -177,25 +177,6 @@
     border-radius: 0;
   }
 
-  .additional-info {
-    color: #292E30;
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    z-index: 16;
-  }
-
-  .main-info {
-    color: #37366B;
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 15px;
-    z-index: 16;
-  }
-
   .sector {
     z-index: unset;
     position: absolute;
@@ -422,31 +403,5 @@
 
   .sector-9 {
     bottom: 0;
-  }
-}
-
-.deep-sky {
-  .index {
-    color: #FFFFFF;
-    opacity: 0.3;
-  }
-
-  .additional-info {
-    color: white;
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    z-index: 16;
-  }
-
-  .main-info {
-    color: white;
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 15px;
-    z-index: 16;
   }
 }
