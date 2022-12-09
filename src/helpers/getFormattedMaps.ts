@@ -1,6 +1,5 @@
 import { MapOption } from '../models/types/MapOption';
 import { getMapsOptions } from './getMapsOptions';
-import { MapSection } from '../models/types/MapSection';
 
 export const getFormattedMaps = (horoscopes: any): MapOption[] => {
   const mapOptions = getMapsOptions();
@@ -10,16 +9,8 @@ export const getFormattedMaps = (horoscopes: any): MapOption[] => {
   });
 
   return Array.from(filteredMaps.map((horoscope: any) => {
-    const mapSections: MapSection [] = horoscope.table.map((tableItem: any) => {
-      return {
-        ...tableItem,
-        mainInfo: Array.from(tableItem.main_info).join(' '),
-        additionalInfo: Array.from(tableItem.additional_info).join(' ')
-      };
-    });
-
     return {
-      mapSections: Array.from(mapSections),
+      mapSections: horoscope.table,
       label: horoscope.tableName,
       value: horoscope.tableName
     };

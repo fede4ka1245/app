@@ -60,18 +60,18 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
     }
 
     if (MapType === MapTypeEnum.North) {
-      return Array.from(mapSections)?.sort((a, b) => Number(a?.number) - Number(b?.number));
+      return Array.from(mapSections)?.sort((a, b) => Number(a?.house) - Number(b?.house));
     }
 
-    return Array.from(mapSections)?.sort((a, b) => Number(a?.index) - Number(b?.index));
+    return Array.from(mapSections)?.sort((a, b) => Number(a?.signId) - Number(b?.signId));
   }, [mapSections, MapType]);
 
-  const getOrder = useCallback((index: number, number: number) => {
+  const getOrder = useCallback((signId: number, house: number) => {
     if (isNorthType) {
-      return (Number(number) + 5) % 12 + 1;
+      return signId;
     }
 
-    return index;
+    return house;
   }, [isNorthType]);
 
   return (
@@ -91,13 +91,10 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
         { !isNorthType && isDeepSky && <img src={deepSkySouthMap} className={'image'}/> }
         { isNorthType && isDeepSky && <img src={deepSkyNorthMap} className={'image'}/> }
       </AspectRatio>
-      {formattedMapSections?.map(({ mainInfo, additionalInfo, index, number }) => (
+      {formattedMapSections?.map((mapSection, index) => (
         <MapSector
           key={index}
-          number={number}
-          mainInfo={mainInfo}
-          additionalInfo={additionalInfo}
-          index={index}
+          mapSection={mapSection}
           aspects={aspects}
           targetAspectIndex={targetAspectIndex}
           setTargetAspectIndex={setTargetAspectIndex}
@@ -106,10 +103,10 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
           isNorthMap={isNorthType}
         />
       ))}
-      {isTransit && mapTransitSections?.map(({ mainInfo, index, number }) => (
-        <div key={index} className={`transited-sector transited-sector-${getOrder(index, number)}`}>
+      {isTransit && mapTransitSections?.map(({ primaryData, signId, house }) => (
+        <div key={signId} className={`transited-sector transited-sector-${getOrder(signId, house)}`}>
           <h3>
-            {mainInfo}
+            {primaryData.join(' ')}
           </h3>
         </div>
       ))}

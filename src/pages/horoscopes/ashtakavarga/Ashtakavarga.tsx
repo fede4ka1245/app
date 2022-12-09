@@ -20,7 +20,7 @@ const Ashtakavarga = () => {
       return;
     }
 
-    return Number(d1?.mapSections[0]?.index);
+    return Number(d1?.mapSections[0]?.signId);
   }, [maps]);
 
   return (

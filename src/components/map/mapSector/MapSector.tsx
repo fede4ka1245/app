@@ -10,39 +10,39 @@ import {
   currentDeepSkyObjectToMapDeepSkyObject
 } from '../../../helpers/deepSky/currentDeepSkyObjectToMapDeepSkyObject';
 import { useGetEarth } from '../../../hooks/useGetEarth';
+import { MapSection } from '../../../models/types/MapSection';
 
 interface MapSectorProps {
-  number: number,
-  mainInfo: string,
-  additionalInfo: string,
-  index: number,
   aspects: number [] | undefined,
   targetAspectIndex?: number,
   setTargetAspectIndex: (targetAspectIndex: number | undefined) => any,
   selectedSector: number | undefined,
   setSelectedSector: (selectedSector: number | undefined) => any,
-  isNorthMap: boolean
+  isNorthMap: boolean,
+  mapSection: Omit<Omit<MapSection, 'isDeepSkyActive'>, 'deepSkyObject'>
 }
 
-const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAspectIndex, setTargetAspectIndex, selectedSector, setSelectedSector, isNorthMap }: MapSectorProps) => {
+const MapSector = ({ aspects, targetAspectIndex, mapSection, setTargetAspectIndex, selectedSector, setSelectedSector, isNorthMap }: MapSectorProps) => {
   const earth = useGetEarth();
   const isEarthActive = useGetIsEarthActive();
 
+  const { signId, specialLagna, arudhs, primaryData, house, mandyGulika, upagraha, transsaturns, grahaDrishti } = mapSection;
+
   const isSelected = useMemo(() => {
-    return index === selectedSector;
-  }, [index, selectedSector]);
+    return signId === selectedSector;
+  }, [signId, selectedSector]);
 
   const isAspect = useMemo(() => {
     if (!aspects) {
       return false;
     }
 
-    return aspects.includes(Number(index));
-  }, [aspects, index]);
+    return aspects.includes(Number(signId));
+  }, [aspects, signId]);
 
   const isTargetAspect = useMemo(() => {
-    return index === targetAspectIndex;
-  }, [targetAspectIndex]);
+    return signId === targetAspectIndex;
+  }, [targetAspectIndex, signId]);
 
   const highlightedElementRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +53,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
     }
 
     if (!targetAspectIndex && !isSelected && !selectedSector) {
-      setSelectedSector(index);
+      setSelectedSector(signId);
       return;
     }
 
@@ -63,7 +63,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
     }
 
     if (!targetAspectIndex && isSelected) {
-      setTargetAspectIndex(index);
+      setTargetAspectIndex(signId);
       setSelectedSector(undefined);
     }
   };
@@ -73,24 +73,24 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
 
   const sectorDeepSkyObjects = useMemo(() => {
     const mapDeepSkyObjects = Array.from(deepSkyObjects
-      .filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(index))
+      .filter((object: CurrentDeepSkyObject) => Number(object.year?.siderealSign) === Number(signId))
       .map((object: CurrentDeepSkyObject) => currentDeepSkyObjectToMapDeepSkyObject(object))
     );
 
-    if (earth?.signDegrees.sign === Number(index) && isEarthActive) {
+    if (earth?.signDegrees.sign === Number(signId) && isEarthActive) {
       mapDeepSkyObjects.push(earth);
     }
 
     return mapDeepSkyObjects;
-  }, [deepSkyObjects, index, earth, isEarthActive]);
+  }, [deepSkyObjects, signId, earth, isEarthActive]);
 
   const order = useMemo(() => {
     if (isNorthMap) {
-      return number;
+      return house;
     }
 
-    return index;
-  }, [index, number, isNorthMap]);
+    return signId;
+  }, [signId, house, isNorthMap]);
 
   return (
     <div className={`sector sector-${order}`}>
@@ -98,10 +98,25 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
         {!isSelected && (
           <>
             <h3 className={'additional-info'}>
-              {additionalInfo}
+              {arudhs.join(' ')}
+            </h3>
+            <h3 className={'additional-info'}>
+              {specialLagna.join(' ')}
+            </h3>
+            <h3 className={'additional-info'}>
+              {mandyGulika.join(' ')}
+            </h3>
+            <h3 className={'additional-info'}>
+              {upagraha.join(' ')}
+            </h3>
+            <h3 className={'additional-info'}>
+              {transsaturns.join(' ')}
+            </h3>
+            <h3 className={'additional-info'}>
+              {grahaDrishti.join(' ')}
             </h3>
             <h3 className={'main-info'}>
-              {mainInfo}
+              {primaryData.join(' ')}
             </h3>
             {isDeepSkyActive && !!deepSkyObjects.length && <Grid display={'flex'}>
               {sectorDeepSkyObjects.map((deepSkyObject, index) => (
@@ -112,7 +127,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
         )}
       </div>
       <h3 className={'index'}>
-        {index}
+        {signId}
       </h3>
       <div
         onClick={onHighlightedClick}
@@ -128,7 +143,7 @@ const MapSector = ({ number, mainInfo, additionalInfo, index, aspects, targetAsp
           Показать знаковые аспекты
         </div>
       </h3>}
-      {!isNorthMap && Number(number) === 1 && (
+      {!isNorthMap && Number(house) === 1 && (
         <img alt={'southMapMark'} src={southMapMark} className={styles.mark}/>
       )}
     </div>

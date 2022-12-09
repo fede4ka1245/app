@@ -1,10 +1,15 @@
 import { CurrentDeepSkyObject } from './CurrentDeepSkyObject';
 
 export interface MapSection {
-  mainInfo: string,
-  additionalInfo: string,
-  index: number,
-  number: number,
+  house: number,
+  signId: number
+  arudhs: string [],
+  grahaDrishti: string [],
+  mandyGulika: string [],
+  primaryData: string [],
+  specialLagna: string []
+  transsaturns: string []
+  upagraha: string []
   deepSkyObject?: CurrentDeepSkyObject,
   isDeepSkyActive?: boolean
 }
