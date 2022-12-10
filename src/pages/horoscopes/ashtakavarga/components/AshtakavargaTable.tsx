@@ -24,9 +24,9 @@ const AshtakavargaTable = ({ table, tableName, mapType, firstHouse }: Ashtakavar
         {table?.map(({ mainInfo, isHighlighted }, index) => (
           <div key={index} className={`sector sector-${index + 1}`}>
             <div className={'info'}>
-              <h3 className={'main-info'}>
+              <Typography color={'#292E30'} fontWeight={'bold'} fontFamily={'Gilroy'}>
                 {mainInfo}
-              </h3>
+              </Typography>
               {index === 0 && mapType === MapTypeEnum.North && <Typography pt={2} color={'#17BB6D'} fontWeight={'bold'} fontFamily={'Gilroy'}>
                 {firstHouse}
               </Typography>}
