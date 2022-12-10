@@ -67,6 +67,18 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
     return Array.from(mapSections)?.sort((a, b) => Number(a?.signId) - Number(b?.signId));
   }, [mapSections, MapType]);
 
+  const formattedMapTransitSections = useMemo(() => {
+    if (!mapTransitSections) {
+      return;
+    }
+
+    if (MapType === MapTypeEnum.North) {
+      return Array.from(mapTransitSections)?.sort((a, b) => Number(a?.house) - Number(b?.house));
+    }
+
+    return Array.from(mapTransitSections)?.sort((a, b) => Number(a?.signId) - Number(b?.signId));
+  }, [mapTransitSections, MapType]);
+
   const getOrder = useCallback((signId: number, house: number) => {
     if (isNorthType) {
       return signId;
@@ -104,7 +116,7 @@ const Map = ({ mapSections, isTransit, mapTransitSections, isDeepSky }: MapProps
           isNorthMap={isNorthType}
         />
       ))}
-      {isTransit && mapTransitSections?.map(({ primaryData, signId, house }) => (
+      {isTransit && formattedMapTransitSections?.map(({ primaryData, signId, house }) => (
         <div key={signId} className={`transited-sector transited-sector-${getOrder(signId, house)}`}>
           <h3>
             {primaryData.join(' ')}
