@@ -1,10 +1,10 @@
 export interface Graha {
-  text: string,
+  name: string,
   color: string,
 }
 
 export interface SavatobhadraTableRow {
   cellName: string,
-  graha: Graha [],
+  grahas: Graha [],
   elements: string []
 }

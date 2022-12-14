@@ -100,20 +100,12 @@ export const useGetShani = () => {
   return useAppSelector((state) => state?.zones.shani);
 };
 
-export const useGetContentRef = () => {
-  return useAppSelector((state) => state?.preferences.contentRef);
-};
-
 export const useGetSudarshana = () => {
   return useAppSelector((state) => state?.zones.sudarshana);
 };
 
 export const useGetYearMaster = () => {
   return useAppSelector((state) => state?.varshpahala.yearMaster);
-};
-
-export const useGetBhava = () => {
-  return useAppSelector((state) => state?.zones.bhava);
 };
 
 export const useGetVarshpahalaRashiTable = () => {

@@ -9,7 +9,6 @@ interface SavatobhadraProps {
 }
 
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const getIsHeader = (sectionName: string) => {
   if (sectionName === 'a1' || sectionName === 'a9' || sectionName === 'i1' || sectionName === 'i9') {
@@ -68,9 +67,9 @@ const Savatobhadra = ({ savatobhadra }: SavatobhadraProps) => {
             </Grid>
           ))}
           <Grid container justifyContent={'center'}>
-            {savatobhadraRow.graha.map((graha) => (
-              <Grid p={'0.5px'} style={{ color: graha.color }} key={graha.text}>
-                {graha.text}
+            {savatobhadraRow.grahas.map((graha) => (
+              <Grid p={'0.5px'} style={{ color: graha.color }} key={graha.name}>
+                {graha.name}
               </Grid>
             ))}
           </Grid>

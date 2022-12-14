@@ -85,7 +85,38 @@ export const getGochara = async ({
   // eslint-disable-next-line camelcase
   const [min_2, max_2] = secondRange;
 
-  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-gochara/`, {
+  console.log(JSON.stringify({
+    name_user: userName,
+    longitude,
+    latitude,
+    dt: date.split('.').reverse().join('-') + 'T' + time,
+    part_world: getFormattedGreenwich(greenwich),
+    tz_hour: Number(hours) || null,
+    tz_minutes: minutes || null,
+    'date_from': dateStart.split('.').reverse().join('-'),
+    'date_to': dateEnd.split('.').reverse().join('-'),
+    'planet_1': planet1,
+    'constellation_1': constellation1,
+    'title_1': 'D-1',
+    'planet_2': planet2 || null,
+    'constellation_2': constellation2 || null,
+    'title_2': constellation2 ? 'D-1' : null,
+    'direction_1': direction1,
+    'direction_2': direction2 || null,
+    // eslint-disable-next-line camelcase
+    min_1,
+    // eslint-disable-next-line camelcase
+    max_1,
+    // eslint-disable-next-line camelcase
+    min_2,
+    // eslint-disable-next-line camelcase
+    max_2,
+    condition,
+    isMovementMerge,
+    isRasiMerge
+  }, null, 2));
+
+  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-gochara/', {
     name_user: userName,
     longitude,
     latitude,
