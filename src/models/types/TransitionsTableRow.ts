@@ -1,5 +1,5 @@
 export interface TransitionsTableRow {
-  planets: Array<{ sign: string, name: string }>,
+  signs: Array<{ sign: string, motionType: string }>,
   dateStart: string,
   dateEnd: string,
 }

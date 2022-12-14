@@ -136,6 +136,22 @@ export const useGetTransitionIsRashiTableLoading = () => {
   return useAppSelector((state) => state?.transition.isRashiTableLoading);
 };
 
+export const useGetIsTransitionTableLoading = () => {
+  return useAppSelector((state) => state?.transition.isTransitionTableLoading);
+};
+
+export const useGetTransitionTable = () => {
+  return useAppSelector((state) => state?.transition.transitionTable);
+};
+
+export const useGetTargetPlanets = () => {
+  return useAppSelector((state) => state?.transition.targetPlanets);
+};
+
+export const useGetTransitionParams = () => {
+  return useAppSelector((state) => state?.transition.transitionParams);
+};
+
 export const useGetTransitionDate = () => {
   return useAppSelector((state) => state?.transition.transitionDate);
 };

@@ -4,17 +4,18 @@ import styles from './TransitionTable.module.scss';
 import { Grid } from '@mui/material';
 
 interface TransitionTableProps {
-  rows: TransitionsTableRow []
+  rows: TransitionsTableRow [],
+  planetsNames?: string []
 }
 
-const TransitionTable = ({ rows }: TransitionTableProps) => {
+const TransitionTable = ({ rows, planetsNames }: TransitionTableProps) => {
   return (
     <div className={styles.main}>
       <div className={styles.row}>
-        <Grid container display={'flex'}>
-          {rows[0].planets.map((planet) => (
-            <Grid ml={'5px'} flex={1} key={planet.name} className={styles.header}>
-              {planet.name}
+        <Grid container>
+          {planetsNames?.map((name: string, index) => (
+            <Grid className={styles.header} key={index} width={'50%'} textAlign={'center'}>
+              {name}
             </Grid>
           ))}
         </Grid>
@@ -29,10 +30,10 @@ const TransitionTable = ({ rows }: TransitionTableProps) => {
         rows.map((row, index) => (
           <div key={index} className={styles.row}>
             <Grid container alignItems={'center'} height={'90%'}>
-              {row.planets.map((planet) => (
-                <Grid ml={'5px'} key={planet.name} className={styles.planet}>
+              {row.signs.map((sign, index) => (
+                <Grid ml={'5px'} key={index} className={styles.planet}>
                   <div>
-                    {planet.sign}
+                    {sign.sign} {sign.motionType}
                   </div>
                 </Grid>
               ))}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import plus from './assets/plus.svg';
 import minus from './assets/minus.svg';
@@ -8,57 +8,109 @@ import styles from './TransitionItem.module.scss';
 import Options from '../../../../../components/options/Options';
 import Slider from '../../../../../components/slider/Slider';
 import { InputType } from '../../../../../components/input/InputType';
-import { planets } from '../../helpers/planets';
-import { constellationOptions } from '../../helpers/constellationOptions';
 import { Option } from '../../../../../models/types/Option';
-
-const planetMovingOptions = [
-  {
-    label: 'Все варианты',
-    value: 'D/R/S'
-  },
-  {
-    label: 'Директное',
-    value: 'D'
-  },
-  {
-    label: 'Ретроградное',
-    value: 'R'
-  },
-  {
-    label: 'Стационарность',
-    value: 'S'
-  }
-];
+import { useGetTransitionParams } from '../../../../../store/selectors';
+import { TransitionsPlanet } from '../../../../../models/types/transitions/transitionsPlanet';
+import { planetMovingOptions } from '../../helpers';
 
 interface TransitionItemProps {
   label: string,
-  setPlanet: (props?: any) => any,
-  setConstellation: (props?: any) => any,
-  setRangeValue: (props: number []) => any,
-  rangeValue: number [],
-  setDirection: (props: Option) => any,
-  direction: string,
-  isOpen: boolean,
-  setIsOpen: (isOpen: boolean) => any
+  setPlanet: (planet: TransitionsPlanet) => any,
+  planet?: TransitionsPlanet,
+  close?: () => any,
 }
 
-const TransitionItem = ({ label, setPlanet, setConstellation, setRangeValue, rangeValue, setDirection, direction, isOpen, setIsOpen }: TransitionItemProps) => {
+const TransitionItem = ({ label, setPlanet, planet, close }: TransitionItemProps) => {
+  const { transitionsPlanetsParams, transitionsPositionsParams } = useGetTransitionParams();
+  const [isOpen, setIsOpen] = useState(!!planet);
+
+  const planetsOptions = useMemo<Option []>(() => {
+    return [...transitionsPlanetsParams.map(({ id, planet }) => ({
+      value: id,
+      label: planet
+    }))];
+  }, [transitionsPlanetsParams]);
+
+  const positionsOptions = useMemo<Option []>(() => {
+    return [...transitionsPositionsParams
+      .filter((position) => !!position.formattedValue)
+      .map(({ value, formattedValue }) => ({
+        value,
+        label: formattedValue as string
+      }))
+    ];
+  }, [transitionsPositionsParams]);
+
   const toggleIsOpen = () => {
     if (!setIsOpen) {
       return;
     }
 
+    if (isOpen && close) {
+      close();
+    }
+
     setIsOpen(!isOpen);
   };
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setRangeValue(newValue as number[]);
+  const setDirection = (direction: Option) => {
+    if (!planet) {
+      return;
+    }
+
+    setPlanet({
+      ...planet,
+      direction: direction.value
+    });
   };
 
-  useEffect(() => {
-    setDirection(planetMovingOptions[0]);
-  }, []);
+  const setPosition = (position: Option) => {
+    if (!planet) {
+      return;
+    }
+
+    setPlanet({
+      ...planet,
+      position: position.value
+    });
+  };
+
+  const setPlanetValue = (planetOption: Option) => {
+    if (!planet) {
+      return;
+    }
+
+    setPlanet({
+      ...planet,
+      planet: planetOption.value as number
+    });
+  };
+
+  const targetPosition = useMemo(() => {
+    return positionsOptions.find((option) => option.value === planet?.position);
+  }, [planet, positionsOptions]);
+
+  const targetPlanetOption = useMemo(() => {
+    return planetsOptions.find((option) => option.value === planet?.planet);
+  }, [planet, planetsOptions]);
+
+  const slideValue = useMemo(() => {
+    return planet && [planet?.min, planet?.max];
+  }, [planet]);
+
+  const onSliderChange = (event: Event, newValue: number | number[]) => {
+    if (!planet || planet?.min === undefined || planet?.max === undefined) {
+      return;
+    }
+
+    const [min, max] = newValue as number[];
+
+    setPlanet({
+      ...planet,
+      min,
+      max
+    });
+  };
 
   return (
     <Box pt={2}>
@@ -74,23 +126,35 @@ const TransitionItem = ({ label, setPlanet, setConstellation, setRangeValue, ran
       {isOpen && <Grid container direction={'column'}>
         <Grid pt={2} item container direction={'row'} justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Планета'} options={planets} setTargetOption={setPlanet} inputType={InputType.options}/>
+            <Input
+              placeholder={'Планета'}
+              options={planetsOptions}
+              targetOption={targetPlanetOption}
+              setTargetOption={setPlanetValue}
+              inputType={InputType.options}
+            />
           </Grid>
           <Grid item width={'calc(50% - 5px)'}>
-            <Input placeholder={'Созвездие'} options={constellationOptions} setTargetOption={setConstellation} inputType={InputType.options}/>
+            <Input
+              placeholder={'Созвездие'}
+              options={positionsOptions}
+              targetOption={targetPosition}
+              setTargetOption={setPosition}
+              inputType={InputType.options}
+            />
           </Grid>
         </Grid>
         <Grid item pt={2}>
           <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
             Движение планеты
           </Typography>
-          <Options options={planetMovingOptions} value={direction} setValue={setDirection} />
+          <Options options={planetMovingOptions} value={planet?.direction} setValue={setDirection} />
         </Grid>
         <Grid item pt={2}>
           <Typography font-family={'Gilroy'} fontStyle={'normal'} fontWeight={600} color={'white'} fontSize={'14px'}>
             Положение планеты в градусе
           </Typography>
-          <Slider max={30} value={rangeValue} onChange={handleChange} disableSwap valueLabelDisplay="on"/>
+          <Slider max={30} value={slideValue} onChange={onSliderChange} disableSwap valueLabelDisplay="on"/>
         </Grid>
       </Grid>}
     </Box>
