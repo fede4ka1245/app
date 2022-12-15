@@ -19,7 +19,14 @@ import { Option } from '../../../models/types/Option';
 import ConfirmationModal from '../confirmationModal/ConfirmationModal';
 import { SettingsPageProps } from '../SettingsPageProps';
 import lodash from 'lodash';
-import { setHelpersElements, setLanguage, setIsEarthActive as setIsSettingsEarthActive, setMapType } from '../../../store/reducers/settingsReducer';
+import {
+  setHelpersElements,
+  setLanguage,
+  setIsEarthActive as setIsSettingsEarthActive,
+  setMapType
+} from '../../../store/reducers/settingsReducer';
+import { postSettings } from '../../../api/postSettings';
+import { setIsAppLoading } from '../../../store/reducers/preferencesReducer';
 
 const MapDisplaying = ({ closeSettings }: SettingsPageProps) => {
   const navigate = useNavigate();
@@ -76,10 +83,17 @@ const MapDisplaying = ({ closeSettings }: SettingsPageProps) => {
       return;
     }
 
-    dispatch(setLanguage(targetLanguage.value));
     dispatch(setIsSettingsEarthActive(isEarthActive));
     dispatch(setHelpersElements(Array.from(targetHelpers.map((targetHelper) => targetHelper.value))));
     dispatch(setMapType(targetMapType.value));
+
+    postSettings({ language: targetLanguage.value })
+      .then(() => {
+        dispatch(setLanguage(targetLanguage.value));
+      })
+      .finally(() => {
+        dispatch(setIsAppLoading(false));
+      });
   }, [targetMapType, targetLanguage, targetHelpers, isEarthActive, isSettingChanged, dispatch]);
 
   useHideNavbar();

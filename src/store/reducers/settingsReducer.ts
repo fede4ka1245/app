@@ -7,7 +7,8 @@ interface settingsState {
   mapType: MapType,
   helpersElements: HoroscopeHelpersElements [],
   language: Language,
-  isEarthActive: boolean
+  isEarthActive: boolean,
+  arudha: number,
 }
 
 export const settingsSlice = createSlice({
@@ -16,7 +17,8 @@ export const settingsSlice = createSlice({
     mapType: 'NORTH',
     helpersElements: [...Object.values(HoroscopeHelpersElements)].slice(Object.values(HoroscopeHelpersElements).length / 2),
     language: Language.Ru,
-    isEarthActive: false
+    isEarthActive: false,
+    arudha: 1
   } as settingsState,
   reducers: {
     setMapType: (state, action: PayloadAction<MapType>) => {
@@ -39,10 +41,13 @@ export const settingsSlice = createSlice({
     },
     setIsEarthActive: (state, action: PayloadAction<boolean>) => {
       state.isEarthActive = action.payload;
+    },
+    setArudha: (state, action: PayloadAction<number>) => {
+      state.arudha = action.payload;
     }
   }
 });
 
-export const { setMapType, setLanguage, setHelpersElements, setIsEarthActive } = settingsSlice.actions;
+export const { setMapType, setLanguage, setHelpersElements, setIsEarthActive, setArudha } = settingsSlice.actions;
 
 export default settingsSlice.reducer;

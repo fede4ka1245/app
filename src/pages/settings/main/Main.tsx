@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FormControlLabel, Grid, RadioGroup, Typography } from '@mui/material';
 import PlanetBackground from '../../../components/planetBackground/PlanetBackground';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
@@ -11,11 +11,54 @@ import Radio from '../../../components/radio/Radio';
 import FormLabel from '../../../components/formLabel/FormLabel';
 import { useHideNavbar } from '../../../hooks/useHideNavbar';
 import { SettingsPageProps } from '../SettingsPageProps';
+import ConfirmationModal from '../confirmationModal/ConfirmationModal';
+import { useAppDispatch } from '../../../store/store';
+import {
+  useGetArudha
+} from '../../../store/selectors';
+import {
+  setArudha as setTargetArudha
+} from '../../../store/reducers/settingsReducer';
+import { postSettings } from '../../../api/postSettings';
+import { setIsAppLoading } from '../../../store/reducers/preferencesReducer';
 
 interface MainProps extends SettingsPageProps {}
 
 const Main = ({ closeSettings }: MainProps) => {
   const navigate = useNavigate();
+  const [arudha, setArudha] = useState<number>(1);
+  const targetArudha = useGetArudha();
+  const dispatch = useAppDispatch();
+
+  useHideNavbar();
+
+  useEffect(() => {
+    setArudha(targetArudha);
+  }, [targetArudha]);
+
+  const onArudhaChange = useCallback((event: any, value: string) => {
+    setArudha(Number(value));
+  }, []);
+
+  const isSettingChanged = useMemo(() => {
+    return arudha !== targetArudha;
+  }, [arudha, targetArudha]);
+
+  const updateSettings = useCallback(() => {
+    if (!isSettingChanged) {
+      return;
+    }
+
+    dispatch(setIsAppLoading(true));
+
+    postSettings({ arudha })
+      .then(() => {
+        dispatch(setTargetArudha(arudha));
+      })
+      .finally(() => {
+        dispatch(setIsAppLoading(false));
+      });
+  }, [isSettingChanged, dispatch, arudha]);
 
   useHideNavbar();
 
@@ -28,16 +71,48 @@ const Main = ({ closeSettings }: MainProps) => {
     navigate(-1);
   }, [closeSettings, navigate]);
 
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+
+  const toggleConfirmationModal = useCallback(() => {
+    setIsConfirmationModalOpen(!isConfirmationModalOpen);
+  }, [isConfirmationModalOpen]);
+
+  const onButtonBackClick = useCallback(() => {
+    if (!isSettingChanged) {
+      close();
+      return;
+    }
+
+    toggleConfirmationModal();
+  }, [isConfirmationModalOpen, toggleConfirmationModal, isSettingChanged, close]);
+
+  const onSaveClick = useCallback(() => {
+    toggleConfirmationModal();
+    updateSettings();
+    close();
+  }, [toggleConfirmationModal, close, updateSettings]);
+
+  const onCancelClick = useCallback(() => {
+    toggleConfirmationModal();
+    close();
+  }, [toggleConfirmationModal, close]);
+
   return (
     <Grid position={'relative'}>
       <PlanetBackground/>
+      <ConfirmationModal
+        onSaveClick={onSaveClick}
+        onCancelClick={onCancelClick}
+        isOpen={isConfirmationModalOpen}
+        close={toggleConfirmationModal}
+      />
       <Grid item container alignItems={'center'} justifyContent={'space-between'} pl={2} pr={2} pt={4}>
         <Grid item>
-          <ButtonBack label={'Настройки'} onClick={close}/>
+          <ButtonBack label={'Настройки'} onClick={onButtonBackClick}/>
         </Grid>
-        <Grid item>
-          <ButtonSave onClick={() => console.log(123)}/>
-        </Grid>
+        {isSettingChanged && <Grid item>
+          <ButtonSave onClick={updateSettings}/>
+        </Grid>}
       </Grid>
       <Grid item pt={2} p={2}>
         <Typography fontFamily={'Playfair Display'} fontWeight={'bold'} fontSize={24} color={'white'}
@@ -97,13 +172,14 @@ const Main = ({ closeSettings }: MainProps) => {
         <Grid item pt={1}>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="1"
             name="radio-buttons-group"
+            onChange={onArudhaChange}
+            value={String(arudha)}
           >
-            <FormControlLabel value="1" control={<Radio/>} label={<FormLabel label={'Согласно К.Н. Рао'} subLabel={'(Без исключений)'}/>}/>
-            <FormControlLabel value="2" control={<Radio/>} label={<FormLabel label={'Согласно С. Ратху'} subLabel={'(С исключениями)'}/>}/>
-            <FormControlLabel value="3" control={<Radio/>} label={<FormLabel label={'Согласно И. Рангачарьи'} subLabel={'(С исключениями для мутабельных раши)'} />}/>
-            <FormControlLabel value="4" control={<Radio/>} label={<FormLabel label={'Согласно Шри Джйотиш Акубенсу'} subLabel={'(С исключениями для мутабельных раши (модифицированный метод))'}/>}/>
+            <FormControlLabel value="0" control={<Radio/>} label={<FormLabel label={'Согласно К.Н. Рао'} subLabel={'(Без исключений)'}/>}/>
+            <FormControlLabel value="1" control={<Radio/>} label={<FormLabel label={'Согласно С. Ратху'} subLabel={'(С исключениями)'}/>}/>
+            <FormControlLabel value="2" control={<Radio/>} label={<FormLabel label={'Согласно И. Рангачарьи'} subLabel={'(С исключениями для мутабельных раши)'} />}/>
+            <FormControlLabel value="3" control={<Radio/>} label={<FormLabel label={'Согласно Шри Джйотиш Акубенсу'} subLabel={'(С исключениями для мутабельных раши (модифицированный метод))'}/>}/>
           </RadioGroup>
         </Grid>
         <Grid item pt={2}>
@@ -132,9 +208,9 @@ const Main = ({ closeSettings }: MainProps) => {
           <Divider color={'#37366B'}/>
         </Grid>
       </Grid>
-      <Grid item width={'100%'} p={2}>
-        <Button type={ButtonType.gradient} text={'Сохранить изменеия'}/>
-      </Grid>
+      {isSettingChanged && <Grid item width={'100%'} pl={2} pr={2} pb={3}>
+        <Button type={ButtonType.gradient} onClick={updateSettings} text={'Сохранить изменеия'}/>
+      </Grid>}
     </Grid>
   );
 };

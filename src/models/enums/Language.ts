@@ -1,6 +1,6 @@
 export enum Language {
-  Ru = 'RU',
-  Eng = 'Eng',
-  SunScriptEng = 'SunScriptEng',
-  SunScriptRu = 'SunScriptRu'
+  Ru = 'ru',
+  Eng = 'en',
+  SunScriptEng = 'sa_en',
+  SunScriptRu = 'sa_ru'
 }

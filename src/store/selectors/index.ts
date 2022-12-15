@@ -172,6 +172,10 @@ export const useGetMapType = () => {
   return useAppSelector((state) => state?.settings.mapType);
 };
 
+export const useGetArudha = () => {
+  return useAppSelector((state) => state?.settings.arudha);
+};
+
 export const useGetIsEarthActive = () => {
   return useAppSelector((state) => state?.settings.isEarthActive);
 };

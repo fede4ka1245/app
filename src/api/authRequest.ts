@@ -13,7 +13,7 @@ authRequest.interceptors.request.use((config: AxiosRequestConfig) => {
 authRequest.interceptors.response.use((response) => {
   return response;
 }, async (error) => {
-  if (error.response.status !== 401 && error.response.status !== 403 || error.config?.isRetry === true) {
+  if (error.response?.status !== 401 && error.response?.status !== 403 || error.config?.isRetry === true) {
     console.log(error);
     throw error;
   }

@@ -55,7 +55,7 @@ import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
 import ForumItem from './pages/forumItem/ForumItem';
 import { useAppDispatch } from './store/store';
-import { useGetIsAppLoading, useGetIsNavbarActive } from './store/selectors';
+import { useGetIsAppLoading, useGetIsNavbarActive, useGetLanguage } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
@@ -65,6 +65,7 @@ import { Grid } from '@mui/material';
 import { usePauseResumeEffect } from './hooks/usePauseResumeEffect';
 import { LocalStorageKey } from './models/enums/LocalStorageKey';
 import authRequest from './api/authRequest';
+import { useLoadSettings } from './hooks/useLoadSettings';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -102,6 +103,8 @@ function App () {
 
   usePauseResumeEffect();
 
+  useLoadSettings();
+
   useEffect(() => {
     if (localStorage.getItem(LocalStorageKey.access) === null) {
       navigate(routes.authorization);
@@ -118,9 +121,11 @@ function App () {
         dispatch(setIsAuthenticated(true));
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response.status === 401 || error.response.status === 403) {
           navigate(routes.authorization);
           dispatch(setIsAuthenticated(false));
+        } else {
+          dispatch(setIsAuthenticated(true));
         }
       })
       .finally(() => {
