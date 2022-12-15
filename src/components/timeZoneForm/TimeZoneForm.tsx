@@ -54,15 +54,15 @@ const TimeZoneForm = ({ hours, setHours, minutes, setMinutes, greenwich, setGree
   }, []);
 
   const hoursTargetOption = useMemo(() => {
-    return hoursOptions.find(({ label }: Option) => label === hours);
+    return hoursOptions.find(({ label, value }: Option) => label === hours || hours === value);
   }, [hoursOptions, hours]);
 
   const minutesTargetOption = useMemo(() => {
-    return minutesOptions.find(({ label }: Option) => label === minutes);
+    return minutesOptions.find(({ label, value }: Option) => label === minutes || minutes === value);
   }, [minutesOptions, minutes]);
 
   const greenwichTargetOption = useMemo(() => {
-    return greenwichOptions.find(({ value }: Option) => value === greenwich);
+    return greenwichOptions.find(({ label, value }: Option) => label === greenwich || greenwich === value);
   }, [greenwichOptions, greenwich]);
 
   const onHoursSet = useCallback((option: Option) => {

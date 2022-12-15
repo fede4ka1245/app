@@ -176,6 +176,10 @@ export const useGetArudha = () => {
   return useAppSelector((state) => state?.settings.arudha);
 };
 
+export const useGetChakrasParams = () => {
+  return useAppSelector((state) => state?.zones.chakrasParams);
+};
+
 export const useGetIsEarthActive = () => {
   return useAppSelector((state) => state?.settings.isEarthActive);
 };

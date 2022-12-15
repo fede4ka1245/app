@@ -1,11 +1,9 @@
 import React from 'react';
 import './Calanala.scss';
-import Zone from '../zone/Zone';
-import { useGetCalanala } from '../../../../../store/selectors';
+import Zone from '../../components/zone/Zone';
+import { ChakraProps } from '../ChakraProps';
 
-const Calanala = () => {
-  const calanala = useGetCalanala();
-
+const Calanala = ({ chakra }: ChakraProps) => {
   return (
     <section>
       <div className={'zones-calanala'}>
@@ -28,7 +26,7 @@ const Calanala = () => {
           <path d="M254.523 215.73L254.234 215.44V215.44C245.607 206.813 245.607 192.826 254.234 184.199L254.812 183.621C263.439 174.994 277.427 174.994 286.054 183.621V183.621L286.343 183.91" stroke="white" strokeWidth="2" strokeLinecap="round"/>
           <path d="M32.8206 215.73L33.1098 215.44V215.44C41.7369 206.813 41.7369 192.826 33.1098 184.199L32.5313 183.621C23.9043 174.994 9.91707 174.994 1.29003 183.621V183.621L1.00076 183.91" stroke="white" strokeWidth="2" strokeLinecap="round"/>
         </svg>
-        {calanala?.map((calanalaItem, index) => (
+        {chakra?.map((calanalaItem, index) => (
           <div className={`section-${index + 1} section`} key={index}>
             <Zone value={calanalaItem?.value} tip={calanalaItem.tip} color={calanalaItem.color === 'green' ? '#49BC5B' : '#FFA8A8'}/>
           </div>

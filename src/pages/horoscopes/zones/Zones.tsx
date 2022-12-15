@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import Options from '../../../components/options/Options';
 import styles from './Zones.module.scss';
-import Savatobhadra from './components/savatobhadra/Savatobhadra';
-import { useGetIsZonesLoading, useGetSavatobhadra } from '../../../store/selectors';
+import { useGetIsZonesLoading } from '../../../store/selectors';
 import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
 import { Grid } from '@mui/material';
-import Compas from './components/compas/Compas';
-import Calanala from './components/calanala/Calanala';
+import CompasPage from './components/compasPage/CompasPage';
 import Shani from './components/shani/Shani';
 import Sudarshana from './components/sudarshana/Sudarshana';
 import Bhava from './components/bhava/Bhava';
+import SavatobhadraPage from './components/savatobhadraPage/SavatobhadraPage';
+import CalanalaPage from './components/calanalaPage/CalanalaPage';
 
 const options = [
   {
@@ -40,7 +40,6 @@ const options = [
 
 const Zones = () => {
   const [targetOption, setTargetOption] = useState(options[0]);
-  const savatobhadra = useGetSavatobhadra();
   const isZonesLoading = useGetIsZonesLoading();
 
   return (
@@ -59,15 +58,13 @@ const Zones = () => {
             <Shani />
           </Grid>}
           {targetOption.value === 4 && <Grid item pl={2} pr={2} width={'100%'}>
-            <Calanala />
+            <CalanalaPage />
           </Grid>}
           {targetOption.value === 3 && <Grid item pl={2} pr={2} width={'100%'}>
-            <Compas />
+            <CompasPage />
           </Grid>}
           {targetOption.value === 2 && (
-            <Grid item pl={2} pr={2} width={'100%'}>
-              <Savatobhadra savatobhadra={savatobhadra} />
-            </Grid>
+            <SavatobhadraPage />
           )}
           {targetOption.value === 1 && <Bhava />}
         </Grid>

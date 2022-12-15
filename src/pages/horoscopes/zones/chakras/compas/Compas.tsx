@@ -1,11 +1,9 @@
 import React from 'react';
 import './Compas.scss';
-import Zone from '../zone/Zone';
-import { useGetCompass } from '../../../../../store/selectors';
+import Zone from '../../components/zone/Zone';
+import { ChakraProps } from '../ChakraProps';
 
-const Compas = () => {
-  const compass = useGetCompass();
-
+const Compas = ({ chakra }: ChakraProps) => {
   return (
     <div className={'zones-compass-table'}>
       <svg className={'image'} viewBox="0 0 332 331" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +25,7 @@ const Compas = () => {
         <path d="M220 304L220 303V303C220 273.177 195.823 249 166 249L164 249C134.177 249 110 273.177 110 303V303L110 304" stroke="white" strokeWidth="2" strokeLinecap="round"/>
         <path d="M220 32L220 33V33C220 62.8234 195.823 87 166 87L164 87C134.177 87 110 62.8234 110 33V33L110 32" stroke="white" strokeWidth="2" strokeLinecap="round"/>
       </svg>
-      {compass?.map((compassItem, index) => (
+      {chakra?.map((compassItem, index) => (
         <div className={`section-${index + 1} section`} key={index}>
           <Zone value={compassItem.value} color={compassItem.color === 'red' ? '#FFA8A8' : compassItem.color === 'green' ? '#FBFE72' : '#49BC5B'} tip={compassItem?.tip} />
         </div>
