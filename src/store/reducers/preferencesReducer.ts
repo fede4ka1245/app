@@ -4,6 +4,7 @@ interface preferencesState {
   isNavbarActive: boolean,
   isAppLoading: boolean,
   contentRef?: HTMLElement,
+  isAuthenticated: boolean,
 }
 
 export const preferencesSlice = createSlice({
@@ -11,6 +12,7 @@ export const preferencesSlice = createSlice({
   initialState: {
     isNavbarActive: true,
     isAppLoading: false,
+    isAuthenticated: false,
     contentRef: undefined
   } as preferencesState,
   reducers: {
@@ -22,10 +24,13 @@ export const preferencesSlice = createSlice({
     },
     setContentRef: (state, action: PayloadAction<any>) => {
       state.contentRef = action.payload;
+    },
+    setIsAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
     }
   }
 });
 
-export const { setIsNavbarActive, setIsAppLoading, setContentRef } = preferencesSlice.actions;
+export const { setIsNavbarActive, setIsAppLoading, setContentRef, setIsAuthenticated } = preferencesSlice.actions;
 
 export default preferencesSlice.reducer;

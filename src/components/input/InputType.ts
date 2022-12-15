@@ -7,5 +7,5 @@ export enum InputType {
   address = 'address',
   options = 'options',
   optionsInput = 'options-input',
-  coordinates = 'coordinates'
+  coordinates = 'coordinates',
 }

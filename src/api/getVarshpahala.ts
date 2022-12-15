@@ -1,17 +1,17 @@
-import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import camelcaseKeys from 'camelcase-keys';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 import { getFormattedRashiTable } from '../helpers/getFormattedRashiTable';
 import { RashiTable } from '../models/types/RashiTable';
 import { getFormattedMaps } from '../helpers/getFormattedMaps';
+import authRequest from './authRequest';
 
 interface GetVarshpahalaProps extends HoroscopeData {
   year: number
 }
 
 export const getVarshpahala = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich, year }: GetVarshpahalaProps) => {
-  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-varshaphala/`, {
+  const { data } = await authRequest.post(`${process.env.REACT_APP_API_URL}/horoscope/get-varshaphala/`, {
     name_user: userName,
     latitude,
     longitude,

@@ -127,7 +127,6 @@ const Index = () => {
 
   const currentMaps = useMemo(() => {
     if (targetRoute.value === routes.transitions && !isTransitionMapsActive && !!transitionMaps.length) {
-      console.log(transitionMaps);
       return transitionMaps;
     }
 

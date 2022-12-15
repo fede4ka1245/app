@@ -1,10 +1,10 @@
-import axios from 'axios';
 import { HoroscopeData } from '../models/types/HoroscopeData';
 import { getFormattedGreenwich } from '../helpers/getFormattedGreenwich';
 import { getFormattedMaps } from '../helpers/getFormattedMaps';
+import authRequest from './authRequest';
 
 export const getMaps = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
-  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-horoscope/`, {
+  const { data } = await authRequest.post(`${process.env.REACT_APP_API_URL}/horoscope/get-horoscope/`, {
     name_user: userName,
     longitude,
     latitude,

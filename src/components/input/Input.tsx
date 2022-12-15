@@ -17,7 +17,7 @@ import Modal from '../modal/Modal';
 import InputMask from 'react-input-mask';
 
 const Input = (props : InputProps, ref: ForwardedRef<any>) => {
-  const { placeholder, inputType, onChange, value, setTargetOption, targetOption, options, disablePast, shouldDisableTime, inputStyle, width, height, disabled } = props;
+  const { placeholder, inputType, onChange, value, setTargetOption, targetOption, options, disablePast, shouldDisableTime, inputStyle, width, height, disabled, type } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [inputLabel, setInputLabel] = useState(value);
   const [isOptionsActive, setIsOptionsActive] = useState(false);
@@ -138,6 +138,7 @@ const Input = (props : InputProps, ref: ForwardedRef<any>) => {
         onBlur={() => setIsFocused(false)}
         ref={ref}
         autoComplete="new-password"
+        type={type}
       />}
       {(inputType === InputType.options || inputType === InputType.optionsInput) && (<>
         <Grid container display={'flex'} alignItems={'center'} wrap={'nowrap'} height={'50px'}>

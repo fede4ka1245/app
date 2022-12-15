@@ -3,6 +3,7 @@ import { Option } from '../../models/types/Option';
 import { InputType } from './InputType';
 
 export type InputProps = {
+  type?: string,
   placeholder?: string,
   inputType?: InputType,
   onChange?: (value: string) => any,

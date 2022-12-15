@@ -3,19 +3,19 @@ import InputMask from 'react-input-mask';
 
 // eslint-disable-next-line react/prop-types
 const InputTime = ({ value, onChange, onBlur, onFocus, ...props }) => {
-  const onInputChange = (event) => {
-    if (event.type === 'focus' || event.type === 'blur') {
-      if (onFocus) {
-        onFocus();
-      }
-
-      if (onBlur) {
-        onBlur();
-      }
-
-      return;
+  const _onFocus = () => {
+    if (onFocus) {
+      onFocus();
     }
+  };
 
+  const _onBlur = () => {
+    if (onBlur) {
+      onBlur();
+    }
+  };
+
+  const onInputChange = (event) => {
     onChange(event.target.value.replace(/[^\d]/g, ''));
   };
 
@@ -31,6 +31,8 @@ const InputTime = ({ value, onChange, onBlur, onFocus, ...props }) => {
         value={value}
         {...props}
         maskChar={null}
+        onFocus={_onFocus}
+        onBlur={_onBlur}
       />
     </>
   );

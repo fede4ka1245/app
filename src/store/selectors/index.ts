@@ -32,6 +32,10 @@ export const useGetIsAppLoading = () => {
   return useAppSelector((state) => state?.preferences.isAppLoading);
 };
 
+export const useGetIsAuthenticated = () => {
+  return useAppSelector((state) => state?.preferences.isAuthenticated);
+};
+
 export const useGetMaps = () => {
   return useAppSelector((state) => state?.horoscopes.maps);
 };

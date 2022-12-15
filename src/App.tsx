@@ -60,9 +60,11 @@ import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
 import AppLoader from './components/appLoader/AppLoader';
-import { setContentRef } from './store/reducers/preferencesReducer';
+import { setContentRef, setIsAppLoading, setIsAuthenticated } from './store/reducers/preferencesReducer';
 import { Grid } from '@mui/material';
 import { usePauseResumeEffect } from './hooks/usePauseResumeEffect';
+import { LocalStorageKey } from './models/enums/LocalStorageKey';
+import authRequest from './api/authRequest';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -99,6 +101,32 @@ function App () {
   }, [pathname]);
 
   usePauseResumeEffect();
+
+  useEffect(() => {
+    if (localStorage.getItem(LocalStorageKey.access) === null) {
+      navigate(routes.authorization);
+      dispatch(setIsAuthenticated(false));
+      return;
+    }
+
+    dispatch(setIsAppLoading(true));
+
+    authRequest.post(`${process.env.REACT_APP_API_URL}/users/files/`, {
+      token: localStorage.getItem(LocalStorageKey.access)
+    })
+      .then(() => {
+        dispatch(setIsAuthenticated(true));
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          navigate(routes.authorization);
+          dispatch(setIsAuthenticated(false));
+        }
+      })
+      .finally(() => {
+        dispatch(setIsAppLoading(false));
+      });
+  }, []);
 
   return (
     <>
