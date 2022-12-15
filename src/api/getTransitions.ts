@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { TransitionsTableRow } from '../models/types/TransitionsTableRow';
 import { getFormattedDate } from '../helpers/getFormattedDate';
 import { TransitionsPlanet } from '../models/types/transitions/transitionsPlanet';
+import authRequest from './authRequest';
 
 interface getTransitionsProps {
   dateStart: string,
@@ -32,7 +32,7 @@ export const getTransitions = async ({
   isMovementMerge,
   condition
 }: getTransitionsProps): Promise<TransitionsTableRow []> => {
-  const { data } = await axios.post('https://backm.alpha-astro.ru/horoscope/get-gochara/', {
+  const { data } = await authRequest.post('https://backm.alpha-astro.ru/horoscope/get-gochara/', {
     'date_from': dateStart.split('.').reverse().join('-'),
     'date_to': dateTo.split('.').reverse().join('-'),
     planets,
