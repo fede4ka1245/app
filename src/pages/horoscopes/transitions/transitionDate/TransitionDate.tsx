@@ -26,6 +26,7 @@ import MainDashiTable from '../../components/mainDashiTable/MainDashiTable';
 import RashiTable from '../../../../components/rashiTable/RashiTable';
 import HoroscopesLoader from '../../components/horoscopeLoader/HoroscopesLoader';
 import { getRashiTable } from '../../../../api/getRashiTable';
+import { RashiTableParts } from '../../../../models/types/RashiTable';
 
 const TransitionDate = () => {
   const {
@@ -57,8 +58,8 @@ const TransitionDate = () => {
   const isRashiTableLoading = useGetTransitionIsRashiTableLoading();
   const targetMapValue = useGetTargetMapValue();
 
-  const rows = useMemo(() => {
-    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table.primaryData || [];
+  const table = useMemo(() => {
+    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table as RashiTableParts;
   }, [rashiTable, targetMapValue]);
 
   const onCountClick = useCallback(() => {
@@ -144,7 +145,7 @@ const TransitionDate = () => {
       </Grid>
       {!!transitionMaps.length && (
         <>
-          {!isRashiTableLoading && <RashiTable rows={rows} />}
+          {!isRashiTableLoading && <RashiTable table={table} />}
           {isRashiTableLoading && <HoroscopesLoader />}
           <MainDashiTable />
         </>

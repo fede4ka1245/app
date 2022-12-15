@@ -9,7 +9,7 @@ import {
   useGetHoroscopeUserInfo,
   useGetIsVarshpahalaLoading,
   useGetIsYearPickerActive,
-  useGetTargetMapValue, useGetVarshpahalaDate, useGetVarshpahalaMuntkha,
+  useGetVarshpahalaDate, useGetVarshpahalaMuntkha,
   useGetVarshpahalaRashiTable,
   useGetYearMaster,
   useGetYearMasterTable,
@@ -32,6 +32,7 @@ import HoroscopesLoader from '../components/horoscopeLoader/HoroscopesLoader';
 import RashiTable from '../../../components/rashiTable/RashiTable';
 import ButtonBack from '../../../components/buttonBack/ButtonBack';
 import ButtonClose from '../../../components/buttonClose/ButtonClose';
+import { RashiTableParts } from '../../../models/types/RashiTable';
 
 const Varshapkhala = () => {
   const { latitude, longitude, time, userName, date, hours, greenwich, minutes } = useGetHoroscopeUserInfo();
@@ -45,7 +46,6 @@ const Varshapkhala = () => {
   const yearMaster = useGetYearMaster();
   const isYearPickerActive = useGetIsYearPickerActive();
   const rashiTable = useGetVarshpahalaRashiTable();
-  const targetMapValue = useGetTargetMapValue();
   const horoscopeDate = useGetVarshpahalaDate();
   const muntkha = useGetVarshpahalaMuntkha();
 
@@ -59,9 +59,9 @@ const Varshapkhala = () => {
     dispatch(setIsYearPickerActive(!isYearPickerActive));
   }, [isYearPickerActive]);
 
-  const rashiTableRows = useMemo(() => {
-    return (rashiTable.find((rows) => rows.tableName === 'D-1'))?.table?.primaryData || [];
-  }, [rashiTable, targetMapValue]);
+  const table = useMemo(() => {
+    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === 'D-1') as unknown as RashiTableParts;
+  }, [rashiTable]);
 
   const onCreateHoroscopeClick = useCallback(() => {
     dispatch(setIsVarshpahalaLoading(true));
@@ -123,7 +123,7 @@ const Varshapkhala = () => {
             {horoscopeDate}
           </Typography>
           <Grid item>
-            <RashiTable rows={rashiTableRows} />
+            <RashiTable table={table} />
           </Grid>
           <Grid item paddingTop={2} pl={2} pr={2} fontFamily={'Playfair Display'} fontSize={'24px'} fontWeight={'700'} color={'white'}>
             <Typography color={'white'} width={'100%'} fontWeight={700} fontFamily={'Gilroy'} fontSize={'20px'} mr={'auto'} pb={2} textAlign={'center'}>

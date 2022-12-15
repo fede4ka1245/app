@@ -1,7 +1,11 @@
 import React, { useMemo, useRef } from 'react';
 import styles from './MapSector.module.scss';
 import classNames from 'classnames';
-import { useGetDeepSkyObjects, useGetIsDeepSkyActive, useGetIsEarthActive } from '../../../store/selectors';
+import {
+  useGetDeepSkyObjects,
+  useGetIsDeepSkyActive,
+  useGetIsEarthActive
+} from '../../../store/selectors';
 import { CurrentDeepSkyObject } from '../../../models/types/CurrentDeepSkyObject';
 import DeepSkyObject from '../../deepSkyObject/DeepSkyObject';
 import { Grid } from '@mui/material';
@@ -11,6 +15,7 @@ import {
 } from '../../../helpers/deepSky/currentDeepSkyObjectToMapDeepSkyObject';
 import { useGetEarth } from '../../../hooks/useGetEarth';
 import { MapSection } from '../../../models/types/MapSection';
+import { useGetIsHelpersElementsActive } from '../../../hooks/useGetIsHelpersElementsActive';
 
 interface MapSectorProps {
   aspects: number [] | undefined,
@@ -92,29 +97,38 @@ const MapSector = ({ aspects, targetAspectIndex, mapSection, setTargetAspectInde
     return signId;
   }, [signId, house, isNorthMap]);
 
+  const {
+    isTranssaturnsActive,
+    isArudhsActive,
+    isAspectsActive,
+    isMandyAndGulikaActive,
+    isSpecialLagnaActive,
+    isUpagrahsActive
+  } = useGetIsHelpersElementsActive();
+
   return (
     <div className={`sector sector-${order}`}>
       <div className={'info'}>
         {!isSelected && (
           <Grid display={'flex'} flexWrap={'wrap'} justifyContent={'center'} alignItems={'center'} direction={'column'}>
-            <h3 className={'arudhs'}>
+            {isArudhsActive && <h3 className={'arudhs'}>
               {arudhs.join(' ')}
-            </h3>
-            <h3 className={'additional-info'}>
+            </h3>}
+            {isSpecialLagnaActive && <h3 className={'additional-info'}>
               {specialLagna.join(' ')}
-            </h3>
-            <h3 className={'gulika'}>
+            </h3>}
+            {isMandyAndGulikaActive && <h3 className={'gulika'}>
               {mandyGulika.join(' ')}
-            </h3>
-            <h3 className={'additional-info'}>
+            </h3>}
+            {isUpagrahsActive && <h3 className={'additional-info'}>
               {upagraha.join(' ')}
-            </h3>
-            <h3 className={'transsaturns'}>
+            </h3>}
+            {isTranssaturnsActive && <h3 className={'transsaturns'}>
               {transsaturns.join(' ')}
-            </h3>
-            <h3 className={'graha'}>
+            </h3>}
+            {isAspectsActive && <h3 className={'graha'}>
               {grahaDrishti.join(' ')}
-            </h3>
+            </h3>}
             <h3 className={'main-info'}>
               {primaryData.join(' ')}
             </h3>

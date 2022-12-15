@@ -10,13 +10,7 @@ export interface RashiTableParts {
 
 export interface RashiTableItem {
   tableName: string,
-  table: {
-    primaryData: RashiTableRow [],
-    primaryUpagraha: RashiTableRow [],
-    secondaryUpagraha: RashiTableRow [],
-    transsaturnData: RashiTableRow [],
-    specialLagna: RashiTableRow [],
-  }
+  table: RashiTableParts
 }
 
 export type RashiTable = Array<RashiTableItem>;

@@ -3,13 +3,22 @@ import styles from './RashiTable.module.scss';
 import { Grid } from '@mui/material';
 import { RashiTableRow as IRashiTableRow } from '../../models/types/RashiTableRow';
 import RashiTableRow from './rashiTableRow/RashiTableRow';
+import { useGetIsHelpersElementsActive } from '../../hooks/useGetIsHelpersElementsActive';
+import { RashiTableParts } from '../../models/types/RashiTable';
 
 interface RashiTableProps {
-  rows: IRashiTableRow [],
+  table?: RashiTableParts,
   isDeepSkyActive?: boolean,
 }
 
-const RashiTable = ({ rows, isDeepSkyActive }: RashiTableProps) => {
+const RashiTable = ({ table, isDeepSkyActive }: RashiTableProps) => {
+  const {
+    isTranssaturnsActive,
+    isMandyAndGulikaActive,
+    isSpecialLagnaActive,
+    isUpagrahsActive
+  } = useGetIsHelpersElementsActive();
+
   return (
     <div className={styles.table}>
       <section className={styles.row} style={{ height: '20px' }}>
@@ -29,7 +38,19 @@ const RashiTable = ({ rows, isDeepSkyActive }: RashiTableProps) => {
           Накшатра
         </Grid>
       </section>
-      {rows?.map((rashiItem: IRashiTableRow, index) => (
+      {table?.primaryData?.map((rashiItem: IRashiTableRow, index) => (
+        <RashiTableRow rashiItem={rashiItem} key={index} isDeepSkyActive={isDeepSkyActive} />
+      ))}
+      {isTranssaturnsActive && table?.transsaturnData?.map((rashiItem: IRashiTableRow, index) => (
+        <RashiTableRow rashiItem={rashiItem} key={index} isDeepSkyActive={isDeepSkyActive} />
+      ))}
+      {isSpecialLagnaActive && table?.specialLagna?.map((rashiItem: IRashiTableRow, index) => (
+        <RashiTableRow rashiItem={rashiItem} key={index} isDeepSkyActive={isDeepSkyActive} />
+      ))}
+      {isMandyAndGulikaActive && table?.primaryUpagraha?.map((rashiItem: IRashiTableRow, index) => (
+        <RashiTableRow rashiItem={rashiItem} key={index} isDeepSkyActive={isDeepSkyActive} />
+      ))}
+      {isUpagrahsActive && table?.secondaryUpagraha?.map((rashiItem: IRashiTableRow, index) => (
         <RashiTableRow rashiItem={rashiItem} key={index} isDeepSkyActive={isDeepSkyActive} />
       ))}
     </div>

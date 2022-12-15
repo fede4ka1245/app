@@ -7,21 +7,22 @@ import {
   useGetTargetMapValue
 } from '../../../../store/selectors';
 import HoroscopesLoader from '../horoscopeLoader/HoroscopesLoader';
+import { RashiTableParts } from '../../../../models/types/RashiTable';
 
 const MainRashiTable = () => {
   const rashiTable = useGetRashiTable();
   const targetMapValue = useGetTargetMapValue();
   const isLoading = useGetIsRashiTableLoading();
 
-  const rows = useMemo(() => {
-    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table.primaryData || [];
+  const table = useMemo<RashiTableParts>(() => {
+    return rashiTable.find((rashiTableItem) => rashiTableItem.tableName === targetMapValue)?.table as RashiTableParts;
   }, [rashiTable, targetMapValue]);
 
   const isDeepSkyActive = useGetIsDeepSkyActive();
 
   return (
     <>
-      {!isLoading && <RashiTable rows={rows} isDeepSkyActive={isDeepSkyActive}/>}
+      {!isLoading && <RashiTable table={table} isDeepSkyActive={isDeepSkyActive}/>}
       {isLoading && <HoroscopesLoader />}
     </>
   );

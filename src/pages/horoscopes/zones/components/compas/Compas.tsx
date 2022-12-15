@@ -29,7 +29,7 @@ const Compas = () => {
       </svg>
       {compass?.map((compassItem, index) => (
         <div className={`section-${index + 1} section`} key={index}>
-          <Zone value={compassItem.value} color={index <= 11 ? '#FFA8A8' : index <= 19 ? '#FBFE72' : '#49BC5B'} tip={compassItem?.tip} />
+          <Zone value={compassItem.value} color={compassItem.color === 'red' ? '#FFA8A8' : compassItem.color === 'green' ? '#FBFE72' : '#49BC5B'} tip={compassItem?.tip} />
         </div>
       ))}
     </div>
