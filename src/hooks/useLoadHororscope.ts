@@ -12,16 +12,15 @@ import { getZones } from '../api/getZones';
 import {
   setAddressInformation,
   setAshtakavarga,
-  setDashiChr,
   setDashiVim, setHoroscopeUserInfo,
   setIsAshtakavargaLoading,
-  setIsDashiLoading, setIsRashiTableLoading, setMaps, setRashiTable
+  setIsRashiTableLoading, setIsVimDashiLoading, setMaps, setRashiTable
 } from '../store/reducers/horoscopesReducer';
-import { getDashi } from '../api/getDashi';
 import { getAshtakavarga } from '../api/getAshtakavarga';
 import { useAppDispatch } from '../store/store';
 import { getRashiTable } from '../api/getRashiTable';
 import { LoadHoroscope } from '../models/types/LoadHororscope';
+import { getVmdDashi } from '../api/getVmdDashi';
 
 export const useLoadHoroscopes = () => {
   const dispatch = useAppDispatch();
@@ -93,27 +92,25 @@ export const useLoadHoroscopes = () => {
         dispatch(setIsZonesLoading(false));
       });
 
-      dispatch(setIsDashiLoading(true));
+      dispatch(setIsVimDashiLoading(true));
 
-      getDashi({
-        userName,
-        date,
-        time,
-        latitude: addressInformation?.latitude,
-        longitude: addressInformation?.longitude,
-        hours,
-        greenwich,
-        minutes
-      }).then(({
-        chr,
-        vim
-      }) => {
-        dispatch(setDashiVim(vim));
-        dispatch(setDashiChr(chr));
+      getVmdDashi({
+        horoscopeData: {
+          userName,
+          date,
+          time,
+          latitude: addressInformation?.latitude,
+          longitude: addressInformation?.longitude,
+          hours,
+          greenwich,
+          minutes
+        }
+      }).then((data) => {
+        dispatch(setDashiVim(data));
       }).catch((err) => {
         console.log(err);
       }).finally(() => {
-        dispatch(setIsDashiLoading(false));
+        dispatch(setIsVimDashiLoading(false));
       });
 
       dispatch(setIsAshtakavargaLoading(true));

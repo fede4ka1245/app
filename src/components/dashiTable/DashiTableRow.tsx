@@ -27,14 +27,6 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
     return row.planets?.length ? `${row.planets.join(' / ')} / ${row.planet}` : row.planet;
   }, [row]);
 
-  const formattedDateStart = useMemo(() => {
-    return getFormattedDate(row.dateStart);
-  }, [row]);
-
-  const formattedDateEnd = useMemo(() => {
-    return getFormattedDate(row.dateEnd);
-  }, [row]);
-
   const isCurrentDates = useMemo(() => {
     return getIsCurrentDates(row.dateStart, row.dateEnd);
   }, [row]);
@@ -72,10 +64,10 @@ const DashiTableRow = ({ row }: PlanetsTableRowProps) => {
           </Grid>
         </Grid>
         <Grid className={classNames({ [styles.isOpen]: isOpen, [styles.isMain]: isMainRow, [styles.isCurrent]: isCurrentDates })}>
-          {formattedDateStart}
+          {row.dateStart}
         </Grid>
         <Grid className={classNames({ [styles.isOpen]: isOpen, [styles.isMain]: isMainRow, [styles.isCurrent]: isCurrentDates })}>
-          {formattedDateEnd}
+          {row.dateEnd}
         </Grid>
       </Grid>
       {isOpen && <div className={classNames(styles.container, { [styles.outlined]: isMainRow })}>

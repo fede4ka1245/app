@@ -42,6 +42,9 @@ const Authorization = () => {
         dispatch(setIsAuthenticated(true));
         navigate(routes.menu);
       })
+      .catch((err) => {
+        alert(JSON.stringify(err));
+      })
       .finally(() => {
         dispatch(setIsAppLoading(false));
       });

@@ -56,12 +56,16 @@ export const useGetDashiVim = () => {
   return useAppSelector((state) => state?.horoscopes.dashiVim);
 };
 
-export const useGetIsDashiLoading = () => {
-  return useAppSelector((state) => state?.horoscopes.isDashiLoading);
-};
-
 export const useGetAshtakavarga = () => {
   return useAppSelector((state) => state?.horoscopes.ashtakavarga);
+};
+
+export const useGetIsDashiChrLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isDashiChrLoading);
+};
+
+export const useGetIsDashiVimLoading = () => {
+  return useAppSelector((state) => state?.horoscopes.isDashiVimLoading);
 };
 
 export const useGetIsAshtakavargaLoading = () => {
@@ -202,10 +206,6 @@ export const useGetIsDeepSkyActive = () => {
 
 export const useGetDeepSkyObjects = () => {
   return useAppSelector((state) => state?.deepSky.deepSkyObjects);
-};
-
-export const useGetDashiChrPeriod = () => {
-  return useAppSelector((state) => state?.horoscopes.dashiChrPeriod);
 };
 
 export const useGetIsDashiChrPeriodLoading = () => {
