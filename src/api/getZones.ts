@@ -14,7 +14,7 @@ const getFormattedSudarshanaCircle = (circle: any) => {
 };
 
 export const getZones = async ({ userName, latitude, longitude, date, time, hours, minutes, greenwich }: HoroscopeData) => {
-  const { data } = await axios.post(`${process.env.REACT_APP_URL}/horoscope/get-chakras/`, {
+  const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/horoscope/get-chakras/`, {
     name_user: userName,
     latitude,
     longitude,
