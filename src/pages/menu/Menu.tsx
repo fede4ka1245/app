@@ -40,6 +40,10 @@ const Menu = () => {
     navigate(routes.calendar);
   };
 
+  const onCoursesClick = () => {
+    navigate(routes.Courses);
+  };
+
   const avatar = useGetAvatar();
   const name = useGetUserName();
 
@@ -80,7 +84,7 @@ const Menu = () => {
         </Grid>
         <Grid item container justifyContent={'space-between'}>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
-            <TransparentButton image={<img src={courses}/>} label={'Курсы Альфа'} onClick={() => {}} isSquare={true}/>
+            <TransparentButton image={<img src={courses}/>} label={'Курсы Альфа'} onClick={onCoursesClick} isSquare={true}/>
           </Grid>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
             <TransparentButton image={<img src={forum}/>} label={'Форум'} onClick={onForumClick} isSquare={true}/>

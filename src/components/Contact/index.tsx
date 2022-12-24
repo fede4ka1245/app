@@ -6,7 +6,7 @@ import Messages from '../../pages/chats/ChatList/components/buttons/Messages';
 import Pin from '../../pages/chats/ChatList/components/buttons/Pin';
 
 // models
-import { ChatRoutes } from '../../models/enums/Chat';
+import { routes as ChatRoutes } from '../../pages/chats/routes';
 
 // styles
 import styles from './styles.module.scss';

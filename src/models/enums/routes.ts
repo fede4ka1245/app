@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 export enum routes {
   astrologicalProcessor = '/processor',
   chats = '/chats',
@@ -9,7 +7,6 @@ export enum routes {
   personal = '/personal',
   myHoroscopes = '/my-horoscopes',
   horoscopes = '/horoscopes',
-  Chat = '/chat',
   forum = '/forum',
   createTopic = '/create-topic',
   rates = '/rates',
@@ -17,8 +14,6 @@ export enum routes {
   notifications = '/notifications',
   calendar = '/calendar',
   main = '/main',
-  CourseSteps = '/course-steps',
-  AdditionalCourse = '/additional-course',
-  MiniCourse = '/mini-course',
-  MasterClass = '/master-class',
+  Chat = '/chat',
+  Courses = '/courses'
 }

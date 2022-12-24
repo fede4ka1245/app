@@ -230,11 +230,11 @@ const AdditionalCourse: FC = () => {
           </span>
         </div>
       </Box>
-      <CourseList list={list}/>
+      {/* <CourseList list={list}/>
       <VideoCourse/>
       <Box sx={{ mb: 9.3, position: 'relative', zIndex: 1 }}>
         <CourseSlider list={sliderList}/>
-      </Box>
+      </Box> */}
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <div className={globalStyles.title}>
           Что будет на курсе
@@ -254,11 +254,11 @@ const AdditionalCourse: FC = () => {
         <div className={globalStyles.title}>
         преподаватели <span className={globalStyles.cyan_text}>курса</span>
         </div>
-        {teachers.map((item, index) => (
+        {/* {teachers.map((item, index) => (
           <div key={index}>
             <Teacher teacher={item}/>
           </div>
-        ))}
+        ))} */}
       </Box> 
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <div className={globalStyles.title} style={{ marginBottom: 50 }}>

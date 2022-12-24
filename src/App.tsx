@@ -19,15 +19,14 @@ import {
   CourseSteps,
   AdditionalCourse,
   MiniCourse,
-  MasterClass
+  MasterClass,
+  Courses
 } from './pages';
 import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProcessor';
-import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
 import Authorization from './pages/authorization/Authorization';
 import Personal from './pages/personal/Personal';
 import Menu from './pages/menu/Menu';
 import Index from './pages/settings/index/Index';
-import { routes as settingsRoutes } from './pages/settings/routes';
 import SettingsMain from './pages/settings/main/Main';
 import Maps from './pages/settings/maps/Maps';
 import MapDisplaying from './pages/settings/mapDisplaying/MapDisplaying';
@@ -46,8 +45,11 @@ import Horoscopes from './pages/horoscopes';
 import Forum from './pages/forum/Forum';
 import TabBar from './components/tabBar/TabBar';
 
-// models
-import { ChatRoutes } from './models/enums';
+// routes 
+import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
+import { routes as settingsRoutes } from './pages/settings/routes';
+import { routes as CoursesRoutes } from './pages/courses/routes';
+import { routes as ChatRoutes } from './pages/chats/routes';
 
 // styles
 import './main.css';
@@ -124,10 +126,11 @@ function App () {
             <Route path={settingsRoutes.main} element={<SettingsMain />} />
           </Route>
           <Route path={routes.rates} element={<Rates />} />
-          <Route path={routes.CourseSteps} element={<CourseSteps />} />
-          <Route path={routes.AdditionalCourse} element={<AdditionalCourse/>}/>
-          <Route path={routes.MiniCourse} element={<MiniCourse/>}/>
-          <Route path={routes.MasterClass} element={<MasterClass/>}/>
+          <Route path={routes.Courses} element={<Courses />}/>
+          <Route path={CoursesRoutes.CourseSteps} element={<CourseSteps />} />
+          <Route path={CoursesRoutes.AdditionalCourse} element={<AdditionalCourse/>}/>
+          <Route path={CoursesRoutes.MiniCourse} element={<MiniCourse/>}/>
+          <Route path={CoursesRoutes.MasterClass} element={<MasterClass/>}/>
           <Route path={routes.Chat} element={<ChatList />}/>
           <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
           <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>

@@ -1,16 +1,18 @@
 import { FC } from 'react';
+import parse from 'html-react-parser';
+
+// types
+import { IForWhomCourses } from '../../../../../models/types/Courses';
+
+// helpers 
+import getPrependZeros from '../../../../../helpers/getPrependZeros';
 
 // styles
 import globalStyles from '../../../styles.module.scss';
 import styles from './styles.module.scss';
 
-interface IList {
-  title: string;
-  text: string;
-}
-
 interface IProps {
-  list: IList[]
+  list: IForWhomCourses[]
 };
 
 const CourseSlider: FC<IProps> = ({ list }) => {
@@ -20,13 +22,13 @@ const CourseSlider: FC<IProps> = ({ list }) => {
         {list.map((item, index) => (
           <div className={styles.item_container} key={index}>
             <div className={styles.item_number}>
-              0{index + 1}
+              {getPrependZeros(index + 1)}
             </div>
             <div className={globalStyles.yellow_text} style={{ marginBottom: 10 }}>
-              {item.title}
+              {item?.title}
             </div>
             <div className={styles.item_text}>
-              {item.text}
+              {parse(item?.description)}
             </div>
           </div>
         ))}

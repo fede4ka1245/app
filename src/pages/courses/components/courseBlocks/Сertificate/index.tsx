@@ -7,7 +7,11 @@ import certificate from '../../../images/certificate.png';
 import globalStyles from '../../../styles.module.scss';
 import styles from './styles.module.scss';
 
-const Certificate: FC = () => {
+interface IProps {
+  certificate_text: string;
+}
+
+const Certificate: FC<IProps> = (props) => {
   return (
     <div className={styles.container}>
       <div className={globalStyles.title}>
@@ -17,8 +21,7 @@ const Certificate: FC = () => {
       </div>
       <img src={certificate} alt="certificate" className={styles.image}/>
       <div className={styles.description}>
-        После обучения вы защитите теоретический и практический
-        экзамены перед комиссией и получите сертификат школы Альфа.
+        {props.certificate_text}
       </div>
       <div className={globalStyles.link}>
         договор оферты на обучение

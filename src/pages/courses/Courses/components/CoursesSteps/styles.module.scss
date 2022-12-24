@@ -1,0 +1,11 @@
+.container {
+  padding: 35px 25px;
+  background-color: #000;
+}
+
+.step_container {
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

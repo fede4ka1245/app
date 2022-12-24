@@ -99,8 +99,8 @@ const MasterClass: FC = () => {
           задать вопрос
         </div>
       </Box>
-      <CourseList list={list}/>
-      <CourseSlider list={sliderList}/>
+      {/* <CourseList list={list}/>
+      <CourseSlider list={sliderList}/> */}
       <div className={styles.question}>
         <div className={globalStyles.title} style={{ marginBottom: 20 }}>
           Основной вопрос
@@ -166,7 +166,7 @@ const MasterClass: FC = () => {
         <div className={globalStyles.title}>
           <span className={globalStyles.cyan_text}>Ведущая</span> Мастер-класса 
         </div>
-        <Teacher teacher={teacher}/>
+        {/* <Teacher teacher={teacher}/> */}
       </div> 
       <Cause/>
     </div>

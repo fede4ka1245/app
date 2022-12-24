@@ -189,10 +189,10 @@ const MiniCourse: FC = () => {
           </span>
         </div>
       </Box>
-      <CourseList list={list}/>
+      {/* <CourseList list={list}/> */}
       <VideoCourse/>
       <Box sx={{ mb: 9.3 }}>
-        <CourseSlider list={sliderList}/>
+        {/* <CourseSlider list={sliderList}/> */}
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <div className={globalStyles.title}>
@@ -215,7 +215,7 @@ const MiniCourse: FC = () => {
         </div>
         {teachers.map((item, index) => (
           <div key={index}>
-            <Teacher teacher={item}/>
+            {/* <Teacher teacher={item}/> */}
           </div>
         ))}
       </Box>  
@@ -226,10 +226,10 @@ const MiniCourse: FC = () => {
         <div className={globalStyles.title} style={{ textAlign: 'center', marginBottom: 30 }}>
           Программа курса
         </div>
-        <ProgramCard/>
+        {/* <ProgramCard/> */}
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
-        <Certificate/>
+        {/* <Certificate/> */}
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <SunCard
