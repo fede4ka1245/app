@@ -21,4 +21,5 @@ export enum routes {
   AdditionalCourse = '/additional-course',
   MiniCourse = '/mini-course',
   MasterClass = '/master-class',
+  user = '/user'
 }

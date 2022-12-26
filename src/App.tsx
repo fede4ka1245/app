@@ -55,7 +55,7 @@ import CreateTopic from './pages/createTopic/CreateTopic';
 import Rates from './pages/rates/Rates';
 import ForumItem from './pages/forumItem/ForumItem';
 import { useAppDispatch } from './store/store';
-import { useGetIsAppLoading, useGetIsNavbarActive, useGetLanguage } from './store/selectors';
+import { useGetIsAppLoading, useGetIsNavbarActive } from './store/selectors';
 import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
@@ -66,6 +66,7 @@ import { usePauseResumeEffect } from './hooks/usePauseResumeEffect';
 import { LocalStorageKey } from './models/enums/LocalStorageKey';
 import authRequest from './api/authRequest';
 import { useLoadSettings } from './hooks/useLoadSettings';
+import User from './pages/user/User';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -176,6 +177,7 @@ function App () {
           <Route path={routes.notifications} element={<Notifications />} />
           <Route path={routes.calendar} element={<Calendar />} />
           <Route path={routes.main} element={<Main />} />
+          <Route path={routes.user} element={<User />} />
           <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
         </Routes>
       </Grid>
