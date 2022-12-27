@@ -9,7 +9,8 @@ import {
   CourseList,
   CourseSlider,
   Cause,
-  VideoCourse
+  VideoCourse,
+  Details
 } from '../components';
 
 // images
@@ -140,11 +141,13 @@ const MasterClass: FC = () => {
           </p>
         </Box> 
       </div>
-
       <div className={styles.main_teacher}>
         <MainTeacher teacher={mainTeacher}/>
       </div> 
       <Cause/>
+      <Box sx={{ px: 3.5 }}>
+        <Details/>
+      </Box>
     </div>
   );
 };

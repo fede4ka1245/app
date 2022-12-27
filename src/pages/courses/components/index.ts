@@ -11,5 +11,6 @@ import WithinCourse from './WithinCourse';
 import WhatYouBuys from './WhatYouBuys';
 import ProgramCards from './ProgramCards';
 import MainTeacher from './MainTeacher';
+import Details from './Details';
 
-export { CourseList, VideoCourse, CourseSlider, Galaxy, TelegramChat, Certificate, Question, Cause, Workshop, WithinCourse, WhatYouBuys, ProgramCards, MainTeacher };
+export { CourseList, VideoCourse, CourseSlider, Galaxy, TelegramChat, Certificate, Question, Cause, Workshop, WithinCourse, WhatYouBuys, ProgramCards, MainTeacher, Details };
