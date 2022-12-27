@@ -15,5 +15,6 @@ export enum routes {
   calendar = '/calendar',
   main = '/main',
   Chat = '/chat',
+  user = '/user',
   Courses = '/courses'
 }
