@@ -20,7 +20,7 @@ const CarouselItem: FC = () => {
           Моя профессия астролог
         </div>
         <div className={styles.date}>
-          Дата старта 05.04.2023
+          Дата старта 11.05.2023
         </div>
       </div>
       <img src={mockImage} className={styles.slider_image}/>
