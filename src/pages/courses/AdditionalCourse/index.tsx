@@ -4,13 +4,10 @@ import { FC } from 'react';
 import Header from '../components/Header';
 import { Box } from '@mui/material';
 import Slider from '../../../components/courseAd/components/Slider';
-import Teacher from '../components/Teacher';
+import Teachers from '../components/Teachers';
 import { 
-  SunCard,
-  MoonCard,
-  NeptuneCard
+  CourseCard
 } from '../components/paymentCards';
-import ProgramCard from '../components/ProgramCard';
 import { 
   CourseList,
   VideoCourse,
@@ -19,13 +16,23 @@ import {
   TelegramChat,
   Certificate,
   Question,
-  Cause
-} from '../components/courseBlocks';
+  Cause,
+  ProgramCards
+} from '../components';
+
+import {
+  list,
+  sliderList, 
+  teachers, 
+  modules, 
+  nominalCertificate, 
+  payVip,
+  optimal
+} from '../courses_mock';
 
 // images
-import teacher1 from '../images/teachers/teacher_1.png';
-import teacher2 from '../images/teachers/teacher_2.png';
-import teacher3 from '../images/teachers/teacher_3.png';
+import space from '../images/space_bg.png';
+import universe from '../images/universe.png';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -33,35 +40,6 @@ import styles from './styles.module.scss';
 
 const MiniCourse: FC = () => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
-  const list = [
-    {
-      title: 'Формат',
-      text: '24 видео урока и 12 онлайн-практикумов'
-    },
-    {
-      title: 'Проверка',
-      text: '22 теста и большое финальное тестирование'
-    },
-    {
-      title: 'Вы — часть школы',
-      text: 'Ваша страница-визитка на сайте Школы'
-    },
-    {
-      title: 'Документы',
-      text: 'Сертификат школы с личным ID'
-    }
-  ];
-
-  const sliderList = [
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    },
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    }
-  ];
 
   const courseInfo = [
     {
@@ -84,66 +62,35 @@ const MiniCourse: FC = () => {
     }
   ];
 
-  const teachers = [
-    {
-      image: teacher3,
-      name: 'Татьяна Калинина',
-      title: 'Основатель школы Альфа и проекта Deep Sky Strology',
-      description: 'Руководитель школы Альфа. Известный астролог, исследователь и педагог. Автор многих успешных публичных прогнозов для президентов, политиков, стран и выдающихся людей.',
-      link: ''
-    },
-    {
-      image: teacher1,
-      name: 'Елена Карпинчик',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов.',
-      link: ''
-    },
-    {
-      image: teacher2,
-      name: 'Александра Ващилко',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов и ректификации.',
-      link: ''
-    }
-  ];
-
-  const paymentCards = [
-    '10 основных уроков в видеозаписи',
-    '5 практикумов с куратором в записи, где группа отрабатывает материал данный на уроке.',
-    'Презентации к урокам.',
-    'Возможность задавать вопросы по обучению куратору курса в течение 3 месяцев на учебной платформе.',
-    'Добавление в информационный чат Telegram.',
-    'Экзамен и проверка.',
-    'Сертификат',
-    'Запись VIP вебинара для практической работы астрологом.',
-    'VIP 5 мини видео - уроков (дополнительные фишки, техники по темам курса).'
-  ];
-
   return (
     <div className={globalStyles.container}>
-      <div className={styles.background_img}>
-        <Box sx={{ px: 3.5, flex: 1 }}>
-          <Header/>
-          <div className={globalStyles.title}>
-            Гороскоп вопроса
-          </div>
-        </Box>
-        <div className={styles.shadow_wrapper}>
-          <Box sx={{ px: 3.5 }}>
-            <Box sx={{ mb: 6 }}>
-              <div className={globalStyles.description}>
-                Ввод в восстребованную профессию и возможность обучаться и зарабатывать из любой точки мира
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <Box sx={{ px: 3.5, flex: 1 }}>
+            <Header/>
+            <Box sx={{ mb: 1 }}>
+              <div className={globalStyles.title}>
+                Гороскоп вопроса
               </div>
             </Box>
-            <Slider
-              marks={marks}
-              valueLabelDisplay="on"
-              value={66}
-              valueLabelFormat={() => '3 дня'}
-            />
           </Box>
+          <div className={styles.shadow_wrapper}>
+            <Box sx={{ px: 3.5 }}>
+              <Box sx={{ mb: 6 }}>
+                <div className={globalStyles.description}>
+                  Ввод в восстребованную профессию и возможность обучаться и зарабатывать из любой точки мира
+                </div>
+              </Box>
+              <Slider
+                marks={marks}
+                valueLabelDisplay="on"
+                value={66}
+                valueLabelFormat={() => '3 дня'}
+              />
+            </Box>
+          </div>
         </div>
+        <img src={space} className={styles.background_image}/>
       </div>
       <Box sx={{ display: 'flex', px: 3.5, mb: 2.5 }}>
         <div className={styles.duration}>
@@ -163,11 +110,11 @@ const MiniCourse: FC = () => {
       </Box>
       <Box sx={{ px: 3.5 }}>
         <Box sx={{ mb: 3 }}>
-          <button className={globalStyles.button}>
+          <a className={globalStyles.button} href="#">
             Записаться на курс
-          </button>
+          </a>
         </Box>
-        <div className={globalStyles.installment_plan}>
+        {/* <div className={globalStyles.installment_plan}>
           <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_689_36271)">
               <rect x="13.75" width="17.0897" height="12" transform="rotate(50.4446 13.75 0)" fill="#A38E14"/>
@@ -187,12 +134,16 @@ const MiniCourse: FC = () => {
           <span style={{ marginLeft: 10 }}>
             доступно в рассрочку
           </span>
-        </div>
+        </div> */}
       </Box>
-      {/* <CourseList list={list}/> */}
-      <VideoCourse/>
+      <Box sx={{ mb: 3.5 }}>
+        <CourseList list={list}/>
+      </Box>
+      <Box sx={{ mb: 3.5 }}>
+        <VideoCourse/>
+      </Box>
       <Box sx={{ mb: 9.3 }}>
-        {/* <CourseSlider list={sliderList}/> */}
+        <CourseSlider list={sliderList}/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <div className={globalStyles.title}>
@@ -210,41 +161,35 @@ const MiniCourse: FC = () => {
         <Galaxy/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title}>
-        преподаватели <span className={globalStyles.cyan_text}>курса</span>
-        </div>
-        {teachers.map((item, index) => (
-          <div key={index}>
-            {/* <Teacher teacher={item}/> */}
-          </div>
-        ))}
+        <Teachers teachers={teachers}/>
       </Box>  
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 6 }}>
         <TelegramChat/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
-        <div className={globalStyles.title} style={{ textAlign: 'center', marginBottom: 30 }}>
-          Программа курса
-        </div>
-        {/* <ProgramCard/> */}
+        <ProgramCards modules={modules}/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
-        {/* <Certificate/> */}
+        <Certificate certificate={nominalCertificate}/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <SunCard
-          title="VIP"
-          list={paymentCards}
+      <Box sx={{ px: 3.5, mb: 6 }}>
+        <CourseCard
+          payment={payVip}
         />
-        <NeptuneCard
-          title="Оптимальный"
-          list={paymentCards}
+        <CourseCard
+          backgroundColor="#192239"
+          payment={optimal}
         />
       </Box>  
       <Box sx={{ mb: 6 }}>
-        <Question/>
+        <Question
+          background_img={universe}
+        />
       </Box>
       <Cause/>
+      <Box sx={{ px: 3.5 }}>
+        <Galaxy/>
+      </Box>
     </div>
   );
 };

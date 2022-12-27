@@ -6,6 +6,8 @@ import PageHeader from '../../../components/pageHeader/PageHeader';
 import CoursesCarousel from './components/CoursesCarousel';
 import MiniCourse from './components/MiniCourse';
 import CoursesSteps from './components/CoursesSteps';
+import AdditionalCourse from './components/AdditionalCourses';
+import MasterClass from './components/MasterClass';
 
 // styles
 import styles from './styles.module.scss';
@@ -21,7 +23,11 @@ const Courses: FC = () => {
         <CoursesCarousel/>
       </div>
       <MiniCourse/>
-      <CoursesSteps/>
+      <div className={styles.dark_bg}>
+        <CoursesSteps/>
+        <AdditionalCourse/>
+        <MasterClass/>
+      </div>
     </div>
   );
 };

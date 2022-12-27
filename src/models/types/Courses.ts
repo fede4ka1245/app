@@ -13,6 +13,7 @@ export interface ICourseLesson {
 export interface ICourseModule {
   id: number;
   lessons: ICourseLesson[];
+  lessons_count: number,
   title: string;
   description: string;
   order: number;
@@ -55,6 +56,7 @@ export interface ICourseTeacher {
   avatar: string | null;
   teacher_title: string;
   teacher_description: string; 
+  shadow?: string;
 }
 
 export interface IWithinCourses {
@@ -67,8 +69,8 @@ export interface IWithinCourses {
 
 export interface ICourseWhatYouBuys {
   id: number;
-  order: number;
   description: string;
+  order: number;
   show: boolean;
   course: number;
 }
@@ -105,8 +107,7 @@ export interface ICourse {
   image: string | null;
   price: number;
   course_type: number;
-  publish_start: 
-string;
+  publish_start: string;
   stage_name: string;
   enroll_in_course: string;
   duration: string;

@@ -15,7 +15,7 @@ const MiniCourseCard: FC = () => {
             6 уроков видео <span style={{ color: '#F9F9F9' }}>в записи</span>
           </p>
           <p className={styles.subtitle}>
-            11 июля 2022г.
+            23 мая 2023г.
           </p>
           <p className={styles.subtitle}>
             Татьяной Калининой

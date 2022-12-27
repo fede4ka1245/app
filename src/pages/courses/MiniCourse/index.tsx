@@ -4,8 +4,8 @@ import { FC } from 'react';
 import Header from '../components/Header';
 import { Box } from '@mui/material';
 import Slider from '../../../components/courseAd/components/Slider';
-import Teacher from '../components/Teacher';
-import CourseProgram from '../components/CourseProgram';
+import Teachers from '../components/Teachers';
+import CoursePrograms from '../components/CoursePrograms';
 import { 
   CourseList,
   VideoCourse,
@@ -13,21 +13,19 @@ import {
   TelegramChat,
   Question,
   Cause,
-  Workshop
-} from '../components/courseBlocks';
+  Workshop,
+  Galaxy,
+  WhatYouBuys
+} from '../components';
 import { MiniCourseCard } from '../components/paymentCards';
 
 // images
-import teacher1 from '../images/teachers/teacher_1.png';
-import teacher2 from '../images/teachers/teacher_2.png';
-import teacher3 from '../images/teachers/teacher_3.png';
+import bgVideo from './images/bg-video.png';
+import starsImage from './images/stars.png';
 import cosmo from '../images/cosmo_course.png';
-import program1 from './images/01.png';
-import program2 from './images/02.png';
-import program3 from './images/03.png';
-import program4 from './images/04.png';
-import program5 from './images/05.png';
-import program6 from './images/06.png';
+
+// mocks
+import { list, sliderList, teachers, courseInfo, cosmoCountList, programs, whatYouBuys } from '../courses_mock';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -35,122 +33,6 @@ import styles from './styles.module.scss';
 
 const AdditionalCourse: FC = () => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
-  const list = [
-    {
-      title: 'Формат',
-      text: '24 видео урока и 12 онлайн-практикумов'
-    },
-    {
-      title: 'Проверка',
-      text: '22 теста и большое финальное тестирование'
-    },
-    {
-      title: 'Вы — часть школы',
-      text: 'Ваша страница-визитка на сайте Школы'
-    },
-    {
-      title: 'Документы',
-      text: 'Сертификат школы с личным ID'
-    }
-  ];
-
-  const sliderList = [
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    },
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    }
-  ];
-
-  const courseInfo = [
-    {
-      text: 'Соберете в стройную систему свои знания из других школ или самостоятельного изучения.'
-    },
-    {
-      text: 'Получите основы прогнозирования по натальной карте.'
-    },
-    {
-      text: 'Изучите гороскоп вопроса, который поможет вам делать успешные прогнозы уже через 10 уроков, а не через 3 года.'
-    },
-    {
-      text: 'Адаптируетесь в Джйотиш, если вы учились в Западной традиции.'
-    },
-    {
-      text: 'Освоите дополнительные техники прогнозов, компенсирующие отсутствие большого опыта в прогнозах.'
-    },
-    {
-      text: 'После курса вы можете смело начать работать астрологом, мы вас подготовим.'
-    }
-  ];
-
-  const teachers = [
-    {
-      image: teacher3,
-      name: 'Татьяна Калинина',
-      title: 'Основатель школы Альфа и проекта Deep Sky Strology',
-      description: 'Руководитель школы Альфа. Известный астролог, исследователь и педагог. Автор многих успешных публичных прогнозов для президентов, политиков, стран и выдающихся людей.',
-      link: ''
-    },
-    {
-      image: teacher1,
-      name: 'Елена Карпинчик',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов.',
-      link: ''
-    },
-    {
-      image: teacher2,
-      name: 'Александра Ващилко',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов и ректификации.',
-      link: ''
-    }
-  ];
-
-  const cosmoCountList = [
-    'Получите базовые знания по устройству Солнечной системы. Узнаете какой характер и функции у планет.',
-    'Установите и настроите программу для работы.',
-    'Получите знания по соединению планет.',
-    'Познакомитесь с Джйотиш гороскопом',
-    'Научитесь давать трактовку на уровне планета в знаке зодиака и планета в доме. Поймёте насколько комфортно той или иной планете в доме и знаке.',
-    'Познакомитесь с основами прогностики и посмотрите как сделать первые прогнозы.'
-  ];
-
-  const programs = [
-    {
-      title: 'Вводная часть в астрологию',
-      image: program1,
-      description: 'Строение солнечной системы. Зодиакальные созвездия и неподвижные звезды. Понятие Deep Sky астрологии. Планеты и сферы за которые они отвечают. Какой характер и функции у планет? Обозначения планет в гороскопе.'
-    },
-    {
-      title: 'Настройка программы для работы',
-      image: program2,
-      description: 'Установка и настройка программы для работы астролога. Построение гороскопа.'
-    },
-    {
-      title: 'Планеты в знаках зодиака',
-      image: program3,
-      description: 'Вид гороскопа. Последовательность знаков Зодиака. Знаки зодиака и их управители. Стихии знаков. Как трактовать гороскоп на уровне планета в знаке зодиака? Понятие комфорта планеты в знаке.'
-    },
-    {
-      title: 'Планеты в домах гороскопа',
-      image: program4,
-      description: 'Дома гороскопа. Понятие Лагны и распределение знаков зодиака по домам. Как трактовать планету в доме? Комфортно ли планете в этом доме и знаке?'
-    },
-    {
-      title: 'Вводная часть в астрологию',
-      image: program5,
-      description: 'Строение солнечной системы. Зодиакальные созвездия и неподвижные звезды. Понятие Deep Sky астрологии. Планеты и сферы за которые они отвечают. Какой характер и функции у планет? Обозначения планет в гороскопе.'
-    },
-    {
-      title: 'Соединения планет',
-      image: program6,
-      description: 'Соединения планет. Как энергии планет смешивается между собой и дают характер? Понятия соединений (соединения с Марсом, Венерой, Солнцем и тд).'
-    }
-  ];
 
   return (
     <div className={globalStyles.container}>
@@ -197,9 +79,9 @@ const AdditionalCourse: FC = () => {
         <div className={styles.duration}>
           Старт
           <span className={globalStyles.yellow_text} style={{ margin: '0px 5px' }}>
-            22
+            23
           </span>
-          ноября
+          мая
         </div>
       </Box>
       <Box sx={{ px: 3.5 }}>
@@ -208,7 +90,7 @@ const AdditionalCourse: FC = () => {
             Записаться на курс
           </button>
         </Box>
-        <div className={globalStyles.installment_plan}>
+        {/* <div className={globalStyles.installment_plan}>
           <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_689_36271)">
               <rect x="13.75" width="17.0897" height="12" transform="rotate(50.4446 13.75 0)" fill="#A38E14"/>
@@ -228,13 +110,15 @@ const AdditionalCourse: FC = () => {
           <span style={{ marginLeft: 10 }}>
             доступно в рассрочку
           </span>
-        </div>
+        </div> */}
       </Box>
-      {/* <CourseList list={list}/>
-      <VideoCourse/>
+      <CourseList list={list}/>
+      <VideoCourse 
+        background_img={bgVideo}
+      />
       <Box sx={{ mb: 9.3, position: 'relative', zIndex: 1 }}>
         <CourseSlider list={sliderList}/>
-      </Box> */}
+      </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <div className={globalStyles.title}>
           Что будет на курсе
@@ -251,27 +135,12 @@ const AdditionalCourse: FC = () => {
         <Workshop/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title}>
-        преподаватели <span className={globalStyles.cyan_text}>курса</span>
-        </div>
-        {/* {teachers.map((item, index) => (
-          <div key={index}>
-            <Teacher teacher={item}/>
-          </div>
-        ))} */}
+        <Teachers teachers={teachers}/>
       </Box> 
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title} style={{ marginBottom: 50 }}>
-          Программа курса
-        </div>
-        {programs.map((item, index) => (
-          <div key={index} style={{ marginBottom: 30 }}>
-            <CourseProgram 
-              program={item}
-              number={index + 1}/>
-          </div>
-        ))}
-
+        <CoursePrograms
+          programs={programs}
+        />
       </Box>  
       <Box sx={{ mb: 3.5 }}>
         <TelegramChat/>
@@ -280,21 +149,26 @@ const AdditionalCourse: FC = () => {
         <MiniCourseCard/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title}>
-          ЧТО ВЫ ПОЛУЧИТЕ 
-          В РЕЗУЛЬТАТЕ КУРСА?
-        </div>
-        <img src={cosmo} className={styles.cosmo_course}/>
-        {cosmoCountList.map((item, index) => (
-          <div className={globalStyles.list_item} key={index}>
-            {item}
-          </div>
-        ))}
+        <WhatYouBuys whatYouBuys={{
+          title: "<div style='color: #FFF'>ЧТО ВЫ ПОЛУЧИТЕ В РЕЗУЛЬТАТЕ КУРСА?</div>",
+          list: whatYouBuys,
+          image: cosmo
+        }}/>
       </Box> 
       <Box sx={{ mb: 6 }}>
-        <Question/>
+        <Question 
+          background_img={starsImage}
+        />
       </Box>
-      <Cause/>
+      <Box sx={{ mb: 6 }}>
+        <Cause/>
+      </Box>
+      <Box sx={{ px: 3.5 }}>
+        <Galaxy/>
+      </Box>
+      <Box sx={{ px: 3.5, mb: 3.5 }}>
+        <Workshop/>
+      </Box>
     </div>
   );
 };

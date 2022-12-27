@@ -5,7 +5,7 @@
 
 .shadow_wrapper {
   background: linear-gradient(0deg, #0C121E 28.9%, rgba(217, 217, 217, 0) 100%);
-};
+}
 
 .master_class_list {
   padding: 45px 28px;
@@ -27,7 +27,8 @@
   background: url('../images/gradient.png') center center/cover no-repeat;
   padding: 0 28px;
   margin-bottom: 45px;
-};
+}
+
 
 .master_class {
   &_container {
@@ -36,7 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  };
+  }
   
   &_title {
     font-family: 'Oswald';
@@ -48,7 +49,7 @@
     letter-spacing: -0.4px;
     color: #F9F9F9;
     margin-bottom: 20px;
-  };
+  }
 
   &_descr {
     font-family: 'Gilroy';
@@ -86,11 +87,14 @@
     color: #F9F9F9;
     margin-bottom: 20px;
   }
-};
+}
 
 .question {
   padding: 50px 28px;
   background: url('../images/stars.png') center center/cover no-repeat;
 }
 
+.for_whom {
+  background: url('../images/galaxy_stars.png') center center/cover no-repeat;
+}
 
