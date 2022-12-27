@@ -1,16 +1,15 @@
-import { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import parse from 'html-react-parser';
 
 // components
 import Header from '../components/Header';
-import { Box } from '@mui/material';
 import Slider from '../../../components/courseAd/components/Slider';
-import Teacher from '../components/Teacher';
+import Teachers from '../components/Teachers';
 import { 
-  SunCard,
-  MoonCard,
-  NeptuneCard
+  CourseCard
 } from '../components/paymentCards';
-import ProgramCard from '../components/ProgramCard';
+import ProgramCards from '../components/ProgramCards';
 import { 
   CourseList,
   VideoCourse,
@@ -19,13 +18,27 @@ import {
   TelegramChat,
   Certificate,
   Question,
-  Cause
-} from '../components/courseBlocks';
+  Cause,
+  WithinCourse,
+  WhatYouBuys
+} from '../components';
+
+// mocks
+import {
+  list,
+  sliderList, 
+  teachers, 
+  withinCourses, 
+  modules, 
+  nominalCertificate, 
+  whatYouBuys,
+  payInFull,
+  payInMonth
+} from '../courses_mock';
 
 // images
-import teacher1 from '../images/teachers/teacher_1.png';
-import teacher2 from '../images/teachers/teacher_2.png';
-import teacher3 from '../images/teachers/teacher_3.png';
+import shutterstock from '../images/shutterstock.png';
+import universe from '../images/universe.png';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -33,110 +46,38 @@ import styles from './styles.module.scss';
 
 const CourseSteps: FC = () => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
-  const list = [
-    {
-      title: 'Формат',
-      text: '24 видео урока и 12 онлайн-практикумов'
-    },
-    {
-      title: 'Проверка',
-      text: '22 теста и большое финальное тестирование'
-    },
-    {
-      title: 'Вы — часть школы',
-      text: 'Ваша страница-визитка на сайте Школы'
-    },
-    {
-      title: 'Документы',
-      text: 'Сертификат школы с личным ID'
-    }
-  ];
-
-  const sliderList = [
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    },
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    }
-  ];
-
-  const courseInfo = [
-    {
-      text: 'Соберете в стройную систему свои знания из других школ или самостоятельного изучения.'
-    },
-    {
-      text: 'Получите основы прогнозирования по натальной карте.'
-    },
-    {
-      text: 'Изучите гороскоп вопроса, который поможет вам делать успешные прогнозы уже через 10 уроков, а не через 3 года.'
-    },
-    {
-      text: 'Адаптируетесь в Джйотиш, если вы учились в Западной традиции.'
-    },
-    {
-      text: 'Освоите дополнительные техники прогнозов, компенсирующие отсутствие большого опыта в прогнозах.'
-    },
-    {
-      text: 'После курса вы можете смело начать работать астрологом, мы вас подготовим.'
-    }
-  ];
-
-  const teachers = [
-    {
-      image: teacher3,
-      name: 'Татьяна Калинина',
-      title: 'Основатель школы Альфа и проекта Deep Sky Strology',
-      description: 'Руководитель школы Альфа. Известный астролог, исследователь и педагог. Автор многих успешных публичных прогнозов для президентов, политиков, стран и выдающихся людей.',
-      link: ''
-    },
-    {
-      image: teacher1,
-      name: 'Елена Карпинчик',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов.',
-      link: ''
-    },
-    {
-      image: teacher2,
-      name: 'Александра Ващилко',
-      title: 'Ведущая живых онлайн-практикумов, куратор курса',
-      description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов и ректификации.',
-      link: ''
-    }
-  ];
-
   return (
     <div className={globalStyles.container}>
-      <div className={styles.background_img}>
-        <Box sx={{ px: 3.5, flex: 1 }}>
-          <Header/>
-          <Box sx={{ mb: 1 }}>
-            <div className={globalStyles.title}>
-              Моя профессия астролог
-            </div>
-          </Box>
-          <div className={globalStyles.yellow_text}>
-            1 ступень
-          </div>
-        </Box>
-        <div className={styles.shadow_wrapper}>
-          <Box sx={{ px: 3.5 }}>
-            <Box sx={{ mb: 6 }}>
-              <div className={globalStyles.description}>
-                Ввод в восстребованную профессию и возможность обучаться и зарабатывать из любой точки мира
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <Box sx={{ px: 3.5, flex: 1 }}>
+            <Header/>
+            <Box sx={{ mb: 1 }}>
+              <div className={globalStyles.title}>
+                Моя профессия астролог
               </div>
             </Box>
-            <Slider
-              marks={marks}
-              valueLabelDisplay="on"
-              value={66}
-              valueLabelFormat={() => '3 дня'}
-            />
+            <div className={globalStyles.yellow_text}>
+              1 ступень
+            </div>
           </Box>
+          <div className={styles.shadow_wrapper}>
+            <Box sx={{ px: 3.5 }}>
+              <Box sx={{ mb: 6 }}>
+                <div className={globalStyles.description}>
+                  Ввод в восстребованную профессию и возможность обучаться и зарабатывать из любой точки мира
+                </div>
+              </Box>
+              <Slider
+                marks={marks}
+                valueLabelDisplay="on"
+                value={66}
+                valueLabelFormat={() => '3 дня'}
+              />
+            </Box>
+          </div>
         </div>
+        <img src={shutterstock} className={styles.background_image}/>
       </div>
       <Box sx={{ display: 'flex', px: 3.5, mb: 2.5 }}>
         <div className={styles.duration}>
@@ -156,11 +97,11 @@ const CourseSteps: FC = () => {
       </Box>
       <Box sx={{ px: 3.5 }}>
         <Box sx={{ mb: 3 }}>
-          <button className={globalStyles.button}>
+          <a className={globalStyles.button} href="#">
             Записаться на курс
-          </button>
+          </a>
         </Box>
-        <div className={globalStyles.installment_plan}>
+        {/* <div className={globalStyles.installment_plan}>
           <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_689_36271)">
               <rect x="13.75" width="17.0897" height="12" transform="rotate(50.4446 13.75 0)" fill="#A38E14"/>
@@ -180,76 +121,57 @@ const CourseSteps: FC = () => {
           <span style={{ marginLeft: 10 }}>
             доступно в рассрочку
           </span>
-        </div>
+        </div> */}
       </Box>
-      <CourseList list={list}/>
-      <VideoCourse/>
+      <Box sx={{ mb: 3.5 }}>
+        <CourseList list={list}/>
+      </Box>
+      <Box sx={{ mb: 3.5 }}>
+        <VideoCourse/>
+      </Box>
       <Box sx={{ mb: 9.3 }}>
         <CourseSlider list={sliderList}/>
       </Box>
+      <WithinCourse withinCourses={withinCourses}/>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title}>
-          В рамках курса вы:
-        </div>
-      </Box>  
-      <div className={styles.course_steps}>
-        {courseInfo.map((item, index) => (
-          <div className={globalStyles.list_item} key={index}>
-            {item.text}
-          </div>
-        ))}
-      </div>
-      <Box sx={{ px: 3.5, mb: 6 }}>
         <Galaxy/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title}>
-        преподаватели <span className={globalStyles.cyan_text}>курса</span>
-        </div>
-        {teachers.map((item, index) => (
-          <div key={index}>
-            <Teacher teacher={item}/>
-          </div>
-        ))}
+        <Teachers teachers={teachers}/>
       </Box>  
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 6 }}>
         <TelegramChat/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
-        <div className={globalStyles.title} style={{ textAlign: 'center', marginBottom: 30 }}>
-          Программа курса
-        </div>
-        <ProgramCard/>
+        <ProgramCards modules={modules}/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
-        <Certificate/>
+        <Certificate certificate={nominalCertificate}/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title} style={{ color: '#F2D113' }}>
-          ЧТО ВЫ ПОКУПАЕТЕ:
-        </div>
-      </Box>  
-      <div className={styles.course_steps} style={{ marginBottom: 60 }}>
-        {courseInfo.map((item, index) => (
-          <div className={globalStyles.list_item} key={index}>
-            {item.text}
-          </div>
-        ))}
-      </div>
+        <WhatYouBuys whatYouBuys={{
+          title: 'Что вы покупаете',
+          list: whatYouBuys
+        }}/>
+      </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <SunCard
-          title="Оплатить полностью"
+        <CourseCard
+          payment={payInFull}
         />
-        <MoonCard/>
-        <NeptuneCard
-          title="Оплачивать
-          помесячно"
+        <CourseCard
+          backgroundColor="#192239"
+          payment={payInMonth}
         />
       </Box>  
       <Box sx={{ mb: 6 }}>
-        <Question/>
+        <Question
+          background_img={universe}
+        />
       </Box>
       <Cause/>
+      <Box sx={{ px: 3.5 }}>
+        <Galaxy/>
+      </Box>
     </div>
   );
 };

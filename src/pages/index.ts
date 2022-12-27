@@ -1,5 +1,5 @@
 import { ChatSupport, ChatUser, PayChat, ChatList } from './chats';
-import { CourseSteps, AdditionalCourse, MiniCourse, MasterClass } from './courses';
+import { CourseSteps, AdditionalCourse, MiniCourse, MasterClass, Courses } from './courses';
 
 export {
   ChatSupport,
@@ -9,5 +9,6 @@ export {
   CourseSteps,
   AdditionalCourse,
   MiniCourse,
-  MasterClass
+  MasterClass,
+  Courses
 };

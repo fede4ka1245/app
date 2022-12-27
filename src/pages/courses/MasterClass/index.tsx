@@ -4,16 +4,23 @@ import { FC } from 'react';
 import Header from '../components/Header';
 import { Box } from '@mui/material';
 import Slider from '../../../components/courseAd/components/Slider';
-import Teacher from '../components/Teacher';
+import MainTeacher from '../components/MainTeacher';
 import { 
   CourseList,
   CourseSlider,
-  Cause
-} from '../components/courseBlocks';
+  Cause,
+  VideoCourse,
+  Details
+} from '../components';
 
 // images
 import masterClass from '../images/master_class.png';
-import mainTeacher from '../images/teachers/main_teacher.png';
+
+import {
+  list,
+  sliderList,
+  mainTeacher
+} from '../courses_mock';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -21,43 +28,6 @@ import styles from './styles.module.scss';
 
 const MasterClass: FC = () => {
   const marks = [{ value: 0 }, { value: 33 }, { value: 66 }, { value: 100 }];
-  const list = [
-    {
-      title: 'Старт МК',
-      text: '22 ноября, 6 месяцев'
-    },
-    {
-      title: 'Формат ',
-      text: 'Студийная видеозапись'
-    },
-    {
-      title: 'Доступ к видеозаписи',
-      text: '1 год'
-    },
-    {
-      title: 'Ведущая МК',
-      text: 'Елена Карпинчик'
-    }
-  ];
-
-  const sliderList = [
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    },
-    {
-      title: 'ДЛЯ ТЕХ, КТО',
-      text: 'хочет углубить свою личную практику до преподавательского уровня'
-    }
-  ];
-
-  const teacher = {
-    image: mainTeacher,
-    name: 'Елена Карпинчик',
-    title: 'Ведущая живых онлайн-практикумов, куратор курса',
-    description: 'Практикующий джйотиш-астролог, одна из самых сильных учениц Татьяны Калининой. Специалист в сфере прогнозов.',
-    link: ''
-  };
 
   return (
     <div className={globalStyles.container}>
@@ -99,8 +69,15 @@ const MasterClass: FC = () => {
           задать вопрос
         </div>
       </Box>
-      <CourseList list={list}/>
-      <CourseSlider list={sliderList}/>
+      <Box sx={{ mb: 3.5 }}>
+        <CourseList list={list}/>
+      </Box>
+      <Box sx={{ mb: 3.5 }}>
+        <VideoCourse/>
+      </Box>
+      <Box sx={{ mb: 3.5 }}>
+        <CourseSlider list={sliderList}/>
+      </Box>
       <div className={styles.question}>
         <div className={globalStyles.title} style={{ marginBottom: 20 }}>
           Основной вопрос
@@ -144,31 +121,33 @@ const MasterClass: FC = () => {
           Задать вопросы
         </div>
       </div>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
-        <div className={globalStyles.title} style={{ marginBottom: 20 }}>
-          <span style={{ color: '#F2D113' }}>
-            Для кого 
-          </span>  этот Мастер-класс
-        </div>
-        <p className={styles.description}>
-          Данный мастер-класс рассчитан на астрологов, имеющих
-          знание основ Джйотиш, а также для тех, кто прошел в нашей
-          школе хотя бы Интенсив с Нуля до Прогнозов.
-        </p>
-        <p className={styles.description}>
-          Мы постарались адаптировать уже имеющиеся знания,
-          а также дополнили их своими наработками и наблюдениями. 
-          Весь <span style={{ color: '#F2D113' }}> материал преподносится в максимально простой
-          и понятной форме</span> даже для тех, кто совсем недавно начал изучать Астрологию.
-        </p>
-      </Box> 
+      <div className={styles.for_whom}>
+        <Box sx={{ px: 3.5, mb: 3.5, py: 3.5 }}>
+          <div className={globalStyles.title} style={{ marginBottom: 20 }}>
+            <span style={{ color: '#F2D113' }}>
+              Для кого 
+            </span>  этот Мастер-класс
+          </div>
+          <p className={styles.description} style={{ marginBottom: 30 }}>
+            Данный мастер-класс рассчитан на астрологов, имеющих
+            знание основ Джйотиш, а также для тех, кто прошел в нашей
+            школе хотя бы Интенсив с Нуля до Прогнозов.
+          </p>
+          <p className={styles.description}>
+            Мы постарались адаптировать уже имеющиеся знания,
+            а также дополнили их своими наработками и наблюдениями. 
+            Весь <span style={{ color: '#F2D113' }}> материал преподносится в максимально простой
+            и понятной форме</span> даже для тех, кто совсем недавно начал изучать Астрологию.
+          </p>
+        </Box> 
+      </div>
       <div className={styles.main_teacher}>
-        <div className={globalStyles.title}>
-          <span className={globalStyles.cyan_text}>Ведущая</span> Мастер-класса 
-        </div>
-        <Teacher teacher={teacher}/>
+        <MainTeacher teacher={mainTeacher}/>
       </div> 
       <Cause/>
+      <Box sx={{ px: 3.5 }}>
+        <Details/>
+      </Box>
     </div>
   );
 };
