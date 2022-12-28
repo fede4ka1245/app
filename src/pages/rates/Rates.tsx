@@ -14,7 +14,7 @@ const Rates = () => {
   useHideNavbar();
 
   return (
-    <>
+    <Grid position={'relative'}>
       <PlanetBackground />
       <Grid container pl={2} pr={2} pb={4} direction={'column'}>
         <Grid item pt={4}>
@@ -93,7 +93,7 @@ const Rates = () => {
           />
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
