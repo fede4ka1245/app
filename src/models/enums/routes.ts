@@ -17,5 +17,6 @@ export enum routes {
   Chat = '/chat',
   user = '/user',
   userEdit = '/user-edit',
-  Courses = '/courses'
+  Courses = '/courses',
+  levels = '/levels'
 }

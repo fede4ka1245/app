@@ -70,6 +70,7 @@ import authRequest from './api/authRequest';
 import { useLoadSettings } from './hooks/useLoadSettings';
 import User from './pages/user/User';
 import UserEdit from './pages/userEdit/UserEdit';
+import Levels from './pages/levels/Levels';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -183,6 +184,7 @@ function App () {
           <Route path={routes.main} element={<Main />} />
           <Route path={routes.user} element={<User />} />
           <Route path={routes.userEdit} element={<UserEdit />} />
+          <Route path={routes.levels} element={<Levels />} />
           <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
         </Routes>
       </Grid>
