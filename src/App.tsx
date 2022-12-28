@@ -45,7 +45,7 @@ import Horoscopes from './pages/horoscopes';
 import Forum from './pages/forum/Forum';
 import TabBar from './components/tabBar/TabBar';
 
-// routes 
+// routes
 import { routes as horoscopesRoutes } from './pages/horoscopes/routes';
 import { routes as settingsRoutes } from './pages/settings/routes';
 import { routes as CoursesRoutes } from './pages/courses/routes';
@@ -69,6 +69,7 @@ import { LocalStorageKey } from './models/enums/LocalStorageKey';
 import authRequest from './api/authRequest';
 import { useLoadSettings } from './hooks/useLoadSettings';
 import User from './pages/user/User';
+import UserEdit from './pages/userEdit/UserEdit';
 
 function App () {
   const isNavbarActive = useGetIsNavbarActive();
@@ -181,6 +182,7 @@ function App () {
           <Route path={routes.calendar} element={<Calendar />} />
           <Route path={routes.main} element={<Main />} />
           <Route path={routes.user} element={<User />} />
+          <Route path={routes.userEdit} element={<UserEdit />} />
           <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
         </Routes>
       </Grid>
