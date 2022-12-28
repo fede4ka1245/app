@@ -1,6 +1,6 @@
 import React from 'react';
 import Background from '../../components/background/Background';
-import { Button as MuiButton, Grid, ToggleButton, Typography } from '@mui/material';
+import { Button as MuiButton, Grid, Typography } from '@mui/material';
 import ProfilePhoto from '../../components/profilePhoto/ProfilePhoto';
 import Input from '../../components/input/Input';
 import { InputStyle } from '../../components/input/InputStyle';
