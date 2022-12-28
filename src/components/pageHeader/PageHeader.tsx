@@ -6,7 +6,7 @@ import search from '../../pages/forum/assets/search.svg';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../models/enums/routes';
 
-const PageHeader = ({ page }: any) => {
+const PageHeader = ({ page, content }: any) => {
   const navigate = useNavigate();
 
   const onMenuClick = useCallback(() => {
@@ -27,12 +27,24 @@ const PageHeader = ({ page }: any) => {
           {page}
         </Typography>
       </Grid>
-      <Grid item mr={3}>
-        <img src={wallet} onClick={onWalletClick} width={30} height={30}/>
-      </Grid>
-      <Grid item>
-        <img src={search} width={30} height={30}/>
-      </Grid>
+      {
+        content
+          ? (
+            <>
+              {content}
+            </>
+          )
+          : (
+            <>
+              <Grid item mr={3}>
+                <img src={wallet} onClick={onWalletClick} width={30} height={30}/>
+              </Grid>
+              <Grid item>
+                <img src={search} width={30} height={30}/>
+              </Grid>
+            </>
+          )
+      }
     </Grid>
   );
 };

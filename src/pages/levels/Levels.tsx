@@ -1,7 +1,5 @@
 import React from 'react';
-import Background from '../../components/background/Background';
 import { Box, Button, Grid, Skeleton, Typography } from '@mui/material';
-import UserHeader from '../../components/userHeader/UserHeader';
 import astroProcessor from './assets/astroproccesor.png';
 import forum from './assets/forum.png';
 import telescope from './assets/telescope.png';
@@ -10,8 +8,6 @@ import heart from './assets/heart.png';
 const Levels = () => {
   return (
     <>
-      <Background background={'#f0f0f3'} />
-      <UserHeader />
       <Box pl={1} pr={1}>
         <Grid container borderRadius={'8px'} p={2} direction={'column'} sx={{ background: 'white' }}>
           <Typography fontFamily={'Playfair Display'} color={'#292E30'} fontWeight={700} fontSize={'24px'} pt={2}>

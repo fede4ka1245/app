@@ -25,7 +25,7 @@ const Menu = () => {
   }, [navigate]);
 
   const onChangeButtonClick = () => {
-    navigate(routes.personal);
+    navigate(routes.userEdit);
   };
 
   const onAstrologicalProcessorClick = () => {

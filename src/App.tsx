@@ -62,11 +62,9 @@ import Notifications from './pages/notifications/Notifications';
 import Calendar from './pages/calendar/Calendar';
 import Main from './pages/main/Main';
 import AppLoader from './components/appLoader/AppLoader';
-import { setContentRef, setIsAppLoading, setIsAuthenticated } from './store/reducers/preferencesReducer';
+import { setContentRef } from './store/reducers/preferencesReducer';
 import { Grid } from '@mui/material';
 import { usePauseResumeEffect } from './hooks/usePauseResumeEffect';
-import { LocalStorageKey } from './models/enums/LocalStorageKey';
-import authRequest from './api/authRequest';
 import { useLoadSettings } from './hooks/useLoadSettings';
 import User from './pages/user/User';
 import UserEdit from './pages/userEdit/UserEdit';
@@ -185,7 +183,7 @@ function App () {
           <Route path={routes.user} element={<User />} />
           <Route path={routes.userEdit} element={<UserEdit />} />
           <Route path={routes.levels} element={<Levels />} />
-          <Route path={'*'} element={<Navigate to={routes.astrologicalProcessor} replace />} />
+          <Route path={'*'} element={<Navigate to={routes.main} replace />} />
         </Routes>
       </Grid>
       {isNavbarActive && <TabBar />}

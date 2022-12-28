@@ -15,6 +15,10 @@ import UserPreview from '../../components/userPreview/UserPreview';
 import Options from '../../components/options/Options';
 import SectionPreview from '../../components/sectionPreview';
 import Notification from '../notifications/components/notitfication/Notification';
+import wallet from '../forum/assets/wallet.svg';
+import { routes } from '../../models/enums/routes';
+import { useNavigate } from 'react-router-dom';
+import setting from './assets/settings.svg';
 
 const groups = [
   {
@@ -57,12 +61,30 @@ const notificationsOptions = [
 const User = () => {
   const [targetGroups, setTargetGroups] = useState(groups[0]);
   const [targetNotificationOption, setTargetNotificationOption] = useState(notificationsOptions[0]);
+  const navigate = useNavigate();
+
+  const onWalletClick = () => {
+    navigate(routes.rates);
+  };
+
+  const onSettingsClick = () => {
+    navigate(routes.userEdit);
+  };
 
   return (
     <Grid>
       <Background background={'#F0F0F3'} />
       <UserHeader />
-      <PageHeader page={'Профиль'} />
+      <PageHeader page={'Профиль'} content={
+        <>
+          <Grid item mr={3}>
+            <img src={wallet} onClick={onWalletClick} width={30} height={30}/>
+          </Grid>
+          <Grid item>
+            <img alt='setting' width={'28px'} height={'28px'} src={setting} onClick={onSettingsClick}/>
+          </Grid>
+        </>
+      }/>
       <Grid mt={2} width={'100%'} borderRadius={'20px'} container direction={'column'} sx={{ background: 'linear-gradient(225deg, rgba(219,191,46,0.4) 13.28%, rgba(229, 175, 36, 0) 81.25%)' }}>
         <Grid item display={'flex'} alignItems={'center'} p={2}>
           <Grid borderRadius={'50%'} height={'15px'} width={'15px'} sx={{ background: '#292E30' }} />
