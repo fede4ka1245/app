@@ -25,7 +25,7 @@ const CourseCard: FC<IProps> = ({ payment, backgroundColor }) => {
             <div className={globalStyles.list_item} key={index}>
               {item.description}
             </div>)
-          )};
+          )}
         </div>
         {payment.bonus_list.length > 0 && (
           <div className={styles.bonus_container}>
@@ -75,11 +75,22 @@ const CourseCard: FC<IProps> = ({ payment, backgroundColor }) => {
             </div>
           )
         }
-        <div className={styles.cost}>
-          {payment.discount_price > 0 ? payment.discount_price : payment.full_price} Rub
-        </div>
+        {
+          payment.full_price > 0 && (
+            <div className={styles.cost}>
+              {payment.discount_price > 0 ? payment.discount_price : payment.full_price} Rub
+            </div>
+          )
+        }
+        {
+          payment.subtitle && (
+            <div className={styles.subtitle}>
+              {payment.subtitle} 
+            </div>
+          )
+        }
         <div className={globalStyles.button}>
-          оплатить
+          {payment.button_text ?? 'оплатить'} 
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@
 
 .list {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   overflow: scroll;
 }
@@ -29,14 +29,12 @@
 
 .item_container {
   width: 200px;
+  flex-shrink: 0;
   margin-right: 40px;
-  &:last-child {
-    margin-right: 0;
-  }
 }
 
 .item_number {
-  background: url('../../images/orbitRadial.png') center center/cover no-repeat;
+  background: url('../../images/orbitRadial.svg') center center/cover no-repeat;
   height: 135px;
   width: 130px;
   padding: 0 8px;

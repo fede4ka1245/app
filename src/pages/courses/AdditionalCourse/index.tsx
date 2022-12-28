@@ -160,10 +160,10 @@ const MiniCourse: FC = () => {
       <Box sx={{ px: 3.5, mb: 6 }}>
         <Galaxy/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 5.5 }}>
         <Teachers teachers={teachers}/>
       </Box>  
-      <Box sx={{ mb: 6 }}>
+      <Box sx={{ mb: 6.5 }}>
         <TelegramChat/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>

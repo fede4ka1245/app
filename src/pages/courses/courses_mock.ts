@@ -47,12 +47,82 @@ export const list = [
   }
 ];
 
+export const masterClassList = [
+  {
+    id: 1,
+    title: 'Старт МК',
+    description: '22 ноября, 6 месяцев',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 2,
+    title: 'Формат',
+    description: 'Студийная видеозапись',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 3,
+    title: 'Доступ к видеозаписи',
+    description: '1 год',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 3,
+    title: 'Ведущая МК',
+    description: 'Елена Карпинчик',
+    show: true,
+    order: 1,
+    course: 1
+  }
+];
+
+export const miniCourselist = [
+  {
+    id: 1,
+    title: 'Формат',
+    description: '6 уроков в записи. Full HD - студийное качество',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 2,
+    title: 'Проверка',
+    description: '1 онлайн-практикум с Татьяной Калининой',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 3,
+    title: 'Поддержка',
+    description: 'На любые ваши вопросы ответит куратор курса',
+    show: true,
+    order: 1,
+    course: 1
+  },
+  {
+    id: 3,
+    title: 'Чат',
+    description: 'Общение с педагогами и учениками в чате школы',
+    show: true,
+    order: 1,
+    course: 1
+  }
+];
+
 export const sliderList = [
   {
     id: 1,
     order: 1,
     title: 'ДЛЯ ТЕХ, КТО',
-    description: 'хочет углубить свою личную практику до преподавательского уровня',
+    description: 'нет познаний в астрологии, кто учился сам или в других школах, но не получил системных знаний.',
     show: true,
     course: 1
   },
@@ -60,7 +130,15 @@ export const sliderList = [
     id: 2,
     order: 2,
     title: 'ДЛЯ ТЕХ, КТО',
-    description: 'хочет углубить свою личную практику до преподавательского уровня',
+    description: 'интересны прогнозы, кто ищет рабочие техники, хочет систематизировать знания и начать применять на себе или клиентах.',
+    show: true,
+    course: 2
+  },
+  {
+    id: 3,
+    order: 2,
+    title: 'ДЛЯ ТЕХ, КТО',
+    description: 'хочет получить быстрый и мощный старт в работе астролога. Кто не боится потока знаний и готов узнать много.',
     show: true,
     course: 2
   }
@@ -158,6 +236,51 @@ export const nominalCertificate = {
 
 };
 
+export const miniCourseWhatYouBuys = [
+  {
+    id: 1,
+    description: 'Получите базовые знания по устройству Солнечной системы. Узнаете какой характер и функции у планет.',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 2,
+    description: 'Установите и настроите программу для работы.',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 3,
+    description: 'Получите знания по соединению планет.',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 4,
+    description: 'Познакомитесь с Джйотиш гороскопом',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 5,
+    description: 'Научитесь давать трактовку на уровне планета в знаке зодиака и планета в доме. Поймёте насколько комфортно той или иной планете в доме и знаке.',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 6,
+    description: 'Познакомитесь с основами прогностики и посмотрите как сделать первые прогнозы.',
+    order: 1,
+    show: true,
+    course: 1
+  }
+];
+
 export const whatYouBuys = [
   {
     id: 1,
@@ -207,6 +330,32 @@ export const whatYouBuys = [
     order: 1,
     show: true,
     course: 1
+  },
+  {
+    id: 8,
+    description: 'Экзаменационное тестирование..',
+    order: 1,
+    show: true,
+    course: 1
+  },
+  {
+    id: 7,
+    description: 'Именной сертификат с уникальным идентификационным номером, опубликованный на нашем сайте в виде личной странички астролога.',
+    order: 9,
+    show: true,
+    course: 1
+  }
+];
+
+export const miniCourseInfo = [
+  {
+    text: 'За 6 уроков курса мы проведем вас от элементарных представлений об астрологии к первым трактовкам своей судьбы.'
+  },
+  {
+    text: 'Интересные примеры, видео и интерактивная подача материала поможет вам легко и быстро запомнить, что где в вашем гороскопе.'
+  },
+  {
+    text: 'Мы собрали весь свой огромный опыт и мастерство в простые формулировки, которые сделают ваше обучение астрологии простым и приятным.'
   }
 ];
 
@@ -291,8 +440,27 @@ export const payInFull = {
   ],
   description: 'Оплата производится в один этап с фиксированной стоимостью',
   full_price: 47400,
-  payment_title: 'Полная стоимость',
+  payment_title: '',
   discount_price: 46900,
+  monthly_fee: {
+    show: false,
+    quantity: '',
+    price: 0,
+    title: ''
+  } 
+};
+
+export const freePayment = {
+  title: 'Запись на Мастер-класс',
+  image: sunImage,
+  list: [],
+  bonus_list: [],
+  description: '21 ноября в 19:00 МСК. Онлайн участие',
+  full_price: 0,
+  payment_title: '',
+  discount_price: 0,
+  subtitle: 'Участие бесплатно',
+  button_text: 'Бесплатно',
   monthly_fee: {
     show: false,
     quantity: '',
@@ -370,7 +538,7 @@ export const payInMonth = {
   description: '',
   full_price: 51700,
   discount_price: 0,
-  payment_title: 'Полная стоимость',
+  payment_title: '',
   monthly_fee: {
     show: true,
     quantity: '5 платежей',

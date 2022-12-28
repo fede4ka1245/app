@@ -20,7 +20,7 @@ export const CoursesStep:FC = () => {
 
   return (
     <div className={styles.step}>
-      <div className={styles.step_card}>
+      <div className={styles.step_card} onClick={navigateToCoursesStep}>
         <div className={styles.step_content}>
           <div className={styles.step_header}>
             I ступень
@@ -65,7 +65,7 @@ export const CoursesStep:FC = () => {
 const CoursesSteps:FC = () => {
   return (
     <div className={styles.steps}>
-      <div className={classnames(globalStyles.title_purple, styles.steps_title)}>
+      <div className={classnames(globalStyles.title, styles.steps_title)}>
         Ступени мастерства
       </div>
       <CoursesStep/>

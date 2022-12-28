@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { Box } from '@mui/material';
 
 // images
-import chat from '../../images/telegram.png';
+import chat from './images/img_chat.png';
 
 // styles
 import globalStyles from '../../styles.module.scss';
@@ -19,36 +19,34 @@ const TelegramChat: FC = () => {
           Активный чат 
           в telegram
         </div>
-      </Box>
-      <div className={styles.telegram_info}>
-        <div className={styles.block}>
-          <div className={styles.block_title}>
-            +500
+        <div className={styles.telegram_info}>
+          <div className={styles.block}>
+            <div className={styles.block_title}>
+              +500
+            </div>
+            <div className={styles.block_descr}>
+              учеников школы "Альфа" в основном чате
+            </div>
           </div>
-          <div className={styles.block_descr}>
-            учеников школы "Альфа" в основном чате
+          <div className={`${styles.block} ${styles.rotate_90}`} style={{ alignSelf: 'flex-end' }}>
+            <div className={styles.block_title}>
+              1
+            </div>
+            <div className={styles.block_descr}>
+              Основной<br/>
+              <span className={globalStyles.cyan_text}>канал школы</span>
+            </div>
+          </div>
+          <div className={`${styles.block} ${styles.rotate_180}`}>
+            <div className={styles.block_title}>
+              2
+            </div>
+            <div className={styles.block_descr}>
+              Куратора в диалоге
+            </div>
           </div>
         </div>
-        <div className={`${styles.block} ${styles.rotate_90}`} style={{ alignSelf: 'flex-end' }}>
-          <div className={styles.block_title}>
-            1
-          </div>
-          <div className={styles.block_descr}>
-            Основной<br/>
-            <span className={globalStyles.cyan_text}>канал школы</span>
-          </div>
-        </div>
-        <div className={`${styles.block} ${styles.rotate_180}`}>
-          <div className={styles.block_title}>
-            2
-          </div>
-          <div className={styles.block_descr}>
-            Куратора в диалоге
-          </div>
-        </div>
-      </div>
-      <img src={chat} alt="chat" className={styles.image}/>
-      <Box sx={{ px: 3.5 }}>
+        <img src={chat} alt="chat" className={styles.image}/>
         <div className={styles.description}>
           Во время курса мы добавим вас в закрытый информационный 
           чат Telegram, где вы сможете общаться с группой и кураторами. 

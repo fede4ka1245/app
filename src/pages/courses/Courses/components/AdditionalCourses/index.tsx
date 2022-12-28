@@ -21,7 +21,7 @@ export const AdditionalStep:FC = () => {
 
   return (
     <div className={styles.additional}>
-      <div className={styles.additional_card}>
+      <div className={styles.additional_card} onClick={navigateTo}>
         <div className={styles.additional_content}>
           <div className={styles.additional_footer}>
             <div className={styles.additional_title} style={{ color: '#7EDEF5' }}>

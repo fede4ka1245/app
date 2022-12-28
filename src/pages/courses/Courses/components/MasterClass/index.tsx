@@ -21,7 +21,7 @@ export const MasterСlassItem:FC = () => {
 
   return (
     <div className={styles.additional}>
-      <div className={styles.additional_card}>
+      <div className={styles.additional_card} onClick={navigateTo}>
         <div className={styles.additional_content}>
           <div className={styles.additional_footer}>
             <div className={styles.additional_title}>
@@ -63,7 +63,7 @@ export const MasterСlassItem:FC = () => {
 const MasterСlass:FC = () => {
   return (
     <div className={styles.steps}>
-      <div className={classnames(globalStyles.title_purple, styles.steps_title)}>
+      <div className={classnames(globalStyles.title, styles.steps_title)}>
         Мастер-классы
       </div>
       <MasterСlassItem/>

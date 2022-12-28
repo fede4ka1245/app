@@ -16,6 +16,17 @@
   text-transform: uppercase;
 }
 
+.subtitle {
+  z-index: 1;
+  position: relative;
+  font-family: 'Oswald';
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 28px;
+  color: #FFF;
+  letter-spacing: -0.4px;
+}
+
 .yellow_text {
   font-family: 'Oswald';
   font-weight: 700;
@@ -30,7 +41,7 @@
   position: relative;
   font-family: 'Gilroy';
   font-weight: 400;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 26px;
   letter-spacing: 0.2px;
   color: #F9F9F9;
@@ -106,4 +117,16 @@
   font-weight: 500;
   font-size: 18px;
   text-transform: uppercase;
+}
+
+.payment_title {
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: #F2D113;
+  position: relative;
+  text-align: center;
 }

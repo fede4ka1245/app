@@ -18,22 +18,22 @@ const MiniCourse: FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={navigateToMiniCourse}>
       <div className={styles.wrapper}>
-        <div className={classnames(globalStyles.title, styles.title)}>
-          мини курс
-        </div>
-        <div className={styles.subtitle}>
-          Мини курс “Поехали!”
-        </div>
-        <div className={styles.date}>
-          Онлайн<br/>
-          практикум<br/>
-          23.05.22
-        </div>
         <div style={{ flex: 1 }}>
+          <div className={classnames(globalStyles.title, styles.title)}>
+            мини курс
+          </div>
           <div className={styles.lesson}>
             6 уроков
+          </div>
+          <div className={styles.subtitle}>
+            Мини курс “Поехали!”
+          </div>
+          <div className={styles.date}>
+            Онлайн
+            практикум
+            23.05.22
           </div>
         </div>
         <Slider

@@ -18,6 +18,11 @@
   background: linear-gradient(0deg, #0C121E 28.9%, rgba(217, 217, 217, 0) 100%);
 }
 
+.subtitle {
+  position: relative;
+  z-index: 1;
+}
+
 .duration {
   font-family: 'Oswald';
   font-weight: 700;
@@ -35,10 +40,10 @@
 };
 
 .course_steps {
-  height: 460px;
+  min-height: 460px;
   padding: 0 28px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
   &::before {
     content: '';
     position: absolute;

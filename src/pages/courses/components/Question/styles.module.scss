@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  height: 375px;
+  min-height: 375px;
   overflow: hidden;
   border-radius: 20px;
 }
@@ -34,6 +34,7 @@
   line-height: 28px;
   letter-spacing: 0.2px;
   color: #F9F9F9;
+  margin-bottom: 65px;
 };
 
 

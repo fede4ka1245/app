@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import classnames from 'classnames';
+
 // types
 import { ICourseTeacher } from '../../../../models/types/Courses';
 
@@ -13,7 +15,7 @@ interface IProps {
 const MainTeacher: FC<IProps> = ({ teacher }) => {
   return (
     <div className={styles.teacher}>
-      <div className={globalStyles.title}>
+      <div className={classnames(globalStyles.title, styles.title)}>
         <span className={globalStyles.cyan_text}>Ведущая</span> Мастер-класса 
       </div>
       <div className={styles.teacher_image}>
