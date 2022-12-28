@@ -110,33 +110,33 @@ function App () {
 
   useLoadSettings();
 
-  useEffect(() => {
-    if (localStorage.getItem(LocalStorageKey.access) === null) {
-      navigate(routes.authorization);
-      dispatch(setIsAuthenticated(false));
-      return;
-    }
-
-    dispatch(setIsAppLoading(true));
-
-    authRequest.post(`${process.env.REACT_APP_API_URL}/users/files/`, {
-      token: localStorage.getItem(LocalStorageKey.access)
-    })
-      .then(() => {
-        dispatch(setIsAuthenticated(true));
-      })
-      .catch((error) => {
-        if (error.response.status === 401 || error.response.status === 403) {
-          navigate(routes.authorization);
-          dispatch(setIsAuthenticated(false));
-        } else {
-          dispatch(setIsAuthenticated(true));
-        }
-      })
-      .finally(() => {
-        dispatch(setIsAppLoading(false));
-      });
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem(LocalStorageKey.access) === null) {
+  //     navigate(routes.authorization);
+  //     dispatch(setIsAuthenticated(false));
+  //     return;
+  //   }
+  //
+  //   dispatch(setIsAppLoading(true));
+  //
+  //   authRequest.post(`${process.env.REACT_APP_API_URL}/users/files/`, {
+  //     token: localStorage.getItem(LocalStorageKey.access)
+  //   })
+  //     .then(() => {
+  //       dispatch(setIsAuthenticated(true));
+  //     })
+  //     .catch((error) => {
+  //       if (error.response.status === 401 || error.response.status === 403) {
+  //         navigate(routes.authorization);
+  //         dispatch(setIsAuthenticated(false));
+  //       } else {
+  //         dispatch(setIsAuthenticated(true));
+  //       }
+  //     })
+  //     .finally(() => {
+  //       dispatch(setIsAppLoading(false));
+  //     });
+  // }, []);
 
   return (
     <>
