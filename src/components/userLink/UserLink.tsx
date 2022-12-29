@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './UserCheckBox.module.scss';
 import { Checkbox, Grid, Skeleton, Typography } from '@mui/material';
 
-const UserCheckBox = () => {
+const UserLink = ({ isCheckbox }: any) => {
   return (
     <div className={styles.main}>
       <Grid container display={'flex'} alignItems={'center'} p={1}>
@@ -17,12 +17,12 @@ const UserCheckBox = () => {
             19.01.1980 15:00, Москва
           </Typography>
         </Grid>
-        <Grid item>
+        {isCheckbox && <Grid item>
           <Checkbox />
-        </Grid>
+        </Grid>}
       </Grid>
     </div>
   );
 };
 
-export default UserCheckBox;
+export default UserLink;

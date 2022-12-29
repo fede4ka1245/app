@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import UserHeader from '../../components/userHeader/UserHeader';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import { Grid, Button as MuiButton, Typography } from '@mui/material';
@@ -10,6 +10,7 @@ import UserPreview from '../../components/userPreview/UserPreview';
 import Processor from './components/processor/Processor';
 import ShowMoreButton from './components/showMoreButton/ShowMoreButton';
 import Background from '../../components/background/Background';
+import ModalPeople from './components/modalPeople/ModalPeople';
 
 const forumTopics = [
   {
@@ -48,6 +49,16 @@ const groups = [
 const Main = () => {
   const [targetForumTopic, setTargetForumTopic] = useState(forumTopics[0]);
   const [targetGroups, setTargetGroups] = useState(groups[0]);
+  const [isFriendsModalOpen, setIsFriendsModalOpen] = useState(false);
+  const [isSubscribersModalOpen, setIsSubscribersModalOpen] = useState(false);
+
+  const toggleFriendsModal = () => {
+    setIsFriendsModalOpen(!isFriendsModalOpen);
+  };
+
+  const toggleSubscribersModal = () => {
+    setIsSubscribersModalOpen(!isSubscribersModalOpen);
+  };
 
   return (
     <>
@@ -153,7 +164,7 @@ const Main = () => {
           <Typography color={'#292E30'} fontWeight={700} fontSize={'24px'} fontFamily={'Playfair Display'}>
             Друзья
           </Typography>
-          <MuiButton endIcon={<>
+          <MuiButton onClick={toggleFriendsModal} endIcon={<>
             <svg width="6" height="12" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.666016 8L2.81445 4.77735C2.92642 4.6094 2.92642 4.3906 2.81445 4.22265L0.666015 1" stroke="#ABB0B2" strokeLinecap="round"/>
             </svg>
@@ -164,6 +175,7 @@ const Main = () => {
           </MuiButton>
         </Grid>
         <Grid item container direction={'row'} wrap={'nowrap'} maxWidth={'100%'} pl={2} pr={2} pt={3} overflow={'scroll'}>
+          <ModalPeople isOpen={isFriendsModalOpen} close={toggleFriendsModal} />
           <Grid item pr={2}>
             <UserPreview />
           </Grid>
@@ -193,7 +205,7 @@ const Main = () => {
           <Typography color={'#292E30'} fontWeight={700} fontSize={'24px'} fontFamily={'Playfair Display'}>
             Подписчики
           </Typography>
-          <MuiButton endIcon={<>
+          <MuiButton onClick={toggleSubscribersModal} endIcon={<>
             <svg width="6" height="12" viewBox="0 0 4 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.666016 8L2.81445 4.77735C2.92642 4.6094 2.92642 4.3906 2.81445 4.22265L0.666015 1" stroke="#ABB0B2" strokeLinecap="round"/>
             </svg>
@@ -204,6 +216,7 @@ const Main = () => {
           </MuiButton>
         </Grid>
         <Grid item container direction={'row'} wrap={'nowrap'} maxWidth={'100%'} pl={2} pr={2} pt={3} overflow={'scroll'}>
+          <ModalPeople isOpen={isSubscribersModalOpen} close={toggleSubscribersModal} />
           <Grid item pr={2}>
             <UserPreview />
           </Grid>

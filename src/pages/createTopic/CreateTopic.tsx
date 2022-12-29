@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import UserHeader from '../../components/userHeader/UserHeader';
 import { Checkbox, FormControlLabel, Grid, Skeleton, Typography, FormGroup } from '@mui/material';
 import ButtonBack from '../../components/buttonBack/ButtonBack';
@@ -16,7 +16,7 @@ import Topics from './components/topics/Topics';
 import TextGradient from '../../components/textGradient/TextGradient';
 import GradientButton from '../../components/gradientButton/GradientButton';
 import Drafts from './components/drafts/Drafts';
-import UserCheckBox from './components/userSelect/UserCheckBox';
+import UserLink from '../../components/userLink/UserLink';
 import { useHideNavbar } from '../../hooks/useHideNavbar';
 import Background from '../../components/background/Background';
 
@@ -151,7 +151,7 @@ const CreateTopic = () => {
               </Grid>
               {Array.from({ length: 3 }).map((_, index) => (
                 <Grid key={index} pb={1}>
-                  <UserCheckBox />
+                  <UserLink isCeckbox />
                 </Grid>
               ))}
               <Grid pt={1} pb={1}>
