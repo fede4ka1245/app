@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../../../../components/modal/Modal';
 import { Grid, Typography, Checkbox } from '@mui/material';
 import cross from './assets/cross.svg';
 import styles from './Rules.module.scss';
+import axios from 'axios';
 
 interface RulesProps {
   isOpen: boolean,
@@ -10,43 +11,28 @@ interface RulesProps {
 }
 
 const Rules = ({ isOpen, close }: RulesProps) => {
+  const [html, setHtml] = useState('');
+
+  useEffect(() => {
+    axios.get('/rules.html')
+      .then(({ data }) => {
+        setHtml(data);
+      });
+  }, []);
+
   return (
-    <Modal isOpen={isOpen} close={close}>
-      <Grid container position={'relative'} direction={'column'} p={3}>
+    <Modal isOpen={isOpen} close={close} height={'calc(100vh - 80px)'}>
+      <Grid sx={{ background: 'white' }} width={'100%'} height={'100%'} overflow={'scroll'} display={'flex'} container position={'relative'} flexDirection={'column'} p={3}>
         <img src={cross} className={styles.cross} onClick={close}/>
-        <Grid item>
-          <Typography fontFamily={'Gilroy'} fontSize={'20px'} color={'#37366B'}>
-            Правила поведения на форуме
-          </Typography>
-        </Grid>
-        <Grid container item direction={'column'}>
-          <Grid item pt={1} pb={1}>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={'14px'} color={'#292E30'}>
-              Заголовок
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontSize={'12px'} color={'#292E30'}>
-              Мощный инструмент для профессионального астролога, лёгкий в изучении и удобный в применении для начинающего астролога.
-            </Typography>
-          </Grid>
-          <Grid item pt={1} pb={1}>
-            <Typography fontFamily={'Gilroy'} fontWeight={600} fontSize={'14px'} color={'#292E30'}>
-              Заголовок
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography fontFamily={'Gilroy'} fontSize={'12px'} color={'#292E30'}>
-              Мощный инструмент для профессионального астролога, лёгкий в изучении и удобный в применении для начинающего астролога.
+        <Grid item width={'100%'}>
+          <div dangerouslySetInnerHTML={{ __html: html }}/>
+          <Grid item display={'flex'} alignItems={'center'}>
+            <Checkbox />
+            <Typography fontFamily={'Gilroy'} fontSize={'15px'} color={'#37366B'}>
+              Прочитал и согласен с правилами
             </Typography>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item pl={2} display={'flex'} alignItems={'center'}>
-        <Checkbox />
-        <Typography fontFamily={'Gilroy'} fontSize={'15px'} color={'#37366B'}>
-          Прочитал и согласен с правилами
-        </Typography>
       </Grid>
     </Modal>
   );
