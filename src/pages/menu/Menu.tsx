@@ -44,6 +44,10 @@ const Menu = () => {
     navigate(routes.Courses);
   };
 
+  const onExit = () => {
+    navigate(routes.main);
+  };
+
   const avatar = useGetAvatar();
   const name = useGetUserName();
 
@@ -55,7 +59,7 @@ const Menu = () => {
         <GalaxyBackground />
         <Grid item container justifyContent={'space-between'}>
           <Grid item>
-            <img width={20} height={20} src={cross} />
+            <img width={20} height={20} src={cross} onClick={onExit} />
           </Grid>
           <Grid item>
             <img width={20} height={23} src={notification} onClick={onNotificationsClick} />
