@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import styles from './TabBar.module.scss';
 import { Grid, IconButton } from '@mui/material';
 import add from './images/add.png';
@@ -15,6 +15,7 @@ import Forum from './Forum';
 import Processor from './Processor';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { routes } from '../../models/enums/routes';
+import { routes as chatsRoutes } from '../../pages/chats/routes';
 import classNames from 'classnames';
 
 const TabBar = () => {
@@ -45,6 +46,11 @@ const TabBar = () => {
 
   const onMenuClick = () => {
     navigate(routes.main);
+  };
+
+  const onGroupClick = () => {
+    navigate(chatsRoutes.CreateChatGroup);
+    toggleModal();
   };
 
   return (
@@ -95,7 +101,7 @@ const TabBar = () => {
             <TransparentButton image={<img src={courses}/>} label={'Новая тема'} onClick={onNewTopicClick} isSquare={true}/>
           </Grid>
           <Grid item width={'calc(50% - 10px)'} pb={2}>
-            <TransparentButton image={<img src={forum}/>} label={'Создать группу'} onClick={() => {}} isSquare={true}/>
+            <TransparentButton image={<img src={forum}/>} label={'Создать группу'} onClick={onGroupClick} isSquare={true}/>
           </Grid>
           <Grid item width={'calc(50% - 10px)'}>
             <TransparentButton image={<img src={calendar}/>} label={'Новый гороскоп'} onClick={() => {}} isSquare={true}/>

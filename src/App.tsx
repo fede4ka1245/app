@@ -11,17 +11,8 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import { routes } from './models/enums/routes';
 
 // pages
-import {
-  PayChat,
-  ChatUser,
-  ChatSupport,
-  ChatList,
-  CourseSteps,
-  AdditionalCourse,
-  MiniCourse,
-  MasterClass,
-  Courses
-} from './pages';
+import { ChatSupport, ChatUser, PayChat, ChatList, CreateChatGroup } from './pages/chats';
+import { CourseSteps, AdditionalCourse, MiniCourse, MasterClass, Courses } from './pages/courses';
 import AstrologicalProcessor from './pages/astrlogicalProcessor/AstrologicalProcessor';
 import Authorization from './pages/authorization/Authorization';
 import Personal from './pages/personal/Personal';
@@ -174,6 +165,7 @@ function App () {
           <Route path={ChatRoutes.ChatSupport} element={<ChatSupport />}/>
           <Route path={ChatRoutes.ChatUser} element={<ChatUser />}/>
           <Route path={ChatRoutes.PayChat} element={<PayChat />} />
+          <Route path={ChatRoutes.CreateChatGroup} element={<CreateChatGroup />} />
           <Route path={routes.authorization} element={<Authorization />} />
           <Route path={routes.myHoroscopes} element={<MyHoroscopes />} />
           <Route path={routes.forum} element={<Forum />} />
