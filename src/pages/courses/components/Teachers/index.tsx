@@ -33,9 +33,9 @@ const Teachers: FC<IProps> = ({ teachers }) => {
           <div className={styles.description}>
             {teacher?.teacher_description}
           </div>
-          <div className={globalStyles.link}>
+          {/* <div className={globalStyles.link}>
             страница астролога
-          </div>
+          </div> */}
         </div>
       ))}
     </React.Fragment>

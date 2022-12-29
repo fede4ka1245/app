@@ -1,8 +1,9 @@
 import { FC } from 'react';
+import { Box } from '@mui/material';
+import classnames from 'classnames';
 
 // components
 import Header from '../components/Header';
-import { Box } from '@mui/material';
 import Slider from '../../../components/courseAd/components/Slider';
 import Teachers from '../components/Teachers';
 import CoursePrograms from '../components/CoursePrograms';
@@ -20,12 +21,11 @@ import {
 import { MiniCourseCard } from '../components/paymentCards';
 
 // images
-import bgVideo from './images/bg-video.png';
 import starsImage from './images/stars.png';
 import cosmo from '../images/cosmo_course.png';
 
 // mocks
-import { list, sliderList, teachers, courseInfo, cosmoCountList, programs, whatYouBuys } from '../courses_mock';
+import { miniCourselist, sliderList, teachers, miniCourseInfo, programs, miniCourseWhatYouBuys } from '../courses_mock';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -41,10 +41,10 @@ const AdditionalCourse: FC = () => {
           <Header/>
           <Box sx={{ mb: 1 }}>
             <div className={globalStyles.title}>
-              Мини-курс “ПОехали!”
+              Мини-курс “Поехали!”
             </div>
           </Box>
-          <div className={globalStyles.yellow_text}>
+          <div className={classnames(globalStyles.yellow_text, styles.subtitle)}>
             6 уроков
           </div>
         </Box>
@@ -70,18 +70,7 @@ const AdditionalCourse: FC = () => {
       </div>
       <Box sx={{ display: 'flex', px: 3.5, mb: 2.5 }}>
         <div className={styles.duration}>
-          <span className={globalStyles.yellow_text} style={{ marginRight: 5 }}>
-            6
-          </span>
-          месяцев
-        </div>
-        <div className={styles.line}/>
-        <div className={styles.duration}>
-          Старт
-          <span className={globalStyles.yellow_text} style={{ margin: '0px 5px' }}>
-            23
-          </span>
-          мая
+         Онлайн-практикум <span className={globalStyles.yellow_text} style={{ marginRight: 5 }}> 11 июля </span>
         </div>
       </Box>
       <Box sx={{ px: 3.5 }}>
@@ -112,10 +101,12 @@ const AdditionalCourse: FC = () => {
           </span>
         </div> */}
       </Box>
-      <CourseList list={list}/>
-      <VideoCourse 
-        background_img={bgVideo}
-      />
+      <Box sx={{ mb: 4.5 }}>
+        <CourseList list={miniCourselist}/>
+      </Box>
+      <Box sx={{ mb: 4.5 }}>
+        <VideoCourse/>
+      </Box>
       <Box sx={{ mb: 9.3, position: 'relative', zIndex: 1 }}>
         <CourseSlider list={sliderList}/>
       </Box>
@@ -125,33 +116,33 @@ const AdditionalCourse: FC = () => {
         </div>
       </Box>  
       <div className={styles.course_steps}>
-        {courseInfo.map((item, index) => (
+        {miniCourseInfo.map((item, index) => (
           <div className={globalStyles.list_item} key={index}>
             {item.text}
           </div>
         ))}
       </div>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 4.5 }}>
         <Workshop/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <Teachers teachers={teachers}/>
       </Box> 
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 5.5 }}>
         <CoursePrograms
           programs={programs}
         />
       </Box>  
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 15 }}>
         <TelegramChat/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <MiniCourseCard/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <WhatYouBuys whatYouBuys={{
           title: "<div style='color: #FFF'>ЧТО ВЫ ПОЛУЧИТЕ В РЕЗУЛЬТАТЕ КУРСА?</div>",
-          list: whatYouBuys,
+          list: miniCourseWhatYouBuys,
           image: cosmo
         }}/>
       </Box> 
@@ -160,13 +151,11 @@ const AdditionalCourse: FC = () => {
           background_img={starsImage}
         />
       </Box>
-      <Box sx={{ mb: 6 }}>
-        <Cause/>
-      </Box>
-      <Box sx={{ px: 3.5 }}>
+      <Cause/>
+      <Box sx={{ px: 3.5, mb: 5.5 }}>
         <Galaxy/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5 }}>
         <Workshop/>
       </Box>
     </div>

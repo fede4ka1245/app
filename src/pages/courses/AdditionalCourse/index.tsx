@@ -32,7 +32,7 @@ import {
 
 // images
 import space from '../images/space_bg.png';
-import universe from '../images/universe.png';
+import universe from '../images/universe.jpg';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -69,8 +69,18 @@ const MiniCourse: FC = () => {
           <Box sx={{ px: 3.5, flex: 1 }}>
             <Header/>
             <Box sx={{ mb: 1 }}>
+              <div className={globalStyles.yellow_text}>
+                Повышение квалификации
+              </div>
+            </Box>
+            <Box sx={{ mb: 1 }}>
               <div className={globalStyles.title}>
                 Гороскоп вопроса
+              </div>
+            </Box>
+            <Box sx={{ mb: 3 }}>
+              <div className={globalStyles.subtitle}>
+                Делайте прогнозы уже через 10 уроков!
               </div>
             </Box>
           </Box>
@@ -157,22 +167,22 @@ const MiniCourse: FC = () => {
           </div>
         ))}
       </div>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <Galaxy/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 5.5 }}>
         <Teachers teachers={teachers}/>
       </Box>  
-      <Box sx={{ mb: 6 }}>
+      <Box sx={{ mb: 6.5 }}>
         <TelegramChat/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <ProgramCards modules={modules}/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <Certificate certificate={nominalCertificate}/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <CourseCard
           payment={payVip}
         />

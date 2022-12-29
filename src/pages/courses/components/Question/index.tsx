@@ -12,7 +12,7 @@ const Question: FC<IProps> = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={globalStyles.title} style={{ marginBottom: 30 }}>
+        <div className={globalStyles.title} style={{ marginBottom: 20 }}>
           Остались вопросы?
         </div>
         <div className={styles.description}>

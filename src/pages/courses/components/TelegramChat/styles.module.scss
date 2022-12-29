@@ -17,12 +17,13 @@
 
 .image {
   margin-bottom: 28px;
+  width: 100%;
+  object-fit: cover;
 };
 
 .telegram_info {
   display: flex;
   justify-content: space-between;
-  padding: 0 28px;
   height: 200px;
   margin-bottom: 23px;
 };
@@ -33,12 +34,12 @@
   align-self: flex-start;
   &::before {
     content: '';
-    top: 0;
+    top:0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    height: 100px;
+    width: 100px;
     position: absolute;
-    background: url('./images/orbit.png') no-repeat;
+    background: url('./images/orbit.svg') center center no-repeat;
   }
   &_title {
     position: relative;
@@ -75,25 +76,25 @@
 .rotate_90 {
   &::before {
     content: '';
-    top: 0;
+    top:0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    height: 100px;
+    width: 100px;
     position: absolute;
     transform: rotate(90deg);
-    background: url('./images/orbit.png') no-repeat;
+    background: url('./images/orbit.svg') center center no-repeat;
   }
 };
 
 .rotate_180 {
   &::before {
     content: '';
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     position: absolute;
+    top:0;
+    left: 0;
+    height: 100px;
+    width: 100px;
     transform: rotate(180deg);
-    background: url('./images/orbit.png') no-repeat;
+    background: url('./images/orbit.svg') center center no-repeat;
   }
 }

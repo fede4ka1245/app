@@ -38,7 +38,7 @@ import {
 
 // images
 import shutterstock from '../images/shutterstock.png';
-import universe from '../images/universe.png';
+import universe from '../images/universe.jpg';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -52,14 +52,26 @@ const CourseSteps: FC = () => {
         <div className={styles.header}>
           <Box sx={{ px: 3.5, flex: 1 }}>
             <Header/>
+            <div className={styles.step}>
+              <Box sx={{ mr: 3 }}>
+                <div className={globalStyles.yellow_text}>
+                  1 ступень
+                </div>
+              </Box>
+              <div className={globalStyles.yellow_text}>
+                Специалист
+              </div>
+            </div>
             <Box sx={{ mb: 1 }}>
               <div className={globalStyles.title}>
-                Моя профессия астролог
+                Инструменты астролога
               </div>
             </Box>
-            <div className={globalStyles.yellow_text}>
-              1 ступень
-            </div>
+            <Box sx={{ mb: 1 }}>
+              <div className={globalStyles.subtitle}>
+                База анализа гороскопа. Гороскоп вопроса.
+              </div>
+            </Box>
           </Box>
           <div className={styles.shadow_wrapper}>
             <Box sx={{ px: 3.5 }}>
@@ -123,10 +135,10 @@ const CourseSteps: FC = () => {
           </span>
         </div> */}
       </Box>
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 4.5 }}>
         <CourseList list={list}/>
       </Box>
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 4.5 }}>
         <VideoCourse/>
       </Box>
       <Box sx={{ mb: 9.3 }}>
@@ -136,10 +148,10 @@ const CourseSteps: FC = () => {
       <Box sx={{ px: 3.5, mb: 3.5 }}>
         <Galaxy/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 5.5 }}>
         <Teachers teachers={teachers}/>
       </Box>  
-      <Box sx={{ mb: 6 }}>
+      <Box sx={{ mb: 6.5 }}>
         <TelegramChat/>
       </Box>
       <Box sx={{ px: 3.5, mb: 6 }}>
@@ -155,6 +167,11 @@ const CourseSteps: FC = () => {
         }}/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
+        <div className={globalStyles.payment_title}>
+          Успейте присоединиться к потоку по выгодной ранней цене! Ранняя цена действует по 6 января включительно.
+        </div>
+      </Box>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <CourseCard
           payment={payInFull}
         />

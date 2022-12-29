@@ -1,11 +1,12 @@
 .avatar {
   position: relative;
   z-index: 1;
+  width: 65%;
   margin-bottom: 23px;
 }
 
 .title {
-  margin-bottom: 43px;
+  margin-bottom: 20px;
 }
 
 .name {
@@ -46,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(./images/profile-main.png) center center/cover no-repeat;
+  background: url(./images/profile-main.svg) center center/contain no-repeat;
   margin-bottom: 20px;
 }
 

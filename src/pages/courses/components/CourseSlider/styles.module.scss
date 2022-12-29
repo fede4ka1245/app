@@ -1,8 +1,8 @@
 .container {
-  padding: 0 24px;
 }
 
 .title {
+  padding: 0 28px;
   margin-bottom: 24px;
 }
 
@@ -14,9 +14,10 @@
 
 .list {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100vw;
   overflow: scroll;
+  padding: 0 28px;
 }
 
 .gradient {
@@ -24,19 +25,18 @@
   right: 0;
   background: linear-gradient(270deg, #0C121E 0%, rgba(12, 18, 30, 0) 100%);
   width: 90px;
+  pointer-events: none;
   height: 100%;
 };
 
 .item_container {
   width: 200px;
+  flex-shrink: 0;
   margin-right: 40px;
-  &:last-child {
-    margin-right: 0;
-  }
 }
 
 .item_number {
-  background: url('../../images/orbitRadial.png') center center/cover no-repeat;
+  background: url('../../images/orbitRadial.svg') center center/cover no-repeat;
   height: 135px;
   width: 130px;
   padding: 0 8px;

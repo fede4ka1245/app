@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import parse from 'html-react-parser';
+import classnames from 'classnames';
 
 // components
 import { Box } from '@mui/material';
@@ -20,7 +21,7 @@ const CourseList: FC<IProps> = ({ list }) => {
     <Box sx={{ px: 3.5 }}>
       {list.map((item, index) => (
         <div className={styles.item_continer} key={index}>
-          <div className={globalStyles.yellow_text} style={{ marginBottom: 12 }}>
+          <div className={classnames(globalStyles.yellow_text, styles.title)}>
             {item?.title}
           </div>
           <div className={styles.text}>

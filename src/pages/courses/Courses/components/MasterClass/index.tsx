@@ -21,14 +21,14 @@ export const MasterСlassItem:FC = () => {
 
   return (
     <div className={styles.additional}>
-      <div className={styles.additional_card}>
+      <div className={styles.additional_card} onClick={navigateTo}>
         <div className={styles.additional_content}>
           <div className={styles.additional_footer}>
             <div className={styles.additional_title}>
               Галактики в гороскопе
             </div>
             <div className={styles.additional_date}>
-              до 11.05.2023
+              Дата 11.05.2023 в 19:00 МСК
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ export const MasterСlassItem:FC = () => {
             </div>
           </div>
           <div className={styles.additional_second_date}>
-            до 11.05.2023
+            до 01.05.2023
           </div>
         </div>
         <div className={styles.additional_btn} onClick={navigateTo}>
@@ -63,7 +63,7 @@ export const MasterСlassItem:FC = () => {
 const MasterСlass:FC = () => {
   return (
     <div className={styles.steps}>
-      <div className={classnames(globalStyles.title_purple, styles.steps_title)}>
+      <div className={classnames(globalStyles.title, styles.steps_title)}>
         Мастер-классы
       </div>
       <MasterСlassItem/>

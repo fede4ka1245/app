@@ -12,14 +12,16 @@ import {
   VideoCourse,
   Details
 } from '../components';
+import { CourseCard } from '../components/paymentCards';
 
 // images
 import masterClass from '../images/master_class.png';
 
 import {
-  list,
+  masterClassList,
   sliderList,
-  mainTeacher
+  mainTeacher,
+  freePayment
 } from '../courses_mock';
 
 // styles
@@ -35,16 +37,26 @@ const MasterClass: FC = () => {
         <Box sx={{ px: 3.5, flex: 1 }}>
           <Header/>
           <Box sx={{ mb: 1 }}>
-            <div className={globalStyles.title} style={{ marginBottom: 20 }}>
+            <div className={globalStyles.yellow_text}>
+              Мастер-класс от школы Альфа
+            </div>
+          </Box>
+          <Box sx={{ mb: 1 }}>
+            <div className={globalStyles.title}>
               Прогнозирование 
               в деторождении
             </div>
-            <img src={masterClass} alt="mater-class" className={styles.image}/>
           </Box>
+          <Box sx={{ mb: 3 }}>
+            <div className={globalStyles.subtitle}>
+              Участие БЕСПЛАТНО
+            </div>
+          </Box>
+          <img src={masterClass} alt="mater-class" className={styles.image}/>
         </Box>
         <div className={styles.shadow_wrapper}>
           <Box sx={{ px: 3.5 }}>
-            <Box sx={{ mb: 6 }}>
+            <Box sx={{ mb: 1.5 }}>
               <div className={globalStyles.description}>
               Гражданский брак в женском гороскопе. Оригинальное 
               исследование на тему задержки вступления в брак в гороскопах женщин.
@@ -58,6 +70,11 @@ const MasterClass: FC = () => {
             />
           </Box>
         </div>
+        <Box sx={{ px: 3.5, mb: 2.5 }}>
+          <div className={globalStyles.yellow_text}>
+            21 ноября в 19.00 МСК
+          </div>
+        </Box>
       </div>
       <Box sx={{ px: 3.5 }}>
         <Box sx={{ mb: 3 }}>
@@ -69,42 +86,63 @@ const MasterClass: FC = () => {
           задать вопрос
         </div>
       </Box>
-      <Box sx={{ mb: 3.5 }}>
-        <CourseList list={list}/>
+      <Box sx={{ mb: 4.5 }}>
+        <CourseList list={masterClassList}/>
       </Box>
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 4.5 }}>
         <VideoCourse/>
       </Box>
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 6.5 }}>
         <CourseSlider list={sliderList}/>
       </Box>
-      <div className={styles.question}>
-        <div className={globalStyles.title} style={{ marginBottom: 20 }}>
-          Основной вопрос
+      <Box sx={{ mb: 6.5 }}>
+        <div className={styles.question}>
+          <div className={globalStyles.title} style={{ marginBottom: 20 }}>
+            Основной вопрос
+          </div>
+          <div className={styles.description}>
+            Для многих не секрет, что вопрос 
+            <span style={{ color: '#F2D113' }}> «Когда я выйду замуж» </span> является 
+            одним из самых популярных вопросов, задаваемых клиентами-женщинами 
+            во время астрологической консультации. Между тем, отбросив всякую иронию, популярность 
+            этого вопроса обусловлена устройством общества и института брака в современном мире.
+          </div>
+        </div> 
+      </Box>
+      <Box sx={{ mb: 4.5 }}>
+        <div className={styles.master_class_list}>
+          <div className={globalStyles.title} style={{ marginBottom: 30 }}>
+            На мастер-классе <br/>
+            <span style={{ color: '#F2D113' }}> вы изучите:</span>
+          </div>
+          <div className={globalStyles.list_item}>
+            формулы, показывающие позднее замужество
+          </div>
+          <div className={globalStyles.list_item}>
+            формулы на отсутствие брака и серьезные задержки
+          </div>
+          <div className={globalStyles.list_item}>
+            ормулы на отсутствие брака и серьезные задержки
+          </div>
         </div>
-        <div className={styles.description}>
-          Для многих не секрет, что вопрос 
-          <span style={{ color: '#F2D113' }}> «Когда я выйду замуж» </span> является 
-          одним из самых популярных вопросов, задаваемых клиентами-женщинами 
-          во время астрологической консультации. Между тем, отбросив всякую иронию, популярность 
-          этого вопроса обусловлена устройством общества и института брака в современном мире.
+      </Box>
+      <Box>
+        <div className={styles.master_class_list}>
+          <div className={globalStyles.title} style={{ marginBottom: 30 }}>
+            На мастер-классе <br/>
+            <span style={{ color: '#F2D113' }}> вы изучите:</span>
+          </div>
+          <div className={globalStyles.list_item}>
+            формулы, показывающие позднее замужество
+          </div>
+          <div className={globalStyles.list_item}>
+            формулы на отсутствие брака и серьезные задержки
+          </div>
+          <div className={globalStyles.list_item}>
+            ормулы на отсутствие брака и серьезные задержки
+          </div>
         </div>
-      </div>  
-      <div className={styles.master_class_list}>
-        <div className={globalStyles.title} style={{ marginBottom: 30 }}>
-          На мастер-классе <br/>
-          <span style={{ color: '#F2D113' }}> вы изучите:</span>
-        </div>
-        <div className={globalStyles.list_item}>
-          формулы, показывающие позднее замужество
-        </div>
-        <div className={globalStyles.list_item}>
-          формулы на отсутствие брака и серьезные задержки
-        </div>
-        <div className={globalStyles.list_item}>
-          ормулы на отсутствие брака и серьезные задержки
-        </div>
-      </div>
+      </Box>
       <div className={styles.master_class_container}>
         <div className={styles.master_class_title}>Старт МК</div>
         <div className={styles.master_class_date}>22 ноября</div>
@@ -144,6 +182,11 @@ const MasterClass: FC = () => {
       <div className={styles.main_teacher}>
         <MainTeacher teacher={mainTeacher}/>
       </div> 
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
+        <CourseCard
+          payment={freePayment}
+        />
+      </Box> 
       <Cause/>
       <Box sx={{ px: 3.5 }}>
         <Details/>

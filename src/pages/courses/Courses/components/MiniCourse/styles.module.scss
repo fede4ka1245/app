@@ -1,5 +1,5 @@
 .container {
-  height: 465px;
+  height: 410px;
   padding: 27px;
   box-sizing: border-box;
   background: url(./images/Universe.png) center center/cover no-repeat;
@@ -10,7 +10,7 @@
     background: url(./images/Gagarin.png) center center/cover no-repeat;
     width: 270px;
     height: 330px;
-    top: 50px;
+    top: 0;
     right: 0;
     z-index: 0;
   }
@@ -25,7 +25,7 @@
 }
 
 .title {
-  margin-bottom: 24px;
+  margin-bottom: 120px;
 }
 
 .subtitle {
@@ -34,7 +34,7 @@
   font-size: 24px;
   line-height: 16px;
   color: #FFF;
-  margin-bottom: 26px;
+  margin-bottom: 25px;
 }
 
 .date {
@@ -44,7 +44,6 @@
   font-size: 12px;
   line-height: 15px;
   color: #00EABD;
-  margin-bottom: 50px;
 }
 
 .lesson {
@@ -56,7 +55,7 @@
   font-size: 14px;
   line-height: 16px;
   color: #FFF;
-  margin-left: 15px;
+  margin-bottom: 25px;
   background: linear-gradient(88.23deg, #37366B 0.29%, #5C5B9F 42.18%, #59ABDA 97.3%), #F0F0F3;
 }
 
@@ -64,6 +63,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &_right {
+    display: flex;
+    align-items: center
+  }
 }
 
 .price {
@@ -81,7 +84,8 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  color: #37366B;
+  color: #FFF;
+  margin-right: 25px;
 }
 
 .button {

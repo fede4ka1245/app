@@ -15,9 +15,11 @@ export interface ICoursePaymentCard {
   list:PaymentList[];
   bonus_list: PaymentBonusList[];
   description: string;
+  subtitle?:string;
   full_price: number;
   discount_price: number;
   payment_title: string;
+  button_text?: string;
   monthly_fee: {
     show: boolean;
     quantity: string;
