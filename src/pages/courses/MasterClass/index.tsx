@@ -92,7 +92,7 @@ const MasterClass: FC = () => {
       <Box sx={{ mb: 4.5 }}>
         <VideoCourse/>
       </Box>
-      <Box sx={{ mb: 3.5 }}>
+      <Box sx={{ mb: 6.5 }}>
         <CourseSlider list={sliderList}/>
       </Box>
       <Box sx={{ mb: 6.5 }}>
@@ -182,7 +182,7 @@ const MasterClass: FC = () => {
       <div className={styles.main_teacher}>
         <MainTeacher teacher={mainTeacher}/>
       </div> 
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <CourseCard
           payment={freePayment}
         />

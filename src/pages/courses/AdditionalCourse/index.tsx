@@ -68,16 +68,11 @@ const MiniCourse: FC = () => {
         <div className={styles.header}>
           <Box sx={{ px: 3.5, flex: 1 }}>
             <Header/>
-            <div className={styles.step}>
-              <Box sx={{ mr: 3 }}>
-                <div className={globalStyles.yellow_text}>
-                  Курс
-                </div>
-              </Box>
+            <Box sx={{ mb: 1 }}>
               <div className={globalStyles.yellow_text}>
                 Повышение квалификации
               </div>
-            </div>
+            </Box>
             <Box sx={{ mb: 1 }}>
               <div className={globalStyles.title}>
                 Гороскоп вопроса
@@ -172,7 +167,7 @@ const MiniCourse: FC = () => {
           </div>
         ))}
       </div>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <Galaxy/>
       </Box>
       <Box sx={{ px: 3.5, mb: 5.5 }}>
@@ -181,13 +176,13 @@ const MiniCourse: FC = () => {
       <Box sx={{ mb: 6.5 }}>
         <TelegramChat/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <ProgramCards modules={modules}/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <Certificate certificate={nominalCertificate}/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 6 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <CourseCard
           payment={payVip}
         />

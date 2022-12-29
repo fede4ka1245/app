@@ -136,7 +136,7 @@ const AdditionalCourse: FC = () => {
       <Box sx={{ mb: 15 }}>
         <TelegramChat/>
       </Box>
-      <Box sx={{ px: 3.5, mb: 3.5 }}>
+      <Box sx={{ px: 3.5, mb: 6.5 }}>
         <MiniCourseCard/>
       </Box>
       <Box sx={{ px: 3.5, mb: 3.5 }}>
