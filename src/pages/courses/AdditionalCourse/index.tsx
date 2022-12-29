@@ -32,7 +32,7 @@ import {
 
 // images
 import space from '../images/space_bg.png';
-import universe from '../images/universe.png';
+import universe from '../images/universe.jpg';
 
 // styles
 import globalStyles from '../styles.module.scss';
@@ -68,9 +68,24 @@ const MiniCourse: FC = () => {
         <div className={styles.header}>
           <Box sx={{ px: 3.5, flex: 1 }}>
             <Header/>
+            <div className={styles.step}>
+              <Box sx={{ mr: 3 }}>
+                <div className={globalStyles.yellow_text}>
+                  Курс
+                </div>
+              </Box>
+              <div className={globalStyles.yellow_text}>
+                Повышение квалификации
+              </div>
+            </div>
             <Box sx={{ mb: 1 }}>
               <div className={globalStyles.title}>
                 Гороскоп вопроса
+              </div>
+            </Box>
+            <Box sx={{ mb: 3 }}>
+              <div className={globalStyles.subtitle}>
+                Делайте прогнозы уже через 10 уроков!
               </div>
             </Box>
           </Box>

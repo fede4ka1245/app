@@ -28,7 +28,7 @@ export const AdditionalStep:FC = () => {
               Deep Sky Astrology
             </div>
             <div className={styles.additional_date}>
-              до 11.05.2023
+              Дата старта 11.05.2023
             </div>
           </div>
         </div>
@@ -48,9 +48,9 @@ export const AdditionalStep:FC = () => {
               20₽
             </div> */}
           </div>
-          <div className={styles.additional_second_date}>
+          {/* <div className={styles.additional_second_date}>
             до 11.05.2023
-          </div>
+          </div> */}
         </div>
         <div className={styles.additional_btn} onClick={navigateTo}>
           Подробнее

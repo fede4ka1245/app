@@ -1,23 +1,33 @@
 import { FC } from 'react';
 import Slider from 'react-slick';
 import classnames from 'classnames';
+import { useNavigate } from 'react-router-dom';
+
+// components
+import SliderBar from '../../../../../components/courseAd/components/Slider'; 
 
 // images
 import mockImage from './images/mock_img.png';
 
 // modules
-import SliderBar from '../../../../../components/courseAd/components/Slider'; 
+import { routes } from '../../../routes';
 
 // styles
 import './slider.scss';
 import styles from './styles.module.scss';
 
 const CarouselItem: FC = () => {
+  const navigate = useNavigate();
+
+  const navigateTo = () => {
+    navigate(routes.CourseSteps);
+  };
+
   return (
-    <div className={styles.slider_item}>
+    <div className={styles.slider_item} onClick={navigateTo}>
       <div className={styles.text_wrapper}>
         <div className={styles.title}>
-          Моя профессия астролог
+          Инструменты астролога
         </div>
         <div className={styles.date}>
           Дата старта 11.05.2023

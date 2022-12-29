@@ -9,6 +9,11 @@
   object-fit: cover;
 }
 
+.step {
+  display: flex;
+  margin-bottom: 8px;
+}
+
 .wrapper {
   position: relative;
   height: 585px;

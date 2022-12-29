@@ -28,7 +28,7 @@ export const MasterСlassItem:FC = () => {
               Галактики в гороскопе
             </div>
             <div className={styles.additional_date}>
-              до 11.05.2023
+              Дата 11.05.2023 в 19:00 МСК
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ export const MasterСlassItem:FC = () => {
             </div>
           </div>
           <div className={styles.additional_second_date}>
-            до 11.05.2023
+            до 01.05.2023
           </div>
         </div>
         <div className={styles.additional_btn} onClick={navigateTo}>

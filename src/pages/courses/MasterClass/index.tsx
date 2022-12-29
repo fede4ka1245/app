@@ -37,12 +37,22 @@ const MasterClass: FC = () => {
         <Box sx={{ px: 3.5, flex: 1 }}>
           <Header/>
           <Box sx={{ mb: 1 }}>
-            <div className={globalStyles.title} style={{ marginBottom: 20 }}>
+            <div className={globalStyles.yellow_text}>
+              Мастер-класс от школы Альфа
+            </div>
+          </Box>
+          <Box sx={{ mb: 1 }}>
+            <div className={globalStyles.title}>
               Прогнозирование 
               в деторождении
             </div>
-            <img src={masterClass} alt="mater-class" className={styles.image}/>
           </Box>
+          <Box sx={{ mb: 3 }}>
+            <div className={globalStyles.subtitle}>
+              Участие БЕСПЛАТНО
+            </div>
+          </Box>
+          <img src={masterClass} alt="mater-class" className={styles.image}/>
         </Box>
         <div className={styles.shadow_wrapper}>
           <Box sx={{ px: 3.5 }}>

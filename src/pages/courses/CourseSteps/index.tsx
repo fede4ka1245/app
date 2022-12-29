@@ -38,7 +38,7 @@ import {
 
 // images
 import shutterstock from '../images/shutterstock.png';
-import universe from '../images/universe.png';
+import universe from '../images/universe.jpg';
 
 // styles
 import globalStyles from '../styles.module.scss';
