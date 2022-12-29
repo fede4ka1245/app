@@ -1,26 +1,39 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Topic.module.scss';
-import { Grid, Typography } from '@mui/material';
-import arrow from './assets/arrow.svg';
-import { useNavigate } from 'react-router-dom';
-import { routes } from '../../../../models/enums/routes';
+import { Typography } from '@mui/material';
+import TopicModal from './components/TopicModal';
+import Tags from './components/Tags';
 
 interface TopicProps {
   name: string,
   discussions: number,
-  tags?: Array<string>
+  tags?: Array<string>,
 }
 
 const Topic = ({ name, discussions, tags }: TopicProps) => {
-  const navigate = useNavigate();
+  const [isTopicModalOpen, setIsTopicModalOpen] = useState(false);
+  const [targetTag, setTargetTag] = useState('');
+
+  const toggleModal = useCallback(() => {
+    setIsTopicModalOpen(!isTopicModalOpen);
+  }, [isTopicModalOpen]);
 
   const onTopicClick = useCallback(() => {
-    navigate(routes.forumItem);
-  }, [navigate]);
+    setIsTopicModalOpen(true);
+  }, []);
+
+  useEffect(() => {
+    if (targetTag === '') {
+      return;
+    }
+
+    setIsTopicModalOpen(true);
+  }, [targetTag]);
 
   return (
-    <div onClick={onTopicClick}>
-      <div className={styles.main}>
+    <div>
+      <TopicModal targetTag={targetTag} setTargetTag={setTargetTag} isOpen={isTopicModalOpen} close={toggleModal} name={name} tags={tags} />
+      <div className={styles.main} onClick={onTopicClick}>
         <Typography pl={2} className={styles.name} fontFamily={'Gilroy'}>
           {name}
         </Typography>
@@ -28,20 +41,7 @@ const Topic = ({ name, discussions, tags }: TopicProps) => {
           {discussions} обсуждений
         </Typography>
       </div>
-      {tags && tags?.length !== 0 && <Grid container pt={2} direction={'row'} display={'flex'}>
-        <Grid item pr={2}>
-          <img src={arrow} width={30} height={30}/>
-        </Grid>
-        <Grid container item flex={1}>
-          {tags.map((tag) => (
-            <Grid item key={tag}>
-              <Typography className={styles.tag}>
-                {tag}
-              </Typography>
-            </Grid>
-          ))}
-        </Grid>
-      </Grid>}
+      <Tags tags={tags} targetTag={targetTag} setTargetTag={setTargetTag}/>
     </div>
   );
 };

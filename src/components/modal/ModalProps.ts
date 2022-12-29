@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface ModalProps {
   isOpen: boolean,
-  close: Function,
+  close: (props?: any) => any,
   height?: string,
   children?: React.ReactNode;
 }
