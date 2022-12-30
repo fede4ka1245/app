@@ -8,9 +8,7 @@ const AstroForecast: FC = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <div className={styles.avatar}>
-            <img src="./__mocks__/images/person_1.jpg"/>
-          </div>
+          <img src="./__mocks__/images/person_1.jpg" className={styles.avatar}/>
           <div className={styles.name}>
             Алексей Пивоваров сделал новый прогноз для
             Иванова Татьяна
