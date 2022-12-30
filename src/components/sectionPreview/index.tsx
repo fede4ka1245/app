@@ -45,15 +45,9 @@ const SectionPreview = ({ isGray, variant, isPinned, header, body }: SectionPrev
         </div>
         {variant !== 'prophecy' && <div className={styles.footer}>
           <div className={styles.users}>
-            <div className={styles.admin}>
-              <img src="./__mocks__/images/person_1.jpg" alt="user" className={styles.admin_img}/>
-            </div>
-            <div className={styles.user}>
-              <img src="./__mocks__/images/person_2.jpg" alt="user" className={styles.user_img}/>
-            </div>
-            <div className={styles.user}>
-              <img src="./__mocks__/images/person_3.jpeg" alt="user" className={styles.user_img}/>
-            </div>
+            <img src="./__mocks__/images/person_1.jpg" alt="user" className={styles.admin_avatar}/>
+            <img src="./__mocks__/images/person_2.jpg" alt="user" className={styles.user_avatar}/>
+            <img src="./__mocks__/images/person_3.jpeg" alt="user" className={styles.user_avatar}/>
             <div className={styles.quantity}>
               +10
             </div>

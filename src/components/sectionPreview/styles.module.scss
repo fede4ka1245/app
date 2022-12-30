@@ -3,7 +3,6 @@
   background: #FFFFFF;
   box-shadow: -5px -5px 20px #FFFFFF, 5px 5px 20px rgba(174, 174, 192, 0.5);
   border-radius: 10px;
-  height: 110px;
   padding: 10px 14px;
   position: relative;
 };
@@ -22,8 +21,8 @@
   font-family: 'Gilroy';
   font-weight: 600;
   font-size: 17px;
-  line-height: 33px;
   color: #292E30;
+  margin-bottom: 9px;
 };
 
 .icon {
@@ -52,28 +51,22 @@
   align-items: center;
 };
 
-.admin {
+.admin_avatar {
   width: 25px;
   height: 25px;
+  object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 4px;
-  &_img {
-    width: 25px;
-    height: 25px;
-  }
 }
 
-.user {
+.user_avatar{
   width: 20px;
   height: 20px;
+  object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 4px;
-  &_img {
-    width: 20px;
-    height: 20px;
-  };
 };
 
 .quantity {

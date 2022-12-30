@@ -20,9 +20,7 @@ const Contact: FC = () => {
 
   return (
     <div className={styles.container} onClick={onNavigate}>
-      <div className={styles.avatar_container}>
-        <img className={styles.avatar} alt="avatar" src="./__mocks__/images/person_1.jpg"/>
-      </div>
+      <img className={styles.avatar} alt="avatar" src="./__mocks__/images/person_1.jpg"/>
       <div style={{ flex: 1 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div className={styles.name}>
