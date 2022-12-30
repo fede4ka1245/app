@@ -1,4 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// routes 
+import { routes } from '../routes';
 
 // components
 import UserHeader from '../../../components/userHeader/UserHeader';
@@ -13,6 +17,12 @@ import Background from '../../../components/background/Background';
 import styles from './styles.module.scss';
 
 const ChatList: FC = () => {
+  const navigate = useNavigate();
+
+  const navigateToGroupChat = () => {
+    navigate(routes.GroupChat);
+  };
+
   return (
     <div className={styles.container}>
       <Background background={'#f0f0f3'} />
@@ -22,12 +32,12 @@ const ChatList: FC = () => {
         <div className={styles.list_item}>
           <Contact/>
         </div>
-        <div className={styles.list_item}>
+        <div className={styles.list_item} onClick={navigateToGroupChat}>
           <SectionPreview 
             isPinned 
             variant={'group'} 
-            header={'Карта Д - 10, что она означает...'} 
-            body={'Мощный инструмент для профессионального астролога, лёгкий в изучении и удобный в применении для начинающего астролога. '}
+            header={'Группа А555'} 
+            body={'Мощный инструмент для профессионального астролога, лёгкий в изучении и удобный в применении для начинающего астролога.'}
           />
         </div>
         <div className={styles.list_item}>

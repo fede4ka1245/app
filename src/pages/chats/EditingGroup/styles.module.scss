@@ -26,12 +26,35 @@
   display: flex;
   align-items: center;
   margin-bottom: 14px;
+  position: relative;
 }
 
 .avatar {
   width: 70px;
   height: 70px;
   margin-right: 13px;
+}
+
+.delete { 
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 33px;
+  color: #F32828;
+}
+
+.edit_button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 55px;
+  top: 0;
 }
 
 .avatar_text {
@@ -84,6 +107,7 @@
 }
 
 .discription {
+  min-height: 130px;
   font-family: 'Gilroy';
   font-style: normal;
   font-weight: 500;

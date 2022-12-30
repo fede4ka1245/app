@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, Skeleton, Typography } from '@mui/material';
 import firstLevel from '../../pages/forum/assets/firstLevel.svg';
 import secondLevel from '../../pages/forum/assets/secondLevel.svg';

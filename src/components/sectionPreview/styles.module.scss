@@ -51,28 +51,22 @@
   align-items: center;
 };
 
-.admin {
+.admin_avatar {
   width: 25px;
   height: 25px;
+  object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 4px;
-  &_img {
-    width: 25px;
-    height: 25px;
-  }
 }
 
-.user {
+.user_avatar{
   width: 20px;
   height: 20px;
+  object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 4px;
-  &_img {
-    width: 20px;
-    height: 20px;
-  };
 };
 
 .quantity {
